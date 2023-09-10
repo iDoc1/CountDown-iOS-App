@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22G91" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Grip" representedClassName="Grip" syncable="YES" codeGenerationType="class">
+        <attribute name="breakMinutes" attributeType="Integer 16" minValueString="0" maxValueString="30" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="breakSeconds" attributeType="Integer 16" minValueString="0" maxValueString="59" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="edgeSize" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastBreakMinutes" attributeType="Integer 16" minValueString="0" maxValueString="30" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="lastBreakSeconds" attributeType="Integer 16" minValueString="0" maxValueString="59" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="repCount" attributeType="Integer 16" minValueString="1" maxValueString="30" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="restSeconds" attributeType="Integer 16" minValueString="1" maxValueString="60" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="sequenceNum" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="setCount" attributeType="Integer 16" minValueString="1" maxValueString="30" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="workSeconds" attributeType="Integer 16" minValueString="1" maxValueString="60" defaultValueString="1" usesScalarValueType="YES"/>
+        <relationship name="gripType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GripType" inverseName="grip" inverseEntity="GripType"/>
+        <relationship name="workout" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Workout" inverseName="grip" inverseEntity="Workout"/>
+    </entity>
+    <entity name="GripType" representedClassName="GripType" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String" minValueString="1" maxValueString="40"/>
+        <relationship name="grip" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Grip" inverseName="gripType" inverseEntity="Grip"/>
+    </entity>
+    <entity name="Workout" representedClassName="Workout" syncable="YES" codeGenerationType="class">
+        <attribute name="colorTheme" optional="YES" attributeType="String"/>
+        <attribute name="createdDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="descriptionText" attributeType="String" minValueString="1" maxValueString="150"/>
+        <attribute name="foreignID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastUsedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String" minValueString="1" maxValueString="40"/>
+        <relationship name="grip" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Grip" inverseName="workout" inverseEntity="Grip"/>
+        <relationship name="workoutType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkoutType" inverseName="workout" inverseEntity="WorkoutType"/>
+    </entity>
+    <entity name="WorkoutType" representedClassName="WorkoutType" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String" minValueString="1" maxValueString="75"/>
+        <relationship name="workout" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Workout" inverseName="workoutType" inverseEntity="Workout"/>
+    </entity>
+</model>
