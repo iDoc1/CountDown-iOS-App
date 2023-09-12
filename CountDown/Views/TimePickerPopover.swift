@@ -10,37 +10,49 @@ import Popovers
 
 /// A button with a title that, when pressed, displays a popover view allowing the user to choose a number of minutes and seconds.
 struct TimePickerPopover: View {
+    @Environment(\.colorScheme) private var colorScheme
     @Binding var minute: Int
     @Binding var second: Int
     let title: String
     @State private var showPopover = false
     
+    /// Returns the font color corresponding to the current state of light/dark mode
+    private func fontColor() -> Color {
+        colorScheme == .dark ? .white : .black
+    }
+    
     var body: some View {
-        HStack {
-            Text(title)
-            Spacer()
-            Button("\(minute)min \(second)sec") {
-                showPopover = true
+        WindowReader { window in
+            HStack {
+                Text(title)
+                Spacer()
+                Button(action: { showPopover = !showPopover }) {
+                    Text("\(minute)min \(second)sec")
+                        .foregroundColor(showPopover ? .blue : fontColor())
+                }
+                .frame(width: 125.0, height: 32.0)
+                .background(colorScheme == .dark ? Color(.systemGray5) : Color(.systemGray6))
+                .cornerRadius(8.0)
+                .buttonStyle(PlainButtonStyle())
+                .frameTag("timeTextButton")
             }
-            .frame(width: 125.0, height: 32.0)
-            .background(Color(.systemGray6))
-            .cornerRadius(8.0)
-            .foregroundColor(.black)
+            .popover(
+                present: $showPopover,
+                attributes: {
+                    $0.position = .absolute(originAnchor: .topRight, popoverAnchor: .bottomLeft)
+                    $0.rubberBandingMode = .none
+                    // Prevents popover from immediately reopening if button pressed while open
+                    $0.dismissal.excludedFrames = {[window.frameTagged("timeTextButton")]}
+                }) {
+                    TimePicker(
+                        minute: $minute,
+                        second: $second)
+                    .frame(width: 250.0, height: 175.0)
+                    .background(colorScheme == .dark ? .black : Color(UIColor.systemGray6))
+                    .cornerRadius(16.0)
+                    .shadow(color: Color(.systemGray2), radius: 30, x: 0, y: 0)
+            }
         }
-        .popover(
-            present: $showPopover,
-            attributes: {
-                $0.position = .absolute(originAnchor: .top, popoverAnchor: .bottomLeft)
-                $0.rubberBandingMode = .none
-            }) {
-                TimePicker(
-                    minute: $minute,
-                    second: $second)
-                .frame(width: 250.0, height: 175.0)
-                .background(.white)
-                .cornerRadius(16.0)
-                .shadow(color: .gray.opacity(15.0), radius: 5, x: 1, y: -1)
-            }
     }
 }
 

@@ -11,9 +11,7 @@ import Popovers
 /// Allows the user to set timer values for a custom timer setup, then navigate to a page to start the timer
 struct TimerSetupView: View {
     @State private var timerDetails = TimerSetupDetails()
-    @FocusState private var isInputActive: Bool
-    @State private var someDate = Date()
-    
+    @FocusState private var isInputActive: Bool    
     
     var body: some View {
         NavigationStack {
