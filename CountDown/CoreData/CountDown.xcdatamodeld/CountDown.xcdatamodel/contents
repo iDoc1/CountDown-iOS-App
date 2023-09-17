@@ -25,6 +25,7 @@
         <attribute name="createdDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="descriptionText" attributeType="String" minValueString="1" maxValueString="150"/>
         <attribute name="foreignID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="hangboardName" optional="YES" attributeType="String" maxValueString="50"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="lastUsedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String" minValueString="1" maxValueString="40"/>

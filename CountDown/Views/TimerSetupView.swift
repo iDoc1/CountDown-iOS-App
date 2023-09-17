@@ -49,7 +49,7 @@ struct TimerSetupView: View {
                         second: $timerDetails.breakSeconds,
                         title: "Break")
                 }
-                NavigationLink(destination: TimerView()) {
+                NavigationLink(destination: CountdownTimerView()) {
                     Label("Start Workout", systemImage: "play.fill")
                 }
             }

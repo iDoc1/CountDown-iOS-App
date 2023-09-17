@@ -17,6 +17,7 @@ struct TimePickerPopover: View {
     @State private var showPopover = false
     
     /// Returns the font color corresponding to the current state of light/dark mode
+    /// - Returns: A Color that is either black or white
     private func fontColor() -> Color {
         colorScheme == .dark ? .white : .black
     }
@@ -44,14 +45,12 @@ struct TimePickerPopover: View {
                     // Prevents popover from immediately reopening if button pressed while open
                     $0.dismissal.excludedFrames = {[window.frameTagged("timeTextButton")]}
                 }) {
-                    TimePicker(
-                        minute: $minute,
-                        second: $second)
-                    .frame(width: 250.0, height: 175.0)
-                    .background(colorScheme == .dark ? .black : Color(UIColor.systemGray6))
-                    .cornerRadius(16.0)
-                    .shadow(color: Color(.systemGray2), radius: 30, x: 0, y: 0)
-            }
+                    TimePicker(minute: $minute, second: $second)
+                        .frame(width: 250.0, height: 175.0)
+                        .background(colorScheme == .dark ? .black : Color(UIColor.systemGray6))
+                        .cornerRadius(16.0)
+                        .shadow(color: Color(.systemGray2), radius: 30, x: 0, y: 0)
+                }
         }
     }
 }

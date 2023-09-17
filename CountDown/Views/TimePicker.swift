@@ -36,7 +36,7 @@ struct TimePicker: View {
     }
 }
 
-/// A single picker for a particular unit of time
+/// A single wheel picker for a particular unit of time
 private struct SinglePicker: View {
     @Binding var timeValue: Int
     let unitOfTime: String
@@ -53,7 +53,7 @@ private struct SinglePicker: View {
                 Text(unitOfTime)
             }
             Picker(unitOfTime, selection: $timeValue) {
-                ForEach(minValue..<maxValue, id:\.self) { val in
+                ForEach(minValue..<maxValue + 1, id:\.self) { val in
                     Text(verbatim: String(val)).tag(String(val))
                 }
             }
