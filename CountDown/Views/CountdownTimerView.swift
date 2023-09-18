@@ -13,14 +13,21 @@ struct CountdownTimerView: View {
 
     var body: some View {
         VStack {
-            TimerView(timer: countdownTimer)
+            TimerView(progress: countdownTimer.progress, animationDuration: countdownTimer.timeInterval)
+                .overlay {
+                    TimerTextView(timerString: countdownTimer.timerString)
+                }
             TimerButtonsView(
                 timerState: countdownTimer.timerState,
-                startTimerAction: countdownTimer.startTimer
+                startTimerAction: { countdownTimer.timerState = .started },
+                pauseTimerAction: { countdownTimer.timerState = .paused },
+                resumeTimerAction: { countdownTimer.timerState = .resumed },
+                resetTimerAction: { countdownTimer.timerState = .notStarted }
             )
+            .frame(height: 100.0)
         }
         .onDisappear {
-            countdownTimer.stopTimer()
+            countdownTimer.timerState = .notStarted
         }
         .toolbar(.hidden, for: .tabBar)
     }

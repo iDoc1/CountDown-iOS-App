@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-/// Text that displays the current time left in the countdown in format "mm:ss"
+/// Text that displays the current time left in the countdown in format "mm:ss". Dynamically sizes the font based on the current width
+/// and height available to this view.
 struct TimerTextView: View {
     let timerString: String
 
@@ -17,6 +18,7 @@ struct TimerTextView: View {
                 .font(.system(size: geometry.size.height > geometry.size.width
                               ? geometry.size.width * 0.3
                               : geometry.size.height * 0.3))
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         }
     }
 }

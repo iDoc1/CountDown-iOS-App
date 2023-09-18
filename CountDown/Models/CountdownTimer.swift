@@ -8,7 +8,9 @@
 import Foundation
 
 
-/// Keeps the time left in the countdown, the current timer state, and provides various functions to change the state of the timer
+/// Keeps the time left in the countdown, the current timer state, and provides various functions to change the state of the timer. Many
+/// aspects of this class were inspired by both the Apple's SwiftUI Scrumdinger tutorial and the following source:
+/// https://digitalbunker.dev/recreating-the-ios-timer-in-swiftui/
 
 
 @MainActor
@@ -18,20 +20,42 @@ final class CountdownTimer: ObservableObject {
         case notStarted
         case started
         case paused
+        case resumed
         case completed
     }
     
+    /// The current activity state of the timer. Initially begins as notStarted.
+    @Published var timerState = TimerState.notStarted {
+        didSet {
+            switch timerState {
+            case .notStarted:
+                timer.invalidate()
+                secondsLeft = startSeconds
+                secondsElapsed = 0.0
+                progress = 1.0
+            case .started:
+                secondsLeft = startSeconds
+                secondsElapsed = 0.0
+                startTimer()
+            case .paused:
+                timer.invalidate()
+            case .resumed:
+                startTimer()
+            case .completed:
+                timer.invalidate()
+            }
+        }
+    }
+    
     /// The current integer number of seconds left in the countdown
-    @Published var secondsLeft = 0
-    /// The percent completion of the current timer. A  value of 1.0 means the countdown has not started. A value of zero means the
+    @Published var secondsLeft: Int = 75
+    /// The percent completion of the current timer. A value of 1.0 means the countdown has not started. A value of zero means the
     /// countdown has completed.
     @Published var progress: Double = 1.0
-    /// The current activity state of the timer. Initially begins as notStarted.
-    @Published var timerState = TimerState.notStarted
     /// The number of seconds the timer starts at
-    var startSeconds = 5
-    /// The number of seconds left in decimal value
-    var timeLeft: Double = 5
+    var startSeconds: Int = 75
+    /// The decimal number of seconds that have passed since the current countdown started
+    var secondsElapsed: Double = 0.0
     /// A string representation of the time left in form "mm:ss"
     var timerString: String {
         let minutes = secondsLeft / 60
@@ -39,44 +63,43 @@ final class CountdownTimer: ObservableObject {
         // Add a leading zero to seconds if seconds does not have two digits
         return seconds > 9 ? "\(minutes):\(seconds)" : "\(minutes):0\(seconds)"
     }
+    /// The frequency at which the timer will update
+    var timeInterval: TimeInterval { 1.0 / 10.0}
     /// The timer that keeps track of the countdown
-    private weak var timer: Timer?
-    /// Used to keep track of when the current timer was started
-    private var startDate: Date?
-    /// The frequencey at which the timer will update
-    var frequency: TimeInterval { 1.0 / 60.0}
-    
+    private var timer = Timer()
+
     func startTimer() {
-        timerState = TimerState.started
-        timer = Timer.scheduledTimer(withTimeInterval: frequency, repeats: true) { [weak self] timer in
+        // Timer interval set to update every one second
+        timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true) { [weak self] timer in
             self?.updateTimer()
         }
-        timer?.tolerance = 0.1
-        startDate = Date()
-    }
-    
-    func stopTimer() {
-        timerState = TimerState.notStarted
-        timer?.invalidate()
+        timer.tolerance = 0.1
     }
     
     /// Updates variables related to the timer state
     nonisolated private func updateTimer() {
         Task { @MainActor in
-            guard let startDate, timerState == TimerState.started else { return }
-
-            let secondsElapsed = Date().timeIntervalSince1970 - startDate.timeIntervalSince1970
-            timeLeft = Double(startSeconds) - secondsElapsed
+            secondsElapsed += timeInterval
             
-            // Only update seconds left if it has changed
             let newSecondsLeft = startSeconds - Int(secondsElapsed)
             if newSecondsLeft != secondsLeft {
                 secondsLeft = newSecondsLeft
             }
-
+            
             progress = (Double(startSeconds) - secondsElapsed) / Double(startSeconds)
             
-            if progress <= 0 {
+//            guard let startDate else { return }
+//
+//            let secondsElapsed = Date().timeIntervalSince1970 - startDate.timeIntervalSince1970
+//
+//            let newSecondsLeft = startSeconds - Int(secondsElapsed)
+//            if newSecondsLeft != secondsLeft {
+//                secondsLeft = newSecondsLeft
+//            }
+//
+//            progress = (Double(startSeconds) - secondsElapsed) / Double(startSeconds)
+            
+            if secondsLeft <= 0 {
                 timerState = TimerState.completed
             }
         }

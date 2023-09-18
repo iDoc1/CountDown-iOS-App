@@ -9,34 +9,28 @@ import SwiftUI
 
 /// Displays the circular progress indicator for the timer with text in the center displaying the time left in the countdown
 struct TimerView: View {
-    @ObservedObject var timer: CountdownTimer
+    let progress: Double
+    let animationDuration: Double
     
     var body: some View {
-        GeometryReader { geometry in
+        ZStack {
             Circle()
-                .strokeBorder(Color(.systemGray5), lineWidth: 20.0)
-                .overlay {
-                    Text(timer.timerString)
-                        .font(.system(size: geometry.size.height > geometry.size.width
-                                      ? geometry.size.width * 0.3
-                                      : geometry.size.height * 0.3))
-                }
-                .overlay {
-                    TimerArc(progress: timer.progress)
-                        .rotation(Angle(degrees: -90))
-                        .stroke(
-                            Theme.lightBlue.mainColor,
-                            style: StrokeStyle(lineWidth: 20.0, lineCap: .round))
-                }
-                .padding(.horizontal)
-
+                .stroke(Color(.systemGray5), style: StrokeStyle(lineWidth: 20.0))
+            Circle()
+                .trim(from: 0.0, to: progress)
+                .rotation(Angle(degrees: -90))
+                .stroke(
+                    Theme.lightBlue.mainColor,
+                    style: StrokeStyle(lineWidth: 20.0, lineCap: .round))
         }
+        .padding(25)
+        /// Causes an animation to occur over the given duration of time
+        .animation(.linear(duration: animationDuration), value: progress)
     }
 }
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        let timer = CountdownTimer()
-        TimerView(timer: timer)
+        TimerView(progress: 0.75, animationDuration: 0.10)
     }
 }

@@ -27,7 +27,6 @@
 		ABA9E7CD2AAECB3900DBF8DA /* CountdownTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7CC2AAECB3900DBF8DA /* CountdownTimerView.swift */; };
 		ABA9E7CF2AB1552700DBF8DA /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7CE2AB1552700DBF8DA /* CountdownTimer.swift */; };
 		ABA9E7D22AB635AE00DBF8DA /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7D12AB635AE00DBF8DA /* TimerView.swift */; };
-		ABA9E7D42AB6496A00DBF8DA /* TimerArc.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7D32AB6496A00DBF8DA /* TimerArc.swift */; };
 		ABA9E7D62AB659BB00DBF8DA /* TimerButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7D52AB659BB00DBF8DA /* TimerButtonsView.swift */; };
 		ABA9E7D82AB65D1800DBF8DA /* TrailingIconLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7D72AB65D1800DBF8DA /* TrailingIconLabelStyle.swift */; };
 		ABA9E7DA2AB6609000DBF8DA /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7D92AB6609000DBF8DA /* Theme.swift */; };
@@ -75,7 +74,6 @@
 		ABA9E7CC2AAECB3900DBF8DA /* CountdownTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerView.swift; sourceTree = "<group>"; };
 		ABA9E7CE2AB1552700DBF8DA /* CountdownTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimer.swift; sourceTree = "<group>"; };
 		ABA9E7D12AB635AE00DBF8DA /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
-		ABA9E7D32AB6496A00DBF8DA /* TimerArc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerArc.swift; sourceTree = "<group>"; };
 		ABA9E7D52AB659BB00DBF8DA /* TimerButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerButtonsView.swift; sourceTree = "<group>"; };
 		ABA9E7D72AB65D1800DBF8DA /* TrailingIconLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailingIconLabelStyle.swift; sourceTree = "<group>"; };
 		ABA9E7D92AB6609000DBF8DA /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -205,7 +203,6 @@
 				ABA9E7CA2AAEB80A00DBF8DA /* TimePickerPopover.swift */,
 				ABA9E7CC2AAECB3900DBF8DA /* CountdownTimerView.swift */,
 				ABA9E7D12AB635AE00DBF8DA /* TimerView.swift */,
-				ABA9E7D32AB6496A00DBF8DA /* TimerArc.swift */,
 				ABA9E7D52AB659BB00DBF8DA /* TimerButtonsView.swift */,
 				ABA9E7D72AB65D1800DBF8DA /* TrailingIconLabelStyle.swift */,
 				ABA9E7D92AB6609000DBF8DA /* Theme.swift */,
@@ -357,7 +354,6 @@
 				ABA9E7BC2AAD631D00DBF8DA /* SettingsView.swift in Sources */,
 				ABA9E7C22AAD765B00DBF8DA /* NumberPicker.swift in Sources */,
 				ABA9E7862AAD401000DBF8DA /* MainView.swift in Sources */,
-				ABA9E7D42AB6496A00DBF8DA /* TimerArc.swift in Sources */,
 				ABA9E7DE2AB6828F00DBF8DA /* TimerTextView.swift in Sources */,
 				ABA9E7BE2AAD737600DBF8DA /* TimerSetupDetails.swift in Sources */,
 				ABA9E7B82AAD62C200DBF8DA /* WorkoutsView.swift in Sources */,

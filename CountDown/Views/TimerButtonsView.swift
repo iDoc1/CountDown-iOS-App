@@ -11,6 +11,9 @@ import SwiftUI
 struct TimerButtonsView: View {
     let timerState: CountdownTimer.TimerState
     let startTimerAction: @MainActor () -> ()
+    let pauseTimerAction: @MainActor () -> ()
+    let resumeTimerAction: @MainActor () -> ()
+    let resetTimerAction: @MainActor () -> ()
 
     var body: some View {
         switch timerState {
@@ -27,57 +30,58 @@ struct TimerButtonsView: View {
                     .frame(height: 35.0)
             }
             
-        case .started:
+        case .started, .resumed:
             VStack {
                 TimerButton(
-                    action: { },
+                    action: pauseTimerAction,
                     title: "Pause",
                     systemImage: "pause.fill",
                     color: Theme.mediumYellow.mainColor)
                 .padding(.horizontal)
-                ResetAndSkipButtons(resetAction: {}, skipAction: {})
+                ResetAndSkipButtons
             }
             
         case .paused:
             VStack {
                 TimerButton(
-                    action: { },
+                    action: resumeTimerAction,
                     title: "Resume",
                     systemImage: "play.fill",
                     color: Theme.lightGreen.mainColor)
                 .padding(.horizontal)
-                ResetAndSkipButtons(resetAction: {}, skipAction: {})
+                ResetAndSkipButtons
             }
         }
     }
     
     /// Buttons to rest timer or skip to next element displayed in a single row
-    private struct ResetAndSkipButtons: View {
-        let resetAction: () -> Void
-        let skipAction: () -> Void
-        
-        var body: some View {
-            HStack {
-                TimerButton(
-                    action: resetAction,
-                    title: "Reset",
-                    systemImage: "arrow.counterclockwise",
-                    color: Theme.brightRed.mainColor)
-                .padding()
-                
-                TimerButton(
-                    action: skipAction,
-                    title: "Skip",
-                    systemImage: "chevron.forward.2",
-                    color: Theme.lightBlue.mainColor)
-                .padding()
-            }
+    var ResetAndSkipButtons: some View {
+        HStack {
+            TimerButton(
+                action: resetTimerAction,
+                title: "Reset",
+                systemImage: "arrow.counterclockwise",
+                color: Theme.brightRed.mainColor)
+            .padding()
+            
+            TimerButton(
+                action: {},
+                title: "Skip",
+                systemImage: "chevron.forward.2",
+                color: Theme.lightBlue.mainColor)
+            .padding()
         }
     }
 }
 
 struct TimerButtonsView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerButtonsView(timerState: CountdownTimer.TimerState.started, startTimerAction: {})
+        TimerButtonsView(
+            timerState: CountdownTimer.TimerState.started,
+            startTimerAction: {},
+            pauseTimerAction: {},
+            resumeTimerAction: {},
+            resetTimerAction: {}
+        )
     }
 }
