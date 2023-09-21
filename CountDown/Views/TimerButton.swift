@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// A standard timer button with
+/// A standard timer button with a given action
 struct TimerButton: View {
     let action : @MainActor () -> ()
     let title: String

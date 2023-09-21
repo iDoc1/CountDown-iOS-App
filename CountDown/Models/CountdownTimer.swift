@@ -52,6 +52,13 @@ final class CountdownTimer: ObservableObject {
     /// The percent completion of the current timer. A value of 1.0 means the countdown has not started. A value of zero means the
     /// countdown has completed.
     @Published var progress: Double = 1.0
+    /// The index of the current grip in the DurationArray
+    @Published var gripIndex: Int = 0
+    /// The index of the current set within the current workout grip
+    @Published var setIndex: Int = 0
+    /// The index of the current rep within the current workout set
+    @Published var repIndex: Int = 0
+    
     /// The number of seconds the timer starts at
     var startSeconds: Int = 75
     /// The decimal number of seconds that have passed since the current countdown started
@@ -65,6 +72,7 @@ final class CountdownTimer: ObservableObject {
     }
     /// The frequency at which the timer will update
     var timeInterval: TimeInterval { 1.0 / 10.0}
+    
     /// The timer that keeps track of the countdown
     private var timer = Timer()
 
@@ -81,23 +89,13 @@ final class CountdownTimer: ObservableObject {
         Task { @MainActor in
             secondsElapsed += timeInterval
             
+            // Only update secondsLeft if it has changed since the last timer update
             let newSecondsLeft = startSeconds - Int(secondsElapsed)
             if newSecondsLeft != secondsLeft {
                 secondsLeft = newSecondsLeft
             }
             
             progress = (Double(startSeconds) - secondsElapsed) / Double(startSeconds)
-            
-//            guard let startDate else { return }
-//
-//            let secondsElapsed = Date().timeIntervalSince1970 - startDate.timeIntervalSince1970
-//
-//            let newSecondsLeft = startSeconds - Int(secondsElapsed)
-//            if newSecondsLeft != secondsLeft {
-//                secondsLeft = newSecondsLeft
-//            }
-//
-//            progress = (Double(startSeconds) - secondsElapsed) / Double(startSeconds)
             
             if secondsLeft <= 0 {
                 timerState = TimerState.completed

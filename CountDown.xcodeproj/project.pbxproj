@@ -32,6 +32,7 @@
 		ABA9E7DA2AB6609000DBF8DA /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7D92AB6609000DBF8DA /* Theme.swift */; };
 		ABA9E7DC2AB66D7B00DBF8DA /* TimerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7DB2AB66D7B00DBF8DA /* TimerButton.swift */; };
 		ABA9E7DE2AB6828F00DBF8DA /* TimerTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7DD2AB6828F00DBF8DA /* TimerTextView.swift */; };
+		ABA9E7E02AB7E04B00DBF8DA /* GripsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7DF2AB7E04B00DBF8DA /* GripsArray.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		ABA9E7D92AB6609000DBF8DA /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		ABA9E7DB2AB66D7B00DBF8DA /* TimerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerButton.swift; sourceTree = "<group>"; };
 		ABA9E7DD2AB6828F00DBF8DA /* TimerTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTextView.swift; sourceTree = "<group>"; };
+		ABA9E7DF2AB7E04B00DBF8DA /* GripsArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripsArray.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 			children = (
 				ABA9E7BD2AAD737600DBF8DA /* TimerSetupDetails.swift */,
 				ABA9E7CE2AB1552700DBF8DA /* CountdownTimer.swift */,
+				ABA9E7DF2AB7E04B00DBF8DA /* GripsArray.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				ABA9E7B32AAD414500DBF8DA /* CountDown.xcdatamodeld in Sources */,
 				ABA9E7842AAD401000DBF8DA /* CountDownApp.swift in Sources */,
 				ABA9E7CB2AAEB80A00DBF8DA /* TimePickerPopover.swift in Sources */,
+				ABA9E7E02AB7E04B00DBF8DA /* GripsArray.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
