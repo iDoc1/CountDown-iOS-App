@@ -9,8 +9,8 @@ import SwiftUI
 
 /// Displays the circular progress indicator for the timer with text in the center displaying the time left in the countdown
 struct TimerView: View {
-    let progress: Double
-    let animationDuration: Double
+    @ObservedObject var timer: CountdownTimer
+    @State var progress: Double = 1.0
     
     var body: some View {
         ZStack {
@@ -20,17 +20,39 @@ struct TimerView: View {
                 .trim(from: 0.0, to: progress)
                 .rotation(Angle(degrees: -90))
                 .stroke(
-                    Theme.lightBlue.mainColor,
+                    timer.timerColor,
                     style: StrokeStyle(lineWidth: 20.0, lineCap: .round))
         }
         .padding(25)
-        /// Causes an animation to occur over the given duration of time
-        .animation(.linear(duration: animationDuration), value: progress)
+        .onReceive(timer.$progress) { newValue in
+            /*
+             Only have non-zero animation duration if new progress less than current. This prevents
+             the timer progress animation from moving backwards (clockwise) between duration changes.
+             */
+            let duration = newValue < progress ? timer.timeInterval : 0.0
+            withAnimation(.linear(duration: duration)) {
+                if newValue < progress {
+                    progress = newValue
+                } else {
+                    // Reset progress to 1.0 if a duration change has occurred
+                    progress = 1.0
+                }
+            }
+        }
     }
 }
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView(progress: 0.75, animationDuration: 0.10)
+        let timerDetails = TimerSetupDetails(
+            sets: 2,
+            reps: 3,
+            workSeconds: 7,
+            restSeconds: 3,
+            breakMinutes: 1,
+            breakSeconds: 45)
+        let timer = CountdownTimer(timerDetails: timerDetails)
+        
+        TimerView(timer: timer)
     }
 }

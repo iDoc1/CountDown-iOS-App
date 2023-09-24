@@ -9,19 +9,15 @@ import SwiftUI
 
 /// A series of buttons to start, stop, pause, reset and skip the countdown timer based on the current timer state
 struct TimerButtonsView: View {
-    let timerState: CountdownTimer.TimerState
-    let startTimerAction: @MainActor () -> ()
-    let pauseTimerAction: @MainActor () -> ()
-    let resumeTimerAction: @MainActor () -> ()
-    let resetTimerAction: @MainActor () -> ()
+    @ObservedObject var timer: CountdownTimer
 
     var body: some View {
-        switch timerState {
+        switch timer.timerState {
             
         case .notStarted, .completed:
             VStack {
                 TimerButton(
-                    action: startTimerAction,
+                    action: { timer.timerState = .started },
                     title: "Start",
                     systemImage: "play.fill",
                     color: Theme.lightBlue.mainColor)
@@ -33,7 +29,7 @@ struct TimerButtonsView: View {
         case .started, .resumed:
             VStack {
                 TimerButton(
-                    action: pauseTimerAction,
+                    action: { timer.timerState = .paused },
                     title: "Pause",
                     systemImage: "pause.fill",
                     color: Theme.mediumYellow.mainColor)
@@ -44,7 +40,7 @@ struct TimerButtonsView: View {
         case .paused:
             VStack {
                 TimerButton(
-                    action: resumeTimerAction,
+                    action: { timer.timerState = .resumed },
                     title: "Resume",
                     systemImage: "play.fill",
                     color: Theme.lightGreen.mainColor)
@@ -58,14 +54,14 @@ struct TimerButtonsView: View {
     var ResetAndSkipButtons: some View {
         HStack {
             TimerButton(
-                action: resetTimerAction,
+                action: { timer.timerState = .notStarted },
                 title: "Reset",
                 systemImage: "arrow.counterclockwise",
                 color: Theme.brightRed.mainColor)
             .padding()
             
             TimerButton(
-                action: {},
+                action: { timer.skip() },
                 title: "Skip",
                 systemImage: "chevron.forward.2",
                 color: Theme.lightBlue.mainColor)
@@ -76,12 +72,15 @@ struct TimerButtonsView: View {
 
 struct TimerButtonsView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerButtonsView(
-            timerState: CountdownTimer.TimerState.started,
-            startTimerAction: {},
-            pauseTimerAction: {},
-            resumeTimerAction: {},
-            resetTimerAction: {}
-        )
+        let timerDetails = TimerSetupDetails(
+            sets: 2,
+            reps: 3,
+            workSeconds: 7,
+            restSeconds: 3,
+            breakMinutes: 1,
+            breakSeconds: 45)
+        let timer = CountdownTimer(timerDetails: timerDetails)
+
+        TimerButtonsView(timer: timer)
     }
 }

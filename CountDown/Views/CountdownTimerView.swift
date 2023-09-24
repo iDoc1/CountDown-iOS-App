@@ -9,22 +9,20 @@ import SwiftUI
 
 /// Displays the countdown timer buttons, circular progress indicator, and timer progress trackers
 struct CountdownTimerView: View {
-    @StateObject var countdownTimer = CountdownTimer()
+    @StateObject private var countdownTimer: CountdownTimer
+    
+    init(timerDetails: TimerSetupDetails) {
+        _countdownTimer = StateObject(wrappedValue: CountdownTimer(timerDetails: timerDetails))
+    }
 
     var body: some View {
         VStack {
-            TimerView(progress: countdownTimer.progress, animationDuration: countdownTimer.timeInterval)
+            TimerView(timer: countdownTimer)
                 .overlay {
-                    TimerTextView(timerString: countdownTimer.timerString)
+                    TimerTextView(timer: countdownTimer)
                 }
-            TimerButtonsView(
-                timerState: countdownTimer.timerState,
-                startTimerAction: { countdownTimer.timerState = .started },
-                pauseTimerAction: { countdownTimer.timerState = .paused },
-                resumeTimerAction: { countdownTimer.timerState = .resumed },
-                resetTimerAction: { countdownTimer.timerState = .notStarted }
-            )
-            .frame(height: 100.0)
+            TimerButtonsView(timer: countdownTimer)
+                .frame(height: 100.0)
         }
         .onDisappear {
             countdownTimer.timerState = .notStarted
@@ -35,6 +33,13 @@ struct CountdownTimerView: View {
 
 struct CountdownTimerView_Previews: PreviewProvider {
     static var previews: some View {
-        CountdownTimerView()
+        let timerDetails = TimerSetupDetails(
+            sets: 2,
+            reps: 3,
+            workSeconds: 7,
+            restSeconds: 3,
+            breakMinutes: 1,
+            breakSeconds: 45)
+        CountdownTimerView(timerDetails: timerDetails)
     }
 }

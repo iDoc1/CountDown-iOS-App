@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 /// Contains a collection of grips, each containing a collection of elements representing the sets and reps within a grip.
 struct GripsArray {
@@ -17,6 +18,20 @@ struct GripsArray {
         case restType = "REST"
         case breakType = "BREAK"
         case prepareType = "PREPARE"
+        
+        /// The color corresponding to this DurationType
+        var timerColor: Color {
+            switch self {
+            case .workType:
+                return Theme.lightGreen.mainColor
+            case .restType:
+                return Theme.mediumYellow.mainColor
+            case .breakType:
+                return Theme.brightRed.mainColor
+            case .prepareType:
+                return Theme.lightBlue.mainColor
+            }
+        }
     }
     
     /// A particular grip that contains a collection of workout DurationStatus structs
@@ -50,7 +65,7 @@ struct GripsArray {
     /// TimerSetupDetails only provides info for a single grip.
     /// - Parameter timerSetupDetails: The quantity of sets and reps, and the work, rest, and break durations
     private mutating func buildArrayFromTimerSetup(timerDetails: TimerSetupDetails) {
-        var currGrip = 0
+        let currGrip = 0
         var currSet = 0
         var currRep = 0
         
@@ -109,7 +124,7 @@ struct GripsArray {
                 grips[currGrip].durations.append(breakDuration)
             case .prepareType:
                 let prepareDuration = DurationStatus(
-                    seconds: timerDetails.restSeconds,
+                    seconds: 15,
                     durationType: .prepareType,
                     currSet: currSet,
                     currRep: currRep)
