@@ -21,13 +21,13 @@ struct TimerSetupView: View {
                         number: $timerDetails.sets,
                         title: "Sets",
                         minVal: 1,
-                        maxVal: 30,
+                        maxVal: 20,
                         isInputActive: $isInputActive)
                     NumberPicker(
                         number: $timerDetails.reps,
                         title: "Reps",
                         minVal: 1,
-                        maxVal: 30,
+                        maxVal: 20,
                         isInputActive: $isInputActive)
                 }
                 

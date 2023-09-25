@@ -61,6 +61,16 @@ struct GripsArray {
         buildArrayFromTimerSetup(timerDetails: timerDetails)
     }
     
+    /// Enables use of the [index] operator on this struct
+    subscript (index: Int) -> WorkoutGrip {
+        grips[index]
+    }
+    
+    /// The number of grips in this struct
+    var count: Int {
+        grips.count
+    }
+    
     /// Builds durations array for this struct using the given TimerSetupDetails struct. Only includes one WorkoutGrip because the
     /// TimerSetupDetails only provides info for a single grip.
     /// - Parameter timerSetupDetails: The quantity of sets and reps, and the work, rest, and break durations
@@ -72,11 +82,11 @@ struct GripsArray {
         // Add a prepare duration as the first duration
         grips.append(WorkoutGrip(name: nil))
         addDuration(type: .prepareType)
-        
+
         // Add sets and reps to the current grip
         while currSet < timerDetails.sets {
 
-            currRep = 0
+//            currRep = 0
             while currRep < timerDetails.reps {
                 addDuration(type: .workType)
                 currRep += 1
@@ -87,12 +97,14 @@ struct GripsArray {
                     currRep += 1
                 }
                 
-                currSet += 1
                 
-                // Do not add a break duration after the last set
-                if currSet < timerDetails.sets {
-                    addDuration(type: .breakType)
-                }
+            }
+            currSet += 1
+            
+            // Do not add a break duration after the last set
+            if currSet < timerDetails.sets {
+                currRep = 0
+                addDuration(type: .breakType)
             }
         }
 

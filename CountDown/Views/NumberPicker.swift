@@ -35,11 +35,26 @@ struct NumberPicker: View {
             Stepper(title, value: $number, in: minVal...maxVal)
                 .labelsHidden()
         }
+        .onChange(of: number) { newValue in
+            // Ensure that new value is within the min and max range
+            if newValue < minVal {
+                number = minVal
+            } else if newValue > maxVal {
+                number = maxVal
+            } else {
+                number = newValue
+            }
+        }
     }
 }
 
 struct NumberPicker_Previews: PreviewProvider {
     static var previews: some View {
-        NumberPicker(number: .constant(1), title: "Sets", minVal: 1, maxVal: 30, isInputActive: FocusState<Bool>().projectedValue)
+        NumberPicker(
+            number: .constant(1),
+            title: "Sets",
+            minVal: 1,
+            maxVal: 30,
+            isInputActive: FocusState<Bool>().projectedValue)
     }
 }
