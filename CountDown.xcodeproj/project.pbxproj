@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB3FD8362AC28BA5009D6C71 /* CountdownTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FD8352AC28BA5009D6C71 /* CountdownTimerTests.swift */; };
 		ABA9E7842AAD401000DBF8DA /* CountDownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7832AAD401000DBF8DA /* CountDownApp.swift */; };
 		ABA9E7862AAD401000DBF8DA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7852AAD401000DBF8DA /* MainView.swift */; };
 		ABA9E7882AAD401100DBF8DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABA9E7872AAD401100DBF8DA /* Assets.xcassets */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB3FD8352AC28BA5009D6C71 /* CountdownTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerTests.swift; sourceTree = "<group>"; };
 		ABA9E7802AAD401000DBF8DA /* CountDown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountDown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABA9E7832AAD401000DBF8DA /* CountDownApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownApp.swift; sourceTree = "<group>"; };
 		ABA9E7852AAD401000DBF8DA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			children = (
 				ABA9E7E32ABFC05500DBF8DA /* GripsArrayTests.swift */,
 				ABA9E7E62AC0AAF200DBF8DA /* TimerSetupDetailsTest.swift */,
+				AB3FD8352AC28BA5009D6C71 /* CountdownTimerTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB3FD8362AC28BA5009D6C71 /* CountdownTimerTests.swift in Sources */,
 				ABA9E7E42ABFC05500DBF8DA /* GripsArrayTests.swift in Sources */,
 				ABA9E7E72AC0AAF200DBF8DA /* TimerSetupDetailsTest.swift in Sources */,
 			);

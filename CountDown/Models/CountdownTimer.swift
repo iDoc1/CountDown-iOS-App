@@ -45,7 +45,7 @@ final class CountdownTimer: ObservableObject {
     }
     
     /// The current integer number of seconds left in the countdown
-    @Published var secondsLeft: Int = 15
+    @Published var secondsLeft: Int
     /// The percent completion of the current timer. A value of 1.0 means the countdown has not started. A value of zero means the
     /// countdown has completed.
     @Published var progress: Double = 1.0
@@ -55,7 +55,7 @@ final class CountdownTimer: ObservableObject {
     @Published var durationIndex: Int = 0
 
     /// The number of seconds the timer starts at
-    var startSeconds: Int = 15 // 15 is the initial PREPARE duration that all timers begin with
+    var startSeconds: Int
     /// The decimal number of seconds that have passed since the current countdown started
     var secondsElapsed: Double = 0.0
     /// A string representation of the time left in form "mm:ss"
@@ -66,7 +66,7 @@ final class CountdownTimer: ObservableObject {
         return seconds > 9 ? "\(minutes):\(seconds)" : "\(minutes):0\(seconds)"
     }
     /// The frequency at which the timer will update
-    var timeInterval: TimeInterval { 1.0 / 10.0}
+    var timeInterval: TimeInterval { 1.0 / 10.0 }
     /// The color associated with the current duration
     var timerColor: Color {
         guard durationIndex < currGrip.durations.count else { return Theme.lightBlue.mainColor }
@@ -80,8 +80,8 @@ final class CountdownTimer: ObservableObject {
     
     /// The current WorkoutGrip
     private var currGrip: GripsArray.WorkoutGrip {
-        guard gripIndex < gripsArray.grips.count else { return GripsArray.WorkoutGrip(name: nil) }
-        return gripsArray.grips[gripIndex]
+        guard gripIndex < gripsArray.count else { return GripsArray.WorkoutGrip(name: nil) }
+        return gripsArray[gripIndex]
     }
     /// The timer that keeps track of the countdown
     private var timer = Timer()
@@ -90,6 +90,9 @@ final class CountdownTimer: ObservableObject {
     
     init(timerDetails: TimerSetupDetails) {
         self.gripsArray = GripsArray(timerDetails: timerDetails)
+        // Set start seconds to the length of the first duration in the array
+        self.startSeconds = self.gripsArray[0].durations[0].seconds
+        self.secondsLeft = self.startSeconds
     }
 
     private func startTimer() {
