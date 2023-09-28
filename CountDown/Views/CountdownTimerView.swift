@@ -17,6 +17,7 @@ struct CountdownTimerView: View {
 
     var body: some View {
         VStack {
+            TimerHeader(timer: countdownTimer)
             TimerView(timer: countdownTimer)
                 .overlay {
                     TimerTextView(timer: countdownTimer)

@@ -62,8 +62,7 @@ final class CountdownTimer: ObservableObject {
     var timerString: String {
         let minutes = secondsLeft / 60
         let seconds = secondsLeft % 60
-        // Add a leading zero to seconds if seconds does not have two digits
-        return seconds > 9 ? "\(minutes):\(seconds)" : "\(minutes):0\(seconds)"
+        return timeToString(minutes: minutes, seconds: seconds)
     }
     /// The frequency at which the timer will update
     var timeInterval: TimeInterval { 1.0 / 10.0 }
@@ -79,8 +78,10 @@ final class CountdownTimer: ObservableObject {
     }
     
     /// The current WorkoutGrip
-    private var currGrip: GripsArray.WorkoutGrip {
-        guard gripIndex < gripsArray.count else { return GripsArray.WorkoutGrip(name: nil) }
+    var currGrip: GripsArray.WorkoutGrip {
+        guard gripIndex < gripsArray.count else {
+            return gripsArray.last
+        }
         return gripsArray[gripIndex]
     }
     /// The timer that keeps track of the countdown

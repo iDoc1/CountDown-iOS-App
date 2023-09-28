@@ -38,10 +38,29 @@ struct GripsArray {
     struct WorkoutGrip {
         let name: String?
         var durations: [DurationStatus] = []
+        var workSeconds: Int
+        var restSeconds: Int
+        var breakMinutes: Int
+        var breakSeconds: Int
         /// Optional break that occurs between grips that takes precedence over the standard break duration. There are some
         /// where a user may want the break duration between grips to be different that the break duration between sets. This property
         /// is used for that scenario.
         var preGripBreak: DurationStatus?
+        
+        /// String representation of the workSeconds
+        var workTime: String {
+            timeToString(seconds: workSeconds)
+        }
+        
+        /// String representation of the restSeconds
+        var restTime: String {
+            timeToString(seconds: restSeconds)
+        }
+        
+        /// String representation of the workSeconds
+        var breakTime: String {
+            timeToString(minutes: breakMinutes, seconds: breakSeconds)
+        }
     }
     
     /// Stores a number of seconds with a duration type. For example, a 10-second work duration could be represented by this struct.
@@ -71,6 +90,16 @@ struct GripsArray {
         grips.count
     }
     
+    /// Returns the last grip in the array. If that grip does not exists, returns a WorkoutGrip with all zeroes.
+    var last: WorkoutGrip {
+        return grips.last ?? WorkoutGrip(
+            name: nil,
+            workSeconds: 0,
+            restSeconds: 0,
+            breakMinutes: 0,
+            breakSeconds: 0)
+    }
+    
     /// Builds durations array for this struct using the given TimerSetupDetails struct. Only includes one WorkoutGrip because the
     /// TimerSetupDetails only provides info for a single grip.
     /// - Parameter timerSetupDetails: The quantity of sets and reps, and the work, rest, and break durations
@@ -80,13 +109,17 @@ struct GripsArray {
         var currRep = 0
         
         // Add a prepare duration as the first duration
-        grips.append(WorkoutGrip(name: nil))
+        grips.append(WorkoutGrip(
+            name: nil,
+            workSeconds: timerDetails.workSeconds,
+            restSeconds: timerDetails.restSeconds,
+            breakMinutes: timerDetails.breakMinutes,
+            breakSeconds: timerDetails.breakSeconds))
         addDuration(type: .prepareType)
 
         // Add sets and reps to the current grip
         while currSet < timerDetails.sets {
 
-//            currRep = 0
             while currRep < timerDetails.reps {
                 addDuration(type: .workType)
                 currRep += 1
@@ -96,8 +129,6 @@ struct GripsArray {
                     addDuration(type: .workType)
                     currRep += 1
                 }
-                
-                
             }
             currSet += 1
             
@@ -144,5 +175,4 @@ struct GripsArray {
             }
         }
     }
-    
 }
