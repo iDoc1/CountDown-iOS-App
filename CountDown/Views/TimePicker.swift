@@ -53,7 +53,7 @@ private struct SinglePicker: View {
                 Text(unitOfTime)
             }
             Picker(unitOfTime, selection: $timeValue) {
-                ForEach(minValue..<maxValue + 1, id:\.self) { val in
+                ForEach(minValue..<maxValue + 1, id: \.self) { val in
                     Text(verbatim: String(val)).tag(String(val))
                 }
             }

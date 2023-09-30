@@ -17,9 +17,21 @@ struct TimerHeader: View {
             TimerDurationsView(timer: timer)
             Divider()
             Spacer()
+            VStack {
+                ProgressStepper(
+                    title: "Sets",
+                    length: timer.currGrip.totalSets,
+                    currIndex: timer.currSet,
+                    color: Theme.lightBlue.mainColor)
+                ProgressStepper(
+                    title: "Reps",
+                    length: timer.currGrip.totalReps,
+                    currIndex: timer.currRep,
+                    color: Theme.lightBlue.mainColor)
+            }
         }
         .frame(maxHeight: 110.0)
-        .padding(.horizontal)
+        .padding(.horizontal, 8)
     }
     
     

@@ -29,6 +29,8 @@ struct CountdownTimerView: View {
             countdownTimer.timerState = .notStarted
         }
         .toolbar(.hidden, for: .tabBar)
+        .navigationTitle("Timer")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

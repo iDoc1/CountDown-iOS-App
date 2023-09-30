@@ -38,6 +38,8 @@ struct GripsArray {
     struct WorkoutGrip {
         let name: String?
         var durations: [DurationStatus] = []
+        var totalSets: Int
+        var totalReps: Int
         var workSeconds: Int
         var restSeconds: Int
         var breakMinutes: Int
@@ -94,6 +96,8 @@ struct GripsArray {
     var last: WorkoutGrip {
         return grips.last ?? WorkoutGrip(
             name: nil,
+            totalSets: 0,
+            totalReps: 0,
             workSeconds: 0,
             restSeconds: 0,
             breakMinutes: 0,
@@ -111,6 +115,8 @@ struct GripsArray {
         // Add a prepare duration as the first duration
         grips.append(WorkoutGrip(
             name: nil,
+            totalSets: timerDetails.sets,
+            totalReps: timerDetails.reps,
             workSeconds: timerDetails.workSeconds,
             restSeconds: timerDetails.restSeconds,
             breakMinutes: timerDetails.breakMinutes,

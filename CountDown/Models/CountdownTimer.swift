@@ -76,7 +76,6 @@ final class CountdownTimer: ObservableObject {
         guard durationIndex < currGrip.durations.count else { return "COMPLETE" }
         return currGrip.durations[durationIndex].durationType.rawValue
     }
-    
     /// The current WorkoutGrip
     var currGrip: GripsArray.WorkoutGrip {
         guard gripIndex < gripsArray.count else {
@@ -84,6 +83,21 @@ final class CountdownTimer: ObservableObject {
         }
         return gripsArray[gripIndex]
     }
+    /// The current set index for the current grip. Returns the total sets in the current grip if the workout is complete.
+    var currSet: Int {
+        guard gripIndex < gripsArray.count else {
+            return gripsArray.last.totalSets
+        }
+        return gripsArray[gripIndex].durations[durationIndex].currSet
+    }
+    /// The current rep index for the current grip. Returns the total reps in the current grip if the workout is complete.
+    var currRep: Int {
+        guard gripIndex < gripsArray.count else {
+            return gripsArray.last.totalReps
+        }
+        return gripsArray[gripIndex].durations[durationIndex].currRep
+    }
+    
     /// The timer that keeps track of the countdown
     private var timer = Timer()
     /// The array that contains a collection of grips that are fed into this timer
