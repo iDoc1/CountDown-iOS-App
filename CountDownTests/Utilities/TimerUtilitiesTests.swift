@@ -39,4 +39,19 @@ final class TimerUtilitiesTests: XCTestCase {
         let time = timeToString(minutes: 1, seconds: 12)
         XCTAssertEqual(time, "1:12")
     }
+    
+    func testTimeToStringSecondsAbove60()  {
+        let time = timeToString(minutes: 0, seconds: 67)
+        XCTAssertEqual(time, "1:07")
+    }
+    
+    func testTimeToStringSecondsEqual60()  {
+        let time = timeToString(minutes: 0, seconds: 60)
+        XCTAssertEqual(time, "1:00")
+    }
+    
+    func testTimeToStringSecondsAbove60WithMinutes()  {
+        let time = timeToString(minutes: 1, seconds: 67)
+        XCTAssertEqual(time, "2:07")
+    }
 }
