@@ -17,8 +17,6 @@
 		ABA9E7862AAD401000DBF8DA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7852AAD401000DBF8DA /* MainView.swift */; };
 		ABA9E7882AAD401100DBF8DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABA9E7872AAD401100DBF8DA /* Assets.xcassets */; };
 		ABA9E78B2AAD401100DBF8DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABA9E78A2AAD401100DBF8DA /* Preview Assets.xcassets */; };
-		ABA9E79F2AAD401100DBF8DA /* CountDownUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E79E2AAD401100DBF8DA /* CountDownUITests.swift */; };
-		ABA9E7A12AAD401100DBF8DA /* CountDownUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7A02AAD401100DBF8DA /* CountDownUITestsLaunchTests.swift */; };
 		ABA9E7B32AAD414500DBF8DA /* CountDown.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7B12AAD414500DBF8DA /* CountDown.xcdatamodeld */; };
 		ABA9E7B52AAD43DD00DBF8DA /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7B42AAD43DD00DBF8DA /* DataController.swift */; };
 		ABA9E7B82AAD62C200DBF8DA /* WorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7B72AAD62C200DBF8DA /* WorkoutsView.swift */; };
@@ -40,17 +38,12 @@
 		ABA9E7E02AB7E04B00DBF8DA /* GripsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7DF2AB7E04B00DBF8DA /* GripsArray.swift */; };
 		ABA9E7E42ABFC05500DBF8DA /* GripsArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7E32ABFC05500DBF8DA /* GripsArrayTests.swift */; };
 		ABA9E7E72AC0AAF200DBF8DA /* TimerSetupDetailsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7E62AC0AAF200DBF8DA /* TimerSetupDetailsTest.swift */; };
+		ABFA8D4E2AC8DAA300B1C5BF /* ProgressStepperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFA8D4D2AC8DAA300B1C5BF /* ProgressStepperTests.swift */; };
+		ABFA8D512AC8DAEB00B1C5BF /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = ABFA8D502AC8DAEB00B1C5BF /* ViewInspector */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		ABA9E7912AAD401100DBF8DA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ABA9E7782AAD401000DBF8DA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = ABA9E77F2AAD401000DBF8DA;
-			remoteInfo = CountDown;
-		};
-		ABA9E79B2AAD401100DBF8DA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ABA9E7782AAD401000DBF8DA /* Project object */;
 			proxyType = 1;
@@ -66,15 +59,10 @@
 		AB7E61B82AC51DDD0081D475 /* TimerUtilitiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerUtilitiesTests.swift; sourceTree = "<group>"; };
 		AB7E61BA2AC520520081D475 /* TimerDurationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDurationsView.swift; sourceTree = "<group>"; };
 		AB7E61BC2AC5225C0081D475 /* ProgressStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStepper.swift; sourceTree = "<group>"; };
-		ABA9E7802AAD401000DBF8DA /* CountDown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountDown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABA9E7832AAD401000DBF8DA /* CountDownApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownApp.swift; sourceTree = "<group>"; };
 		ABA9E7852AAD401000DBF8DA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		ABA9E7872AAD401100DBF8DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ABA9E78A2AAD401100DBF8DA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		ABA9E7902AAD401100DBF8DA /* CountDownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountDownTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		ABA9E79A2AAD401100DBF8DA /* CountDownUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountDownUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		ABA9E79E2AAD401100DBF8DA /* CountDownUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownUITests.swift; sourceTree = "<group>"; };
-		ABA9E7A02AAD401100DBF8DA /* CountDownUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		ABA9E7B22AAD414500DBF8DA /* CountDown.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CountDown.xcdatamodel; sourceTree = "<group>"; };
 		ABA9E7B42AAD43DD00DBF8DA /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		ABA9E7B72AAD62C200DBF8DA /* WorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsView.swift; sourceTree = "<group>"; };
@@ -95,6 +83,9 @@
 		ABA9E7DF2AB7E04B00DBF8DA /* GripsArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripsArray.swift; sourceTree = "<group>"; };
 		ABA9E7E32ABFC05500DBF8DA /* GripsArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripsArrayTests.swift; sourceTree = "<group>"; };
 		ABA9E7E62AC0AAF200DBF8DA /* TimerSetupDetailsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSetupDetailsTest.swift; sourceTree = "<group>"; };
+		ABF19AC52AC8DE6D007FD4F6 /* CountDown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CountDown.app; path = "/Users/iandocherty/Development/projects/CountDown/build/Debug-iphoneos/CountDown.app"; sourceTree = "<absolute>"; };
+		ABF19AC62AC8DE6D007FD4F6 /* CountDownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = CountDownTests.xctest; path = "/Users/iandocherty/Development/projects/CountDown/build/Debug-iphoneos/CountDownTests.xctest"; sourceTree = "<absolute>"; };
+		ABFA8D4D2AC8DAA300B1C5BF /* ProgressStepperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStepperTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,13 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ABA9E7972AAD401100DBF8DA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				ABFA8D512AC8DAEB00B1C5BF /* ViewInspector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,19 +129,7 @@
 			children = (
 				ABA9E7822AAD401000DBF8DA /* CountDown */,
 				ABA9E7932AAD401100DBF8DA /* CountDownTests */,
-				ABA9E79D2AAD401100DBF8DA /* CountDownUITests */,
-				ABA9E7812AAD401000DBF8DA /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		ABA9E7812AAD401000DBF8DA /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				ABA9E7802AAD401000DBF8DA /* CountDown.app */,
-				ABA9E7902AAD401100DBF8DA /* CountDownTests.xctest */,
-				ABA9E79A2AAD401100DBF8DA /* CountDownUITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		ABA9E7822AAD401000DBF8DA /* CountDown */ = {
@@ -187,17 +160,9 @@
 			children = (
 				AB7E61B72AC51DBC0081D475 /* Utilities */,
 				ABA9E7E52AC0AAD400DBF8DA /* Models */,
+				ABF19AC82AC8E779007FD4F6 /* Views */,
 			);
 			path = CountDownTests;
-			sourceTree = "<group>";
-		};
-		ABA9E79D2AAD401100DBF8DA /* CountDownUITests */ = {
-			isa = PBXGroup;
-			children = (
-				ABA9E79E2AAD401100DBF8DA /* CountDownUITests.swift */,
-				ABA9E7A02AAD401100DBF8DA /* CountDownUITestsLaunchTests.swift */,
-			);
-			path = CountDownUITests;
 			sourceTree = "<group>";
 		};
 		ABA9E7AE2AAD408000DBF8DA /* Models */ = {
@@ -260,6 +225,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		ABF19AC82AC8E779007FD4F6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ABFA8D4D2AC8DAA300B1C5BF /* ProgressStepperTests.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -280,7 +253,7 @@
 				ABA9E7C82AAEAFF900DBF8DA /* Popovers */,
 			);
 			productName = CountDown;
-			productReference = ABA9E7802AAD401000DBF8DA /* CountDown.app */;
+			productReference = ABF19AC52AC8DE6D007FD4F6 /* CountDown.app */;
 			productType = "com.apple.product-type.application";
 		};
 		ABA9E78F2AAD401100DBF8DA /* CountDownTests */ = {
@@ -297,27 +270,12 @@
 				ABA9E7922AAD401100DBF8DA /* PBXTargetDependency */,
 			);
 			name = CountDownTests;
+			packageProductDependencies = (
+				ABFA8D502AC8DAEB00B1C5BF /* ViewInspector */,
+			);
 			productName = CountDownTests;
-			productReference = ABA9E7902AAD401100DBF8DA /* CountDownTests.xctest */;
+			productReference = ABF19AC62AC8DE6D007FD4F6 /* CountDownTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		ABA9E7992AAD401100DBF8DA /* CountDownUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = ABA9E7AA2AAD401100DBF8DA /* Build configuration list for PBXNativeTarget "CountDownUITests" */;
-			buildPhases = (
-				ABA9E7962AAD401100DBF8DA /* Sources */,
-				ABA9E7972AAD401100DBF8DA /* Frameworks */,
-				ABA9E7982AAD401100DBF8DA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				ABA9E79C2AAD401100DBF8DA /* PBXTargetDependency */,
-			);
-			name = CountDownUITests;
-			productName = CountDownUITests;
-			productReference = ABA9E79A2AAD401100DBF8DA /* CountDownUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -336,10 +294,6 @@
 						CreatedOnToolsVersion = 14.3.1;
 						TestTargetID = ABA9E77F2AAD401000DBF8DA;
 					};
-					ABA9E7992AAD401100DBF8DA = {
-						CreatedOnToolsVersion = 14.3.1;
-						TestTargetID = ABA9E77F2AAD401000DBF8DA;
-					};
 				};
 			};
 			buildConfigurationList = ABA9E77B2AAD401000DBF8DA /* Build configuration list for PBXProject "CountDown" */;
@@ -353,14 +307,14 @@
 			mainGroup = ABA9E7772AAD401000DBF8DA;
 			packageReferences = (
 				ABA9E7C72AAEAFF900DBF8DA /* XCRemoteSwiftPackageReference "Popovers" */,
+				ABFA8D482AC8D74200B1C5BF /* XCRemoteSwiftPackageReference "ViewInspector" */,
 			);
-			productRefGroup = ABA9E7812AAD401000DBF8DA /* Products */;
+			productRefGroup = ABA9E7772AAD401000DBF8DA;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				ABA9E77F2AAD401000DBF8DA /* CountDown */,
 				ABA9E78F2AAD401100DBF8DA /* CountDownTests */,
-				ABA9E7992AAD401100DBF8DA /* CountDownUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -376,13 +330,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		ABA9E78E2AAD401100DBF8DA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ABA9E7982AAD401100DBF8DA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -431,15 +378,7 @@
 				AB3FD8362AC28BA5009D6C71 /* CountdownTimerTests.swift in Sources */,
 				ABA9E7E42ABFC05500DBF8DA /* GripsArrayTests.swift in Sources */,
 				ABA9E7E72AC0AAF200DBF8DA /* TimerSetupDetailsTest.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ABA9E7962AAD401100DBF8DA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ABA9E7A12AAD401100DBF8DA /* CountDownUITestsLaunchTests.swift in Sources */,
-				ABA9E79F2AAD401100DBF8DA /* CountDownUITests.swift in Sources */,
+				ABFA8D4E2AC8DAA300B1C5BF /* ProgressStepperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,11 +389,6 @@
 			isa = PBXTargetDependency;
 			target = ABA9E77F2AAD401000DBF8DA /* CountDown */;
 			targetProxy = ABA9E7912AAD401100DBF8DA /* PBXContainerItemProxy */;
-		};
-		ABA9E79C2AAD401100DBF8DA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = ABA9E77F2AAD401000DBF8DA /* CountDown */;
-			targetProxy = ABA9E79B2AAD401100DBF8DA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -671,42 +605,6 @@
 			};
 			name = Release;
 		};
-		ABA9E7AB2AAD401100DBF8DA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6XT4W8GZ4B;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.project.CountDownUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CountDown;
-			};
-			name = Debug;
-		};
-		ABA9E7AC2AAD401100DBF8DA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6XT4W8GZ4B;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.project.CountDownUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CountDown;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -737,15 +635,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ABA9E7AA2AAD401100DBF8DA /* Build configuration list for PBXNativeTarget "CountDownUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				ABA9E7AB2AAD401100DBF8DA /* Debug */,
-				ABA9E7AC2AAD401100DBF8DA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -757,6 +646,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		ABFA8D482AC8D74200B1C5BF /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nalexn/ViewInspector";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.8;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -764,6 +661,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = ABA9E7C72AAEAFF900DBF8DA /* XCRemoteSwiftPackageReference "Popovers" */;
 			productName = Popovers;
+		};
+		ABFA8D502AC8DAEB00B1C5BF /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ABFA8D482AC8D74200B1C5BF /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
 		};
 /* End XCSwiftPackageProductDependency section */
 
