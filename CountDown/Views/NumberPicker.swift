@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// An HStack that allows the user to change the given value by either editing using the textfield or using the stepper buttons.
+/// An view that allows the user to change the given value by either editing using the textfield or using the stepper buttons.
 struct NumberPicker: View {
     @Binding var number: Int
     let title: String

@@ -28,8 +28,8 @@ final class ProgressStepperTest: XCTestCase {
         XCTAssertNoThrow(try view.inspect().hStack().find(text: "5"))
         XCTAssertNoThrow(try view.inspect().hStack().find(text: "6"))
         XCTAssertNoThrow(try view.inspect().hStack().find(text: "7"))
-        XCTAssertThrowsError(try view.inspect().hStack().find(text: "0"), "Does not contain '0'")
-        XCTAssertThrowsError(try view.inspect().hStack().find(text: "8"), "Does not contain '8'")
+        XCTAssertThrowsError(try view.inspect().hStack().find(text: "0"))
+        XCTAssertThrowsError(try view.inspect().hStack().find(text: "8"))
     }
 
     func testStepperShowsBox12() throws {

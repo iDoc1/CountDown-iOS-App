@@ -38,6 +38,10 @@
 		ABA9E7E02AB7E04B00DBF8DA /* GripsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7DF2AB7E04B00DBF8DA /* GripsArray.swift */; };
 		ABA9E7E42ABFC05500DBF8DA /* GripsArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7E32ABFC05500DBF8DA /* GripsArrayTests.swift */; };
 		ABA9E7E72AC0AAF200DBF8DA /* TimerSetupDetailsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7E62AC0AAF200DBF8DA /* TimerSetupDetailsTest.swift */; };
+		ABF19ACD2AC9F8A3007FD4F6 /* beep_high.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABF19ACB2AC9F8A3007FD4F6 /* beep_high.wav */; };
+		ABF19ACE2AC9F8A3007FD4F6 /* beep_low.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABF19ACC2AC9F8A3007FD4F6 /* beep_low.wav */; };
+		ABF19AD02AC9F8CF007FD4F6 /* AVPlayer+Beep.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF19ACF2AC9F8CF007FD4F6 /* AVPlayer+Beep.swift */; };
+		ABF19AD22AC9FA09007FD4F6 /* TimerSoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF19AD12AC9FA09007FD4F6 /* TimerSoundPlayer.swift */; };
 		ABFA8D4E2AC8DAA300B1C5BF /* ProgressStepperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFA8D4D2AC8DAA300B1C5BF /* ProgressStepperTests.swift */; };
 		ABFA8D512AC8DAEB00B1C5BF /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = ABFA8D502AC8DAEB00B1C5BF /* ViewInspector */; };
 /* End PBXBuildFile section */
@@ -85,6 +89,10 @@
 		ABA9E7E62AC0AAF200DBF8DA /* TimerSetupDetailsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSetupDetailsTest.swift; sourceTree = "<group>"; };
 		ABF19AC52AC8DE6D007FD4F6 /* CountDown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CountDown.app; path = "/Users/iandocherty/Development/projects/CountDown/build/Debug-iphoneos/CountDown.app"; sourceTree = "<absolute>"; };
 		ABF19AC62AC8DE6D007FD4F6 /* CountDownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = CountDownTests.xctest; path = "/Users/iandocherty/Development/projects/CountDown/build/Debug-iphoneos/CountDownTests.xctest"; sourceTree = "<absolute>"; };
+		ABF19ACB2AC9F8A3007FD4F6 /* beep_high.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = beep_high.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/beep_high.wav"; sourceTree = "<group>"; };
+		ABF19ACC2AC9F8A3007FD4F6 /* beep_low.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = beep_low.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/beep_low.wav"; sourceTree = "<group>"; };
+		ABF19ACF2AC9F8CF007FD4F6 /* AVPlayer+Beep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+Beep.swift"; sourceTree = "<group>"; };
+		ABF19AD12AC9FA09007FD4F6 /* TimerSoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSoundPlayer.swift; sourceTree = "<group>"; };
 		ABFA8D4D2AC8DAA300B1C5BF /* ProgressStepperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStepperTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,6 +180,8 @@
 				ABA9E7BD2AAD737600DBF8DA /* TimerSetupDetails.swift */,
 				ABA9E7CE2AB1552700DBF8DA /* CountdownTimer.swift */,
 				ABA9E7DF2AB7E04B00DBF8DA /* GripsArray.swift */,
+				ABF19ACF2AC9F8CF007FD4F6 /* AVPlayer+Beep.swift */,
+				ABF19AD12AC9FA09007FD4F6 /* TimerSoundPlayer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -179,6 +189,8 @@
 		ABA9E7AF2AAD40C800DBF8DA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ABF19ACB2AC9F8A3007FD4F6 /* beep_high.wav */,
+				ABF19ACC2AC9F8A3007FD4F6 /* beep_low.wav */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -324,6 +336,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABF19ACD2AC9F8A3007FD4F6 /* beep_high.wav in Resources */,
+				ABF19ACE2AC9F8A3007FD4F6 /* beep_low.wav in Resources */,
 				ABA9E78B2AAD401100DBF8DA /* Preview Assets.xcassets in Resources */,
 				ABA9E7882AAD401100DBF8DA /* Assets.xcassets in Resources */,
 			);
@@ -357,6 +371,7 @@
 				ABA9E7B82AAD62C200DBF8DA /* WorkoutsView.swift in Sources */,
 				ABA9E7D82AB65D1800DBF8DA /* TrailingIconLabelStyle.swift in Sources */,
 				ABA9E7DA2AB6609000DBF8DA /* Theme.swift in Sources */,
+				ABF19AD22AC9FA09007FD4F6 /* TimerSoundPlayer.swift in Sources */,
 				ABA9E7BA2AAD62E700DBF8DA /* TimerSetupView.swift in Sources */,
 				ABA9E7CD2AAECB3900DBF8DA /* CountdownTimerView.swift in Sources */,
 				ABA9E7C62AAE9F8800DBF8DA /* TimePicker.swift in Sources */,
@@ -364,6 +379,7 @@
 				AB7E61BB2AC520520081D475 /* TimerDurationsView.swift in Sources */,
 				ABA9E7D62AB659BB00DBF8DA /* TimerButtonsView.swift in Sources */,
 				ABA9E7B32AAD414500DBF8DA /* CountDown.xcdatamodeld in Sources */,
+				ABF19AD02AC9F8CF007FD4F6 /* AVPlayer+Beep.swift in Sources */,
 				ABA9E7842AAD401000DBF8DA /* CountDownApp.swift in Sources */,
 				ABA9E7CB2AAEB80A00DBF8DA /* TimePickerPopover.swift in Sources */,
 				ABA9E7E02AB7E04B00DBF8DA /* GripsArray.swift in Sources */,

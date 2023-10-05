@@ -29,7 +29,7 @@ struct TimerView: View {
              Only have non-zero animation duration if new progress less than current. This prevents
              the timer progress animation from moving backwards (clockwise) between duration changes.
              */
-            let duration = newValue < progress ? timer.timeInterval : 0.0
+            let duration = newValue < progress ? timer.timeInterval + 0.05 : 0.0
             withAnimation(.linear(duration: duration)) {
                 if newValue < progress {
                     progress = newValue
