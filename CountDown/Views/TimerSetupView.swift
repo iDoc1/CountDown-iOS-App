@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
-import Popovers
 
 /// Allows the user to set timer values for a custom timer setup, then navigate to a page to start the timer
 struct TimerSetupView: View {
     @State private var timerDetails = TimerSetupDetails()
-    @FocusState private var isInputActive: Bool    
+    @FocusState private var isInputActive: Bool
+    @State var date = Date()
+    @State var showPicker = false
     
     var body: some View {
         NavigationStack {
@@ -44,10 +45,17 @@ struct TimerSetupView: View {
                         minVal: 1,
                         maxVal: 60,
                         isInputActive: $isInputActive)
-                    TimePickerPopover(
+                    TimePickerButton(
                         minute: $timerDetails.breakMinutes,
                         second: $timerDetails.breakSeconds,
+                        showPicker: $showPicker,
                         title: "Break")
+                    if showPicker {
+                        TimePicker(
+                            minute: $timerDetails.breakMinutes,
+                            second: $timerDetails.breakSeconds,
+                            height: 125.0)
+                    }
                 }
                 NavigationLink(destination: CountdownTimerView(timerDetails: timerDetails)) {
                     Label("Start Workout", systemImage: "play.fill")

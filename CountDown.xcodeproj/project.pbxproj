@@ -25,8 +25,7 @@
 		ABA9E7BE2AAD737600DBF8DA /* TimerSetupDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7BD2AAD737600DBF8DA /* TimerSetupDetails.swift */; };
 		ABA9E7C22AAD765B00DBF8DA /* NumberPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7C12AAD765B00DBF8DA /* NumberPicker.swift */; };
 		ABA9E7C62AAE9F8800DBF8DA /* TimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7C52AAE9F8800DBF8DA /* TimePicker.swift */; };
-		ABA9E7C92AAEAFF900DBF8DA /* Popovers in Frameworks */ = {isa = PBXBuildFile; productRef = ABA9E7C82AAEAFF900DBF8DA /* Popovers */; };
-		ABA9E7CB2AAEB80A00DBF8DA /* TimePickerPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7CA2AAEB80A00DBF8DA /* TimePickerPopover.swift */; };
+		ABA9E7CB2AAEB80A00DBF8DA /* TimePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7CA2AAEB80A00DBF8DA /* TimePickerButton.swift */; };
 		ABA9E7CD2AAECB3900DBF8DA /* CountdownTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7CC2AAECB3900DBF8DA /* CountdownTimerView.swift */; };
 		ABA9E7CF2AB1552700DBF8DA /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7CE2AB1552700DBF8DA /* CountdownTimer.swift */; };
 		ABA9E7D22AB635AE00DBF8DA /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7D12AB635AE00DBF8DA /* TimerView.swift */; };
@@ -75,7 +74,7 @@
 		ABA9E7BD2AAD737600DBF8DA /* TimerSetupDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSetupDetails.swift; sourceTree = "<group>"; };
 		ABA9E7C12AAD765B00DBF8DA /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
 		ABA9E7C52AAE9F8800DBF8DA /* TimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePicker.swift; sourceTree = "<group>"; };
-		ABA9E7CA2AAEB80A00DBF8DA /* TimePickerPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerPopover.swift; sourceTree = "<group>"; };
+		ABA9E7CA2AAEB80A00DBF8DA /* TimePickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerButton.swift; sourceTree = "<group>"; };
 		ABA9E7CC2AAECB3900DBF8DA /* CountdownTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerView.swift; sourceTree = "<group>"; };
 		ABA9E7CE2AB1552700DBF8DA /* CountdownTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimer.swift; sourceTree = "<group>"; };
 		ABA9E7D12AB635AE00DBF8DA /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
@@ -101,7 +100,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABA9E7C92AAEAFF900DBF8DA /* Popovers in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,7 +211,7 @@
 				ABA9E7BB2AAD631D00DBF8DA /* SettingsView.swift */,
 				ABA9E7C12AAD765B00DBF8DA /* NumberPicker.swift */,
 				ABA9E7C52AAE9F8800DBF8DA /* TimePicker.swift */,
-				ABA9E7CA2AAEB80A00DBF8DA /* TimePickerPopover.swift */,
+				ABA9E7CA2AAEB80A00DBF8DA /* TimePickerButton.swift */,
 				ABA9E7CC2AAECB3900DBF8DA /* CountdownTimerView.swift */,
 				ABA9E7D12AB635AE00DBF8DA /* TimerView.swift */,
 				ABA9E7D52AB659BB00DBF8DA /* TimerButtonsView.swift */,
@@ -262,7 +260,6 @@
 			);
 			name = CountDown;
 			packageProductDependencies = (
-				ABA9E7C82AAEAFF900DBF8DA /* Popovers */,
 			);
 			productName = CountDown;
 			productReference = ABF19AC52AC8DE6D007FD4F6 /* CountDown.app */;
@@ -318,7 +315,6 @@
 			);
 			mainGroup = ABA9E7772AAD401000DBF8DA;
 			packageReferences = (
-				ABA9E7C72AAEAFF900DBF8DA /* XCRemoteSwiftPackageReference "Popovers" */,
 				ABFA8D482AC8D74200B1C5BF /* XCRemoteSwiftPackageReference "ViewInspector" */,
 			);
 			productRefGroup = ABA9E7772AAD401000DBF8DA;
@@ -381,7 +377,7 @@
 				ABA9E7B32AAD414500DBF8DA /* CountDown.xcdatamodeld in Sources */,
 				ABF19AD02AC9F8CF007FD4F6 /* AVPlayer+Beep.swift in Sources */,
 				ABA9E7842AAD401000DBF8DA /* CountDownApp.swift in Sources */,
-				ABA9E7CB2AAEB80A00DBF8DA /* TimePickerPopover.swift in Sources */,
+				ABA9E7CB2AAEB80A00DBF8DA /* TimePickerButton.swift in Sources */,
 				ABA9E7E02AB7E04B00DBF8DA /* GripsArray.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -654,14 +650,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		ABA9E7C72AAEAFF900DBF8DA /* XCRemoteSwiftPackageReference "Popovers" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/aheze/Popovers";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		ABFA8D482AC8D74200B1C5BF /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nalexn/ViewInspector";
@@ -673,11 +661,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		ABA9E7C82AAEAFF900DBF8DA /* Popovers */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = ABA9E7C72AAEAFF900DBF8DA /* XCRemoteSwiftPackageReference "Popovers" */;
-			productName = Popovers;
-		};
 		ABFA8D502AC8DAEB00B1C5BF /* ViewInspector */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = ABFA8D482AC8D74200B1C5BF /* XCRemoteSwiftPackageReference "ViewInspector" */;

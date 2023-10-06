@@ -12,6 +12,7 @@ import SwiftUI
 struct TimePicker: View {
     @Binding var minute: Int
     @Binding var second: Int
+    var height: Double
 
     var body: some View {
         GeometryReader { geometry in
@@ -22,7 +23,8 @@ struct TimePicker: View {
                     unitOfTime: "min",
                     geometry: geometry,
                     minValue: 0,
-                    maxValue: 59)
+                    maxValue: 59,
+                    height: height)
                 
                 // Seconds picker
                 SinglePicker(
@@ -30,9 +32,11 @@ struct TimePicker: View {
                     unitOfTime: "sec",
                     geometry: geometry,
                     minValue: 0,
-                    maxValue: 59)
+                    maxValue: 59,
+                    height: height)
             }
         }
+        .frame(height: height)
     }
 }
 
@@ -43,6 +47,7 @@ private struct SinglePicker: View {
     let geometry: GeometryProxy
     let minValue: Int
     let maxValue: Int
+    let height: Double
 
     var body: some View {
         ZStack(alignment: Alignment.init(horizontal: .customCenter, vertical: .center)) {
@@ -58,7 +63,7 @@ private struct SinglePicker: View {
                 }
             }
             .pickerStyle(WheelPickerStyle())
-            .frame(width: geometry.size.width / 2, height: geometry.size.height)
+            .frame(width: geometry.size.width / 2, height: height)
             .clipped()
         }
     }
@@ -76,6 +81,6 @@ private extension HorizontalAlignment {
 
 struct TimerPicker_Previews: PreviewProvider {
     static var previews: some View {
-        TimePicker(minute: .constant(20), second: .constant(12))
+        TimePicker(minute: .constant(20), second: .constant(12), height: 125.0)
     }
 }
