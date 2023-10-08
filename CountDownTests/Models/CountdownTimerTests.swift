@@ -8,6 +8,7 @@
 import XCTest
 @testable import CountDown
 
+@MainActor
 final class CountdownTimerTests: XCTestCase {
     let timerDetails = TimerSetupDetails(
         sets: 2,
@@ -17,28 +18,27 @@ final class CountdownTimerTests: XCTestCase {
         breakMinutes: 1,
         breakSeconds: 45)
     var timer: CountdownTimer!
-
-    @MainActor override func setUpWithError() throws {
+    
+    override func setUpWithError() throws {
         timer = CountdownTimer(timerDetails: timerDetails)
     }
     
-    @MainActor override func tearDownWithError() throws {
+    override func tearDownWithError() throws {
         timer.timerState = .notStarted
     }
-
-    @MainActor func testCountdownTimerInitialState()  {
+    
+    func testCountdownTimerInitialState()  {
         XCTAssertEqual(timer.secondsLeft, 15)
         XCTAssertEqual(timer.progress, 1.0)
         XCTAssertEqual(timer.gripIndex, 0)
         XCTAssertEqual(timer.durationIndex, 0)
-        XCTAssertEqual(timer.secondsElapsed, 0)
         XCTAssertEqual(timer.timerString, "0:15")
         XCTAssertEqual(timer.timerColor, Theme.lightBlue.mainColor)
         XCTAssertEqual(timer.durationType, GripsArray.DurationType.prepareType.rawValue)
         XCTAssertEqual(timer.timerState, .notStarted)
     }
     
-    @MainActor func testTimerStartsCorrectly()  {
+    func testTimerStartsCorrectly()  {
         timer.timerState = .started
         let expectation = expectation(description: "Let timer run for 1.5 seconds")
         _ = XCTWaiter.wait(for: [expectation], timeout: 1.5)
@@ -48,7 +48,7 @@ final class CountdownTimerTests: XCTestCase {
         XCTAssertEqual(timer.durationType, GripsArray.DurationType.prepareType.rawValue)
     }
     
-    @MainActor func testTimerPausesCorrectly()  {
+    func testTimerPausesCorrectly()  {
         timer.timerState = .started
         let waitExp = expectation(description: "Let timer run for 1.5 seconds")
         _ = XCTWaiter.wait(for: [waitExp], timeout: 1.5)
@@ -64,7 +64,7 @@ final class CountdownTimerTests: XCTestCase {
         XCTAssertEqual(timer.durationType, GripsArray.DurationType.prepareType.rawValue)
     }
     
-    @MainActor func testTimerResumesCorrectly()  {
+    func testTimerResumesCorrectly()  {
         timer.timerState = .started
         let waitExp = expectation(description: "Let timer run for 1.5 seconds")
         _ = XCTWaiter.wait(for: [waitExp], timeout: 1.5)
@@ -84,25 +84,24 @@ final class CountdownTimerTests: XCTestCase {
         XCTAssertEqual(timer.durationType, GripsArray.DurationType.prepareType.rawValue)
     }
     
-    @MainActor func testTimerResetsToInitialState()  {
+    func testTimerResetsToInitialState()  {
         timer.timerState = .started
         timer.skip()
         let expectation = expectation(description: "Let timer run for 1.5 seconds")
         _ = XCTWaiter.wait(for: [expectation], timeout: 1.5)
         timer.timerState = .notStarted
-
+        
         XCTAssertEqual(timer.secondsLeft, 15)
         XCTAssertEqual(timer.progress, 1.0)
         XCTAssertEqual(timer.gripIndex, 0)
         XCTAssertEqual(timer.durationIndex, 0)
-        XCTAssertEqual(timer.secondsElapsed, 0)
         XCTAssertEqual(timer.timerString, "0:15")
         XCTAssertEqual(timer.timerColor, Theme.lightBlue.mainColor)
         XCTAssertEqual(timer.durationType, GripsArray.DurationType.prepareType.rawValue)
         XCTAssertEqual(timer.timerState, .notStarted)
     }
     
-    @MainActor func testTimerSkipsToWorkDuration()  {
+    func testTimerSkipsToWorkDuration()  {
         timer.timerState = .started
         timer.skip()
         let expectation = expectation(description: "Let timer run for 1.5 seconds")
@@ -116,7 +115,7 @@ final class CountdownTimerTests: XCTestCase {
         XCTAssertEqual(timer.durationType, GripsArray.DurationType.workType.rawValue)
     }
     
-    @MainActor func testTimerSkipsToRestDuration()  {
+    func testTimerSkipsToRestDuration()  {
         timer.timerState = .started
         timer.skip()
         timer.skip()
@@ -131,7 +130,7 @@ final class CountdownTimerTests: XCTestCase {
         XCTAssertEqual(timer.durationType, GripsArray.DurationType.restType.rawValue)
     }
     
-    @MainActor func testTimerSkipsToBreakDuration()  {
+    func testTimerSkipsToBreakDuration()  {
         timer.timerState = .started
         for _ in 0..<6 {
             timer.skip()
@@ -147,7 +146,7 @@ final class CountdownTimerTests: XCTestCase {
         XCTAssertEqual(timer.durationType, GripsArray.DurationType.breakType.rawValue)
     }
     
-    @MainActor func testTimerSkipsToCompletion()  {
+    func testTimerSkipsToCompletion()  {
         timer.timerState = .started
         for _ in 0..<12 {
             timer.skip()
@@ -161,7 +160,7 @@ final class CountdownTimerTests: XCTestCase {
         XCTAssertEqual(timer.durationType, "COMPLETE")
     }
     
-    @MainActor func testTimerSkipsPastCompletionWithoutError()  {
+    func testTimerSkipsPastCompletionWithoutError()  {
         timer.timerState = .started
         // Try skipping beyond the end of the grips array
         for _ in 0..<20 {
@@ -176,18 +175,17 @@ final class CountdownTimerTests: XCTestCase {
         XCTAssertEqual(timer.durationType, "COMPLETE")
     }
     
-    @MainActor func testTimerResetsToInitialStateAfterCompletion()  {
+    func testTimerResetsToInitialStateAfterCompletion()  {
         timer.timerState = .started
         for _ in 0..<12 {
             timer.skip()
         }
         timer.timerState = .notStarted
-
+        
         XCTAssertEqual(timer.secondsLeft, 15)
         XCTAssertEqual(timer.progress, 1.0)
         XCTAssertEqual(timer.gripIndex, 0)
         XCTAssertEqual(timer.durationIndex, 0)
-        XCTAssertEqual(timer.secondsElapsed, 0)
         XCTAssertEqual(timer.timerString, "0:15")
         XCTAssertEqual(timer.timerColor, Theme.lightBlue.mainColor)
         XCTAssertEqual(timer.durationType, GripsArray.DurationType.prepareType.rawValue)

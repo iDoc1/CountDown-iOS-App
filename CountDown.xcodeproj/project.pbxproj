@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AB3FD8362AC28BA5009D6C71 /* CountdownTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FD8352AC28BA5009D6C71 /* CountdownTimerTests.swift */; };
+		AB6404632AD24D7D002A9778 /* TimerButtonsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6404622AD24D7D002A9778 /* TimerButtonsViewTests.swift */; };
 		AB7E61B32AC3DD8C0081D475 /* TimerHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E61B22AC3DD8C0081D475 /* TimerHeader.swift */; };
 		AB7E61B62AC5150D0081D475 /* TimerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E61B52AC5150D0081D475 /* TimerUtilities.swift */; };
 		AB7E61B92AC51DDD0081D475 /* TimerUtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E61B82AC51DDD0081D475 /* TimerUtilitiesTests.swift */; };
@@ -57,6 +58,9 @@
 
 /* Begin PBXFileReference section */
 		AB3FD8352AC28BA5009D6C71 /* CountdownTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerTests.swift; sourceTree = "<group>"; };
+		AB6404602AD24D32002A9778 /* CountDown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountDown.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB6404612AD24D32002A9778 /* CountDownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = CountDownTests.xctest; path = "/Users/iandocherty/Development/projects/CountDown/build/Debug-iphoneos/CountDownTests.xctest"; sourceTree = "<absolute>"; };
+		AB6404622AD24D7D002A9778 /* TimerButtonsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerButtonsViewTests.swift; sourceTree = "<group>"; };
 		AB7E61B22AC3DD8C0081D475 /* TimerHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerHeader.swift; sourceTree = "<group>"; };
 		AB7E61B52AC5150D0081D475 /* TimerUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerUtilities.swift; sourceTree = "<group>"; };
 		AB7E61B82AC51DDD0081D475 /* TimerUtilitiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerUtilitiesTests.swift; sourceTree = "<group>"; };
@@ -86,8 +90,6 @@
 		ABA9E7DF2AB7E04B00DBF8DA /* GripsArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripsArray.swift; sourceTree = "<group>"; };
 		ABA9E7E32ABFC05500DBF8DA /* GripsArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripsArrayTests.swift; sourceTree = "<group>"; };
 		ABA9E7E62AC0AAF200DBF8DA /* TimerSetupDetailsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSetupDetailsTest.swift; sourceTree = "<group>"; };
-		ABF19AC52AC8DE6D007FD4F6 /* CountDown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = CountDown.app; path = "/Users/iandocherty/Development/projects/CountDown/build/Debug-iphoneos/CountDown.app"; sourceTree = "<absolute>"; };
-		ABF19AC62AC8DE6D007FD4F6 /* CountDownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = CountDownTests.xctest; path = "/Users/iandocherty/Development/projects/CountDown/build/Debug-iphoneos/CountDownTests.xctest"; sourceTree = "<absolute>"; };
 		ABF19ACB2AC9F8A3007FD4F6 /* beep_high.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = beep_high.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/beep_high.wav"; sourceTree = "<group>"; };
 		ABF19ACC2AC9F8A3007FD4F6 /* beep_low.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = beep_low.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/beep_low.wav"; sourceTree = "<group>"; };
 		ABF19ACF2AC9F8CF007FD4F6 /* AVPlayer+Beep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+Beep.swift"; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			children = (
 				ABA9E7822AAD401000DBF8DA /* CountDown */,
 				ABA9E7932AAD401100DBF8DA /* CountDownTests */,
+				AB6404602AD24D32002A9778 /* CountDown.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -239,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				ABFA8D4D2AC8DAA300B1C5BF /* ProgressStepperTests.swift */,
+				AB6404622AD24D7D002A9778 /* TimerButtonsViewTests.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -262,7 +266,7 @@
 			packageProductDependencies = (
 			);
 			productName = CountDown;
-			productReference = ABF19AC52AC8DE6D007FD4F6 /* CountDown.app */;
+			productReference = AB6404602AD24D32002A9778 /* CountDown.app */;
 			productType = "com.apple.product-type.application";
 		};
 		ABA9E78F2AAD401100DBF8DA /* CountDownTests */ = {
@@ -283,7 +287,7 @@
 				ABFA8D502AC8DAEB00B1C5BF /* ViewInspector */,
 			);
 			productName = CountDownTests;
-			productReference = ABF19AC62AC8DE6D007FD4F6 /* CountDownTests.xctest */;
+			productReference = AB6404612AD24D32002A9778 /* CountDownTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -388,6 +392,7 @@
 			files = (
 				AB7E61B92AC51DDD0081D475 /* TimerUtilitiesTests.swift in Sources */,
 				AB3FD8362AC28BA5009D6C71 /* CountdownTimerTests.swift in Sources */,
+				AB6404632AD24D7D002A9778 /* TimerButtonsViewTests.swift in Sources */,
 				ABA9E7E42ABFC05500DBF8DA /* GripsArrayTests.swift in Sources */,
 				ABA9E7E72AC0AAF200DBF8DA /* TimerSetupDetailsTest.swift in Sources */,
 				ABFA8D4E2AC8DAA300B1C5BF /* ProgressStepperTests.swift in Sources */,
