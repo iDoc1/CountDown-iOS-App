@@ -27,6 +27,15 @@ struct TimerTextView: View {
                     }
                     
                 }
+                .overlay {
+                    VStack {
+                        Spacer()
+                            .frame(height: customSize(geometry: geometry, factor: 0.3) + 75)
+                        TimeTextRow(title: "Time Left:", time: timer.timeLeft)
+                        TimeTextRow(title: "Total Time:", time: timer.totalTime)
+                    }
+                    .frame(width: 160)
+                }
         }
     }
     
@@ -47,12 +56,12 @@ struct TimerTextView: View {
 struct TimerTextView_Previews: PreviewProvider {
     static var previews: some View {
         let timerDetails = TimerSetupDetails(
-            sets: 2,
-            reps: 3,
+            sets: 5,
+            reps: 6,
             workSeconds: 7,
             restSeconds: 3,
             breakMinutes: 1,
-            breakSeconds: 45)
+            breakSeconds: 47)
         let timer = CountdownTimer(timerDetails: timerDetails)
         
         TimerTextView(timer: timer)

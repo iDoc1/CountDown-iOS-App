@@ -33,6 +33,8 @@ final class CountdownTimerTests: XCTestCase {
         XCTAssertEqual(timer.gripIndex, 0)
         XCTAssertEqual(timer.durationIndex, 0)
         XCTAssertEqual(timer.timerString, "0:15")
+        XCTAssertEqual(timer.totalTime, "2:54")
+        XCTAssertEqual(timer.timeLeft, "2:54")
         XCTAssertEqual(timer.timerColor, Theme.lightBlue.mainColor)
         XCTAssertEqual(timer.durationType, GripsArray.DurationType.prepareType.rawValue)
         XCTAssertEqual(timer.timerState, .notStarted)
@@ -44,6 +46,7 @@ final class CountdownTimerTests: XCTestCase {
         _ = XCTWaiter.wait(for: [expectation], timeout: 1.5)
         XCTAssertEqual(timer.secondsLeft, 14)
         XCTAssertEqual(timer.timerString, "0:14")
+        XCTAssertEqual(timer.timeLeft, "2:53")
         XCTAssertEqual(timer.timerState, .started)
         XCTAssertEqual(timer.durationType, GripsArray.DurationType.prepareType.rawValue)
     }
@@ -60,6 +63,7 @@ final class CountdownTimerTests: XCTestCase {
         
         XCTAssertEqual(timer.secondsLeft, 14)
         XCTAssertEqual(timer.timerString, "0:14")
+        XCTAssertEqual(timer.timeLeft, "2:53")
         XCTAssertEqual(timer.timerState, .paused)
         XCTAssertEqual(timer.durationType, GripsArray.DurationType.prepareType.rawValue)
     }
@@ -80,6 +84,7 @@ final class CountdownTimerTests: XCTestCase {
         
         XCTAssertEqual(timer.secondsLeft, 13)
         XCTAssertEqual(timer.timerString, "0:13")
+        XCTAssertEqual(timer.timeLeft, "2:52")
         XCTAssertEqual(timer.timerState, .resumed)
         XCTAssertEqual(timer.durationType, GripsArray.DurationType.prepareType.rawValue)
     }
@@ -96,6 +101,8 @@ final class CountdownTimerTests: XCTestCase {
         XCTAssertEqual(timer.gripIndex, 0)
         XCTAssertEqual(timer.durationIndex, 0)
         XCTAssertEqual(timer.timerString, "0:15")
+        XCTAssertEqual(timer.totalTime, "2:54")
+        XCTAssertEqual(timer.timeLeft, "2:54")
         XCTAssertEqual(timer.timerColor, Theme.lightBlue.mainColor)
         XCTAssertEqual(timer.durationType, GripsArray.DurationType.prepareType.rawValue)
         XCTAssertEqual(timer.timerState, .notStarted)
@@ -111,6 +118,7 @@ final class CountdownTimerTests: XCTestCase {
         XCTAssertEqual(timer.durationIndex, 1)
         XCTAssertEqual(timer.secondsLeft, 6)
         XCTAssertEqual(timer.timerString, "0:06")
+        XCTAssertEqual(timer.timeLeft, "2:38")
         XCTAssertEqual(timer.timerState, .started)
         XCTAssertEqual(timer.durationType, GripsArray.DurationType.workType.rawValue)
     }
@@ -126,6 +134,7 @@ final class CountdownTimerTests: XCTestCase {
         XCTAssertEqual(timer.durationIndex, 2)
         XCTAssertEqual(timer.secondsLeft, 2)
         XCTAssertEqual(timer.timerString, "0:02")
+        XCTAssertEqual(timer.timeLeft, "2:31")
         XCTAssertEqual(timer.timerState, .started)
         XCTAssertEqual(timer.durationType, GripsArray.DurationType.restType.rawValue)
     }
@@ -142,6 +151,7 @@ final class CountdownTimerTests: XCTestCase {
         XCTAssertEqual(timer.durationIndex, 6)
         XCTAssertEqual(timer.secondsLeft, 104)
         XCTAssertEqual(timer.timerString, "1:44")
+        XCTAssertEqual(timer.timeLeft, "2:11")
         XCTAssertEqual(timer.timerState, .started)
         XCTAssertEqual(timer.durationType, GripsArray.DurationType.breakType.rawValue)
     }
@@ -156,6 +166,7 @@ final class CountdownTimerTests: XCTestCase {
         XCTAssertEqual(timer.durationIndex, 12)
         XCTAssertEqual(timer.secondsLeft, 0)
         XCTAssertEqual(timer.timerString, "0:00")
+        XCTAssertEqual(timer.timeLeft, "0:00")
         XCTAssertEqual(timer.timerState, .completed)
         XCTAssertEqual(timer.durationType, "COMPLETE")
     }
@@ -171,6 +182,7 @@ final class CountdownTimerTests: XCTestCase {
         XCTAssertEqual(timer.durationIndex, 12)
         XCTAssertEqual(timer.secondsLeft, 0)
         XCTAssertEqual(timer.timerString, "0:00")
+        XCTAssertEqual(timer.timeLeft, "0:00")
         XCTAssertEqual(timer.timerState, .completed)
         XCTAssertEqual(timer.durationType, "COMPLETE")
     }
@@ -187,6 +199,8 @@ final class CountdownTimerTests: XCTestCase {
         XCTAssertEqual(timer.gripIndex, 0)
         XCTAssertEqual(timer.durationIndex, 0)
         XCTAssertEqual(timer.timerString, "0:15")
+        XCTAssertEqual(timer.totalTime, "2:54")
+        XCTAssertEqual(timer.timeLeft, "2:54")
         XCTAssertEqual(timer.timerColor, Theme.lightBlue.mainColor)
         XCTAssertEqual(timer.durationType, GripsArray.DurationType.prepareType.rawValue)
         XCTAssertEqual(timer.timerState, .notStarted)

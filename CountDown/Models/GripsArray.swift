@@ -71,6 +71,8 @@ struct GripsArray {
         let durationType: DurationType
         let currSet: Int
         let currRep: Int
+        /// The time at which this duration starts within the scope of the entire workout
+        let startSeconds: Int
         
         /// Returns a string representation of this struct. Example: "WORK for 3 sec".
         var description: String {
@@ -92,6 +94,21 @@ struct GripsArray {
         grips.count
     }
     
+    /// Returns the total number of seconds for all grips and durations in this GripsArray
+    var totalSeconds: Int {
+        // Return 0 if grips is empty
+        guard let lastGrip = grips.last else {
+            return 0
+        }
+        
+        // Return 0 if the last grip has no durations
+        guard let lastDuration = lastGrip.durations.last else {
+            return 0
+        }
+        
+        return lastDuration.startSeconds + lastDuration.seconds
+    }
+    
     /// Returns the last grip in the array. If that grip does not exists, returns a WorkoutGrip with all zeroes.
     var last: WorkoutGrip {
         return grips.last ?? WorkoutGrip(
@@ -111,6 +128,7 @@ struct GripsArray {
         let currGrip = 0
         var currSet = 0
         var currRep = 0
+        var secondsElapsed = 0
         
         // Add a prepare duration as the first duration
         grips.append(WorkoutGrip(
@@ -154,14 +172,18 @@ struct GripsArray {
                     seconds: timerDetails.workSeconds,
                     durationType: .workType,
                     currSet: currSet,
-                    currRep: currRep)
+                    currRep: currRep,
+                    startSeconds: secondsElapsed)
+                secondsElapsed += workDuration.seconds
                 grips[currGrip].durations.append(workDuration)
             case .restType:
                 let restDuration = DurationStatus(
                     seconds: timerDetails.restSeconds,
                     durationType: .restType,
                     currSet: currSet,
-                    currRep: currRep)
+                    currRep: currRep,
+                    startSeconds: secondsElapsed)
+                secondsElapsed += restDuration.seconds
                 grips[currGrip].durations.append(restDuration)
             case .breakType:
                 let breakSeconds = (timerDetails.breakMinutes * 60) + timerDetails.breakSeconds
@@ -169,14 +191,18 @@ struct GripsArray {
                     seconds: breakSeconds,
                     durationType: .breakType,
                     currSet: currSet,
-                    currRep: currRep)
+                    currRep: currRep,
+                    startSeconds: secondsElapsed)
+                secondsElapsed += breakSeconds
                 grips[currGrip].durations.append(breakDuration)
             case .prepareType:
                 let prepareDuration = DurationStatus(
                     seconds: 15,
                     durationType: .prepareType,
                     currSet: currSet,
-                    currRep: currRep)
+                    currRep: currRep,
+                    startSeconds: secondsElapsed)
+                secondsElapsed += 15
                 grips[currGrip].durations.append(prepareDuration)
             }
         }

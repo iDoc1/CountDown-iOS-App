@@ -56,6 +56,19 @@ final class CountdownTimer: ObservableObject {
 
     /// The number of seconds the timer starts at
     var startSeconds: Int
+    /// A string representation of the total length of the workout in the form "mm:ss"
+    var totalTime: String {
+        let totalMinutes = gripsArray.totalSeconds / 60
+        let totalSeconds = gripsArray.totalSeconds % 60
+        return timeToString(minutes: totalMinutes, seconds: totalSeconds)
+    }
+    /// A string representation of the time left in the workout in the form "mm:ss"
+    var timeLeft: String {
+        let secondsLeft = gripsArray.totalSeconds - totalSecondsElapsed
+        let timeLeftMinutes = secondsLeft / 60
+        let timeLeftSeconds = secondsLeft % 60
+        return timeToString(minutes: timeLeftMinutes, seconds: timeLeftSeconds)
+    }
     /// A string representation of the time left in form "mm:ss"
     var timerString: String {
         let minutes = secondsLeft / 60
@@ -104,6 +117,12 @@ final class CountdownTimer: ObservableObject {
     private let gripsArray: GripsArray
     /// Used to calculate the seconds elapsed since timer has started or resumed
     private var startDate = Date()
+    /// The elapsed seconds for the entire workout so far
+    private var totalSecondsElapsed: Int {
+        // Return the total seconds in the workout if the workout has reached the end
+        guard durationIndex < currGrip.durations.count else { return gripsArray.totalSeconds }
+        return currGrip.durations[durationIndex].startSeconds + (startSeconds - secondsLeft)
+    }
     
     init(timerDetails: TimerSetupDetails) {
         self.gripsArray = GripsArray(timerDetails: timerDetails)

@@ -17,22 +17,11 @@ struct TimerDurationsView: View {
     
     var body: some View {
         VStack {
-            timeTextRow(title: "Work", time: currGrip.workTime)
-            timeTextRow(title: "Rest", time: currGrip.restTime)
-            timeTextRow(title: "Break", time: currGrip.breakTime)
+            TimeTextRow(title: "Work", time: currGrip.workTime)
+            TimeTextRow(title: "Rest", time: currGrip.restTime)
+            TimeTextRow(title: "Break", time: currGrip.breakTime)
         }
         .frame(maxWidth: 100.0)
-    }
-    
-    /// A row containing a tile followed by a given time String
-    func timeTextRow(title: String, time: String) -> some View {
-        HStack {
-            Text(title)
-                .foregroundColor(Color(.systemGray))
-            Spacer()
-            Text(time)
-        }
-        .padding(.vertical, 1)
     }
 }
 
