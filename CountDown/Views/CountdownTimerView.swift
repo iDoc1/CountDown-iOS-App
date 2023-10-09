@@ -27,6 +27,7 @@ struct CountdownTimerView: View {
         }
         .onDisappear {
             countdownTimer.timerState = .notStarted
+            enableSleepMode()
         }
         .toolbar(.hidden, for: .tabBar)
         .navigationTitle("Timer")

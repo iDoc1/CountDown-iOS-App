@@ -15,6 +15,7 @@
 		AB7E61B92AC51DDD0081D475 /* TimerUtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E61B82AC51DDD0081D475 /* TimerUtilitiesTests.swift */; };
 		AB7E61BB2AC520520081D475 /* TimerDurationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E61BA2AC520520081D475 /* TimerDurationsView.swift */; };
 		AB7E61BD2AC5225C0081D475 /* ProgressStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E61BC2AC5225C0081D475 /* ProgressStepper.swift */; };
+		ABA68AED2AD3A08300181690 /* SleepUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA68AEC2AD3A08300181690 /* SleepUtilities.swift */; };
 		ABA9E7842AAD401000DBF8DA /* CountDownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7832AAD401000DBF8DA /* CountDownApp.swift */; };
 		ABA9E7862AAD401000DBF8DA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7852AAD401000DBF8DA /* MainView.swift */; };
 		ABA9E7882AAD401100DBF8DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABA9E7872AAD401100DBF8DA /* Assets.xcassets */; };
@@ -60,7 +61,6 @@
 /* Begin PBXFileReference section */
 		AB3FD8352AC28BA5009D6C71 /* CountdownTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerTests.swift; sourceTree = "<group>"; };
 		AB6404602AD24D32002A9778 /* CountDown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountDown.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB6404612AD24D32002A9778 /* CountDownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = CountDownTests.xctest; path = "/Users/iandocherty/Development/projects/CountDown/build/Debug-iphoneos/CountDownTests.xctest"; sourceTree = "<absolute>"; };
 		AB6404622AD24D7D002A9778 /* TimerButtonsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerButtonsViewTests.swift; sourceTree = "<group>"; };
 		AB6404642AD35424002A9778 /* TimeTextRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTextRow.swift; sourceTree = "<group>"; };
 		AB7E61B22AC3DD8C0081D475 /* TimerHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerHeader.swift; sourceTree = "<group>"; };
@@ -68,6 +68,8 @@
 		AB7E61B82AC51DDD0081D475 /* TimerUtilitiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerUtilitiesTests.swift; sourceTree = "<group>"; };
 		AB7E61BA2AC520520081D475 /* TimerDurationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDurationsView.swift; sourceTree = "<group>"; };
 		AB7E61BC2AC5225C0081D475 /* ProgressStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStepper.swift; sourceTree = "<group>"; };
+		ABA68AEB2AD3998E00181690 /* CountDownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountDownTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABA68AEC2AD3A08300181690 /* SleepUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepUtilities.swift; sourceTree = "<group>"; };
 		ABA9E7832AAD401000DBF8DA /* CountDownApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownApp.swift; sourceTree = "<group>"; };
 		ABA9E7852AAD401000DBF8DA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		ABA9E7872AAD401100DBF8DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				AB7E61B52AC5150D0081D475 /* TimerUtilities.swift */,
+				ABA68AEC2AD3A08300181690 /* SleepUtilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 				ABA9E7822AAD401000DBF8DA /* CountDown */,
 				ABA9E7932AAD401100DBF8DA /* CountDownTests */,
 				AB6404602AD24D32002A9778 /* CountDown.app */,
+				ABA68AEB2AD3998E00181690 /* CountDownTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -290,7 +294,7 @@
 				ABFA8D502AC8DAEB00B1C5BF /* ViewInspector */,
 			);
 			productName = CountDownTests;
-			productReference = AB6404612AD24D32002A9778 /* CountDownTests.xctest */;
+			productReference = ABA68AEB2AD3998E00181690 /* CountDownTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -384,6 +388,7 @@
 				ABA9E7D62AB659BB00DBF8DA /* TimerButtonsView.swift in Sources */,
 				ABA9E7B32AAD414500DBF8DA /* CountDown.xcdatamodeld in Sources */,
 				ABF19AD02AC9F8CF007FD4F6 /* AVPlayer+Beep.swift in Sources */,
+				ABA68AED2AD3A08300181690 /* SleepUtilities.swift in Sources */,
 				ABA9E7842AAD401000DBF8DA /* CountDownApp.swift in Sources */,
 				ABA9E7CB2AAEB80A00DBF8DA /* TimePickerButton.swift in Sources */,
 				ABA9E7E02AB7E04B00DBF8DA /* GripsArray.swift in Sources */,

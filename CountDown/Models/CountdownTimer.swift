@@ -31,15 +31,20 @@ final class CountdownTimer: ObservableObject {
             case .notStarted:
                 timer.invalidate()
                 resetTimer()
+                enableSleepMode()
             case .started:
                 resetTimer()
                 startTimer()
+                disableSleepMode()
             case .paused:
                 timer.invalidate()
+                enableSleepMode()
             case .resumed:
                 resumeTimer()
+                disableSleepMode()
             case .completed:
                 timer.invalidate()
+                enableSleepMode()
             }
         }
     }
