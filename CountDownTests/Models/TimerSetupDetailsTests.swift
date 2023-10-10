@@ -8,7 +8,7 @@
 import XCTest
 @testable import CountDown
 
-final class TimerSetupDetailsTest: XCTestCase {
+final class TimerSetupDetailsTests: XCTestCase {
     
     func testInitialValuesCorrect() {
         let timerDetails = TimerSetupDetails(
