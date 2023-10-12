@@ -19,6 +19,14 @@
 		ABA68AF22AD4DDB300181690 /* TimerSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA68AF12AD4DDB300181690 /* TimerSound.swift */; };
 		ABA68AF42AD4DF1500181690 /* TimerSoundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA68AF32AD4DF1500181690 /* TimerSoundTests.swift */; };
 		ABA68AF62AD4EAE800181690 /* SoundPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA68AF52AD4EAE800181690 /* SoundPickerView.swift */; };
+		ABA68AFF2AD62B0A00181690 /* chime_high.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABA68AF72AD62B0A00181690 /* chime_high.wav */; };
+		ABA68B002AD62B0B00181690 /* electric_high.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABA68AF82AD62B0A00181690 /* electric_high.wav */; };
+		ABA68B012AD62B0B00181690 /* buzzer_high.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABA68AF92AD62B0A00181690 /* buzzer_high.wav */; };
+		ABA68B022AD62B0B00181690 /* glass_high.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABA68AFA2AD62B0A00181690 /* glass_high.wav */; };
+		ABA68B032AD62B0B00181690 /* electric_low.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABA68AFB2AD62B0A00181690 /* electric_low.wav */; };
+		ABA68B042AD62B0B00181690 /* glass_low.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABA68AFC2AD62B0A00181690 /* glass_low.wav */; };
+		ABA68B052AD62B0B00181690 /* chime_low.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABA68AFD2AD62B0A00181690 /* chime_low.wav */; };
+		ABA68B062AD62B0B00181690 /* buzzer_low.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABA68AFE2AD62B0A00181690 /* buzzer_low.wav */; };
 		ABA9E7842AAD401000DBF8DA /* CountDownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7832AAD401000DBF8DA /* CountDownApp.swift */; };
 		ABA9E7862AAD401000DBF8DA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7852AAD401000DBF8DA /* MainView.swift */; };
 		ABA9E7882AAD401100DBF8DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABA9E7872AAD401100DBF8DA /* Assets.xcassets */; };
@@ -76,6 +84,14 @@
 		ABA68AF12AD4DDB300181690 /* TimerSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSound.swift; sourceTree = "<group>"; };
 		ABA68AF32AD4DF1500181690 /* TimerSoundTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSoundTests.swift; sourceTree = "<group>"; };
 		ABA68AF52AD4EAE800181690 /* SoundPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPickerView.swift; sourceTree = "<group>"; };
+		ABA68AF72AD62B0A00181690 /* chime_high.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = chime_high.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/chime_high.wav"; sourceTree = "<group>"; };
+		ABA68AF82AD62B0A00181690 /* electric_high.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = electric_high.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/electric_high.wav"; sourceTree = "<group>"; };
+		ABA68AF92AD62B0A00181690 /* buzzer_high.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = buzzer_high.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/buzzer_high.wav"; sourceTree = "<group>"; };
+		ABA68AFA2AD62B0A00181690 /* glass_high.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = glass_high.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/glass_high.wav"; sourceTree = "<group>"; };
+		ABA68AFB2AD62B0A00181690 /* electric_low.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = electric_low.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/electric_low.wav"; sourceTree = "<group>"; };
+		ABA68AFC2AD62B0A00181690 /* glass_low.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = glass_low.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/glass_low.wav"; sourceTree = "<group>"; };
+		ABA68AFD2AD62B0A00181690 /* chime_low.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = chime_low.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/chime_low.wav"; sourceTree = "<group>"; };
+		ABA68AFE2AD62B0A00181690 /* buzzer_low.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = buzzer_low.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/buzzer_low.wav"; sourceTree = "<group>"; };
 		ABA9E7832AAD401000DBF8DA /* CountDownApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownApp.swift; sourceTree = "<group>"; };
 		ABA9E7852AAD401000DBF8DA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		ABA9E7872AAD401100DBF8DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -214,6 +230,14 @@
 		ABA9E7AF2AAD40C800DBF8DA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ABA68AF92AD62B0A00181690 /* buzzer_high.wav */,
+				ABA68AFE2AD62B0A00181690 /* buzzer_low.wav */,
+				ABA68AF72AD62B0A00181690 /* chime_high.wav */,
+				ABA68AFD2AD62B0A00181690 /* chime_low.wav */,
+				ABA68AF82AD62B0A00181690 /* electric_high.wav */,
+				ABA68AFB2AD62B0A00181690 /* electric_low.wav */,
+				ABA68AFA2AD62B0A00181690 /* glass_high.wav */,
+				ABA68AFC2AD62B0A00181690 /* glass_low.wav */,
 				ABF19ACB2AC9F8A3007FD4F6 /* beep_high.wav */,
 				ABF19ACC2AC9F8A3007FD4F6 /* beep_low.wav */,
 			);
@@ -359,10 +383,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABA68B052AD62B0B00181690 /* chime_low.wav in Resources */,
+				ABA68B012AD62B0B00181690 /* buzzer_high.wav in Resources */,
 				ABF19ACD2AC9F8A3007FD4F6 /* beep_high.wav in Resources */,
+				ABA68B042AD62B0B00181690 /* glass_low.wav in Resources */,
+				ABA68AFF2AD62B0A00181690 /* chime_high.wav in Resources */,
+				ABA68B062AD62B0B00181690 /* buzzer_low.wav in Resources */,
+				ABA68B032AD62B0B00181690 /* electric_low.wav in Resources */,
+				ABA68B022AD62B0B00181690 /* glass_high.wav in Resources */,
 				ABF19ACE2AC9F8A3007FD4F6 /* beep_low.wav in Resources */,
 				ABA9E78B2AAD401100DBF8DA /* Preview Assets.xcassets in Resources */,
 				ABA9E7882AAD401100DBF8DA /* Assets.xcassets in Resources */,
+				ABA68B002AD62B0B00181690 /* electric_high.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

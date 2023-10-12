@@ -9,19 +9,18 @@ import Foundation
 import AVFoundation
 
 extension AVPlayer {
-    static let lowBeepPlayer: AVPlayer = {
-        guard let url = Bundle.main.url(forResource: "beep_low", withExtension: "wav") else {
-            fatalError("Failed to find low beep sound file")
+    
+    /// Returns an AVPlayer for a specific resource specified by the given sound type and pitch
+    /// - Parameters:
+    ///   - type: The TimerSound type corresponding to a pair of sound files in the Resources folder
+    ///   - isHighPitch: Whether or not to play the high or low pitch of the given sound type
+    /// - Returns: An AVPlayer for the specified sound type and pitch
+    static func soundPlayer(type: TimerSound, isHighPitch: Bool) -> AVPlayer {
+        let resource = isHighPitch ? "\(type.rawValue)_high" : "\(type.rawValue)_low"
+        
+        guard let url = Bundle.main.url(forResource: resource, withExtension: "wav") else {
+            fatalError("Failed to find sound file")
         }
         return AVPlayer(url: url)
-    }()
-}
-
-extension AVPlayer {
-    static let highBeepPlayer: AVPlayer = {
-        guard let url = Bundle.main.url(forResource: "beep_high", withExtension: "wav") else {
-            fatalError("Failed to find high beep sound file")
-        }
-        return AVPlayer(url: url)
-    }()
+    }
 }

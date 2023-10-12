@@ -58,6 +58,9 @@ final class CountdownTimer: ObservableObject {
     @Published var gripIndex: Int = 0
     /// The index of the current DurationStatus in the current grip
     @Published var durationIndex: Int = 0
+    
+    @AppStorage("soundType") private var soundType: TimerSound = .beep
+    @AppStorage("timerSound") private var timerSoundOn = true
 
     /// The number of seconds the timer starts at
     var startSeconds: Int
@@ -117,7 +120,7 @@ final class CountdownTimer: ObservableObject {
     /// The timer that keeps track of the countdown
     private var timer = Timer()
     /// Plays the countdown beeps sounds
-    private var soundPlayer = TimerSoundPlayer()
+    private var soundPlayer: TimerSoundPlayer?
     /// The array that contains a collection of grips that are fed into this timer
     private let gripsArray: GripsArray
     /// Used to calculate the seconds elapsed since timer has started or resumed
@@ -134,6 +137,11 @@ final class CountdownTimer: ObservableObject {
         // Set start seconds to the length of the first duration in the array
         self.startSeconds = self.gripsArray[0].durations[0].seconds
         self.secondsLeft = self.startSeconds
+        
+        if timerSoundOn {
+            self.soundPlayer = TimerSoundPlayer(type: soundType)
+        }
+        
     }
     
     /// Starts timer from the beginning. This is intended to only be executed when timer starts for the first time (not from a pause).
@@ -175,7 +183,7 @@ final class CountdownTimer: ObservableObject {
             // Only update secondsLeft if it has changed since the last timer update
             if newSecondsLeft != secondsLeft {
                 Task {
-                    await soundPlayer.playSound(newSecondsLeft: newSecondsLeft)
+                    await soundPlayer?.playSound(newSecondsLeft: newSecondsLeft)
                 }
                 secondsLeft = newSecondsLeft
             }

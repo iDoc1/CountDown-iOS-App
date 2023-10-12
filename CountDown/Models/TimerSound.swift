@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// The names of the timer sounds available to the user
+/// The names of the timer sounds available to the user. Each sound should correspond to a sound file in the Resources folder.
 enum TimerSound: String, CaseIterable, Identifiable {
     case beep
     case buzzer
