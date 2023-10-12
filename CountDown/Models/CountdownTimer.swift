@@ -12,7 +12,6 @@ import SwiftUI
 /// aspects of this class were inspired by both the Apple's SwiftUI Scrumdinger tutorial and the following source:
 /// https://digitalbunker.dev/recreating-the-ios-timer-in-swiftui/
 
-
 @MainActor
 final class CountdownTimer: ObservableObject {
     /// The different states of activity a timer can have
@@ -61,6 +60,7 @@ final class CountdownTimer: ObservableObject {
     
     @AppStorage("soundType") private var soundType: TimerSound = .beep
     @AppStorage("timerSound") private var timerSoundOn = true
+    @AppStorage("timerVibration") private var timerVibrationOn = false
 
     /// The number of seconds the timer starts at
     var startSeconds: Int
@@ -121,6 +121,8 @@ final class CountdownTimer: ObservableObject {
     private var timer = Timer()
     /// Plays the countdown beeps sounds
     private var soundPlayer: TimerSoundPlayer?
+    /// Controls device vibration for the timer
+    private var timerVibrator: TimerVibrator?
     /// The array that contains a collection of grips that are fed into this timer
     private let gripsArray: GripsArray
     /// Used to calculate the seconds elapsed since timer has started or resumed
@@ -138,9 +140,9 @@ final class CountdownTimer: ObservableObject {
         self.startSeconds = self.gripsArray[0].durations[0].seconds
         self.secondsLeft = self.startSeconds
         
-        if timerSoundOn {
-            self.soundPlayer = TimerSoundPlayer(type: soundType)
-        }
+        // Check if timer sound and vibration are on before instantiating corresponding objects
+        if timerSoundOn { self.soundPlayer = TimerSoundPlayer(type: soundType) }
+        if timerVibrationOn { self.timerVibrator = TimerVibrator() }
         
     }
     
@@ -173,7 +175,7 @@ final class CountdownTimer: ObservableObject {
         progress = 1.0
         goToNextDuration()
     }
-    
+
     /// Updates variables related to the timer state
     nonisolated private func updateTimer() {
         Task { @MainActor in
@@ -182,8 +184,10 @@ final class CountdownTimer: ObservableObject {
             
             // Only update secondsLeft if it has changed since the last timer update
             if newSecondsLeft != secondsLeft {
+                timerVibrator?.vibrateAt(newSecondsLeft: newSecondsLeft)
+                
                 Task {
-                    await soundPlayer?.playSound(newSecondsLeft: newSecondsLeft)
+                    await soundPlayer?.playSoundAt(newSecondsLeft: newSecondsLeft)
                 }
                 secondsLeft = newSecondsLeft
             }

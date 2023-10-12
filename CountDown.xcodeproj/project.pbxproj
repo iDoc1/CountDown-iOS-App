@@ -27,6 +27,7 @@
 		ABA68B042AD62B0B00181690 /* glass_low.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABA68AFC2AD62B0A00181690 /* glass_low.wav */; };
 		ABA68B052AD62B0B00181690 /* chime_low.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABA68AFD2AD62B0A00181690 /* chime_low.wav */; };
 		ABA68B062AD62B0B00181690 /* buzzer_low.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABA68AFE2AD62B0A00181690 /* buzzer_low.wav */; };
+		ABA68B082AD78A1A00181690 /* TimerVibrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA68B072AD78A1A00181690 /* TimerVibrator.swift */; };
 		ABA9E7842AAD401000DBF8DA /* CountDownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7832AAD401000DBF8DA /* CountDownApp.swift */; };
 		ABA9E7862AAD401000DBF8DA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7852AAD401000DBF8DA /* MainView.swift */; };
 		ABA9E7882AAD401100DBF8DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABA9E7872AAD401100DBF8DA /* Assets.xcassets */; };
@@ -92,6 +93,7 @@
 		ABA68AFC2AD62B0A00181690 /* glass_low.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = glass_low.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/glass_low.wav"; sourceTree = "<group>"; };
 		ABA68AFD2AD62B0A00181690 /* chime_low.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = chime_low.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/chime_low.wav"; sourceTree = "<group>"; };
 		ABA68AFE2AD62B0A00181690 /* buzzer_low.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = buzzer_low.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/buzzer_low.wav"; sourceTree = "<group>"; };
+		ABA68B072AD78A1A00181690 /* TimerVibrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerVibrator.swift; sourceTree = "<group>"; };
 		ABA9E7832AAD401000DBF8DA /* CountDownApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownApp.swift; sourceTree = "<group>"; };
 		ABA9E7852AAD401000DBF8DA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		ABA9E7872AAD401100DBF8DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				ABF19ACF2AC9F8CF007FD4F6 /* AVPlayer+Beep.swift */,
 				ABF19AD12AC9FA09007FD4F6 /* TimerSoundPlayer.swift */,
 				ABA68AF12AD4DDB300181690 /* TimerSound.swift */,
+				ABA68B072AD78A1A00181690 /* TimerVibrator.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				AB7E61BB2AC520520081D475 /* TimerDurationsView.swift in Sources */,
 				ABA9E7D62AB659BB00DBF8DA /* TimerButtonsView.swift in Sources */,
 				ABA9E7B32AAD414500DBF8DA /* CountDown.xcdatamodeld in Sources */,
+				ABA68B082AD78A1A00181690 /* TimerVibrator.swift in Sources */,
 				ABF19AD02AC9F8CF007FD4F6 /* AVPlayer+Beep.swift in Sources */,
 				ABA68AED2AD3A08300181690 /* SleepUtilities.swift in Sources */,
 				ABA9E7842AAD401000DBF8DA /* CountDownApp.swift in Sources */,

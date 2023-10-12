@@ -23,11 +23,9 @@ class TimerSoundPlayer {
     /// Plays the low pitch variation of this sound player for seconds 3, 2, and 1. Plays the high pitch variation for second zero. Any
     /// other second will not trigger a sound to be played.
     /// - Parameter newSecondsLeft: The current second left in the timer for which to play the sound for
-    func playSound(newSecondsLeft: Int) async {
+    func playSoundAt(newSecondsLeft: Int) async {
         switch newSecondsLeft {
-        case 3: playLowSound()
-        case 2: playLowSound()
-        case 1: playLowSound()
+        case 3, 2, 1: playLowSound()
         case 0: playHighSound()
         default: return
         }

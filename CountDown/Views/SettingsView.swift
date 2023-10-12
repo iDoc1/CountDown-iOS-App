@@ -42,6 +42,10 @@ struct SettingsView: View {
                     Toggle(isOn: $timerVibrationOn) {
                         Label("Timer Vibration", systemImage: "dot.radiowaves.left.and.right")
                     }
+                    .onChange(of: timerVibrationOn) { newValue in
+                        // Vibrate when vibration is turned on
+                        if newValue { TimerVibrator().vibrate() }
+                    }
                 }
                 
                 Section {
