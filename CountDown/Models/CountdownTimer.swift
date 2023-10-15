@@ -184,14 +184,15 @@ final class CountdownTimer: ObservableObject {
             
             // Only update secondsLeft if it has changed since the last timer update
             if newSecondsLeft != secondsLeft {
-                timerVibrator?.vibrateAt(newSecondsLeft: newSecondsLeft)
-                
+                Task {
+                    timerVibrator?.vibrateAt(newSecondsLeft: newSecondsLeft)
+                }
                 Task {
                     await soundPlayer?.playSoundAt(newSecondsLeft: newSecondsLeft)
                 }
                 secondsLeft = newSecondsLeft
             }
-            
+
             progress = (Double(startSeconds) - secondsElapsed) / Double(startSeconds)
             
             if secondsLeft <= 0 {

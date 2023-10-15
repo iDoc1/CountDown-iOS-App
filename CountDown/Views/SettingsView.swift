@@ -12,7 +12,7 @@ struct SettingsView: View {
     @AppStorage("timerSound") private var timerSoundOn = true
     @AppStorage("soundType") private var soundType: TimerSound = .beep
     @AppStorage("timerVibration") private var timerVibrationOn = false
-    @AppStorage("darkMode") private var darkModeOn = false
+    @AppStorage("isDarkMode") private var darkModeOn = true
     @AppStorage("backgroundMode") private var backgroundModeOne = true
     /// This is utilized to provide an animation to the Sound Type row. AppStorage does not allow animations on change of value.
     @State private var showSoundType = false
@@ -41,10 +41,6 @@ struct SettingsView: View {
                     
                     Toggle(isOn: $timerVibrationOn) {
                         Label("Timer Vibration", systemImage: "dot.radiowaves.left.and.right")
-                    }
-                    .onChange(of: timerVibrationOn) { newValue in
-                        // Vibrate when vibration is turned on
-                        if newValue { TimerVibrator().vibrate() }
                     }
                 }
                 
