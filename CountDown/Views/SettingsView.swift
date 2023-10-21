@@ -13,7 +13,6 @@ struct SettingsView: View {
     @AppStorage("soundType") private var soundType: TimerSound = .beep
     @AppStorage("timerVibration") private var timerVibrationOn = false
     @AppStorage("isDarkMode") private var darkModeOn = true
-    @AppStorage("backgroundMode") private var backgroundModeOne = true
     /// This is utilized to provide an animation to the Sound Type row. AppStorage does not allow animations on change of value.
     @State private var showSoundType = false
 
@@ -50,14 +49,6 @@ struct SettingsView: View {
                     }
                 } footer: {
                     Text("Enabling dark mode reduces power consumption and improves battery life while the timer is running")
-                }
-                
-                Section {
-                    Toggle(isOn: $backgroundModeOne) {
-                        Label("Background Mode", systemImage: "square.on.square")
-                    }
-                } footer: {
-                    Text("Background mode keeps the timer running while other apps are in the foreground")
                 }
             }
             .onAppear {
