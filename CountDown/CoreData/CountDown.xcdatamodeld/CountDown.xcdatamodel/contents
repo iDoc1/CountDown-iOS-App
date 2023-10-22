@@ -21,7 +21,6 @@
         <relationship name="grip" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Grip" inverseName="gripType" inverseEntity="Grip"/>
     </entity>
     <entity name="Workout" representedClassName="Workout" syncable="YES" codeGenerationType="class">
-        <attribute name="colorTheme" optional="YES" attributeType="String"/>
         <attribute name="createdDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="descriptionText" attributeType="String" minValueString="1" maxValueString="150"/>
         <attribute name="foreignID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>

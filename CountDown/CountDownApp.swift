@@ -9,14 +9,19 @@ import SwiftUI
 
 @main
 struct CountDownApp: App {
+    @Environment(\.scenePhase) var scenePhase
     @AppStorage("isDarkMode") private var darkModeOn = true
-    @StateObject private var dataController = DataController()
+    let persistenceController = PersistenceController.shared
     
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environment(\.managedObjectContext, dataController.container.viewContext)
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .preferredColorScheme(darkModeOn ? .dark : .light)
+        }
+        .onChange(of: scenePhase) { _ in
+            // Save any changes if app enters the background
+            persistenceController.save()
         }
     }
 }

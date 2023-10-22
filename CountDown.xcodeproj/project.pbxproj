@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB125DC92AE49DF400357717 /* WorkoutCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB125DC82AE49DF400357717 /* WorkoutCardView.swift */; };
+		AB125DCB2AE597A100357717 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB125DCA2AE597A100357717 /* PersistenceController.swift */; };
+		AB125DCD2AE5CCF100357717 /* DateUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB125DCC2AE5CCF100357717 /* DateUtilities.swift */; };
+		AB125DCF2AE5D49600357717 /* WorkoutType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB125DCE2AE5D49600357717 /* WorkoutType.swift */; };
+		AB125DD12AE5DB4400357717 /* ColorUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB125DD02AE5DB4400357717 /* ColorUtilities.swift */; };
+		AB125DD32AE5DD7000357717 /* WorkoutDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB125DD22AE5DD7000357717 /* WorkoutDetailView.swift */; };
 		AB3FD8362AC28BA5009D6C71 /* CountdownTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FD8352AC28BA5009D6C71 /* CountdownTimerTests.swift */; };
 		AB6404632AD24D7D002A9778 /* TimerButtonsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6404622AD24D7D002A9778 /* TimerButtonsViewTests.swift */; };
 		AB6404652AD35424002A9778 /* TimeTextRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6404642AD35424002A9778 /* TimeTextRow.swift */; };
@@ -33,7 +39,6 @@
 		ABA9E7882AAD401100DBF8DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABA9E7872AAD401100DBF8DA /* Assets.xcassets */; };
 		ABA9E78B2AAD401100DBF8DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABA9E78A2AAD401100DBF8DA /* Preview Assets.xcassets */; };
 		ABA9E7B32AAD414500DBF8DA /* CountDown.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7B12AAD414500DBF8DA /* CountDown.xcdatamodeld */; };
-		ABA9E7B52AAD43DD00DBF8DA /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7B42AAD43DD00DBF8DA /* DataController.swift */; };
 		ABA9E7B82AAD62C200DBF8DA /* WorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7B72AAD62C200DBF8DA /* WorkoutsView.swift */; };
 		ABA9E7BA2AAD62E700DBF8DA /* TimerSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7B92AAD62E700DBF8DA /* TimerSetupView.swift */; };
 		ABA9E7BC2AAD631D00DBF8DA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7BB2AAD631D00DBF8DA /* SettingsView.swift */; };
@@ -71,6 +76,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB125DC72AE48B8600357717 /* CountDownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountDownTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB125DC82AE49DF400357717 /* WorkoutCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCardView.swift; sourceTree = "<group>"; };
+		AB125DCA2AE597A100357717 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		AB125DCC2AE5CCF100357717 /* DateUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtilities.swift; sourceTree = "<group>"; };
+		AB125DCE2AE5D49600357717 /* WorkoutType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutType.swift; sourceTree = "<group>"; };
+		AB125DD02AE5DB4400357717 /* ColorUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtilities.swift; sourceTree = "<group>"; };
+		AB125DD22AE5DD7000357717 /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
 		AB3FD8352AC28BA5009D6C71 /* CountdownTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerTests.swift; sourceTree = "<group>"; };
 		AB6404602AD24D32002A9778 /* CountDown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountDown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6404622AD24D7D002A9778 /* TimerButtonsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerButtonsViewTests.swift; sourceTree = "<group>"; };
@@ -80,7 +92,6 @@
 		AB7E61B82AC51DDD0081D475 /* TimerUtilitiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerUtilitiesTests.swift; sourceTree = "<group>"; };
 		AB7E61BA2AC520520081D475 /* TimerDurationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDurationsView.swift; sourceTree = "<group>"; };
 		AB7E61BC2AC5225C0081D475 /* ProgressStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStepper.swift; sourceTree = "<group>"; };
-		ABA68AEB2AD3998E00181690 /* CountDownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = CountDownTests.xctest; path = "/Users/iandocherty/Development/projects/CountDown/build/Debug-iphoneos/CountDownTests.xctest"; sourceTree = "<absolute>"; };
 		ABA68AEC2AD3A08300181690 /* SleepUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepUtilities.swift; sourceTree = "<group>"; };
 		ABA68AF12AD4DDB300181690 /* TimerSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSound.swift; sourceTree = "<group>"; };
 		ABA68AF32AD4DF1500181690 /* TimerSoundTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSoundTests.swift; sourceTree = "<group>"; };
@@ -99,7 +110,6 @@
 		ABA9E7872AAD401100DBF8DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ABA9E78A2AAD401100DBF8DA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ABA9E7B22AAD414500DBF8DA /* CountDown.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CountDown.xcdatamodel; sourceTree = "<group>"; };
-		ABA9E7B42AAD43DD00DBF8DA /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		ABA9E7B72AAD62C200DBF8DA /* WorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsView.swift; sourceTree = "<group>"; };
 		ABA9E7B92AAD62E700DBF8DA /* TimerSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSetupView.swift; sourceTree = "<group>"; };
 		ABA9E7BB2AAD631D00DBF8DA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -149,6 +159,8 @@
 			children = (
 				AB7E61B52AC5150D0081D475 /* TimerUtilities.swift */,
 				ABA68AEC2AD3A08300181690 /* SleepUtilities.swift */,
+				AB125DCC2AE5CCF100357717 /* DateUtilities.swift */,
+				AB125DD02AE5DB4400357717 /* ColorUtilities.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -179,6 +191,7 @@
 				ABA9E7822AAD401000DBF8DA /* CountDown */,
 				ABA9E7932AAD401100DBF8DA /* CountDownTests */,
 				AB6404602AD24D32002A9778 /* CountDown.app */,
+				AB125DC72AE48B8600357717 /* CountDownTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -226,6 +239,7 @@
 				ABF19AD12AC9FA09007FD4F6 /* TimerSoundPlayer.swift */,
 				ABA68AF12AD4DDB300181690 /* TimerSound.swift */,
 				ABA68B072AD78A1A00181690 /* TimerVibrator.swift */,
+				AB125DCE2AE5D49600357717 /* WorkoutType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -251,7 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				ABA9E7B12AAD414500DBF8DA /* CountDown.xcdatamodeld */,
-				ABA9E7B42AAD43DD00DBF8DA /* DataController.swift */,
+				AB125DCA2AE597A100357717 /* PersistenceController.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -273,6 +287,8 @@
 				AB7E61BA2AC520520081D475 /* TimerDurationsView.swift */,
 				ABA9E7B72AAD62C200DBF8DA /* WorkoutsView.swift */,
 				ABA68AF52AD4EAE800181690 /* SoundPickerView.swift */,
+				AB125DC82AE49DF400357717 /* WorkoutCardView.swift */,
+				AB125DD22AE5DD7000357717 /* WorkoutDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -337,7 +353,7 @@
 				ABFA8D502AC8DAEB00B1C5BF /* ViewInspector */,
 			);
 			productName = CountDownTests;
-			productReference = ABA68AEB2AD3998E00181690 /* CountDownTests.xctest */;
+			productReference = AB125DC72AE48B8600357717 /* CountDownTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -415,6 +431,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB125DC92AE49DF400357717 /* WorkoutCardView.swift in Sources */,
+				AB125DCF2AE5D49600357717 /* WorkoutType.swift in Sources */,
 				ABA9E7D22AB635AE00DBF8DA /* TimerView.swift in Sources */,
 				ABA9E7DC2AB66D7B00DBF8DA /* TimerButton.swift in Sources */,
 				ABA9E7CF2AB1552700DBF8DA /* CountdownTimer.swift in Sources */,
@@ -432,20 +450,23 @@
 				ABA68AF62AD4EAE800181690 /* SoundPickerView.swift in Sources */,
 				ABA9E7D82AB65D1800DBF8DA /* TrailingIconLabelStyle.swift in Sources */,
 				ABA9E7DA2AB6609000DBF8DA /* Theme.swift in Sources */,
+				AB125DD32AE5DD7000357717 /* WorkoutDetailView.swift in Sources */,
+				AB125DCD2AE5CCF100357717 /* DateUtilities.swift in Sources */,
 				ABF19AD22AC9FA09007FD4F6 /* TimerSoundPlayer.swift in Sources */,
 				ABA9E7BA2AAD62E700DBF8DA /* TimerSetupView.swift in Sources */,
 				ABA9E7CD2AAECB3900DBF8DA /* CountdownTimerView.swift in Sources */,
 				ABA9E7C62AAE9F8800DBF8DA /* TimePicker.swift in Sources */,
-				ABA9E7B52AAD43DD00DBF8DA /* DataController.swift in Sources */,
 				AB7E61BB2AC520520081D475 /* TimerDurationsView.swift in Sources */,
 				ABA9E7D62AB659BB00DBF8DA /* TimerButtonsView.swift in Sources */,
 				ABA9E7B32AAD414500DBF8DA /* CountDown.xcdatamodeld in Sources */,
 				ABA68B082AD78A1A00181690 /* TimerVibrator.swift in Sources */,
+				AB125DD12AE5DB4400357717 /* ColorUtilities.swift in Sources */,
 				ABF19AD02AC9F8CF007FD4F6 /* AVPlayer+Beep.swift in Sources */,
 				ABA68AED2AD3A08300181690 /* SleepUtilities.swift in Sources */,
 				ABA9E7842AAD401000DBF8DA /* CountDownApp.swift in Sources */,
 				ABA9E7CB2AAEB80A00DBF8DA /* TimePickerButton.swift in Sources */,
 				ABA9E7E02AB7E04B00DBF8DA /* GripsArray.swift in Sources */,
+				AB125DCB2AE597A100357717 /* PersistenceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
