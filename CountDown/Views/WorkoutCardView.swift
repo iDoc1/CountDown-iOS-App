@@ -12,8 +12,9 @@ struct WorkoutCardView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(workout.name ?? "Unknown")
+            Text(workout.unwrappedName)
                 .font(.headline)
+                .accessibilityAddTraits(.isHeader)
             Spacer()
             HStack {
                 Text(workoutTypeString)
@@ -23,19 +24,23 @@ struct WorkoutCardView: View {
                 Label(numberOfDaysAgo, systemImage: "calendar.badge.clock")
                     .font(.subheadline)
                     .foregroundColor(Color(.darkGray))
+                    .accessibilityLabel("Workout last used: \(numberOfDaysAgo)")
             }
         }
         .padding()
-        .foregroundColor(.black)
     }
     
     private var numberOfDaysAgo: String {
         if workout.lastUsedDate != nil {
-            let numOfDays = dateDiffInDays(from: workout.lastUsedDate ?? Date())
-            return numOfDays == 0 ? "Today" : "\(numOfDays)"
+            let numOfDays = dateDiffInDays(from: workout.unwrappedLastUsedDate)
+            switch numOfDays {
+            case 0: return "Today"
+            case 1: return "1 day ago"
+            default: return "\(numOfDays) days ago"
+            }            
         }
         
-        return "Not yet used"
+        return "Not used"
     }
     
     private var workoutTypeString: String {
@@ -58,7 +63,6 @@ struct WorkoutCardView_Previews: PreviewProvider {
         workoutType.name = "powerEndurance"
         
         let workout = Workout(context: context)
-        workout.id = UUID()
         workout.name = "Repeaters"
         workout.descriptionText = "RCTM Advanced Repeaters Protocol"
         workout.createdDate = Date()

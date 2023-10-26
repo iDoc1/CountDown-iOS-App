@@ -21,10 +21,10 @@ func getColorFromWorkoutType(workoutType: WorkoutType?) -> Color {
     case .power:
         return Theme.brightRed.mainColor
     case .strength:
-        return Theme.mediumYellow.mainColor
-    case .powerEndurance:
         return Theme.lightBlue.mainColor
-    case .maxStrength:
+    case .powerEndurance:
         return Theme.lightOrange.mainColor
+    case .other:
+        return Color(.systemGray)
     }
 }

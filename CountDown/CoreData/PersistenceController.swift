@@ -28,23 +28,30 @@ struct PersistenceController {
         let workoutType1 = WorkoutType(context: controller.container.viewContext)
         workoutType1.name = "powerEndurance"
         let workoutType2 = WorkoutType(context: controller.container.viewContext)
-        workoutType2.name = "maxStrength"
+        workoutType2.name = "strength"
+        let workoutType3 = WorkoutType(context: controller.container.viewContext)
+        workoutType3.name = "endurance"
         
         let workout1 = Workout(context: controller.container.viewContext)
-        workout1.id = UUID()
         workout1.name = "Repeaters"
         workout1.descriptionText = "RCTM Advanced Repeaters Protocol"
         workout1.createdDate = Date()
         workout1.workoutType = workoutType1
         
         let workout2 = Workout(context: controller.container.viewContext)
-        workout2.id = UUID()
         workout2.name = "Max Hangs"
         workout2.descriptionText = "Max weight hangs on 20mm edge"
         workout2.createdDate = Date()
         workout2.lastUsedDate = Date()
         workout2.workoutType = workoutType2
         
+        let workout3 = Workout(context: controller.container.viewContext)
+        workout3.name = "ARC 20 min"
+        workout3.descriptionText = "ARC 20 minutes on - 10 minutes off"
+        workout3.createdDate = Date(timeIntervalSince1970: 1666490247)
+        workout3.lastUsedDate = Date(timeIntervalSince1970: 1690077447)
+        workout3.workoutType = workoutType3
+
         return controller
     }()
     
@@ -62,6 +69,9 @@ struct PersistenceController {
                 fatalError("Error: \(error.localizedDescription)")
             }
         }
+        
+        // Prevents duplicates of entities with unique constraints set
+        container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
     }
     
     /// Checks if context has changed then commits changes if needed

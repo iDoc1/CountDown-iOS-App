@@ -7,12 +7,13 @@
 
 import Foundation
 
-enum WorkoutTypeAsString: String {
+/// All the the available workout types for the app
+enum WorkoutTypeAsString: String, CaseIterable, Identifiable {
     case power
     case endurance
     case strength
     case powerEndurance
-    case maxStrength
+    case other
     
     var displayName: String {
         switch self {
@@ -24,8 +25,12 @@ enum WorkoutTypeAsString: String {
             return "Strength"
         case .powerEndurance:
             return "Power Endurance"
-        case .maxStrength:
-            return "Max Strength"
+        case .other:
+            return "Other"
         }
+    }
+    
+    var id: String {
+        rawValue
     }
 }

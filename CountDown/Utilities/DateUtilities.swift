@@ -31,5 +31,5 @@ extension Date {
 /// Returns a string of the given date formatted by the user's locale
 /// - Parameter date: The date to convert to a string
 func dateDiffInDays(from date: Date) -> Int {
-    return date.daysFromToday
+    return abs(date.daysFromToday)
 }
