@@ -20,7 +20,7 @@ struct PersistenceController {
     // Storage for Core Data
     let container: NSPersistentContainer
     
-    // A test configuration for SwiftUI previews
+    // A controller configuration for SwiftUI previews
     static var preview: PersistenceController = {
         let controller = PersistenceController(inMemory: true)
         
@@ -52,6 +52,12 @@ struct PersistenceController {
         workout3.lastUsedDate = Date(timeIntervalSince1970: 1690077447)
         workout3.workoutType = workoutType3
 
+        return controller
+    }()
+    
+    /// A controller configuration of unit tests
+    static var unitTest: PersistenceController = {
+        let controller = PersistenceController(inMemory: true)
         return controller
     }()
     

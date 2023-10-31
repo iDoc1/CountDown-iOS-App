@@ -46,7 +46,7 @@ struct WorkoutsView: View {
             }
         }
         .sheet(isPresented: $isShowingNewWorkoutSheet) {
-            NewWorkoutSheet(context: moc, isShowingNewWorkoutSheet: $isShowingNewWorkoutSheet)
+            NewWorkoutView(context: moc, isShowingNewWorkoutSheet: $isShowingNewWorkoutSheet)
         }
     }
     

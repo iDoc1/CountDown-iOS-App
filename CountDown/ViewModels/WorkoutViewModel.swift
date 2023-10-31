@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 
+/// A view model that contains data related to a particular Workout
 struct WorkoutViewModel {
     var name = ""
     var description = ""

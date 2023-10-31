@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 
+/// A form with fields to enter information about a workout
 struct WorkoutEditView: View {
     @Binding var workout: WorkoutViewModel
     @ObservedObject var errorMessages: ErrorMessages
@@ -28,7 +29,6 @@ struct WorkoutEditView: View {
                 errorMessages.errorView
             }
 
-            
             Section(header: Text("Hangboard Info")) {
                 TextField("Hangboard Name", text: $workout.hangboardName.max(50))
             }

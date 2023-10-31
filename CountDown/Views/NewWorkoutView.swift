@@ -8,7 +8,8 @@
 import SwiftUI
 import CoreData
 
-struct NewWorkoutSheet: View {
+/// Provides a form and a toolbar to add new workouts
+struct NewWorkoutView: View {
     @State var newWorkout: WorkoutViewModel
     @Binding var isShowingNewWorkoutSheet: Bool
     @StateObject var errorMessages = ErrorMessages()
@@ -61,6 +62,6 @@ struct NewWorkoutSheet: View {
 struct NewWorkoutSheet_Previews: PreviewProvider {
     static let context = PersistenceController.preview.container.viewContext
     static var previews: some View {
-        NewWorkoutSheet(context: context, isShowingNewWorkoutSheet: .constant(true))
+        NewWorkoutView(context: context, isShowingNewWorkoutSheet: .constant(true))
     }
 }

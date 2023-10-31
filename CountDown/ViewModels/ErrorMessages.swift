@@ -10,13 +10,13 @@ import SwiftUI
 /// An ObservableObject that contains a list of error messages and that returns an error view containing a VStack of these error
 /// messages to be displayed in the UI
 final class ErrorMessages: ObservableObject {
-    @Published var errors: [ErrorText] = []
+    @Published var errors: [String] = []
     
     /// A VStack displaying a list of error messages
     var errorView: some View {
         return VStack(alignment: .leading) {
-            ForEach(errors) { errorText in
-                errorText
+            ForEach(errors, id: \.self) { errorText in
+                ErrorText(errorText)
             }
         }
     }
@@ -24,7 +24,7 @@ final class ErrorMessages: ObservableObject {
     /// Adds a given error text to the array or errors
     /// - Parameter errorText: The error text to add to the list of errors
     func addError(_ errorText: String) {
-        errors.append(ErrorText(errorText))
+        errors.append(errorText)
     }
     
     /// Remove all error messages from the list

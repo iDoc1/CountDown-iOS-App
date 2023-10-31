@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Contains red text with the given error message String
 struct ErrorText: View, Identifiable {
     let id = UUID()
     
