@@ -69,6 +69,7 @@
 		ABA9E7E02AB7E04B00DBF8DA /* GripsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7DF2AB7E04B00DBF8DA /* GripsArray.swift */; };
 		ABA9E7E42ABFC05500DBF8DA /* GripsArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7E32ABFC05500DBF8DA /* GripsArrayTests.swift */; };
 		ABA9E7E72AC0AAF200DBF8DA /* TimerSetupDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7E62AC0AAF200DBF8DA /* TimerSetupDetailsTests.swift */; };
+		ABD3BE412AF329EA00D13E6D /* WorkoutGripsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3BE402AF329EA00D13E6D /* WorkoutGripsView.swift */; };
 		ABF19ACD2AC9F8A3007FD4F6 /* beep_high.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABF19ACB2AC9F8A3007FD4F6 /* beep_high.wav */; };
 		ABF19ACE2AC9F8A3007FD4F6 /* beep_low.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABF19ACC2AC9F8A3007FD4F6 /* beep_low.wav */; };
 		ABF19AD02AC9F8CF007FD4F6 /* AVPlayer+Beep.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF19ACF2AC9F8CF007FD4F6 /* AVPlayer+Beep.swift */; };
@@ -155,6 +156,7 @@
 		ABA9E7DF2AB7E04B00DBF8DA /* GripsArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripsArray.swift; sourceTree = "<group>"; };
 		ABA9E7E32ABFC05500DBF8DA /* GripsArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripsArrayTests.swift; sourceTree = "<group>"; };
 		ABA9E7E62AC0AAF200DBF8DA /* TimerSetupDetailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSetupDetailsTests.swift; sourceTree = "<group>"; };
+		ABD3BE402AF329EA00D13E6D /* WorkoutGripsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutGripsView.swift; sourceTree = "<group>"; };
 		ABF19ACB2AC9F8A3007FD4F6 /* beep_high.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = beep_high.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/beep_high.wav"; sourceTree = "<group>"; };
 		ABF19ACC2AC9F8A3007FD4F6 /* beep_low.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = beep_low.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/beep_low.wav"; sourceTree = "<group>"; };
 		ABF19ACF2AC9F8CF007FD4F6 /* AVPlayer+Beep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+Beep.swift"; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@
 				AB125DD22AE5DD7000357717 /* WorkoutDetailView.swift */,
 				AB125DD42AE60D3F00357717 /* NewWorkoutView.swift */,
 				AB125DD62AE6142200357717 /* WorkoutEditView.swift */,
+				ABD3BE402AF329EA00D13E6D /* WorkoutGripsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				AB125DF52AE752FB00357717 /* Workout+CoreDataProperties.swift in Sources */,
 				ABA9E7C62AAE9F8800DBF8DA /* TimePicker.swift in Sources */,
 				AB125DF92AE752FB00357717 /* WorkoutType+CoreDataProperties.swift in Sources */,
+				ABD3BE412AF329EA00D13E6D /* WorkoutGripsView.swift in Sources */,
 				AB7E61BB2AC520520081D475 /* TimerDurationsView.swift in Sources */,
 				ABA9E7D62AB659BB00DBF8DA /* TimerButtonsView.swift in Sources */,
 				ABF6A1B32AEAC41F00822B7B /* ErrorText.swift in Sources */,

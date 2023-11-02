@@ -34,7 +34,7 @@ extension Workout {
     }
     
     public var unwrappedHangboardName: String {
-        hangboardName ?? "Unknown Hangboard"
+        hangboardName ?? "None Specified"
     }
     
     public var unwrappedLastUsedDate: Date {
@@ -43,6 +43,10 @@ extension Workout {
     
     public var unwrappedName: String {
         name ?? "Unknown Workout"
+    }
+    
+    public var unwrappedWorkoutTypeName: String {
+        workoutType?.unwrappedName ?? "Unkown Type"
     }
 }
 

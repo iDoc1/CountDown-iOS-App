@@ -33,6 +33,11 @@
         <relationship name="grip" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Grip" inverseName="workout" inverseEntity="Grip"/>
         <relationship name="workoutType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkoutType" inverseName="workout" inverseEntity="WorkoutType"/>
     </entity>
+    <entity name="WorkoutHistory" representedClassName="WorkoutHistory" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="minutesCompleted" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="secondsCompleted" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="WorkoutType" representedClassName="WorkoutType" syncable="YES">
         <attribute name="name" attributeType="String" minValueString="1" maxValueString="75"/>
         <relationship name="workout" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Workout" inverseName="workoutType" inverseEntity="Workout"/>

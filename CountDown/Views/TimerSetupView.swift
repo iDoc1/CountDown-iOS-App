@@ -59,6 +59,8 @@ struct TimerSetupView: View {
                 }
                 NavigationLink(destination: CountdownTimerView(timerDetails: timerDetails)) {
                     Label("Start Workout", systemImage: "play.fill")
+                        .font(.headline)
+                        .foregroundColor(.blue)
                 }
             }
             .navigationTitle("Timer Setup")

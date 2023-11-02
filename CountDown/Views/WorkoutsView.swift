@@ -23,10 +23,9 @@ struct WorkoutsView: View {
                     Text("No workouts added yet")
                         .font(.headline)
                 } else {
-                    
                     List {
                         ForEach(workouts, id: \.self) { workout in
-                            NavigationLink(destination: WorkoutDetailView()) {
+                            NavigationLink(destination: WorkoutDetailView(workout: workout)) {
                                 WorkoutCardView(workout: workout)
                                     .tag(workout.objectID)
                             }
@@ -56,11 +55,7 @@ struct WorkoutsView: View {
             moc.delete(workouts[index])
         }
         
-        do {
-            try moc.save()
-        } catch {
-            // TODO: Handle error
-        }
+        try? moc.save()
     }
 }
 
