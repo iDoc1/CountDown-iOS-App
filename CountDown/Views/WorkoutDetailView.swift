@@ -25,17 +25,16 @@ struct WorkoutDetailView: View {
             }
 
             Section(header: Text("Workout Details")) {
-                
-                sectionRow(title: "Name", text: workout.unwrappedName)
-                sectionRow(
+                SectionRow(title: "Name", text: workout.unwrappedName)
+                SectionRow(
                     title: "Type",
                     text: WorkoutTypeAsString(
                         rawValue: workout.unwrappedWorkoutTypeName)?.displayName ?? "",
                     color: getColorFromWorkoutType(workoutType: workout.workoutType))
-                sectionRow(title: "Description", text: workout.unwrappedDescriptionText)
-                sectionRow(title: "Hangboard", text: workout.unwrappedHangboardName)
-                NavigationLink(destination: WorkoutGripsView()) {
-                    sectionRow(title: "Grips", text: "5 added")
+                SectionRow(title: "Description", text: workout.unwrappedDescriptionText)
+                SectionRow(title: "Hangboard", text: workout.unwrappedHangboardName)
+                NavigationLink(destination: WorkoutGripsView(workout: workout)) {
+                    SectionRow(title: "Grips", text: "\(workout.gripArray.count) added")
                 }
             }
 
@@ -47,21 +46,19 @@ struct WorkoutDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
-    /// Returns an HStack with a title on the left and text on the right
-    /// - Parameters:
-    ///   - title: The title to show in black font on the left
-    ///   - text: The text to show in gray on the right
-    /// - Returns: An HStack view
-    private func sectionRow(
-        title: String,
-        text: String,
-        color: Color = Color(.systemGray)
-    ) -> some View {
-        return HStack {
-            Text(title)
-            Spacer()
-            Text(text)
-                .foregroundColor(color)
+    /// An HStack with a title on the left and text on the right
+    struct SectionRow: View {
+        let title: String
+        let text: String
+        var color: Color = Color(.systemGray)
+        
+        var body: some View {
+            return HStack {
+                Text(title)
+                Spacer()
+                Text(text)
+                    .foregroundColor(color)
+            }
         }
     }
 }
@@ -79,6 +76,22 @@ struct WorkoutDetailView_Previews: PreviewProvider {
         workout.descriptionText = "RCTM Advanced Repeaters Protocol"
         workout.createdDate = Date()
         workout.workoutType = workoutType
+        
+        let gripType = GripType(context: context)
+        gripType.name = "Half Crimp"
+        
+        let grip = Grip(context: context)
+        grip.workout = workout
+        grip.setCount = 3
+        grip.repCount = 6
+        grip.workSeconds = 7
+        grip.restSeconds = 3
+        grip.breakMinutes = 1
+        grip.breakSeconds = 30
+        grip.edgeSize = 18
+        grip.sequenceNum = 1
+        grip.gripType = gripType
+        
         return workout
     }()
     

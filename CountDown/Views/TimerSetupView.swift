@@ -11,7 +11,6 @@ import SwiftUI
 struct TimerSetupView: View {
     @State private var timerDetails = TimerSetupDetails()
     @FocusState private var isInputActive: Bool
-    @State var date = Date()
     @State var showPicker = false
     
     var body: some View {

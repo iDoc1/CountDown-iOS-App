@@ -48,6 +48,14 @@ extension Workout {
     public var unwrappedWorkoutTypeName: String {
         workoutType?.unwrappedName ?? "Unkown Type"
     }
+    
+    /// An array of all grips related to this workout sorted by grip sequence number
+    public var gripArray: [Grip] {
+        let set = grip as? Set<Grip> ?? []
+        return set.sorted {
+            $0.sequenceNum < $1.sequenceNum
+        }
+    }
 }
 
 // MARK: Generated accessors for grip

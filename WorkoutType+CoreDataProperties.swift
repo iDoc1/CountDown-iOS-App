@@ -23,10 +23,10 @@ extension WorkoutType {
         name ?? "Unknown Workout Type"
     }
     
-    /// A sorted array of all workouts this workout type is related to
-    /// This syntax was adapted from:
-    /// https://www.hackingwithswift.com/books/ios-swiftui/one-to-many-relationships-with-core-data-swiftui-and-fetchrequest
+    /// An array of all workouts this workout type is related to sorted by name
     public var workoutArray: [Workout] {
+        // This syntax was adapted from:
+        // https://www.hackingwithswift.com/books/ios-swiftui/one-to-many-relationships-with-core-data-swiftui-and-fetchrequest
         let set = workout as? Set<Workout> ?? []
         return set.sorted {
             $0.unwrappedName < $1.unwrappedName

@@ -12,7 +12,7 @@
         <attribute name="setCount" attributeType="Integer 16" minValueString="1" maxValueString="20" defaultValueString="1" usesScalarValueType="YES"/>
         <attribute name="workSeconds" attributeType="Integer 16" minValueString="1" maxValueString="60" defaultValueString="1" usesScalarValueType="YES"/>
         <relationship name="gripType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GripType" inverseName="grip" inverseEntity="GripType"/>
-        <relationship name="workout" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Workout" inverseName="grip" inverseEntity="Workout"/>
+        <relationship name="workout" maxCount="1" deletionRule="Nullify" destinationEntity="Workout" inverseName="grip" inverseEntity="Workout"/>
     </entity>
     <entity name="GripType" representedClassName="GripType" syncable="YES">
         <attribute name="name" attributeType="String" minValueString="1" maxValueString="40"/>

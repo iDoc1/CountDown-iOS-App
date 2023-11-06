@@ -24,6 +24,14 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let controller = PersistenceController(inMemory: true)
         
+        // Create 3 example grip types
+        let gripType1 = GripType(context: controller.container.viewContext)
+        gripType1.name = "Half Crimp"
+        let gripType2 = GripType(context: controller.container.viewContext)
+        gripType2.name = "Three Finger Drag"
+        let gripType3 = GripType(context: controller.container.viewContext)
+        gripType3.name = "Open Hand Crimp"
+        
         // Create 2 example workouts
         let workoutType1 = WorkoutType(context: controller.container.viewContext)
         workoutType1.name = "powerEndurance"

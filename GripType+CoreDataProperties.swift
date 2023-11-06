@@ -18,7 +18,10 @@ extension GripType {
 
     @NSManaged public var name: String?
     @NSManaged public var grip: NSSet?
-
+    
+    public var unwrappedName: String {
+        name ?? "Unknown Grip Type"
+    }
 }
 
 // MARK: Generated accessors for grip

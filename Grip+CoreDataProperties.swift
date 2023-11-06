@@ -27,7 +27,11 @@ extension Grip {
     @NSManaged public var setCount: Int16
     @NSManaged public var workSeconds: Int16
     @NSManaged public var gripType: GripType?
-    @NSManaged public var workout: NSSet?
+    @NSManaged public var workout: Workout?
+    
+    public var unwrappedGripTypeName: String {
+        gripType?.unwrappedName ?? "Unknown Type"
+    }
 
 }
 

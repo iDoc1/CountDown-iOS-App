@@ -10,7 +10,7 @@ import CoreData
 
 /// Provides a form and a toolbar to add new workouts
 struct NewWorkoutView: View {
-    @State var newWorkout: WorkoutViewModel
+    @State private var newWorkout: WorkoutViewModel
     @Binding var isShowingNewWorkoutSheet: Bool
     @StateObject var errorMessages = ErrorMessages()
     
@@ -61,6 +61,7 @@ struct NewWorkoutView: View {
 
 struct NewWorkoutSheet_Previews: PreviewProvider {
     static let context = PersistenceController.preview.container.viewContext
+    
     static var previews: some View {
         NewWorkoutView(context: context, isShowingNewWorkoutSheet: .constant(true))
     }
