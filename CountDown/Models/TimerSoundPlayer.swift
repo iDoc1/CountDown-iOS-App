@@ -18,12 +18,14 @@ class TimerSoundPlayer {
     init(type: TimerSound) {
         lowBeepPlayer = AVPlayer.soundPlayer(type: type, isHighPitch: false)
         highBeepPlayer = AVPlayer.soundPlayer(type: type, isHighPitch: true)
+        lowBeepPlayer.seek(to: .zero)
+        highBeepPlayer.seek(to: .zero)
     }
     
     /// Plays the low pitch variation of this sound player for seconds 3, 2, and 1. Plays the high pitch variation for second zero. Any
     /// other second will not trigger a sound to be played.
     /// - Parameter newSecondsLeft: The current second left in the timer for which to play the sound for
-    func playSoundAt(newSecondsLeft: Int) async {
+    func playSoundAt(newSecondsLeft: Int) {
         switch newSecondsLeft {
         case 3, 2, 1: playLowSound()
         case 0: playHighSound()

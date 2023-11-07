@@ -84,7 +84,7 @@ final class CountdownTimer: ObservableObject {
         return timeToString(minutes: minutes, seconds: seconds)
     }
     /// The frequency at which the timer will update
-    var timeInterval: TimeInterval { 1.0 / 20.0 }
+    var timeInterval: TimeInterval { 1.0 / 30.0 }
     /// The color associated with the current duration
     var timerColor: Color {
         guard durationIndex < currGrip.durations.count else { return Theme.lightBlue.mainColor }
@@ -184,12 +184,8 @@ final class CountdownTimer: ObservableObject {
             
             // Only update secondsLeft if it has changed since the last timer update
             if newSecondsLeft != secondsLeft {
-                Task {
-                    timerVibrator?.vibrateAt(newSecondsLeft: newSecondsLeft)
-                }
-                Task {
-                    await soundPlayer?.playSoundAt(newSecondsLeft: newSecondsLeft)
-                }
+                timerVibrator?.vibrateAt(newSecondsLeft: newSecondsLeft)
+                soundPlayer?.playSoundAt(newSecondsLeft: newSecondsLeft)
                 secondsLeft = newSecondsLeft
             }
 
