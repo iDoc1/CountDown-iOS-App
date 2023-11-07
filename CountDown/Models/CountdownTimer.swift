@@ -140,9 +140,13 @@ final class CountdownTimer: ObservableObject {
         self.startSeconds = self.gripsArray[0].durations[0].seconds
         self.secondsLeft = self.startSeconds
         
-        // Check if timer sound and vibration are on before instantiating corresponding objects
-        if timerSoundOn { self.soundPlayer = TimerSoundPlayer(type: soundType) }
-        if timerVibrationOn { self.timerVibrator = TimerVibrator() }
+        // Only allow sound or vibration to be on, not both at the same time
+        if timerVibrationOn {
+            self.timerVibrator = TimerVibrator()
+        } else if timerSoundOn {
+            self.soundPlayer = TimerSoundPlayer(type: soundType)
+        }
+        
         
     }
     
@@ -184,6 +188,7 @@ final class CountdownTimer: ObservableObject {
             
             // Only update secondsLeft if it has changed since the last timer update
             if newSecondsLeft != secondsLeft {
+                // Play sound/vibration if those objects exist
                 timerVibrator?.vibrateAt(newSecondsLeft: newSecondsLeft)
                 soundPlayer?.playSoundAt(newSecondsLeft: newSecondsLeft)
                 secondsLeft = newSecondsLeft

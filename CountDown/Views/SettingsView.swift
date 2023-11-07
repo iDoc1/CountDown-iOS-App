@@ -19,9 +19,9 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
-                Section {
+                Section(header: Text("Timer Feedback")) {
                     Toggle(isOn: $timerSoundOn.animation(), label: {
-                        Label("Timer Sound", systemImage: "speaker.wave.2")
+                        Label("Sound", systemImage: "speaker.wave.2")
                     })
                     .onChange(of: timerSoundOn) { newValue in
                         withAnimation { showSoundType = newValue }
@@ -39,7 +39,7 @@ struct SettingsView: View {
                     }
                     
                     Toggle(isOn: $timerVibrationOn) {
-                        Label("Timer Vibration", systemImage: "dot.radiowaves.left.and.right")
+                        Label("Vibration Only", systemImage: "dot.radiowaves.left.and.right")
                     }
                 }
                 
@@ -47,6 +47,8 @@ struct SettingsView: View {
                     Toggle(isOn: $darkModeOn) {
                         Label("Dark Mode", systemImage: "moon")
                     }
+                } header: {
+                    Text("Appearance")
                 } footer: {
                     Text("Enabling dark mode reduces power consumption and improves battery life while the timer is running")
                 }
