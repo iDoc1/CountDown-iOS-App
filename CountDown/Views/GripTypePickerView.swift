@@ -45,6 +45,8 @@ struct GripTypePickerView: View {
                             }
                         }
                         .onDelete(perform: deleteGripTypes)
+                    } footer: {
+                        Text("Deleting a grip type currently in use by a grip will cause the grip type to show up as 'Grip Type Deleted'")
                     }
                     NewGripTypeView()
                 }
@@ -56,6 +58,11 @@ struct GripTypePickerView: View {
     
     /// Deletes the grip types at the given index values
     private func deleteGripTypes(at offsets: IndexSet) {
+        /*
+         Add slight delay to prevent SwiftUI deletion bug. Bug not fixed as of 11/6/23.
+         Taken from following source:
+         https://stackoverflow.com/questions/60358948/swiftui-delete-row-in-list-with-context-menu-ui-glitch
+         */
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             for index in offsets {
                 // Unselect the grip type prior to deleting if it is currently selected

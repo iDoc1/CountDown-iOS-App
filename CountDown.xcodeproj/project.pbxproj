@@ -25,6 +25,7 @@
 		AB125DFA2AE752FB00357717 /* GripType+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB125DF22AE752FB00357717 /* GripType+CoreDataClass.swift */; };
 		AB125DFB2AE752FB00357717 /* GripType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB125DF32AE752FB00357717 /* GripType+CoreDataProperties.swift */; };
 		AB125DFF2AE8B1FD00357717 /* TextUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB125DFE2AE8B1FD00357717 /* TextUtilities.swift */; };
+		AB15815A2AF9F4C900BCB088 /* GripCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1581592AF9F4C900BCB088 /* GripCardView.swift */; };
 		AB3FD8362AC28BA5009D6C71 /* CountdownTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FD8352AC28BA5009D6C71 /* CountdownTimerTests.swift */; };
 		AB6404632AD24D7D002A9778 /* TimerButtonsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6404622AD24D7D002A9778 /* TimerButtonsViewTests.swift */; };
 		AB6404652AD35424002A9778 /* TimeTextRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6404642AD35424002A9778 /* TimeTextRow.swift */; };
@@ -117,6 +118,7 @@
 		AB125DF22AE752FB00357717 /* GripType+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GripType+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		AB125DF32AE752FB00357717 /* GripType+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GripType+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		AB125DFE2AE8B1FD00357717 /* TextUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextUtilities.swift; sourceTree = "<group>"; };
+		AB1581592AF9F4C900BCB088 /* GripCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripCardView.swift; sourceTree = "<group>"; };
 		AB3FD8352AC28BA5009D6C71 /* CountdownTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerTests.swift; sourceTree = "<group>"; };
 		AB6404602AD24D32002A9778 /* CountDown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountDown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6404622AD24D7D002A9778 /* TimerButtonsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerButtonsViewTests.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				ABA68AF02AD3A44000181690 /* Shared */,
 				ABA9E7852AAD401000DBF8DA /* MainView.swift */,
 				ABA9E7CC2AAECB3900DBF8DA /* CountdownTimerView.swift */,
+				AB1581592AF9F4C900BCB088 /* GripCardView.swift */,
 				ABEB58C02AF48B25002C60F8 /* GripEditView.swift */,
 				ABEB58C42AF49AB5002C60F8 /* NewGripView.swift */,
 				AB125DD42AE60D3F00357717 /* NewWorkoutView.swift */,
@@ -557,6 +560,7 @@
 				ABA9E7C62AAE9F8800DBF8DA /* TimePicker.swift in Sources */,
 				AB125DF92AE752FB00357717 /* WorkoutType+CoreDataProperties.swift in Sources */,
 				ABD3BE412AF329EA00D13E6D /* WorkoutGripsView.swift in Sources */,
+				AB15815A2AF9F4C900BCB088 /* GripCardView.swift in Sources */,
 				AB7E61BB2AC520520081D475 /* TimerDurationsView.swift in Sources */,
 				ABA9E7D62AB659BB00DBF8DA /* TimerButtonsView.swift in Sources */,
 				ABF6A1B32AEAC41F00822B7B /* ErrorText.swift in Sources */,

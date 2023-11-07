@@ -21,9 +21,9 @@ struct WorkoutGripsView: View {
             } else {
                 List {
                     ForEach(workout.gripArray) { grip in
-                        Text(grip.unwrappedGripTypeName)
-                            .tag(grip.objectID)
+                        GripCardView(grip: grip)
                     }
+                    .onDelete(perform: deleteGrips)
 //                    .onMove(perform: move)
                 }
             }
@@ -41,6 +41,21 @@ struct WorkoutGripsView: View {
         }
         .navigationTitle("Grips")
         .navigationBarTitleDisplayMode(.inline)
+    }
+    
+    private func deleteGrips(at offsets: IndexSet) {
+        /*
+         Add slight delay to prevent SwiftUI deletion bug. Bug not fixed as of 11/6/23.
+         Taken from following source:
+         https://stackoverflow.com/questions/60358948/swiftui-delete-row-in-list-with-context-menu-ui-glitch
+         */
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+            for index in offsets {
+                moc.delete(workout.gripArray[index])
+            }
+        }
+        
+        try? moc.save()
     }
     
 //    private func move(from source: IndexSet, to destination: Int) {

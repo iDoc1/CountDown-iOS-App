@@ -10,6 +10,7 @@ import SwiftUI
 /// Displays details about a specific workout and provides links to start a workout or edit the workout's grips
 struct WorkoutDetailView: View {
     @ObservedObject var workout: Workout
+    @State private var isShowingEditWorkoutSheet = false
     
     var body: some View {
         List {
@@ -41,6 +42,14 @@ struct WorkoutDetailView: View {
             Section(header: Text("History")) {
                 Label("No workouts yet", systemImage: "calendar.badge.exclamationmark")
             }
+        }
+        .toolbar {
+            Button(action: {
+                isShowingEditWorkoutSheet = true
+            }) {
+                Text("Edit")
+            }
+            .accessibilityLabel("Edit Workout")
         }
         .navigationTitle(workout.unwrappedName)
         .navigationBarTitleDisplayMode(.inline)

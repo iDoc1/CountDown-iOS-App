@@ -20,7 +20,7 @@ extension GripType {
     @NSManaged public var grip: NSSet?
     
     public var unwrappedName: String {
-        name ?? "Unknown Grip Type"
+        name ?? "Grip Type Deleted"
     }
 }
 

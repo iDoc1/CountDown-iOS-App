@@ -30,9 +30,12 @@ extension Grip {
     @NSManaged public var workout: Workout?
     
     public var unwrappedGripTypeName: String {
-        gripType?.unwrappedName ?? "Unknown Type"
+        gripType?.unwrappedName ?? "Grip Type Deleted"
     }
-
+    
+    public var unwrappedSequenceNum: Int {
+        Int(sequenceNum)
+    }
 }
 
 // MARK: Generated accessors for workout
