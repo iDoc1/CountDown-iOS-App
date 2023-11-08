@@ -7,25 +7,44 @@
 
 import SwiftUI
 
+/// A card view for all grips in the list of grips for a workout
 struct GripCardView: View {
-    var grip: Grip
+    @ObservedObject var grip: Grip
+    var titleColor: Color
+    var gripIndex: Int
 
     var body: some View {
         HStack {
-            Text("\(grip.unwrappedSequenceNum)")
+            Text("\(gripIndex + 1)")
                 .font(.title)
                 .padding()
             Spacer()
-                .frame(width: 20)
-            VStack {
-                Text(grip.unwrappedGripTypeName)
+                .frame(width: 5)
+            VStack(alignment: .leading) {
+                Text(grip.gripType?.unwrappedName ?? "Grip Type Deleted")
                     .font(.headline)
+                    .foregroundColor(titleColor)
                 HStack {
-                    Text("S: 1 | R: 1 | W: 7s | R: 3s | B: 1:30")
-                        .font(.subheadline)
+                    VStack(alignment: .leading) {
+                        Text("Sets: \(grip.unwrappedSetCount)")
+                        Text("Reps: \(grip.unwrappedRepCount)")
+                    }
+                    VStack(alignment: .leading) {
+                        Text("Work: \(grip.unwrappedWorkSeconds)s")
+                        Text("Rest: \(grip.unwrappedRestSeconds)s")
+                    }
+                    VStack(alignment: .leading) {
+                        Text("Break: \(grip.unwrappedBreakMinutes):\(grip.unwrappedBreakSeconds)")
+                        Text("Break: \(grip.unwrappedLastBreakMinutes):\(grip.unwrappedLastBreakSeconds) (L)")
+                    }
                 }
+                .font(.caption)
+                .foregroundColor(Color(.systemGray))
             }
             Spacer()
+            Image(systemName: "line.3.horizontal")
+                .font(.title2)
+                .foregroundColor(Color(.systemGray))
         }
     }
 }
@@ -55,6 +74,8 @@ struct GripCardView_Previews: PreviewProvider {
         grip1.restSeconds = 3
         grip1.breakMinutes = 1
         grip1.breakSeconds = 30
+        grip1.lastBreakMinutes = 2
+        grip1.lastBreakSeconds = 15
         grip1.edgeSize = 18
         grip1.sequenceNum = 1
         grip1.gripType = gripType1
@@ -62,7 +83,7 @@ struct GripCardView_Previews: PreviewProvider {
         return grip1
     }()
     static var previews: some View {
-        GripCardView(grip: grip)
-            .previewLayout(.fixed(width: 400, height: 60))
+        GripCardView(grip: grip, titleColor: Theme.lightBlue.mainColor, gripIndex: 0)
+            .previewLayout(.fixed(width: 325, height: 60))
     }
 }

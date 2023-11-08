@@ -34,7 +34,8 @@ struct GripViewModel {
         grip.breakSeconds = Int16(breakSeconds)
         grip.lastBreakMinutes = Int16(lastBreakMinutes)
         grip.lastBreakSeconds = Int16(lastBreakSeconds)
-        grip.sequenceNum = Int16(sequenceNum)
+        // Ensure sequence number is the largest in the workout so this grip is last in the order
+        grip.sequenceNum = Int16(workout.maxSeqNum + 1)
         
         if let edgeSize = edgeSize {
             grip.edgeSize = Int16(edgeSize)

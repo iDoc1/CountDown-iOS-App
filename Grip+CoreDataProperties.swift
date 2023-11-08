@@ -29,12 +29,48 @@ extension Grip {
     @NSManaged public var gripType: GripType?
     @NSManaged public var workout: Workout?
     
-    public var unwrappedGripTypeName: String {
-        gripType?.unwrappedName ?? "Grip Type Deleted"
+    public var unwrappedBreakMinutes: Int {
+        Int(breakMinutes)
+    }
+    
+    public var unwrappedBreakSeconds: Int {
+        Int(breakSeconds)
+    }
+    
+    public var unwrappedEdgeSize: Int {
+        Int(edgeSize)
+    }
+    
+    public var unwrappedLastBreakMinutes: Int {
+        Int(lastBreakMinutes)
+    }
+    
+    public var unwrappedLastBreakSeconds: Int {
+        Int(lastBreakSeconds)
+    }
+    
+    public var unwrappedRepCount: Int {
+        Int(repCount)
+    }
+    
+    public var unwrappedRestSeconds: Int {
+        Int(restSeconds)
     }
     
     public var unwrappedSequenceNum: Int {
         Int(sequenceNum)
+    }
+    
+    public var unwrappedSetCount: Int {
+        Int(setCount)
+    }
+    
+    public var unwrappedWorkSeconds: Int {
+        Int(workSeconds)
+    }
+    
+    public var unwrappedGripTypeName: String {
+        gripType?.unwrappedName ?? "Unknown Grip Type"
     }
 }
 

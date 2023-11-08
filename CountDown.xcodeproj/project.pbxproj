@@ -203,9 +203,9 @@
 		AB125DD92AE61D3900357717 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				AB125DDA2AE61D5900357717 /* WorkoutViewModel.swift */,
 				ABF6A1B42AEAC75200822B7B /* ErrorMessages.swift */,
 				ABEB58C22AF48C5A002C60F8 /* GripViewModel.swift */,
+				AB125DDA2AE61D5900357717 /* WorkoutViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";

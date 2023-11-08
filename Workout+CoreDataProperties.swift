@@ -56,6 +56,16 @@ extension Workout {
             $0.sequenceNum < $1.sequenceNum
         }
     }
+    
+    /// The max sequence number value for all grips in this workout
+    public var maxSeqNum: Int {
+        var maxNum = 0
+        for grip in gripArray {
+            maxNum = max(maxNum, grip.unwrappedSequenceNum)
+        }
+        
+        return maxNum
+    }
 }
 
 // MARK: Generated accessors for grip

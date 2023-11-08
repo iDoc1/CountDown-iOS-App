@@ -20,8 +20,11 @@ struct WorkoutGripsView: View {
                     .font(.headline)
             } else {
                 List {
-                    ForEach(workout.gripArray) { grip in
-                        GripCardView(grip: grip)
+                    ForEach(0..<workout.gripArray.count, id: \.self) { index in
+                        GripCardView(
+                            grip: workout.gripArray[index],
+                            titleColor: getColorFromWorkoutType(workoutType: workout.workoutType),
+                            gripIndex: index)
                     }
                     .onDelete(perform: deleteGrips)
 //                    .onMove(perform: move)
@@ -90,6 +93,8 @@ struct WorkoutGripsView_Previews: PreviewProvider {
         grip1.restSeconds = 3
         grip1.breakMinutes = 1
         grip1.breakSeconds = 30
+        grip1.lastBreakMinutes = 2
+        grip1.lastBreakSeconds = 15
         grip1.edgeSize = 18
         grip1.sequenceNum = 1
         grip1.gripType = gripType1
@@ -102,6 +107,8 @@ struct WorkoutGripsView_Previews: PreviewProvider {
         grip2.restSeconds = 3
         grip2.breakMinutes = 1
         grip2.breakSeconds = 45
+        grip2.lastBreakMinutes = 59
+        grip2.lastBreakSeconds = 59
         grip2.edgeSize = 20
         grip2.sequenceNum = 3
         grip2.gripType = gripType2
