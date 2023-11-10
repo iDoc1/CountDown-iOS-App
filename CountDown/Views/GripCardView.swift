@@ -17,9 +17,8 @@ struct GripCardView: View {
         HStack {
             Text("\(gripIndex + 1)")
                 .font(.title)
-                .padding()
-            Spacer()
-                .frame(width: 5)
+            Spacer(minLength: 15)
+//                .frame(width: 15)
             VStack(alignment: .leading) {
                 Text(grip.gripType?.unwrappedName ?? "Grip Type Deleted")
                     .font(.headline)
@@ -29,22 +28,22 @@ struct GripCardView: View {
                         Text("Sets: \(grip.unwrappedSetCount)")
                         Text("Reps: \(grip.unwrappedRepCount)")
                     }
+                    Spacer()
                     VStack(alignment: .leading) {
-                        Text("Work: \(grip.unwrappedWorkSeconds)s")
-                        Text("Rest: \(grip.unwrappedRestSeconds)s")
+                        Text("W: \(grip.unwrappedWorkSeconds)s")
+                        Text("R: \(grip.unwrappedRestSeconds)s")
                     }
+                    Spacer()
                     VStack(alignment: .leading) {
-                        Text("Break: \(grip.unwrappedBreakMinutes):\(grip.unwrappedBreakSeconds)")
-                        Text("Break: \(grip.unwrappedLastBreakMinutes):\(grip.unwrappedLastBreakSeconds) (L)")
+                        Text("Bk: \(grip.unwrappedBreakMinutes):\(grip.unwrappedBreakSeconds)")
+                        Text("Bk: \(grip.unwrappedLastBreakMinutes):\(grip.unwrappedLastBreakSeconds) (L)")
                     }
+                    Spacer()
                 }
                 .font(.caption)
                 .foregroundColor(Color(.systemGray))
             }
             Spacer()
-            Image(systemName: "line.3.horizontal")
-                .font(.title2)
-                .foregroundColor(Color(.systemGray))
         }
     }
 }
@@ -74,8 +73,8 @@ struct GripCardView_Previews: PreviewProvider {
         grip1.restSeconds = 3
         grip1.breakMinutes = 1
         grip1.breakSeconds = 30
-        grip1.lastBreakMinutes = 2
-        grip1.lastBreakSeconds = 15
+        grip1.lastBreakMinutes = 59
+        grip1.lastBreakSeconds = 59
         grip1.edgeSize = 18
         grip1.sequenceNum = 1
         grip1.gripType = gripType1
@@ -84,6 +83,7 @@ struct GripCardView_Previews: PreviewProvider {
     }()
     static var previews: some View {
         GripCardView(grip: grip, titleColor: Theme.lightBlue.mainColor, gripIndex: 0)
-            .previewLayout(.fixed(width: 325, height: 60))
+            .padding()
+            .previewLayout(.fixed(width: 275, height: 60))
     }
 }

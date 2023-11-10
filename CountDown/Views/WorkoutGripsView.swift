@@ -12,32 +12,44 @@ struct WorkoutGripsView: View {
     @Environment(\.managedObjectContext) var moc
     @ObservedObject var workout: Workout
     @State private var isShowingNewGripSheet = false
+    @FetchRequest private var grips: FetchedResults<Grip>
+
+    
+    init(workout: Workout) {
+        self.workout = workout
+        _grips = FetchRequest<Grip>(
+            sortDescriptors: [NSSortDescriptor(key: "sequenceNum", ascending: true)],
+            predicate: NSPredicate(format: "workout == %@", workout))
+    }
     
     var body: some View {
         Group {
-            if workout.gripArray.count == 0 {
+            if grips.count == 0 {
                 Text("No grips added yet")
                     .font(.headline)
             } else {
                 List {
-                    ForEach(0..<workout.gripArray.count, id: \.self) { index in
+                    ForEach(0..<grips.count, id: \.self) { index in
                         GripCardView(
-                            grip: workout.gripArray[index],
+                            grip: grips[index],
                             titleColor: getColorFromWorkoutType(workoutType: workout.workoutType),
                             gripIndex: index)
                     }
                     .onDelete(perform: deleteGrips)
-//                    .onMove(perform: move)
+                    .onMove(perform: move)
                 }
             }
         }
         .toolbar {
-            Button(action: {
-                isShowingNewGripSheet = true
-            }) {
-                Image(systemName: "plus")
+            HStack {
+                EditButton()
+                Button(action: {
+                    isShowingNewGripSheet = true
+                }) {
+                    Image(systemName: "plus")
+                }
+                .accessibilityLabel("Add Grip")
             }
-            .accessibilityLabel("Add Grip")
         }
         .sheet(isPresented: $isShowingNewGripSheet) {
             NewGripView(context: moc, workout: workout, isShowingNewGripSheet: $isShowingNewGripSheet)
@@ -46,6 +58,8 @@ struct WorkoutGripsView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
+    /// Deletes the grips at the given offsets
+    /// - Parameter offsets: The index set of all grips to delete
     private func deleteGrips(at offsets: IndexSet) {
         /*
          Add slight delay to prevent SwiftUI deletion bug. Bug not fixed as of 11/6/23.
@@ -54,16 +68,30 @@ struct WorkoutGripsView: View {
          */
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
             for index in offsets {
-                moc.delete(workout.gripArray[index])
+                moc.delete(grips[index])
             }
         }
         
         try? moc.save()
     }
     
-//    private func move(from source: IndexSet, to destination: Int) {
-//        grips.move(fromOffsets: source, toOffset: destination)
-//    }
+    /// Reorders a grip in the grips array
+    ///
+    /// Adapted from the following source:
+    /// https://stackoverflow.com/questions/65804686/core-data-environment-managedobjectcontext-onmove
+    /// - Parameters:
+    ///   - source: The set of indexes to start the move from
+    ///   - destination: The destination index
+    private func move(from source: IndexSet, to destination: Int) {
+        var revisedGrips: [Grip] = grips.map {$0}
+        revisedGrips.move(fromOffsets: source, toOffset: destination)
+
+        for index in 0..<revisedGrips.count {
+            revisedGrips[index].sequenceNum = Int16(index)
+        }
+        
+        try? moc.save()
+    }
 }
 
 struct WorkoutGripsView_Previews: PreviewProvider {
@@ -119,6 +147,7 @@ struct WorkoutGripsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             WorkoutGripsView(workout: workout)
+                .environment(\.managedObjectContext, persistence.container.viewContext)
         }
     }
 }
