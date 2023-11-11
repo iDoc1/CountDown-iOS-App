@@ -37,8 +37,8 @@ extension Grip {
         Int(breakSeconds)
     }
     
-    public var unwrappedEdgeSize: Int {
-        Int(edgeSize)
+    public var unwrappedEdgeSize: Int? {
+        (edgeSize != 0) ? Int(edgeSize) : nil
     }
     
     public var unwrappedLastBreakMinutes: Int {

@@ -7,9 +7,11 @@
 
 import SwiftUI
 
-/// A card view for all grips in the list of grips for a workout
+/// A card view that displays information about a specific grip. When tapped, allows user to edit the grip information on a different sheet.
 struct GripCardView: View {
+    @Environment(\.managedObjectContext) var moc
     @ObservedObject var grip: Grip
+    @State private var isShowingEditGripSheet = false
     var titleColor: Color
     var gripIndex: Int
 
@@ -18,7 +20,6 @@ struct GripCardView: View {
             Text("\(gripIndex + 1)")
                 .font(.title)
             Spacer(minLength: 15)
-//                .frame(width: 15)
             VStack(alignment: .leading) {
                 Text(grip.gripType?.unwrappedName ?? "Grip Type Deleted")
                     .font(.headline)
@@ -45,6 +46,13 @@ struct GripCardView: View {
             }
             Spacer()
         }
+        .contentShape(Rectangle()) // Tappable area set as a rectangle
+        .onTapGesture {
+            isShowingEditGripSheet = true
+        }
+        .sheet(isPresented: $isShowingEditGripSheet, content: {
+            EditGripView(context: moc, grip: grip, isShowingEditGripSheet: $isShowingEditGripSheet)
+        })
     }
 }
 
@@ -81,6 +89,7 @@ struct GripCardView_Previews: PreviewProvider {
         
         return grip1
     }()
+
     static var previews: some View {
         GripCardView(grip: grip, titleColor: Theme.lightBlue.mainColor, gripIndex: 0)
             .padding()

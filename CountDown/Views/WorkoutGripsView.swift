@@ -11,10 +11,10 @@ import SwiftUI
 struct WorkoutGripsView: View {
     @Environment(\.managedObjectContext) var moc
     @ObservedObject var workout: Workout
+    @State private var editGripIndex = 0
     @State private var isShowingNewGripSheet = false
     @FetchRequest private var grips: FetchedResults<Grip>
 
-    
     init(workout: Workout) {
         self.workout = workout
         _grips = FetchRequest<Grip>(

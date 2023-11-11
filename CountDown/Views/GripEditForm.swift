@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// A view with a form to edit a given grip
-struct GripEditView: View {
+struct GripEditForm: View {
     @Binding var grip: GripViewModel
     @FocusState private var isInputActive: Bool
     @State private var showBreakPicker = false
@@ -135,7 +135,7 @@ struct GripEditView_Previews: PreviewProvider {
 
     static var previews: some View {
         NavigationStack {
-            GripEditView(
+            GripEditForm(
                 grip: .constant(GripViewModel(workout: workout, context: context)),
                 errorMessages: ErrorMessages())
         }

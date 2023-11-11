@@ -23,7 +23,7 @@ struct NewGripView: View {
     
     var body: some View {
         NavigationStack {
-            GripEditView(grip: $newGrip, errorMessages: errorMessages)
+            GripEditForm(grip: $newGrip, errorMessages: errorMessages)
                 .navigationTitle("Add Grip")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -55,8 +55,8 @@ struct NewGripView: View {
         }
 
         if let edgeSize = newGrip.edgeSize {
-            if edgeSize < 1 || edgeSize > 500 {
-                errorMessages.addError("Edge size must be between 1 and 500")
+            if edgeSize < 1 || edgeSize > 50 {
+                errorMessages.addError("Edge size must be between 1 and 50")
                 isValidated = false
             }
         }
