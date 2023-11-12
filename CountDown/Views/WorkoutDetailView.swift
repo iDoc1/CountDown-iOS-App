@@ -9,6 +9,7 @@ import SwiftUI
 
 /// Displays details about a specific workout and provides links to start a workout or edit the workout's grips
 struct WorkoutDetailView: View {
+    @Environment(\.managedObjectContext) var moc
     @ObservedObject var workout: Workout
     @State private var isShowingEditWorkoutSheet = false
     
@@ -24,6 +25,12 @@ struct WorkoutDetailView: View {
                 Spacer()
                 Text("12 min 3 sec")
             }
+            
+            Section(header: Text("Workout Grips")) {
+                NavigationLink(destination: WorkoutGripsView(workout: workout)) {
+                    SectionRow(title: "Grips", text: "\(workout.gripArray.count) added")
+                }
+            }
 
             Section(header: Text("Workout Details")) {
                 SectionRow(title: "Name", text: workout.unwrappedName)
@@ -34,9 +41,7 @@ struct WorkoutDetailView: View {
                     color: getColorFromWorkoutType(workoutType: workout.workoutType))
                 SectionRow(title: "Description", text: workout.unwrappedDescriptionText)
                 SectionRow(title: "Hangboard", text: workout.unwrappedHangboardName)
-                NavigationLink(destination: WorkoutGripsView(workout: workout)) {
-                    SectionRow(title: "Grips", text: "\(workout.gripArray.count) added")
-                }
+                CreatedDateText(createdDate: workout.createdDate)
             }
 
             Section(header: Text("History")) {
@@ -51,6 +56,12 @@ struct WorkoutDetailView: View {
             }
             .accessibilityLabel("Edit Workout")
         }
+        .sheet(isPresented: $isShowingEditWorkoutSheet, content: {
+            WorkoutEditView(
+                context: moc,
+                workout: workout,
+                isShowingEditWorkoutSheet: $isShowingEditWorkoutSheet)
+        })
         .navigationTitle(workout.unwrappedName)
         .navigationBarTitleDisplayMode(.inline)
     }
@@ -67,6 +78,28 @@ struct WorkoutDetailView: View {
                 Spacer()
                 Text(text)
                     .foregroundColor(color)
+            }
+        }
+    }
+    
+    /// An HStack that displays the created date of the workout if that date exists
+    struct CreatedDateText: View {
+        let createdDate: Date?
+
+        var body: some View {
+            if createdDate != nil {
+                return HStack {
+                    Text("Date Created")
+                    Spacer()
+                    Text(createdDate!, style: .date)
+                        .foregroundColor(Color(.systemGray))
+                }
+            } else {
+                return HStack {
+                    Text("Date Created")
+                    Spacer()
+                    Text("-")
+                }
             }
         }
     }

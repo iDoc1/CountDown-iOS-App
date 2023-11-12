@@ -14,7 +14,7 @@
 		AB125DD12AE5DB4400357717 /* ColorUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB125DD02AE5DB4400357717 /* ColorUtilities.swift */; };
 		AB125DD32AE5DD7000357717 /* WorkoutDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB125DD22AE5DD7000357717 /* WorkoutDetailView.swift */; };
 		AB125DD52AE60D3F00357717 /* NewWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB125DD42AE60D3F00357717 /* NewWorkoutView.swift */; };
-		AB125DD72AE6142200357717 /* WorkoutEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB125DD62AE6142200357717 /* WorkoutEditView.swift */; };
+		AB125DD72AE6142200357717 /* WorkoutEditForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB125DD62AE6142200357717 /* WorkoutEditForm.swift */; };
 		AB125DDB2AE61D5900357717 /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB125DDA2AE61D5900357717 /* WorkoutViewModel.swift */; };
 		AB125DF42AE752FB00357717 /* Workout+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB125DEC2AE752FB00357717 /* Workout+CoreDataClass.swift */; };
 		AB125DF52AE752FB00357717 /* Workout+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB125DED2AE752FB00357717 /* Workout+CoreDataProperties.swift */; };
@@ -26,8 +26,10 @@
 		AB125DFB2AE752FB00357717 /* GripType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB125DF32AE752FB00357717 /* GripType+CoreDataProperties.swift */; };
 		AB125DFF2AE8B1FD00357717 /* TextUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB125DFE2AE8B1FD00357717 /* TextUtilities.swift */; };
 		AB15815A2AF9F4C900BCB088 /* GripCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1581592AF9F4C900BCB088 /* GripCardView.swift */; };
-		AB1BF8662AFDE74E004579FF /* EditGripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1BF8652AFDE74E004579FF /* EditGripView.swift */; };
+		AB1BF8662AFDE74E004579FF /* GripEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1BF8652AFDE74E004579FF /* GripEditView.swift */; };
 		AB1BF86E2B003B64004579FF /* GripViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1BF86D2B003B64004579FF /* GripViewModelTests.swift */; };
+		AB1BF8702B005E46004579FF /* WorkoutEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1BF86F2B005E46004579FF /* WorkoutEditView.swift */; };
+		AB1BF8722B017AB1004579FF /* WorkoutViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1BF8712B017AB1004579FF /* WorkoutViewModelTests.swift */; };
 		AB3FD8362AC28BA5009D6C71 /* CountdownTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FD8352AC28BA5009D6C71 /* CountdownTimerTests.swift */; };
 		AB6404632AD24D7D002A9778 /* TimerButtonsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6404622AD24D7D002A9778 /* TimerButtonsViewTests.swift */; };
 		AB6404652AD35424002A9778 /* TimeTextRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6404642AD35424002A9778 /* TimeTextRow.swift */; };
@@ -109,7 +111,7 @@
 		AB125DD02AE5DB4400357717 /* ColorUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtilities.swift; sourceTree = "<group>"; };
 		AB125DD22AE5DD7000357717 /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
 		AB125DD42AE60D3F00357717 /* NewWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutView.swift; sourceTree = "<group>"; };
-		AB125DD62AE6142200357717 /* WorkoutEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutEditView.swift; sourceTree = "<group>"; };
+		AB125DD62AE6142200357717 /* WorkoutEditForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutEditForm.swift; sourceTree = "<group>"; };
 		AB125DDA2AE61D5900357717 /* WorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModel.swift; sourceTree = "<group>"; };
 		AB125DEC2AE752FB00357717 /* Workout+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Workout+CoreDataClass.swift"; path = "CountDown/CoreData/Workout+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		AB125DED2AE752FB00357717 /* Workout+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Workout+CoreDataProperties.swift"; path = "CountDown/CoreData/Workout+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
@@ -121,8 +123,10 @@
 		AB125DF32AE752FB00357717 /* GripType+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "GripType+CoreDataProperties.swift"; path = "CountDown/CoreData/GripType+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		AB125DFE2AE8B1FD00357717 /* TextUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextUtilities.swift; sourceTree = "<group>"; };
 		AB1581592AF9F4C900BCB088 /* GripCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripCardView.swift; sourceTree = "<group>"; };
-		AB1BF8652AFDE74E004579FF /* EditGripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGripView.swift; sourceTree = "<group>"; };
+		AB1BF8652AFDE74E004579FF /* GripEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripEditView.swift; sourceTree = "<group>"; };
 		AB1BF86D2B003B64004579FF /* GripViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripViewModelTests.swift; sourceTree = "<group>"; };
+		AB1BF86F2B005E46004579FF /* WorkoutEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutEditView.swift; sourceTree = "<group>"; };
+		AB1BF8712B017AB1004579FF /* WorkoutViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModelTests.swift; sourceTree = "<group>"; };
 		AB3FD8352AC28BA5009D6C71 /* CountdownTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerTests.swift; sourceTree = "<group>"; };
 		AB6404602AD24D32002A9778 /* CountDown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountDown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6404622AD24D7D002A9778 /* TimerButtonsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerButtonsViewTests.swift; sourceTree = "<group>"; };
@@ -349,9 +353,12 @@
 				ABA68AF02AD3A44000181690 /* Shared */,
 				ABA9E7852AAD401000DBF8DA /* MainView.swift */,
 				ABA9E7CC2AAECB3900DBF8DA /* CountdownTimerView.swift */,
+				AB1BF8652AFDE74E004579FF /* GripEditView.swift */,
 				AB1581592AF9F4C900BCB088 /* GripCardView.swift */,
 				ABEB58C02AF48B25002C60F8 /* GripEditForm.swift */,
+				ABEB58C82AF700E4002C60F8 /* GripTypePickerView.swift */,
 				ABEB58C42AF49AB5002C60F8 /* NewGripView.swift */,
+				ABEB58CA2AF71541002C60F8 /* NewGripTypeView.swift */,
 				AB125DD42AE60D3F00357717 /* NewWorkoutView.swift */,
 				ABA9E7BB2AAD631D00DBF8DA /* SettingsView.swift */,
 				ABA68AF52AD4EAE800181690 /* SoundPickerView.swift */,
@@ -366,11 +373,9 @@
 				ABA9E7B72AAD62C200DBF8DA /* WorkoutsView.swift */,
 				AB125DC82AE49DF400357717 /* WorkoutCardView.swift */,
 				AB125DD22AE5DD7000357717 /* WorkoutDetailView.swift */,
-				AB125DD62AE6142200357717 /* WorkoutEditView.swift */,
+				AB125DD62AE6142200357717 /* WorkoutEditForm.swift */,
+				AB1BF86F2B005E46004579FF /* WorkoutEditView.swift */,
 				ABD3BE402AF329EA00D13E6D /* WorkoutGripsView.swift */,
-				ABEB58C82AF700E4002C60F8 /* GripTypePickerView.swift */,
-				ABEB58CA2AF71541002C60F8 /* NewGripTypeView.swift */,
-				AB1BF8652AFDE74E004579FF /* EditGripView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -400,6 +405,7 @@
 			children = (
 				ABF6A1B72AEACD7700822B7B /* ErrorMessagesTests.swift */,
 				AB1BF86D2B003B64004579FF /* GripViewModelTests.swift */,
+				AB1BF8712B017AB1004579FF /* WorkoutViewModelTests.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -532,10 +538,10 @@
 				ABA9E7CF2AB1552700DBF8DA /* CountdownTimer.swift in Sources */,
 				AB7E61B32AC3DD8C0081D475 /* TimerHeader.swift in Sources */,
 				AB125DF72AE752FB00357717 /* Grip+CoreDataProperties.swift in Sources */,
-				AB1BF8662AFDE74E004579FF /* EditGripView.swift in Sources */,
+				AB1BF8662AFDE74E004579FF /* GripEditView.swift in Sources */,
 				ABA68AF22AD4DDB300181690 /* TimerSound.swift in Sources */,
 				ABA9E7BC2AAD631D00DBF8DA /* SettingsView.swift in Sources */,
-				AB125DD72AE6142200357717 /* WorkoutEditView.swift in Sources */,
+				AB125DD72AE6142200357717 /* WorkoutEditForm.swift in Sources */,
 				ABEB58C72AF6F3DD002C60F8 /* NumberTextField.swift in Sources */,
 				ABA9E7C22AAD765B00DBF8DA /* NumberPicker.swift in Sources */,
 				ABA9E7862AAD401000DBF8DA /* MainView.swift in Sources */,
@@ -566,6 +572,7 @@
 				AB125DF52AE752FB00357717 /* Workout+CoreDataProperties.swift in Sources */,
 				ABA9E7C62AAE9F8800DBF8DA /* TimePicker.swift in Sources */,
 				AB125DF92AE752FB00357717 /* WorkoutType+CoreDataProperties.swift in Sources */,
+				AB1BF8702B005E46004579FF /* WorkoutEditView.swift in Sources */,
 				ABD3BE412AF329EA00D13E6D /* WorkoutGripsView.swift in Sources */,
 				AB15815A2AF9F4C900BCB088 /* GripCardView.swift in Sources */,
 				AB7E61BB2AC520520081D475 /* TimerDurationsView.swift in Sources */,
@@ -588,6 +595,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB1BF8722B017AB1004579FF /* WorkoutViewModelTests.swift in Sources */,
 				ABF6A1B82AEACD7700822B7B /* ErrorMessagesTests.swift in Sources */,
 				AB7E61B92AC51DDD0081D475 /* TimerUtilitiesTests.swift in Sources */,
 				ABA68AF42AD4DF1500181690 /* TimerSoundTests.swift in Sources */,

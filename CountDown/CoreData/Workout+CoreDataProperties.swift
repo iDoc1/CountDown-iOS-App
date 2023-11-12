@@ -25,8 +25,8 @@ extension Workout {
     @NSManaged public var grip: NSSet?
     @NSManaged public var workoutType: WorkoutType?
     
-    public var unwrappedCreatedDate: Date {
-        createdDate ?? Date()
+    public var unwrappedCreatedDate: Date? {
+        createdDate ?? nil
     }
     
     public var unwrappedDescriptionText: String {

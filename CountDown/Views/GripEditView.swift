@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 
 /// A view to edit an existing grip
-struct EditGripView: View {
+struct GripEditView: View {
     @State private var grip: GripViewModel
     @Binding var isShowingEditGripSheet: Bool
     @StateObject var errorMessages = ErrorMessages()
@@ -63,7 +63,7 @@ struct EditGripView: View {
     }
 }
 
-struct EditGripView_Previews: PreviewProvider {
+struct GripEditView_Previews: PreviewProvider {
     static let context = PersistenceController.preview.container.viewContext
     static var grip: Grip = {
         let workoutType = WorkoutType(context: context)
@@ -98,6 +98,6 @@ struct EditGripView_Previews: PreviewProvider {
     }()
 
     static var previews: some View {
-        EditGripView(context: context, grip: grip, isShowingEditGripSheet: .constant(true))
+        GripEditView(context: context, grip: grip, isShowingEditGripSheet: .constant(true))
     }
 }

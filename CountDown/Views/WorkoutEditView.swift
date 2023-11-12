@@ -2,52 +2,66 @@
 //  WorkoutEditView.swift
 //  CountDown
 //
-//  Created by Ian Docherty on 10/22/23.
+//  Created by Ian Docherty on 11/11/23.
 //
 
 import SwiftUI
-import Combine
+import CoreData
 
-/// A form with fields to enter information about a workout
+/// Provides a form to edit an existing workout
 struct WorkoutEditView: View {
-    @Binding var workout: WorkoutViewModel
-    @ObservedObject var errorMessages: ErrorMessages
-
+    @State private var workout: WorkoutViewModel
+    @Binding var isShowingEditWorkoutSheet: Bool
+    @StateObject var errorMessages = ErrorMessages()
+    
+    init(context: NSManagedObjectContext, workout: Workout, isShowingEditWorkoutSheet: Binding<Bool>) {
+        _workout = State(wrappedValue: WorkoutViewModel(workout: workout, context: context))
+        _isShowingEditWorkoutSheet = isShowingEditWorkoutSheet
+    }
     var body: some View {
-        Form {
-            Section {
-                TextField("Name", text: $workout.name.max(40))
-                TextField("Description", text: $workout.description.max(150))
-                Picker("Workout Type", selection: $workout.workoutType) {
-                    ForEach(WorkoutTypeAsString.allCases, id: \.self) { type in
-                        Text(type.displayName)
+        NavigationStack {
+            WorkoutEditForm(workout: $workout, errorMessages: errorMessages)
+                .navigationTitle("Edit Workout")
+                .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        isShowingEditWorkoutSheet = false
                     }
                 }
-            } header: {
-                Text("Workout Info")
-            } footer: {
-                errorMessages.errorView
-            }
-
-            Section(header: Text("Hangboard Info")) {
-                TextField("Hangboard Name", text: $workout.hangboardName.max(50))
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") {
+                        if formIsValidated() {
+                            workout.save()
+                            isShowingEditWorkoutSheet = false
+                        }
+                    }
+                }
             }
         }
     }
-}
-
-struct WorkoutEditView_Previews: PreviewProvider {
-    static let context = PersistenceController.preview.container.viewContext
-    static let errors = {
-        let errorMessages = ErrorMessages()
-        errorMessages.addError("Name field cannot be empty")
-        return errorMessages
-    }()
     
-    static var previews: some View {
-        WorkoutEditView(
-            workout: .constant(WorkoutViewModel(context: context)),
-            errorMessages: errors
-        )
+    /// Returns true if form has no input errors and false otherwise
+    private func formIsValidated() -> Bool {
+        var isValidated = true
+        errorMessages.clearErrors()
+
+        if workout.name.isEmpty {
+            errorMessages.addError("Name field cannot be empty")
+            isValidated = false
+        }
+        
+        if workout.description.isEmpty {
+            errorMessages.addError("Description field cannot be empty")
+            isValidated = false
+        }
+        
+        return isValidated
     }
 }
+
+//struct WorkoutEditView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WorkoutEditView()
+//    }
+//}

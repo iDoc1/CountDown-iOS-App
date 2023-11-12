@@ -119,7 +119,7 @@ struct GripEditForm: View {
     }
 }
 
-struct GripEditView_Previews: PreviewProvider {
+struct GripEditForm_Previews: PreviewProvider {
     static let context = PersistenceController.preview.container.viewContext
     static var workout: Workout = {        
         let workoutType = WorkoutType(context: context)

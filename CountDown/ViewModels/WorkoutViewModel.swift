@@ -10,21 +10,48 @@ import CoreData
 
 /// A view model that contains data related to a particular Workout
 struct WorkoutViewModel {
-    var name = ""
-    var description = ""
-    var hangboardName = ""
-    var workoutType = WorkoutTypeAsString.strength
+    var workout: Workout?
+    var name: String
+    var description: String
+    var hangboardName: String
+    var workoutType: WorkoutTypeAsString
     let context: NSManagedObjectContext
     
-    func save() {
-        let workout = Workout(context: context)
-        workout.name = name
-        workout.descriptionText = description
-        workout.hangboardName = hangboardName
-        workout.workoutType = WorkoutType(context: context)
-        workout.workoutType?.name = workoutType.rawValue
-        workout.createdDate = Date()
+    /// Initialize without an existing workout
+    init(context: NSManagedObjectContext) {
+        self.context = context
+        self.name = ""
+        self.description = ""
+        self.hangboardName = ""
+        self.workoutType = WorkoutTypeAsString.strength
+    }
+    
+    /// Initialized from an existing workout
+    init(workout: Workout, context: NSManagedObjectContext) {
+        self.workout = workout
+        self.context = context
+        self.name = workout.unwrappedName
+        self.description = workout.unwrappedDescriptionText
+        self.hangboardName = workout.unwrappedHangboardName
+        self.workoutType = WorkoutTypeAsString(rawValue: workout.workoutType!.name ?? "") ?? .other
+    }
+    
+    mutating func save() {
+        if workout == nil {
+            workout = Workout(context: context)
+        }
+
+        workout!.name = name
+        workout!.descriptionText = description
+        workout!.hangboardName = hangboardName
+        workout!.workoutType = WorkoutType(context: context)
+        workout!.workoutType?.name = workoutType.rawValue
         
+        // Do not change the workout created date if it is already set
+        if workout!.unwrappedCreatedDate == nil {
+            workout!.createdDate = Date()
+        }
+
         do {
             try context.save()
         } catch {

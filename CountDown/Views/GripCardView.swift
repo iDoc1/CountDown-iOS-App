@@ -51,7 +51,7 @@ struct GripCardView: View {
             isShowingEditGripSheet = true
         }
         .sheet(isPresented: $isShowingEditGripSheet, content: {
-            EditGripView(context: moc, grip: grip, isShowingEditGripSheet: $isShowingEditGripSheet)
+            GripEditView(context: moc, grip: grip, isShowingEditGripSheet: $isShowingEditGripSheet)
         })
     }
 }

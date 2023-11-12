@@ -21,7 +21,7 @@ struct NewWorkoutView: View {
     
     var body: some View {
         NavigationStack {
-            WorkoutEditView(workout: $newWorkout, errorMessages: errorMessages)
+            WorkoutEditForm(workout: $newWorkout, errorMessages: errorMessages)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {

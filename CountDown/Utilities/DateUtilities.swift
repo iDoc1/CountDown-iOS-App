@@ -28,6 +28,26 @@ extension Date {
     }
 }
 
+/// Allows the day, month, and year components to be extracted from a Date object
+///
+/// Taken from the following source:
+/// https://stackoverflow.com/questions/53356392/how-to-get-day-and-month-from-date-type-swift-4
+extension Date {
+    /// Returns the given components of the Date
+    ///
+    /// Example usage: let components = date.get(.day, .month, .year)
+    func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
+        return calendar.dateComponents(Set(components), from: self)
+    }
+    
+    /// Returns the given components of the Date
+    ///
+    /// Example usage: let component = date.get(.day)
+    func get(_ component: Calendar.Component, calendar: Calendar = Calendar.current) -> Int {
+        return calendar.component(component, from: self)
+    }
+}
+
 /// Returns a string of the given date formatted by the user's locale
 /// - Parameter date: The date to convert to a string
 func dateDiffInDays(from date: Date) -> Int {

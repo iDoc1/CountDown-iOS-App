@@ -136,7 +136,8 @@ final class GripViewModelTests: XCTestCase {
         XCTAssertEqual(savedGrip?.edgeSize, nil)
     }
     
-    func testEditedGripIsCorrect() throws {
+    func testGripEditedCorrectly() throws {
+        // Create grip
         let workoutType = WorkoutType(context: context)
         workoutType.name = "powerEndurance"
         let workout = Workout(context: context)
@@ -148,7 +149,7 @@ final class GripViewModelTests: XCTestCase {
         gripType.name = "Full Crimp"
         try context.save()
         
-        var grip = Grip(context: context)
+        let grip = Grip(context: context)
         grip.setCount = 5
         grip.repCount = 6
         grip.workSeconds = 12
@@ -165,6 +166,7 @@ final class GripViewModelTests: XCTestCase {
         var fetchRequest = NSFetchRequest<Grip>(entityName: "Grip")
         var savedGrip = try context.fetch(fetchRequest).first
         
+        // Edit the created grip
         var gripViewModel = GripViewModel(workout: workout, grip: savedGrip!, context: context)
         gripViewModel.setCount = 3
         gripViewModel.repCount = 4
