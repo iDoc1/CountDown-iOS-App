@@ -25,6 +25,10 @@ struct WorkoutViewModel {
         workout.workoutType?.name = workoutType.rawValue
         workout.createdDate = Date()
         
-        try? context.save()
+        do {
+            try context.save()
+        } catch {
+            print("Failed to save Workout: \(error)")
+        }
     }
 }

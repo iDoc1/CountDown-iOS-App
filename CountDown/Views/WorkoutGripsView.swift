@@ -72,7 +72,11 @@ struct WorkoutGripsView: View {
             }
         }
         
-        try? moc.save()
+        do {
+            try moc.save()
+        } catch {
+            print("Failed to delete grip: \(error)")
+        }
     }
     
     /// Reorders a grip in the grips array
@@ -90,7 +94,11 @@ struct WorkoutGripsView: View {
             revisedGrips[index].sequenceNum = Int16(index)
         }
         
-        try? moc.save()
+        do {
+            try moc.save()
+        } catch {
+            print("Failed to move grips: \(error)")
+        }
     }
 }
 

@@ -72,7 +72,11 @@ struct GripTypePickerView: View {
                 moc.delete(gripTypes[index])
             }
             
-            try? moc.save()
+            do {
+                try moc.save()
+            } catch {
+                print("Failed to save Grip Type: \(error)")
+            }
         }
     }
 }

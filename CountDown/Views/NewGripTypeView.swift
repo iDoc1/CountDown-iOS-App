@@ -20,7 +20,11 @@ struct NewGripTypeView: View {
                     let newGripType = GripType(context: moc)
                     newGripType.name = newGripTypeName
                     
-                    try? moc.save()
+                    do {
+                        try moc.save()
+                    } catch {
+                        print("Failed to save Grip Type: \(error)")
+                    }
                     newGripTypeName = ""
                 }
             }) {

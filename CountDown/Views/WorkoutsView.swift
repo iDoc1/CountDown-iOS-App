@@ -55,7 +55,11 @@ struct WorkoutsView: View {
             moc.delete(workouts[index])
         }
         
-        try? moc.save()
+        do {
+            try moc.save()
+        } catch {
+            print("Failed to delete workout: \(error)")
+        }
     }
 }
 
