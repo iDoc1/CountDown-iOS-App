@@ -192,27 +192,4 @@ final class GripViewModelTests: XCTestCase {
         XCTAssertEqual(savedGrip?.unwrappedSequenceNum, 3)
         XCTAssertEqual(savedGrip?.unwrappedGripTypeName, "Full Crimp")
     }
-
-    func testExample() throws {
-//        let context = persistence.container.viewContext
-        let workoutType = WorkoutType(context: context)
-        workoutType.name = "powerEndurance"
-        
-        try context.save()
-        
-        let fetchRequest = NSFetchRequest<WorkoutType>(entityName: "WorkoutType")
-        fetchRequest.fetchLimit = 1
-        
-        let type = try context.fetch(fetchRequest)
-        
-        XCTAssertEqual(type.first?.name, "powerEndurance")
-        
-//        let workout = Workout(context: context)
-//        workout.name = "Repeaters"
-//        workout.descriptionText = "RCTM Advanced Repeaters Protocol"
-//        workout.createdDate = Date()
-//        workout.workoutType = workoutType
-        
-        
-    }
 }
