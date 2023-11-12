@@ -34,7 +34,7 @@ struct NewGripView: View {
                     }
                     ToolbarItem(placement: .confirmationAction) {
                         Button("Add") {
-                            if formIsValidated() {
+                            if gripIsValidated(grip: newGrip, errorMessages: errorMessages) {
                                 newGrip.save()
                                 isShowingNewGripSheet = false
                             }
@@ -42,26 +42,6 @@ struct NewGripView: View {
                     }
                 }
         }
-    }
-    
-    /// Returns true if form has no input errors and false otherwise
-    private func formIsValidated() -> Bool {
-        var isValidated = true
-        errorMessages.clearErrors()
-
-        if newGrip.gripType == nil {
-            errorMessages.addError("Grip Type must be specified")
-            isValidated = false
-        }
-
-        if let edgeSize = newGrip.edgeSize {
-            if edgeSize < 1 || edgeSize > 50 {
-                errorMessages.addError("Edge size must be between 1 and 50")
-                isValidated = false
-            }
-        }
-        
-        return isValidated
     }
 }
 

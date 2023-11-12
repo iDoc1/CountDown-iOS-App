@@ -30,7 +30,7 @@ struct NewWorkoutView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Add") {
-                        if formIsValidated() {
+                        if workoutIsValidated(workout: newWorkout, errorMessages: errorMessages) {
                             newWorkout.save()
                             isShowingNewWorkoutSheet = false
                         }
@@ -38,24 +38,6 @@ struct NewWorkoutView: View {
                 }
             }
         }
-    }
-    
-    /// Returns true if form has no input errors and false otherwise
-    private func formIsValidated() -> Bool {
-        var isValidated = true
-        errorMessages.clearErrors()
-
-        if newWorkout.name.isEmpty {
-            errorMessages.addError("Name field cannot be empty")
-            isValidated = false
-        }
-        
-        if newWorkout.description.isEmpty {
-            errorMessages.addError("Description field cannot be empty")
-            isValidated = false
-        }
-        
-        return isValidated
     }
 }
 
