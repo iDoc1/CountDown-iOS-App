@@ -44,6 +44,8 @@ struct GripsArray {
         var restSeconds: Int
         var breakMinutes: Int
         var breakSeconds: Int
+        var lastBreakMinutes: Int?
+        var lastBreakSeconds: Int?
         /// Optional break that occurs between grips that takes precedence over the standard break duration. There are some
         /// where a user may want the break duration between grips to be different that the break duration between sets. This property
         /// is used for that scenario.
@@ -84,6 +86,10 @@ struct GripsArray {
         buildArrayFromTimerSetup(timerDetails: timerDetails)
     }
     
+    init(workout: Workout) {
+        buildArrayFromWorkout(workout: workout)
+    }
+    
     /// Enables use of the [index] operator on this struct
     subscript (index: Int) -> WorkoutGrip {
         grips[index]
@@ -96,17 +102,7 @@ struct GripsArray {
     
     /// Returns the total number of seconds for all grips and durations in this GripsArray
     var totalSeconds: Int {
-        // Return 0 if grips is empty
-        guard let lastGrip = grips.last else {
-            return 0
-        }
-        
-        // Return 0 if the last grip has no durations
-        guard let lastDuration = lastGrip.durations.last else {
-            return 0
-        }
-        
-        return lastDuration.startSeconds + lastDuration.seconds
+        return secondsElapsed
     }
     
     /// Returns the last grip in the array. If that grip does not exists, returns a WorkoutGrip with all zeroes.
@@ -121,25 +117,74 @@ struct GripsArray {
             breakSeconds: 0)
     }
     
+    private var secondsElapsed = 0
+    
     /// Builds durations array for this struct using the given TimerSetupDetails struct. Only includes one WorkoutGrip because the
-    /// TimerSetupDetails only provides info for a single grip.
+    /// Timer Setup screen only needs a single grip to create a timer.
     /// - Parameter timerSetupDetails: The quantity of sets and reps, and the work, rest, and break durations
     private mutating func buildArrayFromTimerSetup(timerDetails: TimerSetupDetails) {
-        let currGrip = 0
+        addGrip(timerDetails: timerDetails, gripNum: 0, isLastGrip: true)
+    }
+    
+    /// Builds durations array for this struct using the grips in the given Workout object.
+    /// - Parameter workout: The Core Data Workout object
+    private mutating func buildArrayFromWorkout(workout: Workout) {
+        for index in 0..<workout.gripArray.count {
+            let grip = workout.gripArray[index]
+            let timerDetails = TimerSetupDetails(
+                sets: grip.unwrappedSetCount,
+                reps: grip.unwrappedRepCount,
+                workSeconds: grip.unwrappedWorkSeconds,
+                restSeconds: grip.unwrappedRestSeconds,
+                breakMinutes: grip.unwrappedBreakMinutes,
+                breakSeconds: grip.unwrappedBreakSeconds,
+                lastBreakMinutes: grip.unwrappedLastBreakMinutes,
+                lastBreakSeconds: grip.unwrappedLastBreakSeconds)
+
+            // Include a Prepare duration for the first grip only
+            addGrip(
+                timerDetails: timerDetails,
+                gripNum: index,
+                gripName: grip.unwrappedGripTypeName,
+                isLastGrip: index == workout.gripArray.count - 1)
+        }
+    }
+    
+    /// Adds the a grip with the given name and timer details to the grips array
+    /// - Parameters:
+    ///   - timerDetails: The TimerSetupDetails object containing the sets and reps, and workout durations
+    ///   - gripNum: The zero-indexed number of this grip in the workout
+    ///   - gripName: Optional grip name. If not specified, defaults to nil.
+    ///   - isLastGrip: Specifies if this grip is the last one in the workout. Defaults to false.
+    private mutating func addGrip(
+        timerDetails: TimerSetupDetails,
+        gripNum: Int,
+        gripName: String? = nil,
+        isLastGrip: Bool = false
+    ) {
+        let currGrip = gripNum
         var currSet = 0
         var currRep = 0
-        var secondsElapsed = 0
         
-        // Add a prepare duration as the first duration
         grips.append(WorkoutGrip(
-            name: nil,
+            name: gripName,
             totalSets: timerDetails.sets,
             totalReps: timerDetails.reps,
             workSeconds: timerDetails.workSeconds,
             restSeconds: timerDetails.restSeconds,
             breakMinutes: timerDetails.breakMinutes,
-            breakSeconds: timerDetails.breakSeconds))
-        addDuration(type: .prepareType)
+            breakSeconds: timerDetails.breakSeconds,
+            lastBreakMinutes: timerDetails.lastBreakMinutes,
+            lastBreakSeconds: timerDetails.lastBreakSeconds))
+        
+        // Add a prepare duration only for the first grip
+        if gripNum == 0 {
+            addDuration(type: .prepareType)
+            
+        // Add a last break duration prior to the first set for all grips except the first one
+        } else {
+            addDuration(type: .breakType)
+        }
 
         // Add sets and reps to the current grip
         while currSet < timerDetails.sets {
@@ -155,14 +200,14 @@ struct GripsArray {
                 }
             }
             currSet += 1
-            
-            // Do not add a break duration after the last set
+
+            // Do not include a break after the last set
             if currSet < timerDetails.sets {
                 currRep = 0
                 addDuration(type: .breakType)
             }
         }
-
+        
         /// Appends the DurationStatus with the specified DurationType to the grips array using the current state of currGrip, currSet,
         /// and currRep
         func addDuration(type: DurationType) {
@@ -186,7 +231,20 @@ struct GripsArray {
                 secondsElapsed += restDuration.seconds
                 grips[currGrip].durations.append(restDuration)
             case .breakType:
-                let breakSeconds = (timerDetails.breakMinutes * 60) + timerDetails.breakSeconds
+                // Do not include a break if it is the last set of the last grip
+                if isLastGrip && currSet == timerDetails.sets {
+                    return
+                }
+
+                let breakSeconds: Int
+                
+                // Use last break if at the beginning of a new grip. Otherwise, use normal break.
+                if gripNum > 0 && currSet == 0 {
+                    breakSeconds = (timerDetails.lastBreakMinutes! * 60) + timerDetails.lastBreakSeconds!
+                } else {
+                    breakSeconds = (timerDetails.breakMinutes * 60) + timerDetails.breakSeconds
+                }
+                
                 let breakDuration = DurationStatus(
                     seconds: breakSeconds,
                     durationType: .breakType,
@@ -207,4 +265,5 @@ struct GripsArray {
             }
         }
     }
+    
 }

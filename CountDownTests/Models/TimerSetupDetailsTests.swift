@@ -25,6 +25,41 @@ final class TimerSetupDetailsTests: XCTestCase {
         XCTAssertEqual(timerDetails.breakMinutes, 1)
         XCTAssertEqual(timerDetails.breakSeconds, 30)
     }
+    
+    func testValuesCorrectWithLastBreak() {
+        let timerDetails = TimerSetupDetails(
+            sets: 2,
+            reps: 3,
+            workSeconds: 7,
+            restSeconds: 3,
+            breakMinutes: 1,
+            breakSeconds: 30,
+            lastBreakMinutes: 2,
+            lastBreakSeconds: 45)
+        XCTAssertEqual(timerDetails.sets, 2)
+        XCTAssertEqual(timerDetails.reps, 3)
+        XCTAssertEqual(timerDetails.workSeconds, 7)
+        XCTAssertEqual(timerDetails.restSeconds, 3)
+        XCTAssertEqual(timerDetails.breakMinutes, 1)
+        XCTAssertEqual(timerDetails.breakSeconds, 30)
+        XCTAssertEqual(timerDetails.lastBreakMinutes, 2)
+        XCTAssertEqual(timerDetails.lastBreakSeconds, 45)
+    }
+    
+    func testHasLastBreakWithMinutesOnly() {
+        let timerDetails = TimerSetupDetails(lastBreakMinutes: 2)
+        XCTAssertFalse(timerDetails.hasLastBreak)
+    }
+    
+    func testHasLastBreakWithSecondsOnly() {
+        let timerDetails = TimerSetupDetails(lastBreakSeconds: 25)
+        XCTAssertFalse(timerDetails.hasLastBreak)
+    }
+    
+    func testHasLastBreak() {
+        let timerDetails = TimerSetupDetails(lastBreakMinutes: 2, lastBreakSeconds: 25)
+        XCTAssertTrue(timerDetails.hasLastBreak)
+    }
 
     func testChangingValuesIsCorrect() {
         var timerDetails = TimerSetupDetails(

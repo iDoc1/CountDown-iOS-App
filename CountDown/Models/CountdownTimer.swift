@@ -146,8 +146,6 @@ final class CountdownTimer: ObservableObject {
         } else if timerSoundOn {
             self.soundPlayer = TimerSoundPlayer(type: soundType)
         }
-        
-        
     }
     
     /// Starts timer from the beginning. This is intended to only be executed when timer starts for the first time (not from a pause).
