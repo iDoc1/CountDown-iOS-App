@@ -32,6 +32,9 @@ struct WorkoutDetailView: View {
                     .font(.headline)
                     .foregroundColor(.blue)
             }
+            // Disable link if there are no grips in the workout yet
+            .disabled(gripsArray.count <= 0)
+
             HStack {
                 Label("Length", systemImage: "clock")
                 Spacer()
@@ -39,10 +42,14 @@ struct WorkoutDetailView: View {
                     .foregroundColor(Color(.systemGray))
             }
             
-            Section(header: Text("Workout Grips")) {
+            Section {
                 NavigationLink(destination: WorkoutGripsView(workout: workout)) {
                     SectionRow(title: "Grips", text: "\(workout.gripArray.count) added")
                 }
+            } header: {
+                Text("Workout Grips")
+            } footer: {
+                Text("At least one grip must be added to start workout")
             }
 
             Section(header: Text("Workout Details")) {
