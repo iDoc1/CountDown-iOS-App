@@ -11,8 +11,8 @@ import SwiftUI
 struct CountdownTimerView: View {
     @StateObject private var countdownTimer: CountdownTimer
     
-    init(timerDetails: TimerSetupDetails) {
-        _countdownTimer = StateObject(wrappedValue: CountdownTimer(timerDetails: timerDetails))
+    init(gripsArray: GripsArray) {
+        _countdownTimer = StateObject(wrappedValue: CountdownTimer(gripsArray: gripsArray))
     }
 
     var body: some View {
@@ -44,6 +44,7 @@ struct CountdownTimerView_Previews: PreviewProvider {
             restSeconds: 3,
             breakMinutes: 1,
             breakSeconds: 45)
-        CountdownTimerView(timerDetails: timerDetails)
+        let gripsArray = GripsArray(timerDetails: timerDetails)
+        CountdownTimerView(gripsArray: gripsArray)
     }
 }

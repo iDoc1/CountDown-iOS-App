@@ -56,7 +56,9 @@ struct TimerSetupView: View {
                             height: 125.0)
                     }
                 }
-                NavigationLink(destination: CountdownTimerView(timerDetails: timerDetails)) {
+                NavigationLink {
+                    CountdownTimerView(gripsArray: GripsArray(timerDetails: timerDetails))
+                } label: {
                     Label("Start Workout", systemImage: "play.fill")
                         .font(.headline)
                         .foregroundColor(.blue)

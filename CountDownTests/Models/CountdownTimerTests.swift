@@ -20,7 +20,8 @@ final class CountdownTimerTests: XCTestCase {
     var timer: CountdownTimer!
     
     override func setUpWithError() throws {
-        timer = CountdownTimer(timerDetails: timerDetails)
+        let gripsArray = GripsArray(timerDetails: timerDetails)
+        timer = CountdownTimer(gripsArray: gripsArray)
     }
     
     override func tearDownWithError() throws {

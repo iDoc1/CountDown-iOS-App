@@ -12,10 +12,22 @@ struct WorkoutDetailView: View {
     @Environment(\.managedObjectContext) var moc
     @ObservedObject var workout: Workout
     @State private var isShowingEditWorkoutSheet = false
+    @FetchRequest private var grips: FetchedResults<Grip>
+
+    var gripsArray: GripsArray {
+        GripsArray(grips: Array(grips))
+    }
+
+    init(workout: Workout) {
+        self.workout = workout
+        _grips = FetchRequest<Grip>(
+            sortDescriptors: [NSSortDescriptor(key: "sequenceNum", ascending: true)],
+            predicate: NSPredicate(format: "workout == %@", workout))
+    }
     
     var body: some View {
         List {
-            NavigationLink(destination: CountdownTimerView(timerDetails: TimerSetupDetails())) {
+            NavigationLink(destination: CountdownTimerView(gripsArray: gripsArray)) {
                 Label("Start Workout", systemImage: "play.fill")
                     .font(.headline)
                     .foregroundColor(.blue)
@@ -23,7 +35,8 @@ struct WorkoutDetailView: View {
             HStack {
                 Label("Length", systemImage: "clock")
                 Spacer()
-                Text("12 min 3 sec")
+                Text(secondsToLongString(seconds: gripsArray.totalSeconds))
+                    .foregroundColor(Color(.systemGray))
             }
             
             Section(header: Text("Workout Grips")) {

@@ -20,3 +20,20 @@ func timeToString(minutes: Int = 0, seconds: Int = 0) -> String {
         ? "\(totalMinutes):\(totalSeconds)"
         : "\(totalMinutes):0\(totalSeconds)"
 }
+
+
+/// Takes a number of seconds and returns a string in the format "1hr 36min 12sec"
+/// - Parameter seconds: The number of seconds to conver to a String
+/// - Returns: A formatted time String
+func secondsToLongString(seconds: Int) -> String {
+    let hours = seconds / 3600
+    let minutes = (seconds % 3600) / 60
+    let seconds = seconds % 60
+    
+    // Only show hours if it is not zero
+    if hours == 0 {
+        return "\(minutes)min \(seconds)sec"
+    } else {
+        return "\(hours)hr \(minutes)min \(seconds)sec"
+    }
+}

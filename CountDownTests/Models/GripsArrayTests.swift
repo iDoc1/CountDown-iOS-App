@@ -260,7 +260,7 @@ final class GripsArrayFromTimerSetupTests: XCTestCase {
 }
 
 /// Test case for GripsArray created from a Workout object
-final class GripsArrayFromWorkout: XCTestCase {
+final class GripsArrayFromWorkoutTests: XCTestCase {
     var context: NSManagedObjectContext!
     var workout: Workout!
 
@@ -300,7 +300,7 @@ final class GripsArrayFromWorkout: XCTestCase {
         grip1.lastBreakSeconds = 15
         grip1.gripType = gripType1
         
-        let gripsArray = GripsArray(workout: workout)
+        let gripsArray = GripsArray(grips: workout.gripArray)
         
         XCTAssertEqual(gripsArray.count, 1)
         XCTAssertEqual(gripsArray.totalSeconds, 15)
@@ -336,8 +336,8 @@ final class GripsArrayFromWorkout: XCTestCase {
         grip1.lastBreakSeconds = 15
         grip1.gripType = gripType1
         
-        let gripsArray = GripsArray(workout: workout)
-        
+        let gripsArray = GripsArray(grips: workout.gripArray)
+
         XCTAssertEqual(gripsArray.count, 1)
         XCTAssertEqual(gripsArray.totalSeconds, 15)
         
@@ -372,8 +372,8 @@ final class GripsArrayFromWorkout: XCTestCase {
         grip1.lastBreakSeconds = 15
         grip1.gripType = gripType1
         
-        let gripsArray = GripsArray(workout: workout)
-        
+        let gripsArray = GripsArray(grips: workout.gripArray)
+
         XCTAssertEqual(gripsArray.count, 1)
         XCTAssertEqual(gripsArray.totalSeconds, 15)
         
@@ -407,8 +407,8 @@ final class GripsArrayFromWorkout: XCTestCase {
         grip1.lastBreakMinutes = 2
         grip1.lastBreakSeconds = 15
         grip1.gripType = gripType1
-        let gripsArray = GripsArray(workout: workout)
-        
+        let gripsArray = GripsArray(grips: workout.gripArray)
+
         XCTAssertEqual(gripsArray.count, 1)
         XCTAssertEqual(gripsArray.totalSeconds, 22)
         
@@ -447,8 +447,8 @@ final class GripsArrayFromWorkout: XCTestCase {
         grip1.lastBreakMinutes = 2
         grip1.lastBreakSeconds = 15
         grip1.gripType = gripType1
-        let gripsArray = GripsArray(workout: workout)
-        
+        let gripsArray = GripsArray(grips: workout.gripArray)
+
         XCTAssertEqual(gripsArray.count, 1)
         XCTAssertEqual(gripsArray.totalSeconds, 32)
         
@@ -497,8 +497,8 @@ final class GripsArrayFromWorkout: XCTestCase {
         grip1.lastBreakMinutes = 2
         grip1.lastBreakSeconds = 15
         grip1.gripType = gripType1
-        let gripsArray = GripsArray(workout: workout)
-        
+        let gripsArray = GripsArray(grips: workout.gripArray)
+
         XCTAssertEqual(gripsArray.count, 1)
         XCTAssertEqual(gripsArray.totalSeconds, 119)
         
@@ -547,8 +547,8 @@ final class GripsArrayFromWorkout: XCTestCase {
         grip1.lastBreakMinutes = 2
         grip1.lastBreakSeconds = 15
         grip1.gripType = gripType1
-        let gripsArray = GripsArray(workout: workout)
-        
+        let gripsArray = GripsArray(grips: workout.gripArray)
+
         XCTAssertEqual(gripsArray.count, 1)
         XCTAssertEqual(gripsArray.totalSeconds, 139)
         
@@ -618,8 +618,9 @@ final class GripsArrayFromWorkout: XCTestCase {
         grip1.lastBreakMinutes = 2
         grip1.lastBreakSeconds = 15
         grip1.gripType = gripType1
-        let gripsArray = GripsArray(workout: workout)
-        
+
+        let gripsArray = GripsArray(grips: workout.gripArray)
+
         XCTAssertEqual(gripsArray.count, 1)
         XCTAssertEqual(gripsArray.totalSeconds, 246)
         
@@ -724,8 +725,8 @@ final class GripsArrayFromWorkout: XCTestCase {
         grip2.lastBreakSeconds = 15
         grip2.gripType = gripType2
         
-        let gripsArray = GripsArray(workout: workout)
-        
+        let gripsArray = GripsArray(grips: workout.gripArray)
+
         XCTAssertEqual(gripsArray.count, 2)
         XCTAssertEqual(gripsArray.totalSeconds, 15)
         
@@ -784,8 +785,8 @@ final class GripsArrayFromWorkout: XCTestCase {
         grip2.lastBreakSeconds = 15
         grip2.gripType = gripType2
         
-        let gripsArray = GripsArray(workout: workout)
-        
+        let gripsArray = GripsArray(grips: workout.gripArray)
+
         XCTAssertEqual(gripsArray.count, 2)
         XCTAssertEqual(gripsArray.totalSeconds, 15)
         
@@ -844,8 +845,8 @@ final class GripsArrayFromWorkout: XCTestCase {
         grip2.lastBreakSeconds = 15
         grip2.gripType = gripType2
         
-        let gripsArray = GripsArray(workout: workout)
-        
+        let gripsArray = GripsArray(grips: workout.gripArray)
+
         XCTAssertEqual(gripsArray.count, 2)
         XCTAssertEqual(gripsArray.totalSeconds, 150)
         
@@ -908,8 +909,8 @@ final class GripsArrayFromWorkout: XCTestCase {
         grip2.lastBreakSeconds = 15
         grip2.gripType = gripType2
         
-        let gripsArray = GripsArray(workout: workout)
-        
+        let gripsArray = GripsArray(grips: workout.gripArray)
+
         XCTAssertEqual(gripsArray.count, 2)
         XCTAssertEqual(gripsArray.totalSeconds, 164)
         
@@ -982,8 +983,8 @@ final class GripsArrayFromWorkout: XCTestCase {
         grip2.lastBreakSeconds = 15
         grip2.gripType = gripType2
         
-        let gripsArray = GripsArray(workout: workout)
-        
+        let gripsArray = GripsArray(grips: workout.gripArray)
+
         XCTAssertEqual(gripsArray.count, 2)
         XCTAssertEqual(gripsArray.totalSeconds, 184)
         
@@ -1076,8 +1077,8 @@ final class GripsArrayFromWorkout: XCTestCase {
         grip2.lastBreakSeconds = 15
         grip2.gripType = gripType2
         
-        let gripsArray = GripsArray(workout: workout)
-        
+        let gripsArray = GripsArray(grips: workout.gripArray)
+
         XCTAssertEqual(gripsArray.count, 2)
         XCTAssertEqual(gripsArray.totalSeconds, 358)
         
@@ -1170,8 +1171,8 @@ final class GripsArrayFromWorkout: XCTestCase {
         grip2.lastBreakSeconds = 15
         grip2.gripType = gripType2
         
-        let gripsArray = GripsArray(workout: workout)
-        
+        let gripsArray = GripsArray(grips: workout.gripArray)
+
         XCTAssertEqual(gripsArray.count, 2)
         XCTAssertEqual(gripsArray.totalSeconds, 398)
         

@@ -86,8 +86,8 @@ struct GripsArray {
         buildArrayFromTimerSetup(timerDetails: timerDetails)
     }
     
-    init(workout: Workout) {
-        buildArrayFromWorkout(workout: workout)
+    init(grips: [Grip]) {
+        buildArrayFromGripsArray(grips: grips)
     }
     
     /// Enables use of the [index] operator on this struct
@@ -126,11 +126,11 @@ struct GripsArray {
         addGrip(timerDetails: timerDetails, gripNum: 0, isLastGrip: true)
     }
     
-    /// Builds durations array for this struct using the grips in the given Workout object.
+    /// Builds durations array for this struct using the given array of Grip objects
     /// - Parameter workout: The Core Data Workout object
-    private mutating func buildArrayFromWorkout(workout: Workout) {
-        for index in 0..<workout.gripArray.count {
-            let grip = workout.gripArray[index]
+    private mutating func buildArrayFromGripsArray(grips: [Grip]) {
+        for index in 0..<grips.count {
+            let grip = grips[index]
             let timerDetails = TimerSetupDetails(
                 sets: grip.unwrappedSetCount,
                 reps: grip.unwrappedRepCount,
@@ -146,7 +146,7 @@ struct GripsArray {
                 timerDetails: timerDetails,
                 gripNum: index,
                 gripName: grip.unwrappedGripTypeName,
-                isLastGrip: index == workout.gripArray.count - 1)
+                isLastGrip: index == grips.count - 1)
         }
     }
     

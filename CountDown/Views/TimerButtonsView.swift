@@ -79,7 +79,8 @@ struct TimerButtonsView_Previews: PreviewProvider {
             restSeconds: 3,
             breakMinutes: 1,
             breakSeconds: 45)
-        let timer = CountdownTimer(timerDetails: timerDetails)
+        let gripsArray = GripsArray(timerDetails: timerDetails)
+        let timer = CountdownTimer(gripsArray: gripsArray)
 
         TimerButtonsView(timer: timer)
     }

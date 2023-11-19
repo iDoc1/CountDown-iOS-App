@@ -62,7 +62,8 @@ struct TimerTextView_Previews: PreviewProvider {
             restSeconds: 3,
             breakMinutes: 1,
             breakSeconds: 47)
-        let timer = CountdownTimer(timerDetails: timerDetails)
+        let gripsArray = GripsArray(timerDetails: timerDetails)
+        let timer = CountdownTimer(gripsArray: gripsArray)
         
         TimerTextView(timer: timer)
     }

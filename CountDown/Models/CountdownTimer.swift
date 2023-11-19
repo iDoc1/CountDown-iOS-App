@@ -134,8 +134,8 @@ final class CountdownTimer: ObservableObject {
         return currGrip.durations[durationIndex].startSeconds + (startSeconds - secondsLeft)
     }
     
-    init(timerDetails: TimerSetupDetails) {
-        self.gripsArray = GripsArray(timerDetails: timerDetails)
+    init(gripsArray: GripsArray) {
+        self.gripsArray = gripsArray
         // Set start seconds to the length of the first duration in the array
         self.startSeconds = self.gripsArray[0].durations[0].seconds
         self.secondsLeft = self.startSeconds
