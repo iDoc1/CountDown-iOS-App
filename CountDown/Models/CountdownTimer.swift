@@ -102,6 +102,18 @@ final class CountdownTimer: ObservableObject {
         }
         return gripsArray[gripIndex]
     }
+    /// The next WorkoutGrip in the workout. If that grip does not exists, then nil.
+    var nextGrip: GripsArray.WorkoutGrip? {
+        // Return nil if there is not a next grip
+        guard gripIndex < gripsArray.count - 1 else {
+            return nil
+        }
+        return gripsArray[gripIndex + 1]
+    }
+    /// The total number of grips in the workout
+    var totalGrips: Int {
+        return gripsArray.count
+    }
     /// The current set index for the current grip. Returns the total sets in the current grip if the workout is complete.
     var currSet: Int {
         guard gripIndex < gripsArray.count else {

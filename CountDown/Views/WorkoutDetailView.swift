@@ -27,7 +27,10 @@ struct WorkoutDetailView: View {
     
     var body: some View {
         List {
-            NavigationLink(destination: CountdownTimerView(gripsArray: gripsArray)) {
+            NavigationLink(destination: CountdownTimerWorkoutView(
+                gripsArray: gripsArray,
+                workout: workout)
+            ) {
                 Label("Start Workout", systemImage: "play.fill")
                     .font(.headline)
                     .foregroundColor(.blue)

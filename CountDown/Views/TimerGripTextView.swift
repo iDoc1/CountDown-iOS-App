@@ -1,56 +1,30 @@
 //
-//  TimerHeader.swift
+//  TimerGripTextView.swift
 //  CountDown
 //
-//  Created by Ian Docherty on 9/26/23.
+//  Created by Ian Docherty on 11/19/23.
 //
 
 import SwiftUI
 
-/// Provides details about the durations for the current grip and a progress stepper displaying how many grips, sets, and reps are
-/// remaining in the workout
-struct TimerHeader: View {
+/// Dispalys the text of the current grip and next grip in the workout
+struct TimerGripTextView: View {
     @ObservedObject var timer: CountdownTimer
-    let showGripProgress: Bool
-    
-    init(timer: CountdownTimer, showGripProgress: Bool = false) {
-        self.timer = timer
-        self.showGripProgress = showGripProgress
-    }
     
     var body: some View {
-        HStack {
-            TimerDurationsView(timer: timer)
-            Divider()
-            Spacer()
-            VStack {
-                if showGripProgress {
-                    ProgressStepper(
-                        title: "Grips",
-                        length: timer.totalGrips,
-                        currIndex: timer.gripIndex,
-                        color: Theme.lightGreen.mainColor)
-                }
-                ProgressStepper(
-                    title: "Sets",
-                    length: timer.currGrip.totalSets,
-                    currIndex: timer.currSet,
-                    color: Theme.lightBlue.mainColor)
-                ProgressStepper(
-                    title: "Reps",
-                    length: timer.currGrip.totalReps,
-                    currIndex: timer.currRep,
-                    color: Theme.lightBlue.mainColor)
+        VStack {
+            Text(timer.currGrip.name ?? "")
+                .font(.title)
+            if timer.nextGrip != nil {
+                Text("Next Grip: \(timer.nextGrip?.name ?? "")")
+                    .font(.subheadline)
+                    .foregroundColor(Color(.systemGray))
             }
         }
-        .frame(maxHeight: 110.0)
-        .padding(.horizontal, 8)
     }
-    
-    
 }
 
-struct TimerHeader_Previews: PreviewProvider {
+struct TimerGripTextView_Previews: PreviewProvider {
     static let persistence = PersistenceController.preview
     static var workout: Workout = {
         let context = persistence.container.viewContext
@@ -99,10 +73,8 @@ struct TimerHeader_Previews: PreviewProvider {
         
         return workout
     }()
-
+    
     static var previews: some View {
-        let timer = CountdownTimer(gripsArray: GripsArray(grips: workout.gripArray))
-
-        TimerHeader(timer: timer, showGripProgress: true)
+        TimerGripTextView(timer: CountdownTimer(gripsArray: GripsArray(grips: workout.gripArray)))
     }
 }

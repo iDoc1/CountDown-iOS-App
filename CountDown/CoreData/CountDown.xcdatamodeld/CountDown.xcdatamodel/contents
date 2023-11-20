@@ -30,7 +30,7 @@
         <attribute name="hangboardName" optional="YES" attributeType="String" maxValueString="50"/>
         <attribute name="lastUsedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String" minValueString="1" maxValueString="40"/>
-        <relationship name="grip" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Grip" inverseName="workout" inverseEntity="Grip"/>
+        <relationship name="grip" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Grip" inverseName="workout" inverseEntity="Grip"/>
         <relationship name="workoutType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkoutType" inverseName="workout" inverseEntity="WorkoutType"/>
     </entity>
     <entity name="WorkoutHistory" representedClassName="WorkoutHistory" syncable="YES" codeGenerationType="class">

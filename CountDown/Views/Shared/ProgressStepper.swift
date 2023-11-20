@@ -41,7 +41,7 @@ struct ProgressStepper: View {
             }
             .frame(maxWidth: .infinity)
         }
-        .padding(.vertical, 2)
+        .padding(.vertical, 1)
     }
     
     /// Returns a Text view containing the given index plus one with a rounded rectangle background
