@@ -264,7 +264,6 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
     var context: NSManagedObjectContext!
     var workout: Workout!
 
-
     override func setUpWithError() throws {
         context = PersistenceController(inMemory: true).container.viewContext
         
