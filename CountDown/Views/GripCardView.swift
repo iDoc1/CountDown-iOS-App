@@ -36,8 +36,8 @@ struct GripCardView: View {
                     }
                     Spacer()
                     VStack(alignment: .leading) {
-                        Text("Bk: \(grip.unwrappedBreakMinutes):\(grip.unwrappedBreakSeconds)")
-                        Text("Bk: \(grip.unwrappedLastBreakMinutes):\(grip.unwrappedLastBreakSeconds) (L)")
+                        Text("Bk: \(timeToString(minutes: grip.unwrappedBreakMinutes, seconds: grip.unwrappedBreakSeconds))")
+                        Text("Bk: \(timeToString(minutes: grip.unwrappedLastBreakMinutes, seconds: grip.unwrappedLastBreakSeconds)) (L)")
                     }
                     Spacer()
                 }
@@ -80,7 +80,7 @@ struct GripCardView_Previews: PreviewProvider {
         grip1.workSeconds = 7
         grip1.restSeconds = 3
         grip1.breakMinutes = 1
-        grip1.breakSeconds = 30
+        grip1.breakSeconds = 0
         grip1.lastBreakMinutes = 59
         grip1.lastBreakSeconds = 59
         grip1.edgeSize = 18

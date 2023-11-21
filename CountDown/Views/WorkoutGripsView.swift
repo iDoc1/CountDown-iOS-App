@@ -142,7 +142,7 @@ struct WorkoutGripsView_Previews: PreviewProvider {
         grip2.workSeconds = 7
         grip2.restSeconds = 3
         grip2.breakMinutes = 1
-        grip2.breakSeconds = 45
+        grip2.breakSeconds = 0
         grip2.lastBreakMinutes = 59
         grip2.lastBreakSeconds = 59
         grip2.edgeSize = 20
