@@ -17,6 +17,7 @@ struct TimerSetupDetails {
     var breakSeconds: Int
     var lastBreakMinutes: Int?
     var lastBreakSeconds: Int?
+    var edgeSize: Int?
     
     init(
         sets: Int = 1,
@@ -26,7 +27,8 @@ struct TimerSetupDetails {
         breakMinutes: Int = 1,
         breakSeconds: Int = 0,
         lastBreakMinutes: Int? = nil,
-        lastBreakSeconds: Int? = nil) {
+        lastBreakSeconds: Int? = nil,
+        edgeSize: Int? = nil) {
             self.sets = sets
             self.reps = reps
             self.workSeconds = workSeconds
@@ -35,6 +37,7 @@ struct TimerSetupDetails {
             self.breakSeconds = breakSeconds
             self.lastBreakMinutes = lastBreakMinutes
             self.lastBreakSeconds = lastBreakSeconds
+            self.edgeSize = edgeSize
         }
     
     /// Indicates whether or not this timer setup contains last break durations

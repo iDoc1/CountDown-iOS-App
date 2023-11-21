@@ -13,14 +13,35 @@ struct TimerGripTextView: View {
     
     var body: some View {
         VStack {
-            Text(timer.currGrip.name ?? "")
+            Text(getGripName(grip: timer.currGrip))
                 .font(.title)
             if timer.nextGrip != nil {
-                Text("Next Grip: \(timer.nextGrip?.name ?? "")")
+                Text(getGripName(grip: timer.nextGrip))
                     .font(.subheadline)
                     .foregroundColor(Color(.systemGray))
             }
         }
+    }
+    
+    /// Returns a String describing the given grip name and the edge size of that grip. If the given grip is nil, then returns and empty
+    /// String
+    /// - Parameter grip: A WorkoutGrip
+    /// - Returns: A String describing the grip name
+    private func getGripName(grip: GripsArray.WorkoutGrip?) -> String {
+        if grip == nil || grip!.name == nil {
+            return ""
+        }
+        return "\(grip!.name!) \(getEdgeSize(grip: grip!))"
+    }
+    
+    /// Returns a String of the edge size of the given grip in the format "- 18mm". If the given grip is nil, then returns an empty String.
+    /// - Parameter grip: A WorktouGrip
+    /// - Returns: An edge size String with mm unit appended
+    private func getEdgeSize(grip: GripsArray.WorkoutGrip) -> String {
+        if grip.edgeSize != nil {
+            return "- \(grip.edgeSize!)mm"
+        }
+        return ""
     }
 }
 
@@ -67,7 +88,6 @@ struct TimerGripTextView_Previews: PreviewProvider {
         grip2.breakSeconds = 45
         grip2.lastBreakMinutes = 59
         grip2.lastBreakSeconds = 59
-        grip2.edgeSize = 20
         grip2.sequenceNum = 3
         grip2.gripType = gripType2
         

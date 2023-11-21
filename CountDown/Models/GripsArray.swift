@@ -46,6 +46,7 @@ struct GripsArray {
         var breakSeconds: Int
         var lastBreakMinutes: Int?
         var lastBreakSeconds: Int?
+        var edgeSize: Int?
         /// Optional break that occurs between grips that takes precedence over the standard break duration. There are some
         /// where a user may want the break duration between grips to be different that the break duration between sets. This property
         /// is used for that scenario.
@@ -139,7 +140,8 @@ struct GripsArray {
                 breakMinutes: grip.unwrappedBreakMinutes,
                 breakSeconds: grip.unwrappedBreakSeconds,
                 lastBreakMinutes: grip.unwrappedLastBreakMinutes,
-                lastBreakSeconds: grip.unwrappedLastBreakSeconds)
+                lastBreakSeconds: grip.unwrappedLastBreakSeconds,
+                edgeSize: grip.unwrappedEdgeSize)
 
             // Include a Prepare duration for the first grip only
             addGrip(
@@ -175,7 +177,8 @@ struct GripsArray {
             breakMinutes: timerDetails.breakMinutes,
             breakSeconds: timerDetails.breakSeconds,
             lastBreakMinutes: timerDetails.lastBreakMinutes,
-            lastBreakSeconds: timerDetails.lastBreakSeconds))
+            lastBreakSeconds: timerDetails.lastBreakSeconds,
+            edgeSize: timerDetails.edgeSize))
         
         // Add a prepare duration only for the first grip
         if gripNum == 0 {
