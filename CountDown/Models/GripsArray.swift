@@ -42,6 +42,7 @@ struct GripsArray {
         var totalReps: Int
         var workSeconds: Int
         var restSeconds: Int
+        var decrementSets: Bool
         var breakMinutes: Int
         var breakSeconds: Int
         var lastBreakMinutes: Int?
@@ -114,6 +115,7 @@ struct GripsArray {
             totalReps: 0,
             workSeconds: 0,
             restSeconds: 0,
+            decrementSets: false,
             breakMinutes: 0,
             breakSeconds: 0)
     }
@@ -141,7 +143,8 @@ struct GripsArray {
                 breakSeconds: grip.unwrappedBreakSeconds,
                 lastBreakMinutes: grip.unwrappedLastBreakMinutes,
                 lastBreakSeconds: grip.unwrappedLastBreakSeconds,
-                edgeSize: grip.unwrappedEdgeSize)
+                edgeSize: grip.unwrappedEdgeSize,
+                decrementSets: grip.unwrappedDecrementSets)
 
             // Include a Prepare duration for the first grip only
             addGrip(
@@ -174,6 +177,7 @@ struct GripsArray {
             totalReps: timerDetails.reps,
             workSeconds: timerDetails.workSeconds,
             restSeconds: timerDetails.restSeconds,
+            decrementSets: timerDetails.decrementSets,
             breakMinutes: timerDetails.breakMinutes,
             breakSeconds: timerDetails.breakSeconds,
             lastBreakMinutes: timerDetails.lastBreakMinutes,
@@ -192,16 +196,24 @@ struct GripsArray {
         // Add sets and reps to the current grip
         while currSet < timerDetails.sets {
 
-            while currRep < timerDetails.reps {
+            if currRep < timerDetails.reps {
                 addDuration(type: .workType)
                 currRep += 1
-                
-                while currRep < timerDetails.reps {
-                    addDuration(type: .restType)
-                    addDuration(type: .workType)
-                    currRep += 1
-                }
             }
+            
+            var maxReps = timerDetails.reps
+            
+            // Decrease reps by one if current set is odd and decrement sets is true
+            if currSet % 2 == 1 && timerDetails.decrementSets {
+                maxReps -= 1
+            }
+                
+            while currRep < maxReps {
+                addDuration(type: .restType)
+                addDuration(type: .workType)
+                currRep += 1
+            }
+            
             currSet += 1
 
             // Do not include a break after the last set

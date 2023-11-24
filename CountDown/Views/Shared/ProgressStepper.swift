@@ -14,6 +14,8 @@ struct ProgressStepper: View {
     let length: Int
     let currIndex: Int
     let color: Color
+    /// Specifies if thie last number box should be crossed out
+    let isDecremented: Bool
     
     var body: some View {
         HStack {
@@ -48,10 +50,22 @@ struct ProgressStepper: View {
     private func numberText(index: Int) -> some View {
         /* Do not show text if the length above 12. As the length increases, the space available
          to each Text view decreases. When the length is 12 or above, the number text begins to
-         get cut off due to the decerased space. Limiting the text to a lenght of 12 prevents this
+         get cut off due to the decerased space. Limiting the text to a length of 12 prevents this
          issue on all screen sizes tested.
          */
-        return Text(length <= 12 ? "\(index + 1)" : "")
+        var numberStr: String
+        if length <= 12 {
+            // Cross out the last number isDecremented is true. Otherwise, show index + 1.
+            if isDecremented && index == length - 1 {
+                numberStr = "-"
+            } else {
+                numberStr = "\(index + 1)"
+            }
+        } else {
+            numberStr = ""
+        }
+        
+        return Text(numberStr)
             .lineLimit(1)
             .font(.caption)
             .frame(maxWidth: .infinity, maxHeight: 21)
@@ -70,6 +84,11 @@ struct ProgressStepper: View {
 
 struct ProgressStepper_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressStepper(title: "Sets", length: 7, currIndex: 3, color: Theme.lightBlue.mainColor)
+        ProgressStepper(
+            title: "Sets",
+            length: 7,
+            currIndex: 3,
+            color: Theme.lightBlue.mainColor,
+            isDecremented: true)
     }
 }

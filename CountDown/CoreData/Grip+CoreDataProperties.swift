@@ -26,6 +26,7 @@ extension Grip {
     @NSManaged public var sequenceNum: Int16
     @NSManaged public var setCount: Int16
     @NSManaged public var workSeconds: Int16
+    @NSManaged public var decrementSets: Bool
     @NSManaged public var gripType: GripType?
     @NSManaged public var workout: Workout?
     
@@ -65,6 +66,10 @@ extension Grip {
         Int(setCount)
     }
     
+    public var unwrappedDecrementSets: Bool {
+        decrementSets
+    }
+
     public var unwrappedWorkSeconds: Int {
         Int(workSeconds)
     }

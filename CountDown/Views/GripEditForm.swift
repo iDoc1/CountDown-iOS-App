@@ -37,7 +37,7 @@ struct GripEditForm: View {
                 errorMessages.errorView
             }
             
-            Section(header: Text("Sets & Reps")) {
+            Section {
                 NumberPicker(
                     number: $grip.setCount,
                     title: "Sets",
@@ -50,6 +50,13 @@ struct GripEditForm: View {
                     minVal: 1,
                     maxVal: 20,
                     isInputActive: $isInputActive)
+                Toggle(isOn: $grip.decrementSets) {
+                    Text("Decrement Sets")
+                }
+            } header: {
+                Text("Sets & Reps")
+            } footer: {
+                Text("Decrementing the sets will reduce the number of reps in even-numbered sets by one rep")
             }
             
             Section {

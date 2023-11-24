@@ -16,7 +16,7 @@ struct TimerSetupView: View {
     var body: some View {
         NavigationStack {
             List {
-                Section(header: Text("Sets & Reps")) {
+                Section {
                     NumberPicker(
                         number: $timerDetails.sets,
                         title: "Sets",
@@ -29,6 +29,13 @@ struct TimerSetupView: View {
                         minVal: 1,
                         maxVal: 20,
                         isInputActive: $isInputActive)
+                    Toggle(isOn: $timerDetails.decrementSets) {
+                        Text("Decrement Sets")
+                    }
+                } header: {
+                    Text("Sets & Reps")
+                } footer: {
+                    Text("Decrementing the sets will reduce the number of reps in even-numbered sets by one rep")
                 }
                 
                 Section(header: Text("Durations")) {

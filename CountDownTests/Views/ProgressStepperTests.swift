@@ -16,7 +16,8 @@ final class ProgressStepperTest: XCTestCase {
             title: "Sets",
             length: 7,
             currIndex: 3,
-            color: Theme.lightBlue.mainColor)
+            color: Theme.lightBlue.mainColor,
+            isDecremented: false)
         let title = try view.inspect().hStack().text(0).string()
 
         // Ensure the correct title and indices are displayed
@@ -37,7 +38,8 @@ final class ProgressStepperTest: XCTestCase {
             title: "Sets",
             length: 12,
             currIndex: 3,
-            color: Theme.lightBlue.mainColor)
+            color: Theme.lightBlue.mainColor,
+            isDecremented: false)
         
         XCTAssertNoThrow(try view.inspect().hStack().find(text: "12"))
     }
@@ -47,8 +49,20 @@ final class ProgressStepperTest: XCTestCase {
             title: "Sets",
             length: 13,
             currIndex: 3,
-            color: Theme.lightBlue.mainColor)
+            color: Theme.lightBlue.mainColor,
+            isDecremented: false)
         
         XCTAssertThrowsError(try view.inspect().hStack().find(text: "13"))
+    }
+    
+    func testStepperShowsMinusSign() throws {
+        let view = ProgressStepper(
+            title: "Sets",
+            length: 7,
+            currIndex: 3,
+            color: Theme.lightBlue.mainColor,
+            isDecremented: true)
+        
+        XCTAssertNoThrow(try view.inspect().hStack().find(text: "-"))
     }
 }

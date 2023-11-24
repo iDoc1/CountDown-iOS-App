@@ -18,6 +18,11 @@ struct TimerHeader: View {
         self.showGripProgress = showGripProgress
     }
     
+    /// Whether or not the current set of reps should be shown as decremented by one
+    var shouldDecrementReps: Bool {
+        timer.currGrip.decrementSets && timer.currSet % 2 == 1
+    }
+    
     var body: some View {
         HStack {
             TimerDurationsView(timer: timer)
@@ -29,18 +34,21 @@ struct TimerHeader: View {
                         title: "Grips",
                         length: timer.totalGrips,
                         currIndex: timer.gripIndex,
-                        color: Theme.lightGreen.mainColor)
+                        color: Theme.lightGreen.mainColor,
+                        isDecremented: false)
                 }
                 ProgressStepper(
                     title: "Sets",
                     length: timer.currGrip.totalSets,
                     currIndex: timer.currSet,
-                    color: Theme.lightBlue.mainColor)
+                    color: Theme.lightBlue.mainColor,
+                    isDecremented: false)
                 ProgressStepper(
                     title: "Reps",
                     length: timer.currGrip.totalReps,
                     currIndex: timer.currRep,
-                    color: Theme.lightBlue.mainColor)
+                    color: Theme.lightBlue.mainColor,
+                    isDecremented: shouldDecrementReps)
             }
         }
         .frame(maxHeight: 110.0)

@@ -15,6 +15,7 @@ struct GripViewModel {
     let context: NSManagedObjectContext
     var setCount: Int
     var repCount: Int
+    var decrementSets: Bool
     var workSeconds: Int
     var restSeconds: Int
     var breakMinutes: Int
@@ -31,6 +32,7 @@ struct GripViewModel {
         self.context = context
         self.setCount = 1
         self.repCount = 1
+        self.decrementSets = false
         self.workSeconds = 7
         self.restSeconds = 3
         self.breakMinutes = 1
@@ -50,6 +52,7 @@ struct GripViewModel {
         self.context = context
         self.setCount = grip.unwrappedSetCount
         self.repCount = grip.unwrappedRepCount
+        self.decrementSets = grip.unwrappedDecrementSets
         self.workSeconds = grip.unwrappedWorkSeconds
         self.restSeconds = grip.unwrappedRestSeconds
         self.breakMinutes = grip.unwrappedBreakMinutes
@@ -71,6 +74,7 @@ struct GripViewModel {
         grip!.repCount = Int16(repCount)
         grip!.workSeconds = Int16(workSeconds)
         grip!.restSeconds = Int16(restSeconds)
+        grip!.decrementSets = decrementSets
         grip!.breakMinutes = Int16(breakMinutes)
         grip!.breakSeconds = Int16(breakSeconds)
         grip!.lastBreakMinutes = Int16(lastBreakMinutes)
