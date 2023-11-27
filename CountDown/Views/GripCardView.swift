@@ -31,13 +31,13 @@ struct GripCardView: View {
                     }
                     Spacer()
                     VStack(alignment: .leading) {
-                        Text("W: \(grip.unwrappedWorkSeconds)s")
-                        Text("R: \(grip.unwrappedRestSeconds)s")
+                        Text("Work: \(grip.unwrappedWorkSeconds)s")
+                        Text("Rest: \(grip.unwrappedRestSeconds)s")
                     }
                     Spacer()
                     VStack(alignment: .leading) {
-                        Text("Bk: \(timeToString(minutes: grip.unwrappedBreakMinutes, seconds: grip.unwrappedBreakSeconds))")
-                        Text("Bk: \(timeToString(minutes: grip.unwrappedLastBreakMinutes, seconds: grip.unwrappedLastBreakSeconds)) (L)")
+                        Text("Break: \(timeToString(minutes: grip.unwrappedBreakMinutes, seconds: grip.unwrappedBreakSeconds))")
+                        Text("Break: \(timeToString(minutes: grip.unwrappedLastBreakMinutes, seconds: grip.unwrappedLastBreakSeconds)) (L)")
                     }
                     Spacer()
                 }

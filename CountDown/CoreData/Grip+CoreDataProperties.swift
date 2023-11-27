@@ -77,6 +77,31 @@ extension Grip {
     public var unwrappedGripTypeName: String {
         gripType?.unwrappedName ?? "Unknown Grip Type"
     }
+    
+    /// Duplicates this grip using the given context
+    /// - Parameter context: The NSManagedObject context to create a new grip with
+    public func duplicate(with context: NSManagedObjectContext) {
+        let newGrip = Grip(context: context)
+        newGrip.workout = workout
+        newGrip.setCount = setCount
+        newGrip.repCount = repCount
+        newGrip.workSeconds = workSeconds
+        newGrip.restSeconds = restSeconds
+        newGrip.breakMinutes = breakMinutes
+        newGrip.breakSeconds = breakSeconds
+        newGrip.lastBreakMinutes = lastBreakMinutes
+        newGrip.lastBreakSeconds = lastBreakSeconds
+        newGrip.decrementSets = decrementSets
+        newGrip.edgeSize = edgeSize
+        newGrip.gripType = gripType
+        newGrip.sequenceNum = Int16(workout!.maxSeqNum + 1)
+        
+        do {
+            try context.save()
+        } catch {
+            print("Failed to duplicate grip: \(error)")
+        }
+    }
 }
 
 // MARK: Generated accessors for workout

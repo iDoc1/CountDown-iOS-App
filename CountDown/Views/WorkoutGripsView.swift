@@ -34,8 +34,24 @@ struct WorkoutGripsView: View {
                             grip: grips[index],
                             titleColor: getColorFromWorkoutType(workoutType: workout.workoutType),
                             gripIndex: index)
+                        .swipeActions(edge: .trailing) {
+                            Button(role: .destructive) {
+                                deleteGrip(at: index)
+                            } label: {
+                                Text("Delete")
+                            }
+                            Button {
+                                let grip = grips[index]
+                                withAnimation {
+                                    grip.duplicate(with: moc)
+                                }
+                            } label: {
+                                Text("Copy")
+                            }
+                            .tint(.indigo)
+                        }
                     }
-                    .onDelete(perform: deleteGrips)
+                    
                     .onMove(perform: move)
                 }
             }
@@ -58,20 +74,13 @@ struct WorkoutGripsView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
-    /// Deletes the grips at the given offsets
-    /// - Parameter offsets: The index set of all grips to delete
-    private func deleteGrips(at offsets: IndexSet) {
-        /*
-         Add slight delay to prevent SwiftUI deletion bug. Bug not fixed as of 11/6/23.
-         Taken from following source:
-         https://stackoverflow.com/questions/60358948/swiftui-delete-row-in-list-with-context-menu-ui-glitch
-         */
+    
+    /// Deletes the grip at the given index
+    /// - Parameter index: The index in the grips list to delete
+    private func deleteGrip(at index: Int) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-            for index in offsets {
-                moc.delete(grips[index])
-            }
+            moc.delete(grips[index])
         }
-        
         do {
             try moc.save()
         } catch {
