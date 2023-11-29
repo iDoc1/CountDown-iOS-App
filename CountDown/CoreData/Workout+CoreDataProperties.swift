@@ -46,7 +46,7 @@ extension Workout {
     }
     
     public var unwrappedWorkoutTypeName: String {
-        workoutType?.unwrappedName ?? "Unkown Type"
+        workoutType?.unwrappedName ?? "Unknown Type"
     }
     
     /// An array of all grips related to this workout sorted by grip sequence number

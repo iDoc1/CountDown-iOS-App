@@ -121,8 +121,7 @@ final class GripPropertiesTests: XCTestCase {
         try context.save()
         
         // Fetch all grips including new duplicate one
-        let fetchRequest = NSFetchRequest<Grip>(entityName: "Grip")
-        let grips = try context.fetch(fetchRequest)
+        let grips = workout.gripArray
         let dupGrip = grips.last
         
         XCTAssertEqual(grips.count, 2)
@@ -137,6 +136,46 @@ final class GripPropertiesTests: XCTestCase {
         XCTAssertEqual(dupGrip!.unwrappedDecrementSets, false)
         XCTAssertEqual(dupGrip!.unwrappedEdgeSize, 18)
         XCTAssertEqual(dupGrip!.unwrappedSequenceNum, 4)
+        XCTAssertEqual(grip.unwrappedGripTypeName, "Half Crimp")
+    }
+    
+    func testGripSavesWithOptionalPropertiesEmpty() throws {
+        let workoutType = WorkoutType(context: context)
+        workoutType.name = "powerEndurance"
+        let workout = Workout(context: context)
+        workout.name = "Repeaters"
+        workout.descriptionText = "RCTM Advanced Repeaters Protocol"
+        workout.createdDate = Date()
+        workout.workoutType = workoutType
+        let gripType = GripType(context: context)
+        gripType.name = "Half Crimp"
+        try context.save()
+        
+        let grip = Grip(context: context)
+        grip.workout = workout
+        grip.gripType = gripType
+        grip.setCount = 2
+        grip.repCount = 6
+        grip.workSeconds = 7
+        grip.restSeconds = 3
+        grip.breakMinutes = 1
+        grip.breakSeconds = 30
+        grip.lastBreakMinutes = 2
+        grip.lastBreakSeconds = 15
+        grip.sequenceNum = 3
+        
+        XCTAssertNoThrow(try context.save())
+        XCTAssertEqual(grip.unwrappedSetCount, 2)
+        XCTAssertEqual(grip.unwrappedRepCount, 6)
+        XCTAssertEqual(grip.unwrappedWorkSeconds, 7)
+        XCTAssertEqual(grip.unwrappedRestSeconds, 3)
+        XCTAssertEqual(grip.unwrappedBreakMinutes, 1)
+        XCTAssertEqual(grip.unwrappedBreakSeconds, 30)
+        XCTAssertEqual(grip.unwrappedLastBreakMinutes, 2)
+        XCTAssertEqual(grip.unwrappedLastBreakSeconds, 15)
+        XCTAssertEqual(grip.unwrappedDecrementSets, false)
+        XCTAssertNil(grip.unwrappedEdgeSize)
+        XCTAssertEqual(grip.unwrappedSequenceNum, 3)
         XCTAssertEqual(grip.unwrappedGripTypeName, "Half Crimp")
     }
 }
