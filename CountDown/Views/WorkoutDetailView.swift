@@ -66,9 +66,9 @@ struct WorkoutDetailView: View {
                 SectionRow(title: "Hangboard", text: workout.unwrappedHangboardName)
                 CreatedDateText(createdDate: workout.createdDate)
             }
-
+            
             Section(header: Text("History")) {
-                Label("No workouts yet", systemImage: "calendar.badge.exclamationmark")
+                WorkoutHistoryListView(workout: workout)
             }
         }
         .toolbar {

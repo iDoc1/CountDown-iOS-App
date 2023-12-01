@@ -10,6 +10,7 @@ import SwiftUI
 /// Displays the countdown timer buttons, circular progress indicator, and timer progress trackers. This view is specifically for
 /// countdown timers created from a workout, as it displays both a grips progress stepper and the name of the current grip.
 struct CountdownTimerWorkoutView: View {
+    @Environment(\.managedObjectContext) private var moc
     @StateObject private var countdownTimer: CountdownTimer
     @ObservedObject var workout: Workout
     
@@ -33,6 +34,16 @@ struct CountdownTimerWorkoutView: View {
             countdownTimer.timerState = .notStarted
             enableSleepMode()
         }
+        .onChange(of: countdownTimer.timerState, perform: { newValue in
+            // Save a history object on completion of the workout
+            if newValue == .completed {
+                var newHistory = WorkoutHistoryViewModel(
+                    workout: workout,
+                    totalSeconds: countdownTimer.totalSeconds,
+                    context: moc)
+                newHistory.save()
+            }
+        })
         .toolbar(.hidden, for: .tabBar)
         .navigationTitle("Timer")
         .navigationBarTitleDisplayMode(.inline)

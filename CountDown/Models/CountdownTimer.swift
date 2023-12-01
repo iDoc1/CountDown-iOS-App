@@ -70,6 +70,10 @@ final class CountdownTimer: ObservableObject {
         let totalSeconds = gripsArray.totalSeconds % 60
         return timeToString(minutes: totalMinutes, seconds: totalSeconds)
     }
+    /// The total number of seconds in the workout
+    var totalSeconds: Int {
+        gripsArray.totalSeconds
+    }
     /// A string representation of the time left in the workout in the form "mm:ss"
     var timeLeft: String {
         let secondsLeft = gripsArray.totalSeconds - totalSecondsElapsed

@@ -16,7 +16,7 @@ struct TimerGripTextView: View {
             Text(getGripName(grip: timer.currGrip))
                 .font(.title)
             if timer.nextGrip != nil {
-                Text(getGripName(grip: timer.nextGrip))
+                Text("Next: \(getGripName(grip: timer.nextGrip))")
                     .font(.subheadline)
                     .foregroundColor(Color(.systemGray))
             }
