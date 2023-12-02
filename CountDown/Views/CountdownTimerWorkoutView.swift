@@ -11,6 +11,7 @@ import SwiftUI
 /// countdown timers created from a workout, as it displays both a grips progress stepper and the name of the current grip.
 struct CountdownTimerWorkoutView: View {
     @Environment(\.managedObjectContext) private var moc
+    @Environment(\.presentationMode) var presentationMode
     @StateObject private var countdownTimer: CountdownTimer
     @ObservedObject var workout: Workout
     
@@ -45,12 +46,37 @@ struct CountdownTimerWorkoutView: View {
             }
         })
         .toolbar(.hidden, for: .tabBar)
-        .navigationTitle("Timer")
+        .navigationTitle(workout.unwrappedName)
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button(action: goBack, label: {
+            Image(systemName: "chevron.left")
+        }))
+    }
+    
+    
+    /// Navigates back to the previous screen
+    func goBack(){
+        self.presentationMode.wrappedValue.dismiss()
     }
 }
 
 struct CountdownTimerWorkoutView_Previews: PreviewProvider {
+    static let persistence = PersistenceController.preview
+    static var workout: Workout = {
+        let context = persistence.container.viewContext
+        
+        let workoutType = WorkoutType(context: context)
+        workoutType.name = "powerEndurance"
+        
+        let workout = Workout(context: context)
+        workout.name = "Repeaters"
+        workout.descriptionText = "RCTM Advanced Repeaters Protocol"
+        workout.createdDate = Date()
+        workout.workoutType = workoutType
+        
+        return workout
+    }()
     static var previews: some View {
         let timerDetails = TimerSetupDetails(
             sets: 2,
@@ -60,6 +86,8 @@ struct CountdownTimerWorkoutView_Previews: PreviewProvider {
             breakMinutes: 1,
             breakSeconds: 45)
         let gripsArray = GripsArray(timerDetails: timerDetails)
-        CountdownTimerView(gripsArray: gripsArray)
+        NavigationStack {
+            CountdownTimerWorkoutView(gripsArray: gripsArray, workout: workout)
+        }
     }
 }
