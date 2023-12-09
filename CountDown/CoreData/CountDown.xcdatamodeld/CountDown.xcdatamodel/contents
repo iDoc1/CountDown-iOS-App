@@ -28,6 +28,9 @@
         <attribute name="breakMinutes" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="breakSeconds" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="edgeSize" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="gripTypeName" attributeType="String"/>
+        <attribute name="lastBreakMinutes" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="lastBreakSeconds" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="repCount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="restSeconds" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="sequenceNum" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>

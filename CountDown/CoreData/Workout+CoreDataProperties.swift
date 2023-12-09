@@ -34,7 +34,7 @@ extension Workout {
     }
     
     public var unwrappedHangboardName: String {
-        hangboardName ?? "None Specified"
+        hangboardName ?? ""
     }
     
     public var unwrappedLastUsedDate: Date {

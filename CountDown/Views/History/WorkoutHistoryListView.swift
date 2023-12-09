@@ -25,10 +25,15 @@ struct WorkoutHistoryListView: View {
             Label("No workouts yet", systemImage: "calendar.badge.exclamationmark")
         }
         ForEach(workoutHistory) { hist in
-            HStack {
-                Image(systemName: "calendar")
-                Text(hist.unwrappedWorkouDate, style: .date)
-                Text(hist.unwrappedWorkouDate, style: .time)
+            NavigationLink(destination: WorkoutHistoryDetailView(
+                context: moc,
+                workoutHist: hist))
+            {
+                HStack {
+                    Image(systemName: "calendar")
+                    Text(hist.unwrappedWorkoutDate, style: .date)
+                    Text(hist.unwrappedWorkoutDate, style: .time)
+                }
             }
         }
         .onDelete(perform: deleteHistory)

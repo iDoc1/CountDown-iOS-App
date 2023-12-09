@@ -22,10 +22,25 @@ extension WorkoutHistory {
     @NSManaged public var workout: Workout?
     @NSManaged public var historyGrip: NSSet?
     
-    public var unwrappedWorkouDate: Date {
+    public var unwrappedWorkoutDate: Date {
         workoutDate ?? Date()
     }
-
+    
+    public var unwrappedNotes: String {
+        notes ?? ""
+    }
+    
+    public var unwrappedTotalSeconds: Int {
+        Int(totalSeconds)
+    }
+    
+    /// An array of HistoryGrip objects related to this History object sorted by sequence number
+    public var gripArray: [HistoryGrip] {
+        let set = historyGrip as? Set<HistoryGrip> ?? []
+        return set.sorted() {
+            $0.sequenceNum < $1.sequenceNum
+        }
+    }
 }
 
 // MARK: Generated accessors for historyGrip

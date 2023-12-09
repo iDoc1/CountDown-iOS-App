@@ -63,7 +63,10 @@ struct WorkoutDetailView: View {
                         rawValue: workout.unwrappedWorkoutTypeName)?.displayName ?? "",
                     color: getColorFromWorkoutType(workoutType: workout.workoutType))
                 SectionRow(title: "Description", text: workout.unwrappedDescriptionText)
-                SectionRow(title: "Hangboard", text: workout.unwrappedHangboardName)
+                // Do not show hangboard type if it is blank
+                if workout.unwrappedHangboardName.count > 0 {
+                    SectionRow(title: "Hangboard", text: workout.unwrappedHangboardName)
+                }
                 CreatedDateText(createdDate: workout.createdDate)
             }
             
@@ -87,22 +90,6 @@ struct WorkoutDetailView: View {
         })
         .navigationTitle(workout.unwrappedName)
         .navigationBarTitleDisplayMode(.inline)
-    }
-    
-    /// An HStack with a title on the left and text on the right
-    struct SectionRow: View {
-        let title: String
-        let text: String
-        var color: Color = Color(.systemGray)
-        
-        var body: some View {
-            return HStack {
-                Text(title)
-                Spacer()
-                Text(text)
-                    .foregroundColor(color)
-            }
-        }
     }
     
     /// An HStack that displays the created date of the workout if that date exists
