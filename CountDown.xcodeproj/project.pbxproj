@@ -94,6 +94,7 @@
 		ABE480CB2B25685600C5361C /* electric_low.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480C52B25685600C5361C /* electric_low.caf */; };
 		ABE480CC2B25685600C5361C /* electric_high.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480C62B25685600C5361C /* electric_high.caf */; };
 		ABE480CD2B25685600C5361C /* chime_high.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480C72B25685600C5361C /* chime_high.caf */; };
+		ABE480D02B256B5900C5361C /* Starling in Frameworks */ = {isa = PBXBuildFile; productRef = ABE480CF2B256B5900C5361C /* Starling */; };
 		ABEB58C12AF48B25002C60F8 /* GripEditForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB58C02AF48B25002C60F8 /* GripEditForm.swift */; };
 		ABEB58C32AF48C5A002C60F8 /* GripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB58C22AF48C5A002C60F8 /* GripViewModel.swift */; };
 		ABEB58C52AF49AB5002C60F8 /* NewGripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB58C42AF49AB5002C60F8 /* NewGripView.swift */; };
@@ -228,6 +229,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABE480D02B256B5900C5361C /* Starling in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +520,7 @@
 			);
 			name = CountDown;
 			packageProductDependencies = (
+				ABE480CF2B256B5900C5361C /* Starling */,
 			);
 			productName = CountDown;
 			productReference = AB6404602AD24D32002A9778 /* CountDown.app */;
@@ -574,6 +577,7 @@
 			mainGroup = ABA9E7772AAD401000DBF8DA;
 			packageReferences = (
 				ABFA8D482AC8D74200B1C5BF /* XCRemoteSwiftPackageReference "ViewInspector" */,
+				ABE480CE2B256B5900C5361C /* XCRemoteSwiftPackageReference "Starling" */,
 			);
 			productRefGroup = ABA9E7772AAD401000DBF8DA;
 			projectDirPath = "";
@@ -970,6 +974,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		ABE480CE2B256B5900C5361C /* XCRemoteSwiftPackageReference "Starling" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/matthewreagan/Starling";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		ABFA8D482AC8D74200B1C5BF /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nalexn/ViewInspector";
@@ -981,6 +993,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		ABE480CF2B256B5900C5361C /* Starling */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ABE480CE2B256B5900C5361C /* XCRemoteSwiftPackageReference "Starling" */;
+			productName = Starling;
+		};
 		ABFA8D502AC8DAEB00B1C5BF /* ViewInspector */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = ABFA8D482AC8D74200B1C5BF /* XCRemoteSwiftPackageReference "ViewInspector" */;

@@ -6,33 +6,21 @@
 //
 
 import Foundation
-import AVFoundation
+import Starling
 
-/// Takes a TimerSound type then instantiates two AVPlayers for the high and low pitch sounds corresponding to the given sound type.
+/// Takes a TimerSound type then instantiates a Starling instance to play and load the sounds of the given type.
 /// In addition, defines a playSound function to play the sound pitch corresponding to the number of seconds left in the countdown.
 /// Typically, the countdown should play the low sound at seconds 3, 2, and 1, then the high sound at second zero.
 class TimerSoundPlayer {
-    private var lowBeepPlayer: AVPlayer
-    private var highBeepPlayer: AVPlayer
+    let lowSound: String
+    let highSound: String
+    private let starling = Starling()
     
     init(type: TimerSound) {
-        // Set AudioSession options to provide low latency playback
-        let audioSession = AVAudioSession.sharedInstance()
-        do {
-            // Set the audio session category and mode.
-            try audioSession.setCategory(
-                .playback,
-                mode: .default,
-                options: [.allowBluetoothA2DP])
-            try audioSession.setPreferredIOBufferDuration(0.002)
-        } catch {
-            print("Failed to set the audio session configuration")
-        }
-        
-        lowBeepPlayer = AVPlayer.soundPlayer(type: type, isHighPitch: false)
-        highBeepPlayer = AVPlayer.soundPlayer(type: type, isHighPitch: true)
-        lowBeepPlayer.seek(to: .zero)
-        highBeepPlayer.seek(to: .zero)
+        lowSound = type.lowSoundResource
+        highSound = type.highSoundResource
+        starling.load(resource: lowSound, type: "caf", for: lowSound)
+        starling.load(resource: highSound, type: "caf", for: highSound)
     }
     
     /// Plays the low pitch variation of this sound player for seconds 3, 2, and 1. Plays the high pitch variation for second zero. Any
@@ -48,18 +36,11 @@ class TimerSoundPlayer {
     
     /// Plays the low pitch variation of this sound player
     func playLowSound() {
-        lowBeepPlayer.seek(to: .zero)
-        DispatchQueue.global().async {
-            self.lowBeepPlayer.play()
-        }
-        
+        starling.play(lowSound)
     }
     
     /// Plays the high pitch variation of this sound player
     func playHighSound() {
-        highBeepPlayer.seek(to: .zero)
-        DispatchQueue.global().async {
-            self.highBeepPlayer.play()
-        }
+        starling.play(highSound)
     }
 }

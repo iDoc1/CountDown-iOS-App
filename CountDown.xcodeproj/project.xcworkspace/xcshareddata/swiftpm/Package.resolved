@@ -1,6 +1,24 @@
 {
   "pins" : [
     {
+      "identity" : "exceptioncatcher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sindresorhus/ExceptionCatcher.git",
+      "state" : {
+        "revision" : "a7acaf40f8bd67a1f3a05a14de5b6a861ac3d1ac",
+        "version" : "2.0.1"
+      }
+    },
+    {
+      "identity" : "starling",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/matthewreagan/Starling",
+      "state" : {
+        "branch" : "master",
+        "revision" : "c6afad311e81ea2a1de39e7a4b45242200dc90e7"
+      }
+    },
+    {
       "identity" : "viewinspector",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nalexn/ViewInspector",

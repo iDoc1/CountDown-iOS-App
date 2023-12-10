@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Starling
 
 /// The names of the timer sounds available to the user. Each sound should correspond to a sound file in the Resources folder.
 enum TimerSound: String, CaseIterable, Identifiable {
@@ -23,5 +24,15 @@ enum TimerSound: String, CaseIterable, Identifiable {
     
     var id: String {
         rawValue
+    }
+    
+    /// The name of the file resource for the low sound
+    var lowSoundResource: String {
+        "\(rawValue)_low"
+    }
+    
+    /// The name of the file resource for the high sound
+    var highSoundResource: String {
+        "\(rawValue)_high"
     }
 }
