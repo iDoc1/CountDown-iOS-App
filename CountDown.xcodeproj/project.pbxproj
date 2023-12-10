@@ -48,6 +48,12 @@
 		AB7E61B92AC51DDD0081D475 /* TimerUtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E61B82AC51DDD0081D475 /* TimerUtilitiesTests.swift */; };
 		AB7E61BB2AC520520081D475 /* TimerDurationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E61BA2AC520520081D475 /* TimerDurationsView.swift */; };
 		AB7E61BD2AC5225C0081D475 /* ProgressStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E61BC2AC5225C0081D475 /* ProgressStepper.swift */; };
+		AB89A6822B264F0600BF1D80 /* synth_high.caf in Resources */ = {isa = PBXBuildFile; fileRef = AB89A6802B264F0600BF1D80 /* synth_high.caf */; };
+		AB89A6832B264F0600BF1D80 /* synth_low.caf in Resources */ = {isa = PBXBuildFile; fileRef = AB89A6812B264F0600BF1D80 /* synth_low.caf */; };
+		AB89A6862B26549000BF1D80 /* electric_low.caf in Resources */ = {isa = PBXBuildFile; fileRef = AB89A6842B26549000BF1D80 /* electric_low.caf */; };
+		AB89A6872B26549000BF1D80 /* electric_high.caf in Resources */ = {isa = PBXBuildFile; fileRef = AB89A6852B26549000BF1D80 /* electric_high.caf */; };
+		AB89A68A2B26562300BF1D80 /* glass_high.caf in Resources */ = {isa = PBXBuildFile; fileRef = AB89A6882B26562300BF1D80 /* glass_high.caf */; };
+		AB89A68B2B26562300BF1D80 /* glass_low.caf in Resources */ = {isa = PBXBuildFile; fileRef = AB89A6892B26562300BF1D80 /* glass_low.caf */; };
 		AB9DE2322B1BD98700CBBFD5 /* WorkoutHistoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9DE2312B1BD98700CBBFD5 /* WorkoutHistoryDetailView.swift */; };
 		AB9DE2342B1BDD1C00CBBFD5 /* SectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9DE2332B1BDD1C00CBBFD5 /* SectionRow.swift */; };
 		AB9DE2362B1EDBB400CBBFD5 /* HistoryGripCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9DE2352B1EDBB400CBBFD5 /* HistoryGripCardView.swift */; };
@@ -88,13 +94,9 @@
 		ABE480BD2B25024400C5361C /* HistoryGripPropertiesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE480BC2B25024400C5361C /* HistoryGripPropertiesTest.swift */; };
 		ABE480C02B2566B600C5361C /* beep_low.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480BE2B2566B600C5361C /* beep_low.caf */; };
 		ABE480C12B2566B600C5361C /* beep_high.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480BF2B2566B600C5361C /* beep_high.caf */; };
-		ABE480C82B25685600C5361C /* chime_low.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480C22B25685500C5361C /* chime_low.caf */; };
-		ABE480C92B25685600C5361C /* glass_high.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480C32B25685600C5361C /* glass_high.caf */; };
-		ABE480CA2B25685600C5361C /* glass_low.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480C42B25685600C5361C /* glass_low.caf */; };
-		ABE480CB2B25685600C5361C /* electric_low.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480C52B25685600C5361C /* electric_low.caf */; };
-		ABE480CC2B25685600C5361C /* electric_high.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480C62B25685600C5361C /* electric_high.caf */; };
-		ABE480CD2B25685600C5361C /* chime_high.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480C72B25685600C5361C /* chime_high.caf */; };
 		ABE480D02B256B5900C5361C /* Starling in Frameworks */ = {isa = PBXBuildFile; productRef = ABE480CF2B256B5900C5361C /* Starling */; };
+		ABE480D32B25814D00C5361C /* strings_low.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480D12B25814D00C5361C /* strings_low.caf */; };
+		ABE480D42B25814D00C5361C /* strings_high.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480D22B25814D00C5361C /* strings_high.caf */; };
 		ABEB58C12AF48B25002C60F8 /* GripEditForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB58C02AF48B25002C60F8 /* GripEditForm.swift */; };
 		ABEB58C32AF48C5A002C60F8 /* GripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB58C22AF48C5A002C60F8 /* GripViewModel.swift */; };
 		ABEB58C52AF49AB5002C60F8 /* NewGripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB58C42AF49AB5002C60F8 /* NewGripView.swift */; };
@@ -164,6 +166,12 @@
 		AB7E61B82AC51DDD0081D475 /* TimerUtilitiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerUtilitiesTests.swift; sourceTree = "<group>"; };
 		AB7E61BA2AC520520081D475 /* TimerDurationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerDurationsView.swift; sourceTree = "<group>"; };
 		AB7E61BC2AC5225C0081D475 /* ProgressStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressStepper.swift; sourceTree = "<group>"; };
+		AB89A6802B264F0600BF1D80 /* synth_high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = synth_high.caf; sourceTree = "<group>"; };
+		AB89A6812B264F0600BF1D80 /* synth_low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = synth_low.caf; sourceTree = "<group>"; };
+		AB89A6842B26549000BF1D80 /* electric_low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = electric_low.caf; sourceTree = "<group>"; };
+		AB89A6852B26549000BF1D80 /* electric_high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = electric_high.caf; sourceTree = "<group>"; };
+		AB89A6882B26562300BF1D80 /* glass_high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = glass_high.caf; sourceTree = "<group>"; };
+		AB89A6892B26562300BF1D80 /* glass_low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = glass_low.caf; sourceTree = "<group>"; };
 		AB9DE2312B1BD98700CBBFD5 /* WorkoutHistoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryDetailView.swift; sourceTree = "<group>"; };
 		AB9DE2332B1BDD1C00CBBFD5 /* SectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRow.swift; sourceTree = "<group>"; };
 		AB9DE2352B1EDBB400CBBFD5 /* HistoryGripCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGripCardView.swift; sourceTree = "<group>"; };
@@ -204,12 +212,8 @@
 		ABE480BC2B25024400C5361C /* HistoryGripPropertiesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGripPropertiesTest.swift; sourceTree = "<group>"; };
 		ABE480BE2B2566B600C5361C /* beep_low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = beep_low.caf; sourceTree = "<group>"; };
 		ABE480BF2B2566B600C5361C /* beep_high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = beep_high.caf; sourceTree = "<group>"; };
-		ABE480C22B25685500C5361C /* chime_low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = chime_low.caf; sourceTree = "<group>"; };
-		ABE480C32B25685600C5361C /* glass_high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = glass_high.caf; sourceTree = "<group>"; };
-		ABE480C42B25685600C5361C /* glass_low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = glass_low.caf; sourceTree = "<group>"; };
-		ABE480C52B25685600C5361C /* electric_low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = electric_low.caf; sourceTree = "<group>"; };
-		ABE480C62B25685600C5361C /* electric_high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = electric_high.caf; sourceTree = "<group>"; };
-		ABE480C72B25685600C5361C /* chime_high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = chime_high.caf; sourceTree = "<group>"; };
+		ABE480D12B25814D00C5361C /* strings_low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = strings_low.caf; sourceTree = "<group>"; };
+		ABE480D22B25814D00C5361C /* strings_high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = strings_high.caf; sourceTree = "<group>"; };
 		ABEB58C02AF48B25002C60F8 /* GripEditForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripEditForm.swift; sourceTree = "<group>"; };
 		ABEB58C22AF48C5A002C60F8 /* GripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripViewModel.swift; sourceTree = "<group>"; };
 		ABEB58C42AF49AB5002C60F8 /* NewGripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGripView.swift; sourceTree = "<group>"; };
@@ -424,12 +428,14 @@
 		ABA9E7AF2AAD40C800DBF8DA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				ABE480C72B25685600C5361C /* chime_high.caf */,
-				ABE480C22B25685500C5361C /* chime_low.caf */,
-				ABE480C62B25685600C5361C /* electric_high.caf */,
-				ABE480C52B25685600C5361C /* electric_low.caf */,
-				ABE480C32B25685600C5361C /* glass_high.caf */,
-				ABE480C42B25685600C5361C /* glass_low.caf */,
+				AB89A6882B26562300BF1D80 /* glass_high.caf */,
+				AB89A6892B26562300BF1D80 /* glass_low.caf */,
+				AB89A6852B26549000BF1D80 /* electric_high.caf */,
+				AB89A6842B26549000BF1D80 /* electric_low.caf */,
+				AB89A6802B264F0600BF1D80 /* synth_high.caf */,
+				AB89A6812B264F0600BF1D80 /* synth_low.caf */,
+				ABE480D22B25814D00C5361C /* strings_high.caf */,
+				ABE480D12B25814D00C5361C /* strings_low.caf */,
 				ABE480BF2B2566B600C5361C /* beep_high.caf */,
 				ABE480BE2B2566B600C5361C /* beep_low.caf */,
 			);
@@ -594,15 +600,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB89A68B2B26562300BF1D80 /* glass_low.caf in Resources */,
+				AB89A68A2B26562300BF1D80 /* glass_high.caf in Resources */,
 				ABE480C12B2566B600C5361C /* beep_high.caf in Resources */,
-				ABE480CD2B25685600C5361C /* chime_high.caf in Resources */,
-				ABE480C92B25685600C5361C /* glass_high.caf in Resources */,
-				ABE480CA2B25685600C5361C /* glass_low.caf in Resources */,
+				ABE480D42B25814D00C5361C /* strings_high.caf in Resources */,
+				AB89A6822B264F0600BF1D80 /* synth_high.caf in Resources */,
+				AB89A6872B26549000BF1D80 /* electric_high.caf in Resources */,
 				ABA9E78B2AAD401100DBF8DA /* Preview Assets.xcassets in Resources */,
-				ABE480CB2B25685600C5361C /* electric_low.caf in Resources */,
-				ABE480CC2B25685600C5361C /* electric_high.caf in Resources */,
-				ABE480C82B25685600C5361C /* chime_low.caf in Resources */,
+				ABE480D32B25814D00C5361C /* strings_low.caf in Resources */,
 				ABA9E7882AAD401100DBF8DA /* Assets.xcassets in Resources */,
+				AB89A6862B26549000BF1D80 /* electric_low.caf in Resources */,
+				AB89A6832B264F0600BF1D80 /* synth_low.caf in Resources */,
 				ABE480C02B2566B600C5361C /* beep_low.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
