@@ -16,6 +16,19 @@ class TimerSoundPlayer {
     private var highBeepPlayer: AVPlayer
     
     init(type: TimerSound) {
+        // Set AudioSession options to provide low latency playback
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            // Set the audio session category and mode.
+            try audioSession.setCategory(
+                .playback,
+                mode: .default,
+                options: [.allowBluetoothA2DP])
+            try audioSession.setPreferredIOBufferDuration(0.002)
+        } catch {
+            print("Failed to set the audio session configuration")
+        }
+        
         lowBeepPlayer = AVPlayer.soundPlayer(type: type, isHighPitch: false)
         highBeepPlayer = AVPlayer.soundPlayer(type: type, isHighPitch: true)
         lowBeepPlayer.seek(to: .zero)
@@ -36,12 +49,17 @@ class TimerSoundPlayer {
     /// Plays the low pitch variation of this sound player
     func playLowSound() {
         lowBeepPlayer.seek(to: .zero)
-        lowBeepPlayer.play()
+        DispatchQueue.global().async {
+            self.lowBeepPlayer.play()
+        }
+        
     }
     
     /// Plays the high pitch variation of this sound player
     func playHighSound() {
         highBeepPlayer.seek(to: .zero)
-        highBeepPlayer.play()
+        DispatchQueue.global().async {
+            self.highBeepPlayer.play()
+        }
     }
 }

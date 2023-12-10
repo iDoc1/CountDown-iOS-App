@@ -57,14 +57,6 @@
 		ABA68AF22AD4DDB300181690 /* TimerSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA68AF12AD4DDB300181690 /* TimerSound.swift */; };
 		ABA68AF42AD4DF1500181690 /* TimerSoundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA68AF32AD4DF1500181690 /* TimerSoundTests.swift */; };
 		ABA68AF62AD4EAE800181690 /* SoundPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA68AF52AD4EAE800181690 /* SoundPickerView.swift */; };
-		ABA68AFF2AD62B0A00181690 /* chime_high.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABA68AF72AD62B0A00181690 /* chime_high.wav */; };
-		ABA68B002AD62B0B00181690 /* electric_high.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABA68AF82AD62B0A00181690 /* electric_high.wav */; };
-		ABA68B012AD62B0B00181690 /* buzzer_high.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABA68AF92AD62B0A00181690 /* buzzer_high.wav */; };
-		ABA68B022AD62B0B00181690 /* glass_high.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABA68AFA2AD62B0A00181690 /* glass_high.wav */; };
-		ABA68B032AD62B0B00181690 /* electric_low.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABA68AFB2AD62B0A00181690 /* electric_low.wav */; };
-		ABA68B042AD62B0B00181690 /* glass_low.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABA68AFC2AD62B0A00181690 /* glass_low.wav */; };
-		ABA68B052AD62B0B00181690 /* chime_low.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABA68AFD2AD62B0A00181690 /* chime_low.wav */; };
-		ABA68B062AD62B0B00181690 /* buzzer_low.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABA68AFE2AD62B0A00181690 /* buzzer_low.wav */; };
 		ABA68B082AD78A1A00181690 /* TimerVibrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA68B072AD78A1A00181690 /* TimerVibrator.swift */; };
 		ABA95D892B0194770096E0B2 /* FormUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA95D882B0194770096E0B2 /* FormUtilities.swift */; };
 		ABA9E7842AAD401000DBF8DA /* CountDownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7832AAD401000DBF8DA /* CountDownApp.swift */; };
@@ -94,14 +86,20 @@
 		ABDC11DC2B1449DF00F18510 /* GripTypePropertiesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDC11DB2B1449DF00F18510 /* GripTypePropertiesTest.swift */; };
 		ABDC11DE2B16F3E400F18510 /* WorkoutTypePropertiesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDC11DD2B16F3E400F18510 /* WorkoutTypePropertiesTest.swift */; };
 		ABE480BD2B25024400C5361C /* HistoryGripPropertiesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE480BC2B25024400C5361C /* HistoryGripPropertiesTest.swift */; };
+		ABE480C02B2566B600C5361C /* beep_low.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480BE2B2566B600C5361C /* beep_low.caf */; };
+		ABE480C12B2566B600C5361C /* beep_high.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480BF2B2566B600C5361C /* beep_high.caf */; };
+		ABE480C82B25685600C5361C /* chime_low.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480C22B25685500C5361C /* chime_low.caf */; };
+		ABE480C92B25685600C5361C /* glass_high.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480C32B25685600C5361C /* glass_high.caf */; };
+		ABE480CA2B25685600C5361C /* glass_low.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480C42B25685600C5361C /* glass_low.caf */; };
+		ABE480CB2B25685600C5361C /* electric_low.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480C52B25685600C5361C /* electric_low.caf */; };
+		ABE480CC2B25685600C5361C /* electric_high.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480C62B25685600C5361C /* electric_high.caf */; };
+		ABE480CD2B25685600C5361C /* chime_high.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480C72B25685600C5361C /* chime_high.caf */; };
 		ABEB58C12AF48B25002C60F8 /* GripEditForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB58C02AF48B25002C60F8 /* GripEditForm.swift */; };
 		ABEB58C32AF48C5A002C60F8 /* GripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB58C22AF48C5A002C60F8 /* GripViewModel.swift */; };
 		ABEB58C52AF49AB5002C60F8 /* NewGripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB58C42AF49AB5002C60F8 /* NewGripView.swift */; };
 		ABEB58C72AF6F3DD002C60F8 /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB58C62AF6F3DD002C60F8 /* NumberTextField.swift */; };
 		ABEB58C92AF700E4002C60F8 /* GripTypePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB58C82AF700E4002C60F8 /* GripTypePickerView.swift */; };
 		ABEB58CB2AF71541002C60F8 /* NewGripTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB58CA2AF71541002C60F8 /* NewGripTypeView.swift */; };
-		ABF19ACD2AC9F8A3007FD4F6 /* beep_high.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABF19ACB2AC9F8A3007FD4F6 /* beep_high.wav */; };
-		ABF19ACE2AC9F8A3007FD4F6 /* beep_low.wav in Resources */ = {isa = PBXBuildFile; fileRef = ABF19ACC2AC9F8A3007FD4F6 /* beep_low.wav */; };
 		ABF19AD02AC9F8CF007FD4F6 /* AVPlayer+Beep.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF19ACF2AC9F8CF007FD4F6 /* AVPlayer+Beep.swift */; };
 		ABF19AD22AC9FA09007FD4F6 /* TimerSoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF19AD12AC9FA09007FD4F6 /* TimerSoundPlayer.swift */; };
 		ABF6A1B32AEAC41F00822B7B /* ErrorText.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF6A1B22AEAC41F00822B7B /* ErrorText.swift */; };
@@ -174,14 +172,6 @@
 		ABA68AF12AD4DDB300181690 /* TimerSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSound.swift; sourceTree = "<group>"; };
 		ABA68AF32AD4DF1500181690 /* TimerSoundTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSoundTests.swift; sourceTree = "<group>"; };
 		ABA68AF52AD4EAE800181690 /* SoundPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPickerView.swift; sourceTree = "<group>"; };
-		ABA68AF72AD62B0A00181690 /* chime_high.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = chime_high.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/chime_high.wav"; sourceTree = "<group>"; };
-		ABA68AF82AD62B0A00181690 /* electric_high.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = electric_high.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/electric_high.wav"; sourceTree = "<group>"; };
-		ABA68AF92AD62B0A00181690 /* buzzer_high.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = buzzer_high.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/buzzer_high.wav"; sourceTree = "<group>"; };
-		ABA68AFA2AD62B0A00181690 /* glass_high.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = glass_high.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/glass_high.wav"; sourceTree = "<group>"; };
-		ABA68AFB2AD62B0A00181690 /* electric_low.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = electric_low.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/electric_low.wav"; sourceTree = "<group>"; };
-		ABA68AFC2AD62B0A00181690 /* glass_low.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = glass_low.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/glass_low.wav"; sourceTree = "<group>"; };
-		ABA68AFD2AD62B0A00181690 /* chime_low.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = chime_low.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/chime_low.wav"; sourceTree = "<group>"; };
-		ABA68AFE2AD62B0A00181690 /* buzzer_low.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = buzzer_low.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/buzzer_low.wav"; sourceTree = "<group>"; };
 		ABA68B072AD78A1A00181690 /* TimerVibrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerVibrator.swift; sourceTree = "<group>"; };
 		ABA95D882B0194770096E0B2 /* FormUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormUtilities.swift; sourceTree = "<group>"; };
 		ABA9E7832AAD401000DBF8DA /* CountDownApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownApp.swift; sourceTree = "<group>"; };
@@ -211,14 +201,20 @@
 		ABDC11DB2B1449DF00F18510 /* GripTypePropertiesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripTypePropertiesTest.swift; sourceTree = "<group>"; };
 		ABDC11DD2B16F3E400F18510 /* WorkoutTypePropertiesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTypePropertiesTest.swift; sourceTree = "<group>"; };
 		ABE480BC2B25024400C5361C /* HistoryGripPropertiesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGripPropertiesTest.swift; sourceTree = "<group>"; };
+		ABE480BE2B2566B600C5361C /* beep_low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = beep_low.caf; sourceTree = "<group>"; };
+		ABE480BF2B2566B600C5361C /* beep_high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = beep_high.caf; sourceTree = "<group>"; };
+		ABE480C22B25685500C5361C /* chime_low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = chime_low.caf; sourceTree = "<group>"; };
+		ABE480C32B25685600C5361C /* glass_high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = glass_high.caf; sourceTree = "<group>"; };
+		ABE480C42B25685600C5361C /* glass_low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = glass_low.caf; sourceTree = "<group>"; };
+		ABE480C52B25685600C5361C /* electric_low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = electric_low.caf; sourceTree = "<group>"; };
+		ABE480C62B25685600C5361C /* electric_high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = electric_high.caf; sourceTree = "<group>"; };
+		ABE480C72B25685600C5361C /* chime_high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = chime_high.caf; sourceTree = "<group>"; };
 		ABEB58C02AF48B25002C60F8 /* GripEditForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripEditForm.swift; sourceTree = "<group>"; };
 		ABEB58C22AF48C5A002C60F8 /* GripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripViewModel.swift; sourceTree = "<group>"; };
 		ABEB58C42AF49AB5002C60F8 /* NewGripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGripView.swift; sourceTree = "<group>"; };
 		ABEB58C62AF6F3DD002C60F8 /* NumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextField.swift; sourceTree = "<group>"; };
 		ABEB58C82AF700E4002C60F8 /* GripTypePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripTypePickerView.swift; sourceTree = "<group>"; };
 		ABEB58CA2AF71541002C60F8 /* NewGripTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGripTypeView.swift; sourceTree = "<group>"; };
-		ABF19ACB2AC9F8A3007FD4F6 /* beep_high.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = beep_high.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/beep_high.wav"; sourceTree = "<group>"; };
-		ABF19ACC2AC9F8A3007FD4F6 /* beep_low.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = beep_low.wav; path = "../../../Countdown-Hangboard-Timer/assets/audio/beep_low.wav"; sourceTree = "<group>"; };
 		ABF19ACF2AC9F8CF007FD4F6 /* AVPlayer+Beep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+Beep.swift"; sourceTree = "<group>"; };
 		ABF19AD12AC9FA09007FD4F6 /* TimerSoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSoundPlayer.swift; sourceTree = "<group>"; };
 		ABF6A1B22AEAC41F00822B7B /* ErrorText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorText.swift; sourceTree = "<group>"; };
@@ -426,16 +422,14 @@
 		ABA9E7AF2AAD40C800DBF8DA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				ABA68AF92AD62B0A00181690 /* buzzer_high.wav */,
-				ABA68AFE2AD62B0A00181690 /* buzzer_low.wav */,
-				ABA68AF72AD62B0A00181690 /* chime_high.wav */,
-				ABA68AFD2AD62B0A00181690 /* chime_low.wav */,
-				ABA68AF82AD62B0A00181690 /* electric_high.wav */,
-				ABA68AFB2AD62B0A00181690 /* electric_low.wav */,
-				ABA68AFA2AD62B0A00181690 /* glass_high.wav */,
-				ABA68AFC2AD62B0A00181690 /* glass_low.wav */,
-				ABF19ACB2AC9F8A3007FD4F6 /* beep_high.wav */,
-				ABF19ACC2AC9F8A3007FD4F6 /* beep_low.wav */,
+				ABE480C72B25685600C5361C /* chime_high.caf */,
+				ABE480C22B25685500C5361C /* chime_low.caf */,
+				ABE480C62B25685600C5361C /* electric_high.caf */,
+				ABE480C52B25685600C5361C /* electric_low.caf */,
+				ABE480C32B25685600C5361C /* glass_high.caf */,
+				ABE480C42B25685600C5361C /* glass_low.caf */,
+				ABE480BF2B2566B600C5361C /* beep_high.caf */,
+				ABE480BE2B2566B600C5361C /* beep_low.caf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -596,18 +590,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABA68B052AD62B0B00181690 /* chime_low.wav in Resources */,
-				ABA68B012AD62B0B00181690 /* buzzer_high.wav in Resources */,
-				ABF19ACD2AC9F8A3007FD4F6 /* beep_high.wav in Resources */,
-				ABA68B042AD62B0B00181690 /* glass_low.wav in Resources */,
-				ABA68AFF2AD62B0A00181690 /* chime_high.wav in Resources */,
-				ABA68B062AD62B0B00181690 /* buzzer_low.wav in Resources */,
-				ABA68B032AD62B0B00181690 /* electric_low.wav in Resources */,
-				ABA68B022AD62B0B00181690 /* glass_high.wav in Resources */,
-				ABF19ACE2AC9F8A3007FD4F6 /* beep_low.wav in Resources */,
+				ABE480C12B2566B600C5361C /* beep_high.caf in Resources */,
+				ABE480CD2B25685600C5361C /* chime_high.caf in Resources */,
+				ABE480C92B25685600C5361C /* glass_high.caf in Resources */,
+				ABE480CA2B25685600C5361C /* glass_low.caf in Resources */,
 				ABA9E78B2AAD401100DBF8DA /* Preview Assets.xcassets in Resources */,
+				ABE480CB2B25685600C5361C /* electric_low.caf in Resources */,
+				ABE480CC2B25685600C5361C /* electric_high.caf in Resources */,
+				ABE480C82B25685600C5361C /* chime_low.caf in Resources */,
 				ABA9E7882AAD401100DBF8DA /* Assets.xcassets in Resources */,
-				ABA68B002AD62B0B00181690 /* electric_high.wav in Resources */,
+				ABE480C02B2566B600C5361C /* beep_low.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

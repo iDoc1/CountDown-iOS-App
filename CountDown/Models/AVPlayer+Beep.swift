@@ -18,7 +18,7 @@ extension AVPlayer {
     static func soundPlayer(type: TimerSound, isHighPitch: Bool) -> AVPlayer {
         let resource = isHighPitch ? "\(type.rawValue)_high" : "\(type.rawValue)_low"
         
-        guard let url = Bundle.main.url(forResource: resource, withExtension: "wav") else {
+        guard let url = Bundle.main.url(forResource: resource, withExtension: "caf") else {
             fatalError("Failed to find sound file")
         }
         return AVPlayer(url: url)
