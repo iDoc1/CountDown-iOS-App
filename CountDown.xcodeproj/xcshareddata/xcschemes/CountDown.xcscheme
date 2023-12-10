@@ -40,6 +40,17 @@
                ReferencedContainer = "container:CountDown.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AB89A68F2B265EF100BF1D80"
+               BuildableName = "CountDownUITests.xctest"
+               BlueprintName = "CountDownUITests"
+               ReferencedContainer = "container:CountDown.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

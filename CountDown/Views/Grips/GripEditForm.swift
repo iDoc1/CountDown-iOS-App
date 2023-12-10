@@ -26,6 +26,8 @@ struct GripEditForm: View {
                             .foregroundColor(Color(.systemGray))
                     }
                 }
+                .accessibilityIdentifier("gripTypesNavLink")
+                
                 HStack {
                     Text("Edge Size (mm)")
                     Spacer()

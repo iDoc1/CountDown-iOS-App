@@ -49,6 +49,7 @@ struct WorkoutDetailView: View {
                 NavigationLink(destination: WorkoutGripsView(workout: workout)) {
                     SectionRow(title: "Grips", text: "\(workout.gripArray.count) added")
                 }
+                .accessibilityIdentifier("addGripsNavLink")
             } header: {
                 Text("Workout Grips")
             } footer: {

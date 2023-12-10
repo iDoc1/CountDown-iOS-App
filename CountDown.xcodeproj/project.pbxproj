@@ -54,6 +54,8 @@
 		AB89A6872B26549000BF1D80 /* electric_high.caf in Resources */ = {isa = PBXBuildFile; fileRef = AB89A6852B26549000BF1D80 /* electric_high.caf */; };
 		AB89A68A2B26562300BF1D80 /* glass_high.caf in Resources */ = {isa = PBXBuildFile; fileRef = AB89A6882B26562300BF1D80 /* glass_high.caf */; };
 		AB89A68B2B26562300BF1D80 /* glass_low.caf in Resources */ = {isa = PBXBuildFile; fileRef = AB89A6892B26562300BF1D80 /* glass_low.caf */; };
+		AB89A6932B265EF100BF1D80 /* WorkoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB89A6922B265EF100BF1D80 /* WorkoutTests.swift */; };
+		AB89A69C2B2668EA00BF1D80 /* GripsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB89A69B2B2668EA00BF1D80 /* GripsTest.swift */; };
 		AB9DE2322B1BD98700CBBFD5 /* WorkoutHistoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9DE2312B1BD98700CBBFD5 /* WorkoutHistoryDetailView.swift */; };
 		AB9DE2342B1BDD1C00CBBFD5 /* SectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9DE2332B1BDD1C00CBBFD5 /* SectionRow.swift */; };
 		AB9DE2362B1EDBB400CBBFD5 /* HistoryGripCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9DE2352B1EDBB400CBBFD5 /* HistoryGripCardView.swift */; };
@@ -113,6 +115,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AB89A6962B265EF100BF1D80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ABA9E7782AAD401000DBF8DA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ABA9E77F2AAD401000DBF8DA;
+			remoteInfo = CountDown;
+		};
 		ABA9E7912AAD401100DBF8DA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ABA9E7782AAD401000DBF8DA /* Project object */;
@@ -172,6 +181,9 @@
 		AB89A6852B26549000BF1D80 /* electric_high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = electric_high.caf; sourceTree = "<group>"; };
 		AB89A6882B26562300BF1D80 /* glass_high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = glass_high.caf; sourceTree = "<group>"; };
 		AB89A6892B26562300BF1D80 /* glass_low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = glass_low.caf; sourceTree = "<group>"; };
+		AB89A6902B265EF100BF1D80 /* CountDownUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountDownUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB89A6922B265EF100BF1D80 /* WorkoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTests.swift; sourceTree = "<group>"; };
+		AB89A69B2B2668EA00BF1D80 /* GripsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripsTest.swift; sourceTree = "<group>"; };
 		AB9DE2312B1BD98700CBBFD5 /* WorkoutHistoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryDetailView.swift; sourceTree = "<group>"; };
 		AB9DE2332B1BDD1C00CBBFD5 /* SectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRow.swift; sourceTree = "<group>"; };
 		AB9DE2352B1EDBB400CBBFD5 /* HistoryGripCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGripCardView.swift; sourceTree = "<group>"; };
@@ -229,6 +241,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AB89A68D2B265EF100BF1D80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ABA9E77D2AAD401000DBF8DA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -291,6 +310,15 @@
 				AB7E61B82AC51DDD0081D475 /* TimerUtilitiesTests.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		AB89A6912B265EF100BF1D80 /* CountDownUITests */ = {
+			isa = PBXGroup;
+			children = (
+				AB89A6922B265EF100BF1D80 /* WorkoutTests.swift */,
+				AB89A69B2B2668EA00BF1D80 /* GripsTest.swift */,
+			);
+			path = CountDownUITests;
 			sourceTree = "<group>";
 		};
 		AB9DE22C2B1BD86E00CBBFD5 /* Workouts */ = {
@@ -370,6 +398,8 @@
 				ABA9E7932AAD401100DBF8DA /* CountDownTests */,
 				AB6404602AD24D32002A9778 /* CountDown.app */,
 				AB125DC72AE48B8600357717 /* CountDownTests.xctest */,
+				AB89A6902B265EF100BF1D80 /* CountDownUITests.xctest */,
+				AB89A6912B265EF100BF1D80 /* CountDownUITests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -512,6 +542,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AB89A68F2B265EF100BF1D80 /* CountDownUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB89A6982B265EF100BF1D80 /* Build configuration list for PBXNativeTarget "CountDownUITests" */;
+			buildPhases = (
+				AB89A68C2B265EF100BF1D80 /* Sources */,
+				AB89A68D2B265EF100BF1D80 /* Frameworks */,
+				AB89A68E2B265EF100BF1D80 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AB89A6972B265EF100BF1D80 /* PBXTargetDependency */,
+			);
+			name = CountDownUITests;
+			productName = CountDownUITests;
+			productReference = AB89A6902B265EF100BF1D80 /* CountDownUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		ABA9E77F2AAD401000DBF8DA /* CountDown */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = ABA9E7A42AAD401100DBF8DA /* Build configuration list for PBXNativeTarget "CountDown" */;
@@ -563,6 +611,10 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					AB89A68F2B265EF100BF1D80 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = ABA9E77F2AAD401000DBF8DA;
+					};
 					ABA9E77F2AAD401000DBF8DA = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
@@ -591,11 +643,19 @@
 			targets = (
 				ABA9E77F2AAD401000DBF8DA /* CountDown */,
 				ABA9E78F2AAD401100DBF8DA /* CountDownTests */,
+				AB89A68F2B265EF100BF1D80 /* CountDownUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AB89A68E2B265EF100BF1D80 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ABA9E77E2AAD401000DBF8DA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -625,6 +685,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AB89A68C2B265EF100BF1D80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB89A6932B265EF100BF1D80 /* WorkoutTests.swift in Sources */,
+				AB89A69C2B2668EA00BF1D80 /* GripsTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ABA9E77C2AAD401000DBF8DA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -731,6 +800,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AB89A6972B265EF100BF1D80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ABA9E77F2AAD401000DBF8DA /* CountDown */;
+			targetProxy = AB89A6962B265EF100BF1D80 /* PBXContainerItemProxy */;
+		};
 		ABA9E7922AAD401100DBF8DA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = ABA9E77F2AAD401000DBF8DA /* CountDown */;
@@ -739,6 +813,40 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		AB89A6992B265EF100BF1D80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6XT4W8GZ4B;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.CountDownUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CountDown;
+			};
+			name = Debug;
+		};
+		AB89A69A2B265EF100BF1D80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6XT4W8GZ4B;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.CountDownUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CountDown;
+			};
+			name = Release;
+		};
 		ABA9E7A22AAD401100DBF8DA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -952,6 +1060,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AB89A6982B265EF100BF1D80 /* Build configuration list for PBXNativeTarget "CountDownUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB89A6992B265EF100BF1D80 /* Debug */,
+				AB89A69A2B265EF100BF1D80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		ABA9E77B2AAD401000DBF8DA /* Build configuration list for PBXProject "CountDown" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

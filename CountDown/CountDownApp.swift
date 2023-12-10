@@ -11,7 +11,16 @@ import SwiftUI
 struct CountDownApp: App {
     @Environment(\.scenePhase) var scenePhase
     @AppStorage("isDarkMode") private var darkModeOn = true
-    let persistenceController = PersistenceController.shared
+    let persistenceController: PersistenceController
+    
+    init() {
+        // Load an in-memory database if app is launched for UI testing
+        if ProcessInfo.processInfo.arguments.contains("UI-Testing") {
+            persistenceController = PersistenceController.unitTest
+        } else {
+            persistenceController = PersistenceController.shared
+        }
+    }
     
     var body: some Scene {
         WindowGroup {

@@ -39,6 +39,7 @@ struct GripTypePickerView: View {
                                         if selectedGripType == gripTypes[index] {
                                             Image(systemName: "checkmark")
                                                 .foregroundColor(.blue)
+                                                .accessibilityIdentifier("selectedGripType")
                                         }
                                     }
                                 }

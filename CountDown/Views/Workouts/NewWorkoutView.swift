@@ -22,21 +22,23 @@ struct NewWorkoutView: View {
     var body: some View {
         NavigationStack {
             WorkoutEditForm(workout: $newWorkout, errorMessages: errorMessages)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
-                        isShowingNewWorkoutSheet = false
-                    }
-                }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Add") {
-                        if workoutIsValidated(workout: newWorkout, errorMessages: errorMessages) {
-                            newWorkout.save()
+                .navigationTitle("Add Workout")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Cancel") {
                             isShowingNewWorkoutSheet = false
                         }
                     }
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("Add") {
+                            if workoutIsValidated(workout: newWorkout, errorMessages: errorMessages) {
+                                newWorkout.save()
+                                isShowingNewWorkoutSheet = false
+                            }
+                        }
+                    }
                 }
-            }
         }
     }
 }

@@ -39,6 +39,7 @@ struct NewGripView: View {
                                 isShowingNewGripSheet = false
                             }
                         }
+                        .accessibilityLabel("Confirm Add Grip")
                     }
                 }
         }
