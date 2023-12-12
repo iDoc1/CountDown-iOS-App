@@ -54,6 +54,12 @@ struct WorkoutGripsView: View {
                     
                     .onMove(perform: move)
                 }
+                /**
+                 This id is required to prevent a glitch where lists temporarily reverts to old order when a grip is moved. The
+                 reasoning is explained very nicely in the following source:
+                 https://www.hackingwithswift.com/articles/210/how-to-fix-slow-list-updates-in-swiftui
+                 */
+                .id(UUID())
             }
         }
         .toolbar {
@@ -91,15 +97,20 @@ struct WorkoutGripsView: View {
     /// Reorders a grip in the grips array
     ///
     /// Adapted from the following source:
-    /// https://stackoverflow.com/questions/65804686/core-data-environment-managedobjectcontext-onmove
+    /// https://stackoverflow.com/questions/59742218/swiftui-reorder-coredata-objects-in-list
     /// - Parameters:
     ///   - source: The set of indexes to start the move from
     ///   - destination: The destination index
     private func move(from source: IndexSet, to destination: Int) {
-        var revisedGrips: [Grip] = grips.map {$0}
+        var revisedGrips: [Grip] = grips.map { $0 }
         revisedGrips.move(fromOffsets: source, toOffset: destination)
-
-        for index in 0..<revisedGrips.count {
+        
+        // Reverse order to minimize index changes
+        for index in stride(
+            from: revisedGrips.count - 1,
+            through: 0,
+            by: -1)
+        {
             revisedGrips[index].sequenceNum = Int16(index)
         }
         
