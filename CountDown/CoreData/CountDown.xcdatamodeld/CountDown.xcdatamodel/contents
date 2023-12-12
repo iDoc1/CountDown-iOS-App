@@ -43,7 +43,6 @@
         <attribute name="descriptionText" attributeType="String" minValueString="1" maxValueString="150"/>
         <attribute name="foreignID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="hangboardName" optional="YES" attributeType="String" maxValueString="50"/>
-        <attribute name="lastUsedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String" minValueString="1" maxValueString="40"/>
         <relationship name="grip" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Grip" inverseName="workout" inverseEntity="Grip"/>
         <relationship name="history" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="WorkoutHistory" inverseName="workout" inverseEntity="WorkoutHistory"/>

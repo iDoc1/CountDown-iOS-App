@@ -16,7 +16,6 @@ struct WorkoutsView: View {
     
     @FetchRequest(sortDescriptors: [
         SortDescriptor(\.name),
-        SortDescriptor(\.lastUsedDate)
     ]) private var workouts: FetchedResults<Workout>
     
     var body: some View {

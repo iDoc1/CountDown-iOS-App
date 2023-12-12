@@ -50,14 +50,12 @@ struct PersistenceController {
         workout2.name = "Max Hangs"
         workout2.descriptionText = "Max weight hangs on 20mm edge"
         workout2.createdDate = Date()
-        workout2.lastUsedDate = Date()
         workout2.workoutType = workoutType2
         
         let workout3 = Workout(context: controller.container.viewContext)
         workout3.name = "ARC 20 min"
         workout3.descriptionText = "ARC 20 minutes on - 10 minutes off"
         workout3.createdDate = Date(timeIntervalSince1970: 1666490247)
-        workout3.lastUsedDate = Date(timeIntervalSince1970: 1690077447)
         workout3.workoutType = workoutType3
 
         return controller

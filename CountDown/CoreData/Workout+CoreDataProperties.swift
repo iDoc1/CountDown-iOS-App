@@ -20,9 +20,9 @@ extension Workout {
     @NSManaged public var descriptionText: String?
     @NSManaged public var foreignID: UUID?
     @NSManaged public var hangboardName: String?
-    @NSManaged public var lastUsedDate: Date?
     @NSManaged public var name: String?
     @NSManaged public var grip: NSSet?
+    @NSManaged public var history: NSSet?
     @NSManaged public var workoutType: WorkoutType?
     
     public var unwrappedCreatedDate: Date? {
@@ -35,10 +35,6 @@ extension Workout {
     
     public var unwrappedHangboardName: String {
         hangboardName ?? ""
-    }
-    
-    public var unwrappedLastUsedDate: Date {
-        lastUsedDate ?? Date()
     }
     
     public var unwrappedName: String {
@@ -65,6 +61,16 @@ extension Workout {
         }
         
         return maxNum
+    }
+    
+    /// The last date this workout was completed
+    public var lastUsedDate: Date? {
+        let set = history as? Set<WorkoutHistory> ?? []
+        var sortedHistory = set.sorted {
+            $0.unwrappedWorkoutDate > $1.unwrappedWorkoutDate
+        }
+        
+        return sortedHistory.first?.workoutDate
     }
 }
 

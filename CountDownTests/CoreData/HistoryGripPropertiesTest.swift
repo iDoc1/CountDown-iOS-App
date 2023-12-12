@@ -62,8 +62,8 @@ final class HistoryGripPropertiesTest: XCTestCase {
         XCTAssertEqual(historyGrip.unwrappedLastBreakMinutes, 1)
         XCTAssertEqual(historyGrip.unwrappedLastBreakSeconds, 30)
         XCTAssertEqual(historyGrip.unwrappedEdgeSize, 18)
-        XCTAssertEqual(historyGrip.unwrappedSequenceNum, 3)
-        XCTAssertEqual(historyGrip.unwrappedGripTypeName, "Half Crimp")
+        XCTAssertEqual(historyGrip.unwrappedSequenceNum, 2)
+        XCTAssertEqual(historyGrip.unwrappedGripTypeName, "Full Crimp")
     }
     
     func testUnwrappedNilPropertiesAreCorrect() throws {

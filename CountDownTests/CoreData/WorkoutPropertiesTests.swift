@@ -37,6 +37,7 @@ final class WorkoutPropertiesTests: XCTestCase {
         XCTAssertEqual(workout.unwrappedHangboardName, "Trango")
         XCTAssertEqual(workout.unwrappedCreatedDate, now)
         XCTAssertEqual(workout.unwrappedWorkoutTypeName, "powerEndurance")
+        XCTAssertNil(workout.lastUsedDate)
     }
     
     func testNilPropertiesAreCorrect() throws {
@@ -44,7 +45,7 @@ final class WorkoutPropertiesTests: XCTestCase {
         
         XCTAssertEqual(workout.unwrappedName, "Unknown Workout")
         XCTAssertEqual(workout.unwrappedDescriptionText, "Unknown Description")
-        XCTAssertEqual(workout.unwrappedHangboardName, "None Specified")
+        XCTAssertEqual(workout.unwrappedHangboardName, "")
         XCTAssertNil(workout.unwrappedCreatedDate)
         XCTAssertEqual(workout.unwrappedWorkoutTypeName, "Unknown Type")
     }
@@ -62,7 +63,7 @@ final class WorkoutPropertiesTests: XCTestCase {
         XCTAssertNoThrow(try context.save())
         XCTAssertEqual(workout.unwrappedName, "Repeaters")
         XCTAssertEqual(workout.unwrappedDescriptionText, "RCTM Advanced Repeaters Protocol")
-        XCTAssertEqual(workout.unwrappedHangboardName, "None Specified")
+        XCTAssertEqual(workout.unwrappedHangboardName, "")
         XCTAssertEqual(workout.unwrappedCreatedDate, now)
         XCTAssertEqual(workout.unwrappedWorkoutTypeName, "powerEndurance")
     }
@@ -116,5 +117,32 @@ final class WorkoutPropertiesTests: XCTestCase {
         XCTAssertEqual(workout.maxSeqNum, 3)
         XCTAssertEqual(workout.gripArray[0].gripType?.name, "Half Crimp")
         XCTAssertEqual(workout.gripArray[1].gripType?.name, "Three Finger Drag")
+    }
+    
+    func testWorkoutLastUsedDate() throws {
+        let now = Date()
+        let workoutType = WorkoutType(context: context)
+        workoutType.name = "powerEndurance"
+        let workout = Workout(context: context)
+        workout.name = "Repeaters"
+        workout.descriptionText = "RCTM Advanced Repeaters Protocol"
+        workout.createdDate = now
+        workout.workoutType = workoutType
+        
+        let november23 = Date(timeIntervalSince1970: 1698815062)
+        let october23 = Date(timeIntervalSince1970: 1696136662)
+        
+        let workoutHistory1 = WorkoutHistory(context: context)
+        workoutHistory1.totalSeconds = 423
+        workoutHistory1.workoutDate = november23
+        workoutHistory1.workout = workout
+        
+        let workoutHistory2 = WorkoutHistory(context: context)
+        workoutHistory2.totalSeconds = 423
+        workoutHistory2.workoutDate = october23
+        workoutHistory2.workout = workout
+        
+        XCTAssertNoThrow(try context.save())
+        XCTAssertEqual(workout.lastUsedDate, november23)
     }
 }

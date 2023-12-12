@@ -32,7 +32,7 @@ struct WorkoutCardView: View {
     
     private var numberOfDaysAgo: String {
         if workout.lastUsedDate != nil {
-            let numOfDays = dateDiffInDays(from: workout.unwrappedLastUsedDate)
+            let numOfDays = dateDiffInDays(from: workout.lastUsedDate!)
             switch numOfDays {
             case 0: return "Today"
             case 1: return "1 day ago"
