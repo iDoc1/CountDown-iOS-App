@@ -63,9 +63,24 @@ struct PersistenceController {
         return controller
     }()
     
-    /// A controller configuration of unit tests
-    static var unitTest: PersistenceController = {
+    /// A controller configuration of unit tests that contains not preloaded data
+    static var unitTestEmpty: PersistenceController = {
+        return PersistenceController(inMemory: true)
+    }()
+    
+    /// A controller configuration of unit tests that contains a preloaded workout
+    static var unitTestPreloadWorkout: PersistenceController = {
         let controller = PersistenceController(inMemory: true)
+        
+        let workoutType1 = WorkoutType(context: controller.container.viewContext)
+        workoutType1.name = "powerEndurance"
+        
+        let workout1 = Workout(context: controller.container.viewContext)
+        workout1.name = "Test Workout"
+        workout1.descriptionText = "Test Description"
+        workout1.createdDate = Date()
+        workout1.workoutType = workoutType1
+        
         return controller
     }()
     

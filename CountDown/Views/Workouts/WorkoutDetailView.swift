@@ -37,7 +37,8 @@ struct WorkoutDetailView: View {
             }
             // Disable link if there are no grips in the workout yet
             .disabled(gripsArray.count <= 0)
-
+            .accessibilityIdentifier("startWorkoutLink")
+            
             HStack {
                 Label("Length", systemImage: "clock")
                 Spacer()

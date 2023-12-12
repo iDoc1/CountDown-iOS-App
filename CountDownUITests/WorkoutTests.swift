@@ -11,11 +11,12 @@ final class WorkoutTests: XCTestCase {
     let app = XCUIApplication()
 
     override func setUpWithError() throws {
-        app.launchArguments += ["UI-Testing"]
+        app.launchArguments += ["UI-Testing-Empty"]
         app.launch()
         continueAfterFailure = false
     }
-
+    
+    /// A new workout is created and added
     func testNewWorkoutAddedCorrectly() throws {
         let addWorkoutButton = app.buttons["New Workout"]
         XCTAssert(addWorkoutButton.exists)
@@ -39,6 +40,7 @@ final class WorkoutTests: XCTestCase {
         XCTAssert(createdWorkoutTitle.waitForExistence(timeout: 0.5))
     }
     
+    /// Error messages appear if workout name and description are not specified
     func testNewWorkoutRequiresNameAndDescription() throws {
         let addWorkoutButton = app.buttons["New Workout"]
         XCTAssert(addWorkoutButton.exists)

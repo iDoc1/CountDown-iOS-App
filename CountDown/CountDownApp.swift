@@ -15,8 +15,10 @@ struct CountDownApp: App {
     
     init() {
         // Load an in-memory database if app is launched for UI testing
-        if ProcessInfo.processInfo.arguments.contains("UI-Testing") {
-            persistenceController = PersistenceController.unitTest
+        if ProcessInfo.processInfo.arguments.contains("UI-Testing-Empty") {
+            persistenceController = PersistenceController.unitTestEmpty
+        } else if ProcessInfo.processInfo.arguments.contains("UI-Testing-Preload-Workout") {
+            persistenceController = PersistenceController.unitTestPreloadWorkout
         } else {
             persistenceController = PersistenceController.shared
         }
