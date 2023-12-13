@@ -66,7 +66,7 @@ extension Workout {
     /// The last date this workout was completed
     public var lastUsedDate: Date? {
         let set = history as? Set<WorkoutHistory> ?? []
-        var sortedHistory = set.sorted {
+        let sortedHistory = set.sorted {
             $0.unwrappedWorkoutDate > $1.unwrappedWorkoutDate
         }
         
