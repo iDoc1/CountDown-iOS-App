@@ -25,6 +25,6 @@ func getColorFromWorkoutType(workoutType: WorkoutType?) -> Color {
     case .powerEndurance:
         return Theme.lightOrange.mainColor
     case .other:
-        return Color(.systemGray)
+        return Theme.lightPurple.mainColor
     }
 }

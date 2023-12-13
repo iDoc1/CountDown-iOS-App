@@ -14,11 +14,13 @@ enum Theme: String {
     case brightRed
     case mediumYellow
     case lightOrange
+    case lightPurple
     
     /// Returns the accent color corresponding to the main color
     var accentColor: Color {
         switch self {
-        case .lightBlue, .lightGreen, .brightRed, .mediumYellow, .lightOrange: return .white
+        case .lightBlue, .lightGreen, .brightRed, .mediumYellow, .lightOrange, .lightPurple:
+            return .white
         }
     }
     
