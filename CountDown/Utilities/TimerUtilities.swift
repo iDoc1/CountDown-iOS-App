@@ -7,18 +7,27 @@
 
 import Foundation
 
-/// Takes a number of minutes and seconds then returns a string representation of the given time in the format "mm:ss"
+/// Takes a number of minutes and seconds then returns a string representation of the given time in the format "hh:mm:ss". If the
+/// number of hours is zero, then the returned format is "mm:ss".
 /// - Parameters:
+///   - hours: Number of hours to display. Defaults to zero if not specified.
 ///   - minutes: Number of minutes to display. Defaults to zero if not specified.
 ///   - seconds: Number of seconds to display. Does not need to be zero-padded. Defaults to zero.
 /// - Returns: A String representation of the given time
-func timeToString(minutes: Int = 0, seconds: Int = 0) -> String {
-    let totalMinutes = seconds / 60 + minutes
-    let totalSeconds = seconds % 60
+func timeToString(hours: Int = 0, minutes: Int = 0, seconds: Int = 0) -> String {
+    let totalSeconds = seconds + minutes * 60 + hours * 3600
+    let hours = totalSeconds / 3600
+    let minutes = (totalSeconds % 3600) / 60
+    let seconds = totalSeconds % 60
     
-    return totalSeconds > 9
-        ? "\(totalMinutes):\(totalSeconds)"
-        : "\(totalMinutes):0\(totalSeconds)"
+    let secondsString = seconds > 9 ? "\(seconds)" : "0\(seconds)"
+    
+    if hours > 0 {
+        let minutesString = minutes > 9 ? "\(minutes)" : "0\(minutes)"
+        return "\(hours):\(minutesString):\(secondsString)"
+    } else {
+        return "\(minutes):\(secondsString)"
+    }
 }
 
 

@@ -9,7 +9,7 @@ import XCTest
 @testable import CountDown
 
 final class TimerUtilitiesTests: XCTestCase {
-
+    
     func testTimeToStringSingleDigitSeconds()  {
         let time = timeToString(seconds: 7)
         XCTAssertEqual(time, "0:07")
@@ -53,6 +53,27 @@ final class TimerUtilitiesTests: XCTestCase {
     func testTimeToStringSecondsAbove60WithMinutes()  {
         let time = timeToString(minutes: 1, seconds: 67)
         XCTAssertEqual(time, "2:07")
+    }
+    
+    func testTimeToStringOneHour() {
+        var time = timeToString(seconds: 3600)
+        XCTAssertEqual(time, "1:00:00")
+        
+        time = timeToString(minutes: 60)
+        XCTAssertEqual(time, "1:00:00")
+        
+        time = timeToString(hours: 1)
+        XCTAssertEqual(time, "1:00:00")
+    }
+    
+    func testTimeToStringOneHourWithMinutes() {
+        let time = timeToString(hours: 1, minutes: 3)
+        XCTAssertEqual(time, "1:03:00")
+    }
+    
+    func testTimeToStringOneHourWithMinutesAbove9() {
+        let time = timeToString(hours: 1, minutes: 13)
+        XCTAssertEqual(time, "1:13:00")
     }
     
     func testSecondsToStringAtZeroSeconds() {

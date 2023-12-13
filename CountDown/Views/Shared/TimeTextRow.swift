@@ -16,10 +16,20 @@ struct TimeTextRow: View {
         HStack {
             Text(title)
                 .foregroundColor(Color(.systemGray))
+                .font(fontType)
             Spacer()
             Text(time)
+                .font(fontType)
         }
         .padding(.vertical, 1)
+    }
+    
+    private var fontType: Font? {
+        if time.count > 5 {
+            return .footnote
+        }
+        
+        return nil
     }
 }
 

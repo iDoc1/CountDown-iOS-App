@@ -21,7 +21,7 @@ struct CountdownTimerWorkoutView: View {
     }
 
     var body: some View {
-        VStack {
+        VStack(spacing: 4) {
             TimerHeader(timer: countdownTimer, showGripProgress: true)
             TimerGripTextView(timer: countdownTimer)
             TimerView(timer: countdownTimer)

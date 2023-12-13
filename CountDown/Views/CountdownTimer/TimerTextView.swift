@@ -30,11 +30,12 @@ struct TimerTextView: View {
                 .overlay {
                     VStack {
                         Spacer()
-                            .frame(height: customSize(geometry: geometry, factor: 0.3) + 75)
+                            .frame(height: customSize(geometry: geometry, factor: 0.3) + 70)
                         TimeTextRow(title: "Time Left:", time: timer.timeLeft)
                         TimeTextRow(title: "Total Time:", time: timer.totalTime)
                     }
-                    .frame(width: 160)
+                    // Reduce width if screen sixe is small
+                    .frame(width: timer.totalTime.count > 5 ? 135 : 150)
                 }
         }
     }
