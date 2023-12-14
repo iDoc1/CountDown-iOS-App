@@ -105,12 +105,8 @@ struct WorkoutGripsView: View {
         var revisedGrips: [Grip] = grips.map { $0 }
         revisedGrips.move(fromOffsets: source, toOffset: destination)
         
-        // Reverse order to minimize index changes
-        for index in stride(
-            from: revisedGrips.count - 1,
-            through: 0,
-            by: -1)
-        {
+        // Modify sequence numbers for each grip
+        for index in 0..<revisedGrips.count {
             revisedGrips[index].sequenceNum = Int16(index)
         }
         

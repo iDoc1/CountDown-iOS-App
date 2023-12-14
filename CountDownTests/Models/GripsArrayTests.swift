@@ -519,8 +519,8 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].restSeconds, 3)
         XCTAssertEqual(gripsArray[0].breakMinutes, 1)
         XCTAssertEqual(gripsArray[0].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 15)
+        XCTAssertNil(gripsArray[0].lastBreakMinutes)
+        XCTAssertNil(gripsArray[0].lastBreakSeconds)
         
         XCTAssertEqual(gripsArray[0].durations.count, 1)
         XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
@@ -555,8 +555,8 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].restSeconds, 3)
         XCTAssertEqual(gripsArray[0].breakMinutes, 1)
         XCTAssertEqual(gripsArray[0].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 15)
+        XCTAssertNil(gripsArray[0].lastBreakMinutes)
+        XCTAssertNil(gripsArray[0].lastBreakSeconds)
         
         XCTAssertEqual(gripsArray[0].durations.count, 1)
         XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
@@ -591,8 +591,8 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].restSeconds, 3)
         XCTAssertEqual(gripsArray[0].breakMinutes, 1)
         XCTAssertEqual(gripsArray[0].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 15)
+        XCTAssertNil(gripsArray[0].lastBreakMinutes)
+        XCTAssertNil(gripsArray[0].lastBreakSeconds)
         
         XCTAssertEqual(gripsArray[0].durations.count, 1)
         XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
@@ -627,8 +627,8 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].restSeconds, 3)
         XCTAssertEqual(gripsArray[0].breakMinutes, 1)
         XCTAssertEqual(gripsArray[0].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 15)
+        XCTAssertNil(gripsArray[0].lastBreakMinutes)
+        XCTAssertNil(gripsArray[0].lastBreakSeconds)
         
         XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
         XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
@@ -667,8 +667,8 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].restSeconds, 3)
         XCTAssertEqual(gripsArray[0].breakMinutes, 1)
         XCTAssertEqual(gripsArray[0].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 15)
+        XCTAssertNil(gripsArray[0].lastBreakMinutes)
+        XCTAssertNil(gripsArray[0].lastBreakSeconds)
         
         XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
         XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
@@ -717,8 +717,8 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].restSeconds, 3)
         XCTAssertEqual(gripsArray[0].breakMinutes, 1)
         XCTAssertEqual(gripsArray[0].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 15)
+        XCTAssertNil(gripsArray[0].lastBreakMinutes)
+        XCTAssertNil(gripsArray[0].lastBreakSeconds)
         
         XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
         XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
@@ -767,8 +767,8 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].restSeconds, 3)
         XCTAssertEqual(gripsArray[0].breakMinutes, 1)
         XCTAssertEqual(gripsArray[0].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 15)
+        XCTAssertNil(gripsArray[0].lastBreakMinutes)
+        XCTAssertNil(gripsArray[0].lastBreakSeconds)
         
         XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
         XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
@@ -839,8 +839,8 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].restSeconds, 3)
         XCTAssertEqual(gripsArray[0].breakMinutes, 1)
         XCTAssertEqual(gripsArray[0].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 15)
+        XCTAssertNil(gripsArray[0].lastBreakMinutes)
+        XCTAssertNil(gripsArray[0].lastBreakSeconds)
         
         XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
         XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
@@ -916,8 +916,9 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip1.restSeconds = 3
         grip1.breakMinutes = 1
         grip1.breakSeconds = 30
-        grip1.lastBreakMinutes = 2
-        grip1.lastBreakSeconds = 15
+        grip1.lastBreakMinutes = 1
+        grip1.lastBreakSeconds = 45
+        grip1.sequenceNum = 1
         grip1.gripType = gripType1
         
         // Create test grip2
@@ -933,6 +934,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip2.breakSeconds = 30
         grip2.lastBreakMinutes = 2
         grip2.lastBreakSeconds = 15
+        grip2.sequenceNum = 2
         grip2.gripType = gripType2
         
         let gripsArray = GripsArray(grips: workout.gripArray)
@@ -944,15 +946,15 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].restSeconds, 3)
         XCTAssertEqual(gripsArray[0].breakMinutes, 1)
         XCTAssertEqual(gripsArray[0].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 15)
+        XCTAssertNil(gripsArray[0].lastBreakMinutes)
+        XCTAssertNil(gripsArray[0].lastBreakSeconds)
         
         XCTAssertEqual(gripsArray[1].workSeconds, 7)
         XCTAssertEqual(gripsArray[1].restSeconds, 3)
         XCTAssertEqual(gripsArray[1].breakMinutes, 1)
         XCTAssertEqual(gripsArray[1].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 15)
+        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 45)
         
         XCTAssertEqual(gripsArray[0].durations.count, 1)
         XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
@@ -976,8 +978,9 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip1.restSeconds = 3
         grip1.breakMinutes = 1
         grip1.breakSeconds = 30
-        grip1.lastBreakMinutes = 2
-        grip1.lastBreakSeconds = 15
+        grip1.lastBreakMinutes = 1
+        grip1.lastBreakSeconds = 45
+        grip1.sequenceNum = 1
         grip1.gripType = gripType1
         
         // Create test grip2
@@ -993,6 +996,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip2.breakSeconds = 30
         grip2.lastBreakMinutes = 2
         grip2.lastBreakSeconds = 15
+        grip2.sequenceNum = 2
         grip2.gripType = gripType2
         
         let gripsArray = GripsArray(grips: workout.gripArray)
@@ -1004,15 +1008,15 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].restSeconds, 3)
         XCTAssertEqual(gripsArray[0].breakMinutes, 1)
         XCTAssertEqual(gripsArray[0].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 15)
+        XCTAssertNil(gripsArray[0].lastBreakMinutes)
+        XCTAssertNil(gripsArray[0].lastBreakSeconds)
         
         XCTAssertEqual(gripsArray[1].workSeconds, 7)
         XCTAssertEqual(gripsArray[1].restSeconds, 3)
         XCTAssertEqual(gripsArray[1].breakMinutes, 1)
         XCTAssertEqual(gripsArray[1].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 15)
+        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 45)
         
         XCTAssertEqual(gripsArray[0].durations.count, 1)
         XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
@@ -1036,8 +1040,9 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip1.restSeconds = 3
         grip1.breakMinutes = 1
         grip1.breakSeconds = 30
-        grip1.lastBreakMinutes = 2
-        grip1.lastBreakSeconds = 15
+        grip1.lastBreakMinutes = 1
+        grip1.lastBreakSeconds = 45
+        grip1.sequenceNum = 1
         grip1.gripType = gripType1
         
         // Create test grip2
@@ -1053,26 +1058,27 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip2.breakSeconds = 30
         grip2.lastBreakMinutes = 2
         grip2.lastBreakSeconds = 15
+        grip2.sequenceNum = 2
         grip2.gripType = gripType2
         
         let gripsArray = GripsArray(grips: workout.gripArray)
 
         XCTAssertEqual(gripsArray.count, 2)
-        XCTAssertEqual(gripsArray.totalSeconds, 150)
+        XCTAssertEqual(gripsArray.totalSeconds, 120)
         
         XCTAssertEqual(gripsArray[0].workSeconds, 7)
         XCTAssertEqual(gripsArray[0].restSeconds, 3)
         XCTAssertEqual(gripsArray[0].breakMinutes, 1)
         XCTAssertEqual(gripsArray[0].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 15)
+        XCTAssertNil(gripsArray[0].lastBreakMinutes)
+        XCTAssertNil(gripsArray[0].lastBreakSeconds)
         
         XCTAssertEqual(gripsArray[1].workSeconds, 7)
         XCTAssertEqual(gripsArray[1].restSeconds, 3)
         XCTAssertEqual(gripsArray[1].breakMinutes, 1)
         XCTAssertEqual(gripsArray[1].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 15)
+        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 45)
         
         XCTAssertEqual(gripsArray[0].durations.count, 1)
         XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
@@ -1081,7 +1087,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
         
         XCTAssertEqual(gripsArray[1].durations.count, 1)
-        XCTAssertEqual(gripsArray[1].durations[0].description, "BREAK for 135 sec")
+        XCTAssertEqual(gripsArray[1].durations[0].description, "BREAK for 105 sec")
         XCTAssertEqual(gripsArray[1].durations[0].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[0].currRep, 0)
         XCTAssertEqual(gripsArray[1].durations[0].startSeconds, 15)
@@ -1100,8 +1106,9 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip1.restSeconds = 3
         grip1.breakMinutes = 1
         grip1.breakSeconds = 30
-        grip1.lastBreakMinutes = 2
-        grip1.lastBreakSeconds = 15
+        grip1.lastBreakMinutes = 1
+        grip1.lastBreakSeconds = 45
+        grip1.sequenceNum = 1
         grip1.gripType = gripType1
         
         // Create test grip2
@@ -1117,26 +1124,27 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip2.breakSeconds = 30
         grip2.lastBreakMinutes = 2
         grip2.lastBreakSeconds = 15
+        grip2.sequenceNum = 2
         grip2.gripType = gripType2
         
         let gripsArray = GripsArray(grips: workout.gripArray)
 
         XCTAssertEqual(gripsArray.count, 2)
-        XCTAssertEqual(gripsArray.totalSeconds, 164)
+        XCTAssertEqual(gripsArray.totalSeconds, 134)
         
         XCTAssertEqual(gripsArray[0].workSeconds, 7)
         XCTAssertEqual(gripsArray[0].restSeconds, 3)
         XCTAssertEqual(gripsArray[0].breakMinutes, 1)
         XCTAssertEqual(gripsArray[0].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 15)
+        XCTAssertNil(gripsArray[0].lastBreakMinutes)
+        XCTAssertNil(gripsArray[0].lastBreakSeconds)
         
         XCTAssertEqual(gripsArray[1].workSeconds, 7)
         XCTAssertEqual(gripsArray[1].restSeconds, 3)
         XCTAssertEqual(gripsArray[1].breakMinutes, 1)
         XCTAssertEqual(gripsArray[1].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 15)
+        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 45)
         
         XCTAssertEqual(gripsArray[0].durations.count, 2)
         XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
@@ -1150,7 +1158,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[1].startSeconds, 15)
         
         XCTAssertEqual(gripsArray[1].durations.count, 2)
-        XCTAssertEqual(gripsArray[1].durations[0].description, "BREAK for 135 sec")
+        XCTAssertEqual(gripsArray[1].durations[0].description, "BREAK for 105 sec")
         XCTAssertEqual(gripsArray[1].durations[0].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[0].currRep, 0)
         XCTAssertEqual(gripsArray[1].durations[0].startSeconds, 22)
@@ -1158,7 +1166,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[1].durations[1].description, "WORK for 7 sec")
         XCTAssertEqual(gripsArray[1].durations[1].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[1].currRep, 0)
-        XCTAssertEqual(gripsArray[1].durations[1].startSeconds, 157)
+        XCTAssertEqual(gripsArray[1].durations[1].startSeconds, 127)
     }
     
     /// Test for Grips = 2, Sets = 1, Reps = 2
@@ -1174,8 +1182,9 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip1.restSeconds = 3
         grip1.breakMinutes = 1
         grip1.breakSeconds = 30
-        grip1.lastBreakMinutes = 2
-        grip1.lastBreakSeconds = 15
+        grip1.lastBreakMinutes = 1
+        grip1.lastBreakSeconds = 45
+        grip1.sequenceNum = 1
         grip1.gripType = gripType1
         
         // Create test grip2
@@ -1191,26 +1200,27 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip2.breakSeconds = 30
         grip2.lastBreakMinutes = 2
         grip2.lastBreakSeconds = 15
+        grip2.sequenceNum = 2
         grip2.gripType = gripType2
         
         let gripsArray = GripsArray(grips: workout.gripArray)
 
         XCTAssertEqual(gripsArray.count, 2)
-        XCTAssertEqual(gripsArray.totalSeconds, 184)
+        XCTAssertEqual(gripsArray.totalSeconds, 154)
         
         XCTAssertEqual(gripsArray[0].workSeconds, 7)
         XCTAssertEqual(gripsArray[0].restSeconds, 3)
         XCTAssertEqual(gripsArray[0].breakMinutes, 1)
         XCTAssertEqual(gripsArray[0].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 15)
+        XCTAssertNil(gripsArray[0].lastBreakMinutes)
+        XCTAssertNil(gripsArray[0].lastBreakSeconds)
         
         XCTAssertEqual(gripsArray[1].workSeconds, 7)
         XCTAssertEqual(gripsArray[1].restSeconds, 3)
         XCTAssertEqual(gripsArray[1].breakMinutes, 1)
         XCTAssertEqual(gripsArray[1].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 15)
+        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 45)
         
         XCTAssertEqual(gripsArray[0].durations.count, 4)
         XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
@@ -1234,7 +1244,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[3].startSeconds, 25)
         
         XCTAssertEqual(gripsArray[1].durations.count, 4)
-        XCTAssertEqual(gripsArray[1].durations[0].description, "BREAK for 135 sec")
+        XCTAssertEqual(gripsArray[1].durations[0].description, "BREAK for 105 sec")
         XCTAssertEqual(gripsArray[1].durations[0].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[0].currRep, 0)
         XCTAssertEqual(gripsArray[1].durations[0].startSeconds, 32)
@@ -1242,17 +1252,17 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[1].durations[1].description, "WORK for 7 sec")
         XCTAssertEqual(gripsArray[1].durations[1].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[1].currRep, 0)
-        XCTAssertEqual(gripsArray[1].durations[1].startSeconds, 167)
+        XCTAssertEqual(gripsArray[1].durations[1].startSeconds, 137)
         
         XCTAssertEqual(gripsArray[1].durations[2].description, "REST for 3 sec")
         XCTAssertEqual(gripsArray[1].durations[2].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[2].currRep, 1)
-        XCTAssertEqual(gripsArray[1].durations[2].startSeconds, 174)
+        XCTAssertEqual(gripsArray[1].durations[2].startSeconds, 144)
         
         XCTAssertEqual(gripsArray[1].durations[3].description, "WORK for 7 sec")
         XCTAssertEqual(gripsArray[1].durations[3].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[3].currRep, 1)
-        XCTAssertEqual(gripsArray[1].durations[3].startSeconds, 177)
+        XCTAssertEqual(gripsArray[1].durations[3].startSeconds, 147)
     }
     
     /// Test for Grips = 2, Sets = 2, Reps = 1
@@ -1268,8 +1278,9 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip1.restSeconds = 3
         grip1.breakMinutes = 1
         grip1.breakSeconds = 30
-        grip1.lastBreakMinutes = 2
-        grip1.lastBreakSeconds = 15
+        grip1.lastBreakMinutes = 1
+        grip1.lastBreakSeconds = 45
+        grip1.sequenceNum = 1
         grip1.gripType = gripType1
         
         // Create test grip2
@@ -1285,26 +1296,27 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip2.breakSeconds = 30
         grip2.lastBreakMinutes = 2
         grip2.lastBreakSeconds = 15
+        grip2.sequenceNum = 2
         grip2.gripType = gripType2
         
         let gripsArray = GripsArray(grips: workout.gripArray)
 
         XCTAssertEqual(gripsArray.count, 2)
-        XCTAssertEqual(gripsArray.totalSeconds, 358)
+        XCTAssertEqual(gripsArray.totalSeconds, 328)
         
         XCTAssertEqual(gripsArray[0].workSeconds, 7)
         XCTAssertEqual(gripsArray[0].restSeconds, 3)
         XCTAssertEqual(gripsArray[0].breakMinutes, 1)
         XCTAssertEqual(gripsArray[0].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 15)
+        XCTAssertNil(gripsArray[0].lastBreakMinutes)
+        XCTAssertNil(gripsArray[0].lastBreakSeconds)
         
         XCTAssertEqual(gripsArray[1].workSeconds, 7)
         XCTAssertEqual(gripsArray[1].restSeconds, 3)
         XCTAssertEqual(gripsArray[1].breakMinutes, 1)
         XCTAssertEqual(gripsArray[1].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 15)
+        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 45)
         
         XCTAssertEqual(gripsArray[0].durations.count, 4)
         XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
@@ -1328,7 +1340,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[3].startSeconds, 112)
         
         XCTAssertEqual(gripsArray[1].durations.count, 4)
-        XCTAssertEqual(gripsArray[1].durations[0].description, "BREAK for 135 sec")
+        XCTAssertEqual(gripsArray[1].durations[0].description, "BREAK for 105 sec")
         XCTAssertEqual(gripsArray[1].durations[0].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[0].currRep, 0)
         XCTAssertEqual(gripsArray[1].durations[0].startSeconds, 119)
@@ -1336,17 +1348,17 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[1].durations[1].description, "WORK for 7 sec")
         XCTAssertEqual(gripsArray[1].durations[1].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[1].currRep, 0)
-        XCTAssertEqual(gripsArray[1].durations[1].startSeconds, 254)
+        XCTAssertEqual(gripsArray[1].durations[1].startSeconds, 224)
         
         XCTAssertEqual(gripsArray[1].durations[2].description, "BREAK for 90 sec")
         XCTAssertEqual(gripsArray[1].durations[2].currSet, 1)
         XCTAssertEqual(gripsArray[1].durations[2].currRep, 0)
-        XCTAssertEqual(gripsArray[1].durations[2].startSeconds, 261)
+        XCTAssertEqual(gripsArray[1].durations[2].startSeconds, 231)
         
         XCTAssertEqual(gripsArray[1].durations[3].description, "WORK for 7 sec")
         XCTAssertEqual(gripsArray[1].durations[3].currSet, 1)
         XCTAssertEqual(gripsArray[1].durations[3].currRep, 0)
-        XCTAssertEqual(gripsArray[1].durations[3].startSeconds, 351)
+        XCTAssertEqual(gripsArray[1].durations[3].startSeconds, 321)
     }
     
     /// Test for Grips = 2, Sets = 2 Reps = 2
@@ -1362,8 +1374,9 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip1.restSeconds = 3
         grip1.breakMinutes = 1
         grip1.breakSeconds = 30
-        grip1.lastBreakMinutes = 2
-        grip1.lastBreakSeconds = 15
+        grip1.lastBreakMinutes = 1
+        grip1.lastBreakSeconds = 45
+        grip1.sequenceNum = 1
         grip1.gripType = gripType1
         
         // Create test grip2
@@ -1379,26 +1392,27 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip2.breakSeconds = 30
         grip2.lastBreakMinutes = 2
         grip2.lastBreakSeconds = 15
+        grip2.sequenceNum = 2
         grip2.gripType = gripType2
         
         let gripsArray = GripsArray(grips: workout.gripArray)
 
         XCTAssertEqual(gripsArray.count, 2)
-        XCTAssertEqual(gripsArray.totalSeconds, 398)
+        XCTAssertEqual(gripsArray.totalSeconds, 368)
         
         XCTAssertEqual(gripsArray[0].workSeconds, 7)
         XCTAssertEqual(gripsArray[0].restSeconds, 3)
         XCTAssertEqual(gripsArray[0].breakMinutes, 1)
         XCTAssertEqual(gripsArray[0].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 15)
+        XCTAssertNil(gripsArray[0].lastBreakMinutes)
+        XCTAssertNil(gripsArray[0].lastBreakSeconds)
         
         XCTAssertEqual(gripsArray[1].workSeconds, 7)
         XCTAssertEqual(gripsArray[1].restSeconds, 3)
         XCTAssertEqual(gripsArray[1].breakMinutes, 1)
         XCTAssertEqual(gripsArray[1].breakSeconds, 30)
-        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 2)
-        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 15)
+        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 45)
         
         XCTAssertEqual(gripsArray[0].durations.count, 8)
         XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
@@ -1442,7 +1456,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[7].startSeconds, 132)
         
         XCTAssertEqual(gripsArray[1].durations.count, 8)
-        XCTAssertEqual(gripsArray[1].durations[0].description, "BREAK for 135 sec")
+        XCTAssertEqual(gripsArray[1].durations[0].description, "BREAK for 105 sec")
         XCTAssertEqual(gripsArray[1].durations[0].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[0].currRep, 0)
         XCTAssertEqual(gripsArray[1].durations[0].startSeconds, 139)
@@ -1450,36 +1464,36 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[1].durations[1].description, "WORK for 7 sec")
         XCTAssertEqual(gripsArray[1].durations[1].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[1].currRep, 0)
-        XCTAssertEqual(gripsArray[1].durations[1].startSeconds, 274)
+        XCTAssertEqual(gripsArray[1].durations[1].startSeconds, 244)
         
         XCTAssertEqual(gripsArray[1].durations[2].description, "REST for 3 sec")
         XCTAssertEqual(gripsArray[1].durations[2].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[2].currRep, 1)
-        XCTAssertEqual(gripsArray[1].durations[2].startSeconds, 281)
+        XCTAssertEqual(gripsArray[1].durations[2].startSeconds, 251)
         
         XCTAssertEqual(gripsArray[1].durations[3].description, "WORK for 7 sec")
         XCTAssertEqual(gripsArray[1].durations[3].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[3].currRep, 1)
-        XCTAssertEqual(gripsArray[1].durations[3].startSeconds, 284)
+        XCTAssertEqual(gripsArray[1].durations[3].startSeconds, 254)
         
         XCTAssertEqual(gripsArray[1].durations[4].description, "BREAK for 90 sec")
         XCTAssertEqual(gripsArray[1].durations[4].currSet, 1)
         XCTAssertEqual(gripsArray[1].durations[4].currRep, 0)
-        XCTAssertEqual(gripsArray[1].durations[4].startSeconds, 291)
+        XCTAssertEqual(gripsArray[1].durations[4].startSeconds, 261)
         
         XCTAssertEqual(gripsArray[1].durations[5].description, "WORK for 7 sec")
         XCTAssertEqual(gripsArray[1].durations[5].currSet, 1)
         XCTAssertEqual(gripsArray[1].durations[5].currRep, 0)
-        XCTAssertEqual(gripsArray[1].durations[5].startSeconds, 381)
+        XCTAssertEqual(gripsArray[1].durations[5].startSeconds, 351)
         
         XCTAssertEqual(gripsArray[1].durations[6].description, "REST for 3 sec")
         XCTAssertEqual(gripsArray[1].durations[6].currSet, 1)
         XCTAssertEqual(gripsArray[1].durations[6].currRep, 1)
-        XCTAssertEqual(gripsArray[1].durations[6].startSeconds, 388)
+        XCTAssertEqual(gripsArray[1].durations[6].startSeconds, 358)
         
         XCTAssertEqual(gripsArray[1].durations[7].description, "WORK for 7 sec")
         XCTAssertEqual(gripsArray[1].durations[7].currSet, 1)
         XCTAssertEqual(gripsArray[1].durations[7].currRep, 1)
-        XCTAssertEqual(gripsArray[1].durations[7].startSeconds, 391)
+        XCTAssertEqual(gripsArray[1].durations[7].startSeconds, 361)
     }
 }

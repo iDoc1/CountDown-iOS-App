@@ -133,24 +133,35 @@ struct GripsArray {
     /// - Parameter workout: The Core Data Workout object
     private mutating func buildArrayFromGripsArray(grips: [Grip]) {
         for index in 0..<grips.count {
-            let grip = grips[index]
+            let currGrip = grips[index]
+            
+            var prevGrip: Grip? = nil
+            if index > 0 {
+                prevGrip = grips[index - 1]
+            }
+            
             let timerDetails = TimerSetupDetails(
-                sets: grip.unwrappedSetCount,
-                reps: grip.unwrappedRepCount,
-                workSeconds: grip.unwrappedWorkSeconds,
-                restSeconds: grip.unwrappedRestSeconds,
-                breakMinutes: grip.unwrappedBreakMinutes,
-                breakSeconds: grip.unwrappedBreakSeconds,
-                lastBreakMinutes: grip.unwrappedLastBreakMinutes,
-                lastBreakSeconds: grip.unwrappedLastBreakSeconds,
-                edgeSize: grip.unwrappedEdgeSize,
-                decrementSets: grip.unwrappedDecrementSets)
+                sets: currGrip.unwrappedSetCount,
+                reps: currGrip.unwrappedRepCount,
+                workSeconds: currGrip.unwrappedWorkSeconds,
+                restSeconds: currGrip.unwrappedRestSeconds,
+                breakMinutes: currGrip.unwrappedBreakMinutes,
+                breakSeconds: currGrip.unwrappedBreakSeconds,
+                /**
+                 Last break is always taken from the previous grip because the last break must be inserted as the first duration in
+                 each grip. For example, if the previous grip has a last break of 1:30 then that will be the first duration in the current
+                 grip. If the current grip is the first grip in the workout then no last break is added.
+                 */
+                lastBreakMinutes: prevGrip?.unwrappedLastBreakMinutes,
+                lastBreakSeconds: prevGrip?.unwrappedLastBreakSeconds,
+                edgeSize: currGrip.unwrappedEdgeSize,
+                decrementSets: currGrip.unwrappedDecrementSets)
 
             // Include a Prepare duration for the first grip only
             addGrip(
                 timerDetails: timerDetails,
                 gripNum: index,
-                gripName: grip.unwrappedGripTypeName,
+                gripName: currGrip.unwrappedGripTypeName,
                 isLastGrip: index == grips.count - 1)
         }
     }
