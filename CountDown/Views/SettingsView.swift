@@ -10,7 +10,7 @@ import SwiftUI
 /// Shows a list of settings related to timer sound, vibration, and app apprearance
 struct SettingsView: View {
     @AppStorage("timerSound") private var timerSoundOn = true
-    @AppStorage("soundType") private var soundType: TimerSound = .beep
+    @AppStorage("soundType") private var soundType: TimerSound = .strings
     @AppStorage("timerVibration") private var timerVibrationOn = false
     @AppStorage("isDarkMode") private var darkModeOn = true
     /// This is utilized to provide an animation to the Sound Type row. AppStorage does not allow animations on change of value.
@@ -19,7 +19,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
-                Section(header: Text("Timer Feedback")) {
+                Section {
                     Toggle(isOn: $timerSoundOn.animation(), label: {
                         Label("Sound", systemImage: "speaker.wave.2")
                     })
@@ -41,6 +41,10 @@ struct SettingsView: View {
                     Toggle(isOn: $timerVibrationOn) {
                         Label("Vibration Only", systemImage: "dot.radiowaves.left.and.right")
                     }
+                } header: {
+                    Text("Timer Feedback")
+                } footer: {
+                    Text("Silent mode must be disabled for sound to function")
                 }
                 
                 Section {
