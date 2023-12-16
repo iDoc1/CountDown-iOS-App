@@ -15,7 +15,7 @@ workout.
 - Build an ad-hoc timer in a matter of seconds when a full workout is not needed
 - Track workout progress by viewing your workout history and adding notes
 - Customize timer feedback by choosing between sound or vibration
-- Create custom grip type that can be reused between different grips and workouts
+- Create custom grip types that can be reused between different grips and workouts
 
 ## License
 This app uses the GNU Affero General Public License. Copying and redistribution
