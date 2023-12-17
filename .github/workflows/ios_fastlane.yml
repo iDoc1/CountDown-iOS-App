@@ -19,6 +19,7 @@ jobs:
         with:
           lane: 'tests'
   deploy:
+    needs: test
     runs-on: macos-12
     steps:
       - uses: actions/checkout@v2
