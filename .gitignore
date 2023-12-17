@@ -4,3 +4,6 @@
 
 build/
 xcuserdata/
+
+test_output/
+fastlane/report.xml
