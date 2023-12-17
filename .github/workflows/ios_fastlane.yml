@@ -7,16 +7,10 @@ on:
     branches: [ "main" ]
 
 jobs:
-  deploy:
-    runs-on: macos-12
+  build:
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.0'
-          bundler-cache: true
-      - uses: maierj/fastlane-action@v3.0.0
+      - run: fastlane beta
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-        with:
-          lane: 'beta'
