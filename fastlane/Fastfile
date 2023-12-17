@@ -20,7 +20,7 @@ platform :ios do
   desc "Build and run CountDown tests"
   lane :tests do
     run_tests(project: "CountDown.xcodeproj",
-              devices: ["iPhone 13 Pro"])
+              devices: ["iPhone 14 Pro"])
   end
 
   desc "Push a new beta build to TestFlight"
