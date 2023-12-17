@@ -22,7 +22,7 @@ This app uses the GNU Affero General Public License. Copying and redistribution
 is allowed, but modification is not. See LICENSE for more details.
 
 ## System Requirements
-iOS 16.4+ is required to install the app.
+iOS 16.0+ is required to run the app.
 
 ## Screenshots
 ![workouts](./screenshots/workouts.png)  
