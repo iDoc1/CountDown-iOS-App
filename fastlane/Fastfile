@@ -69,9 +69,13 @@ platform :ios do
     
     increment_build_number(xcodeproj: "CountDown.xcodeproj")
     
-    cocoapods(
-      clean_install: true
-    )
+    fastlane_dir = %x(pwd)
+    absolute_path = Pathname.new(File.expand_path(fastlane_dir)).parent
+    cocoapods(podfile: "#{absolute_path}/Podfile", error_callback: lambda { |result|
+      # Udate cocoapods. This might fail on the private pods, but we'll let it fail silently
+      cocoapods(podfile: "#{absolute_path}/Podfile", repo_update: true,  error_callback: lambda { |result|
+      })
+    })
 
     match(
       type: 'appstore',
