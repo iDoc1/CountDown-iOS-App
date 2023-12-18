@@ -137,5 +137,4 @@ platform :ios do
       run_precheck_before_submit: false # not supported through ASC API yet
     )
   end
-  
 end
