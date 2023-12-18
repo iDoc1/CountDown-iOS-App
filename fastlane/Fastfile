@@ -98,7 +98,7 @@ platform :ios do
     # app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
     app_identifier = ENV["BUNDLE_ID"]
 
-    profile_name = "match AppStore com.project.CountDown" # replace with the name of the profile to use for the build
+    profile_name = "com.project.CountDown AppStore" # replace with the name of the profile to use for the build
     output_name = "CountDown-iOS" # specify the name of the .ipa file to generate
     export_method = "app-store" # specify the export method
 
