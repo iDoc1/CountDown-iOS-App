@@ -85,8 +85,7 @@ platform :ios do
     sigh(
       adhoc: options[:adhoc],
       api_key: api_key,
-      app_identifier: ENV["BUNDLE_ID"],
-      readonly: true
+      app_identifier: ENV["BUNDLE_ID"]
     )
   end
 
