@@ -7,7 +7,15 @@ on:
     branches: [ "main" ]
 
 jobs:
+  test:
+    name: Run all tests on iPhone simulator
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: fastlane tests
+
   deploy:
+    needs: test # Require that tests pass before deployment is run
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
