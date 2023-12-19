@@ -58,7 +58,7 @@ final class CountdownTimer: ObservableObject {
     /// The index of the current DurationStatus in the current grip
     @Published var durationIndex: Int = 0
     
-    @AppStorage("soundType") private var soundType: TimerSound = .beep
+    @AppStorage("soundType") private var soundType: TimerSound = .strings
     @AppStorage("timerSound") private var timerSoundOn = true
     @AppStorage("timerVibration") private var timerVibrationOn = false
 

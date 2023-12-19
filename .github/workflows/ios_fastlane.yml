@@ -8,8 +8,53 @@ on:
 
 jobs:
   test:
-    name: Build and Test default scheme using any available iPhone simulator
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up ruby env
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.1
+          bundler-cache: true
+      
+      - name: Run tests
+        uses: maierj/fastlane-action@v3.0.0
+        with:
+          lane: 'ios tests'
+
+  deploy:
+    needs: test # Require that tests pass before deployment is run
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - run: fastlane tests
+ 
+      - name: Set up ruby env
+        uses: ruby/setup-ruby@v1.138.0
+        with:
+          ruby-version: 3.2.1
+          bundler-cache: true
+ 
+      - name: Decode signing certificate into a file
+        env:
+          CERTIFICATE_BASE64: ${{ secrets.IOS_DIST_SIGNING_KEY }}
+        run: |
+          echo $CERTIFICATE_BASE64 | base64 --decode > signing-cert.p12
+    
+      - name: Build & upload iOS binary
+        run: bundle exec fastlane ios build_upload_testflight
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+          BUNDLE_ID: ${{ secrets.BUNDLE_ID }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.IOS_DIST_SIGNING_KEY_PASSWORD }}
+          SIGNING_KEY_FILE_PATH: signing-cert.p12
+ 
+      - name: Upload app-store ipa and dsyms to artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-store ipa & dsyms
+          path: |
+            ${{ github.workspace }}/example-iOS.ipa
+            ${{ github.workspace }}/*.app.dSYM.zip
