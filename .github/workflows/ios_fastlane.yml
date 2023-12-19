@@ -8,11 +8,20 @@ on:
 
 jobs:
   test:
-    name: Run all tests on iPhone simulator
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: fastlane tests
+      - uses: actions/checkout@v3
+
+      - name: Set up ruby env
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.1
+          bundler-cache: true
+      
+      - name: Run tests
+        uses: maierj/fastlane-action@v3.0.0
+        with:
+          lane: 'tests'
 
   deploy:
     needs: test # Require that tests pass before deployment is run
