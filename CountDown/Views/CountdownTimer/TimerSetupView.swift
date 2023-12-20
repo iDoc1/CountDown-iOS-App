@@ -16,52 +16,22 @@ struct TimerSetupView: View {
     var body: some View {
         NavigationStack {
             List {
-                Section {
-                    NumberPicker(
-                        number: $timerDetails.sets,
-                        title: "Sets",
-                        minVal: 1,
-                        maxVal: 20,
-                        isInputActive: $isInputActive)
-                    NumberPicker(
-                        number: $timerDetails.reps,
-                        title: "Reps",
-                        minVal: 1,
-                        maxVal: 20,
-                        isInputActive: $isInputActive)
-                    Toggle(isOn: $timerDetails.decrementSets) {
-                        Text("Decrement Sets")
-                    }
-                } header: {
-                    Text("Sets & Reps")
-                } footer: {
-                    Text("Decrementing the sets will reduce the number of reps in even-numbered sets by one rep")
-                }
+                SetsRepsSection(
+                    sets: $timerDetails.sets,
+                    reps: $timerDetails.reps,
+                    decrementSets: $timerDetails.decrementSets,
+                    isInputActive: $isInputActive)
                 
                 Section(header: Text("Durations")) {
-                    NumberPicker(
-                        number: $timerDetails.workSeconds,
-                        title: "Work (sec.)",
-                        minVal: 1,
-                        maxVal: 60,
+                    RepDurationsPicker(
+                        workSeconds: $timerDetails.workSeconds,
+                        restSeconds: $timerDetails.restSeconds,
                         isInputActive: $isInputActive)
-                    NumberPicker(
-                        number: $timerDetails.restSeconds,
-                        title: "Rest (sec.)",
-                        minVal: 1,
-                        maxVal: 60,
-                        isInputActive: $isInputActive)
-                    TimePickerButton(
-                        minute: $timerDetails.breakMinutes,
-                        second: $timerDetails.breakSeconds,
-                        showPicker: $showPicker,
+                    BreakDurationPicker(
+                        breakMinutes: $timerDetails.breakMinutes,
+                        breakSeconds: $timerDetails.breakSeconds,
+                        showBreakPicker: $showPicker,
                         title: "Break")
-                    if showPicker {
-                        TimePicker(
-                            minute: $timerDetails.breakMinutes,
-                            second: $timerDetails.breakSeconds,
-                            height: 125.0)
-                    }
                 }
                 NavigationLink {
                     CountdownTimerView(gripsArray: GripsArray(timerDetails: timerDetails))

@@ -17,89 +17,35 @@ struct GripEditForm: View {
 
     var body: some View {
         Form {
-            Section {
-                NavigationLink(destination: GripTypePickerView(selectedGripType: $grip.gripType)) {
-                    HStack {
-                        Text("Grip Type")
-                        Spacer()
-                        Text(grip.gripType?.unwrappedName ?? "None")
-                            .foregroundColor(Color(.systemGray))
-                    }
-                }
-                .accessibilityIdentifier("gripTypesNavLink")
-                
-                HStack {
-                    Text("Edge Size (mm)")
-                    Spacer()
-                    NumberTextField(number: $grip.edgeSize, isInputActive: $isInputActive)
-                }
-            } header: {
-                Text("Grip Type")
-            } footer: {
-                errorMessages.errorView
-            }
+            GripTypeSection(
+                grip: $grip,
+                errorMessages: errorMessages,
+                isInputActive: $isInputActive)
+            SetsRepsSection(
+                sets: $grip.setCount,
+                reps: $grip.repCount,
+                decrementSets: $grip.decrementSets,
+                isInputActive: $isInputActive)
             
             Section {
-                NumberPicker(
-                    number: $grip.setCount,
-                    title: "Sets",
-                    minVal: 1,
-                    maxVal: 20,
+                RepDurationsPicker(
+                    workSeconds: $grip.workSeconds,
+                    restSeconds: $grip.restSeconds,
                     isInputActive: $isInputActive)
-                NumberPicker(
-                    number: $grip.repCount,
-                    title: "Reps",
-                    minVal: 1,
-                    maxVal: 20,
-                    isInputActive: $isInputActive)
-                Toggle(isOn: $grip.decrementSets) {
-                    Text("Decrement Sets")
-                }
-            } header: {
-                Text("Sets & Reps")
-            } footer: {
-                Text("Decrementing the sets will reduce the number of reps in even-numbered sets by one rep")
-            }
-            
-            Section {
-                NumberPicker(
-                    number: $grip.workSeconds,
-                    title: "Work (sec.)",
-                    minVal: 1,
-                    maxVal: 60,
-                    isInputActive: $isInputActive)
-                NumberPicker(
-                    number: $grip.restSeconds,
-                    title: "Rest (sec.)",
-                    minVal: 1,
-                    maxVal: 60,
-                    isInputActive: $isInputActive)
-                TimePickerButton(
-                    minute: $grip.breakMinutes,
-                    second: $grip.breakSeconds,
-                    showPicker: $showBreakPicker,
+                BreakDurationPicker(
+                    breakMinutes: $grip.breakMinutes,
+                    breakSeconds: $grip.breakSeconds,
+                    showBreakPicker: $showBreakPicker,
                     title: "Break")
-                if showBreakPicker {
-                    TimePicker(
-                        minute: $grip.breakMinutes,
-                        second: $grip.breakSeconds,
-                        height: 125.0)
-                }
-                TimePickerButton(
-                    minute: $grip.lastBreakMinutes,
-                    second: $grip.lastBreakSeconds,
-                    showPicker: $showLastBreakPicker,
+                BreakDurationPicker(
+                    breakMinutes: $grip.lastBreakMinutes,
+                    breakSeconds: $grip.lastBreakSeconds,
+                    showBreakPicker: $showLastBreakPicker,
                     title: "Last Break")
-                if showLastBreakPicker {
-                    TimePicker(
-                        minute: $grip.lastBreakMinutes,
-                        second: $grip.lastBreakSeconds,
-                        height: 125.0)
-                }
             } header: {
                 Text("Durations")
             } footer: {
-                Text("'Last Break' occurs between this grip and the next. It is ignored if this grip is last in the workout.")
+                Text("Last Break occurs between this grip and the next. It is ignored if this grip is last in the workout.")
             } .onChange(of: showBreakPicker) { isShowing in
                 // Do not show last break picker if break picker is showing
                 if isShowing {
