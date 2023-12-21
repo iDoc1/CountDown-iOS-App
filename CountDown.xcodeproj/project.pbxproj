@@ -36,6 +36,8 @@
 		AB1BF86E2B003B64004579FF /* GripViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1BF86D2B003B64004579FF /* GripViewModelTests.swift */; };
 		AB1BF8702B005E46004579FF /* WorkoutEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1BF86F2B005E46004579FF /* WorkoutEditView.swift */; };
 		AB1BF8722B017AB1004579FF /* WorkoutViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1BF8712B017AB1004579FF /* WorkoutViewModelTests.swift */; };
+		AB2C7A5F2B33EFF5003D9929 /* Popovers in Frameworks */ = {isa = PBXBuildFile; productRef = AB2C7A5E2B33EFF5003D9929 /* Popovers */; };
+		AB2C7A612B33F84E003D9929 /* InfoButtonWithPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2C7A602B33F84E003D9929 /* InfoButtonWithPopover.swift */; };
 		AB3FD8362AC28BA5009D6C71 /* CountdownTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FD8352AC28BA5009D6C71 /* CountdownTimerTests.swift */; };
 		AB4E700A2B12771B00878AD7 /* GripPropertiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E70092B12771B00878AD7 /* GripPropertiesTests.swift */; };
 		AB4E700C2B14459900878AD7 /* WorkoutPropertiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E700B2B14459900878AD7 /* WorkoutPropertiesTests.swift */; };
@@ -166,6 +168,7 @@
 		AB1BF86D2B003B64004579FF /* GripViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripViewModelTests.swift; sourceTree = "<group>"; };
 		AB1BF86F2B005E46004579FF /* WorkoutEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutEditView.swift; sourceTree = "<group>"; };
 		AB1BF8712B017AB1004579FF /* WorkoutViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModelTests.swift; sourceTree = "<group>"; };
+		AB2C7A602B33F84E003D9929 /* InfoButtonWithPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButtonWithPopover.swift; sourceTree = "<group>"; };
 		AB3FD8352AC28BA5009D6C71 /* CountdownTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerTests.swift; sourceTree = "<group>"; };
 		AB4E70092B12771B00878AD7 /* GripPropertiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripPropertiesTests.swift; sourceTree = "<group>"; };
 		AB4E700B2B14459900878AD7 /* WorkoutPropertiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPropertiesTests.swift; sourceTree = "<group>"; };
@@ -260,6 +263,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB2C7A5F2B33EFF5003D9929 /* Popovers in Frameworks */,
 				ABE480D02B256B5900C5361C /* Starling in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,6 +403,7 @@
 				ABF6A1B22AEAC41F00822B7B /* ErrorText.swift */,
 				ABEB58C62AF6F3DD002C60F8 /* NumberTextField.swift */,
 				AB9DE2332B1BDD1C00CBBFD5 /* SectionRow.swift */,
+				AB2C7A602B33F84E003D9929 /* InfoButtonWithPopover.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -587,6 +592,7 @@
 			name = CountDown;
 			packageProductDependencies = (
 				ABE480CF2B256B5900C5361C /* Starling */,
+				AB2C7A5E2B33EFF5003D9929 /* Popovers */,
 			);
 			productName = CountDown;
 			productReference = AB6404602AD24D32002A9778 /* CountDown.app */;
@@ -648,6 +654,7 @@
 			packageReferences = (
 				ABFA8D482AC8D74200B1C5BF /* XCRemoteSwiftPackageReference "ViewInspector" */,
 				ABE480CE2B256B5900C5361C /* XCRemoteSwiftPackageReference "Starling" */,
+				AB2C7A5D2B33EFF5003D9929 /* XCRemoteSwiftPackageReference "Popovers" */,
 			);
 			productRefGroup = ABA9E7772AAD401000DBF8DA;
 			projectDirPath = "";
@@ -713,6 +720,7 @@
 				AB9DE2342B1BDD1C00CBBFD5 /* SectionRow.swift in Sources */,
 				AB125DC92AE49DF400357717 /* WorkoutCardView.swift in Sources */,
 				AB125DDB2AE61D5900357717 /* WorkoutViewModel.swift in Sources */,
+				AB2C7A612B33F84E003D9929 /* InfoButtonWithPopover.swift in Sources */,
 				ABEB58C32AF48C5A002C60F8 /* GripViewModel.swift in Sources */,
 				AB125DCF2AE5D49600357717 /* WorkoutType.swift in Sources */,
 				ABA9E7D22AB635AE00DBF8DA /* TimerView.swift in Sources */,
@@ -1143,6 +1151,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		AB2C7A5D2B33EFF5003D9929 /* XCRemoteSwiftPackageReference "Popovers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aheze/Popovers";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		ABE480CE2B256B5900C5361C /* XCRemoteSwiftPackageReference "Starling" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/matthewreagan/Starling";
@@ -1162,6 +1178,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AB2C7A5E2B33EFF5003D9929 /* Popovers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB2C7A5D2B33EFF5003D9929 /* XCRemoteSwiftPackageReference "Popovers" */;
+			productName = Popovers;
+		};
 		ABE480CF2B256B5900C5361C /* Starling */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = ABE480CE2B256B5900C5361C /* XCRemoteSwiftPackageReference "Starling" */;

@@ -20,6 +20,7 @@ struct TimerSetupView: View {
                     sets: $timerDetails.sets,
                     reps: $timerDetails.reps,
                     decrementSets: $timerDetails.decrementSets,
+                    hasCustomDurations: $timerDetails.hasCustomDurations,
                     isInputActive: $isInputActive)
                 
                 Section(header: Text("Durations")) {

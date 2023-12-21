@@ -27,6 +27,7 @@ extension Grip {
     @NSManaged public var setCount: Int16
     @NSManaged public var workSeconds: Int16
     @NSManaged public var decrementSets: Bool
+    @NSManaged public var hasCustomDurations: Bool
     @NSManaged public var gripType: GripType?
     @NSManaged public var workout: Workout?
     
@@ -68,6 +69,10 @@ extension Grip {
     
     public var unwrappedDecrementSets: Bool {
         decrementSets
+    }
+    
+    public var unwrappedHasCustomDurations: Bool {
+        hasCustomDurations
     }
 
     public var unwrappedWorkSeconds: Int {

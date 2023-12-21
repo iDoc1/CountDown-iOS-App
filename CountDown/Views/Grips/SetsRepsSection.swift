@@ -12,7 +12,11 @@ struct SetsRepsSection: View {
     @Binding var sets: Int
     @Binding var reps: Int
     @Binding var decrementSets: Bool
+    @Binding var hasCustomDurations: Bool
+    @State private var isShowingDecrementPopover = false
+    @State private var isShowingDurationsPopover = false
     var isInputActive: FocusState<Bool>.Binding
+    
     
     var body: some View {
         Section {
@@ -29,12 +33,24 @@ struct SetsRepsSection: View {
                 maxVal: 20,
                 isInputActive: isInputActive)
             Toggle(isOn: $decrementSets) {
-                Text("Decrement Sets")
+                HStack {
+                    Text("Decrement Sets")
+                    InfoButtonWithPopover(
+                        text: "Decrementing the sets reduces the number of reps in even-numbered " +
+                        "sets by one rep. For example, in a workout with 4 sets of 5 reps, the " +
+                        "number of reps will have the pattern 5 -> 4 -> 5 -> 4.")
+                }
+            }
+            Toggle(isOn: $hasCustomDurations) {
+                HStack {
+                    Text("Custom Durations")
+                    InfoButtonWithPopover(
+                        text: "Enables different work and rest durations to be specified for each " +
+                        "rep. This is expecially useful for ladder workouts.")
+                }
             }
         } header: {
             Text("Sets & Reps")
-        } footer: {
-            Text("Decrementing the sets will reduce the number of reps in even-numbered sets by one rep")
         }
     }
 }
@@ -46,6 +62,7 @@ struct SetsRepsSection_Previews: PreviewProvider {
                 sets: .constant(3),
                 reps: .constant(5),
                 decrementSets: .constant(true),
+                hasCustomDurations: .constant(true),
                 isInputActive: FocusState<Bool>().projectedValue)
         }
     }

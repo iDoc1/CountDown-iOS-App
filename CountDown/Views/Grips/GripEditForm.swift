@@ -25,6 +25,7 @@ struct GripEditForm: View {
                 sets: $grip.setCount,
                 reps: $grip.repCount,
                 decrementSets: $grip.decrementSets,
+                hasCustomDurations: $grip.hasCustomDurations,
                 isInputActive: $isInputActive)
             
             Section {
