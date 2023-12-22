@@ -74,7 +74,7 @@ struct WorkoutGripsView: View {
             }
         }
         .sheet(isPresented: $isShowingNewGripSheet) {
-            NewGripView(context: moc, workout: workout, isShowingNewGripSheet: $isShowingNewGripSheet)
+            NewGripView(workout: workout, isShowingNewGripSheet: $isShowingNewGripSheet)
         }
         .navigationTitle("Grips")
         .navigationBarTitleDisplayMode(.inline)

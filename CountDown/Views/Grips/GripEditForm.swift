@@ -30,9 +30,7 @@ struct GripEditForm: View {
             
             Section {
                 RepDurationsPicker(
-                    workSeconds: $grip.workSeconds,
-                    restSeconds: $grip.restSeconds,
-                    hasCustomDurations: $grip.hasCustomDurations,
+                    grip: $grip,
                     isInputActive: $isInputActive)
                 BreakDurationPicker(
                     breakMinutes: $grip.breakMinutes,
@@ -77,23 +75,10 @@ struct GripEditForm: View {
 }
 
 struct GripEditForm_Previews: PreviewProvider {
-    static let context = PersistenceController.preview.container.viewContext
-    static var workout: Workout = {        
-        let workoutType = WorkoutType(context: context)
-        workoutType.name = "powerEndurance"
-        
-        let workout = Workout(context: context)
-        workout.name = "Repeaters"
-        workout.descriptionText = "RCTM Advanced Repeaters Protocol"
-        workout.createdDate = Date()
-        workout.workoutType = workoutType
-        return workout
-    }()
-
     static var previews: some View {
         NavigationStack {
             GripEditForm(
-                grip: .constant(GripViewModel(workout: workout, context: context)),
+                grip: .constant(GripViewModel()),
                 errorMessages: ErrorMessages())
         }
     }

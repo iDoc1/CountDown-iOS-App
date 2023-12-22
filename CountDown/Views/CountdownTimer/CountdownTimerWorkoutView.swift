@@ -78,14 +78,7 @@ struct CountdownTimerWorkoutView_Previews: PreviewProvider {
         return workout
     }()
     static var previews: some View {
-        let timerDetails = TimerSetupDetails(
-            sets: 2,
-            reps: 3,
-            workSeconds: 7,
-            restSeconds: 3,
-            breakMinutes: 1,
-            breakSeconds: 45)
-        let gripsArray = GripsArray(timerDetails: timerDetails)
+        let gripsArray = GripsArray(grip: GripViewModel())
         NavigationStack {
             CountdownTimerWorkoutView(gripsArray: gripsArray, workout: workout)
         }

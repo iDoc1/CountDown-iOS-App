@@ -77,7 +77,6 @@
 		ABA9E7B82AAD62C200DBF8DA /* WorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7B72AAD62C200DBF8DA /* WorkoutsView.swift */; };
 		ABA9E7BA2AAD62E700DBF8DA /* TimerSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7B92AAD62E700DBF8DA /* TimerSetupView.swift */; };
 		ABA9E7BC2AAD631D00DBF8DA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7BB2AAD631D00DBF8DA /* SettingsView.swift */; };
-		ABA9E7BE2AAD737600DBF8DA /* TimerSetupDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7BD2AAD737600DBF8DA /* TimerSetupDetails.swift */; };
 		ABA9E7C22AAD765B00DBF8DA /* NumberPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7C12AAD765B00DBF8DA /* NumberPicker.swift */; };
 		ABA9E7C62AAE9F8800DBF8DA /* TimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7C52AAE9F8800DBF8DA /* TimePicker.swift */; };
 		ABA9E7CB2AAEB80A00DBF8DA /* TimePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7CA2AAEB80A00DBF8DA /* TimePickerButton.swift */; };
@@ -91,7 +90,6 @@
 		ABA9E7DE2AB6828F00DBF8DA /* TimerTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7DD2AB6828F00DBF8DA /* TimerTextView.swift */; };
 		ABA9E7E02AB7E04B00DBF8DA /* GripsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7DF2AB7E04B00DBF8DA /* GripsArray.swift */; };
 		ABA9E7E42ABFC05500DBF8DA /* GripsArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7E32ABFC05500DBF8DA /* GripsArrayTests.swift */; };
-		ABA9E7E72AC0AAF200DBF8DA /* TimerSetupDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7E62AC0AAF200DBF8DA /* TimerSetupDetailsTests.swift */; };
 		ABD3BE412AF329EA00D13E6D /* WorkoutGripsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3BE402AF329EA00D13E6D /* WorkoutGripsView.swift */; };
 		ABD48EBA2B329D8900B14A51 /* RepDurationsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD48EB92B329D8900B14A51 /* RepDurationsPicker.swift */; };
 		ABD48EBC2B32A19800B14A51 /* SetsRepsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD48EBB2B32A19800B14A51 /* SetsRepsSection.swift */; };
@@ -210,7 +208,6 @@
 		ABA9E7B72AAD62C200DBF8DA /* WorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsView.swift; sourceTree = "<group>"; };
 		ABA9E7B92AAD62E700DBF8DA /* TimerSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSetupView.swift; sourceTree = "<group>"; };
 		ABA9E7BB2AAD631D00DBF8DA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		ABA9E7BD2AAD737600DBF8DA /* TimerSetupDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSetupDetails.swift; sourceTree = "<group>"; };
 		ABA9E7C12AAD765B00DBF8DA /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
 		ABA9E7C52AAE9F8800DBF8DA /* TimePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePicker.swift; sourceTree = "<group>"; };
 		ABA9E7CA2AAEB80A00DBF8DA /* TimePickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerButton.swift; sourceTree = "<group>"; };
@@ -224,7 +221,6 @@
 		ABA9E7DD2AB6828F00DBF8DA /* TimerTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTextView.swift; sourceTree = "<group>"; };
 		ABA9E7DF2AB7E04B00DBF8DA /* GripsArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripsArray.swift; sourceTree = "<group>"; };
 		ABA9E7E32ABFC05500DBF8DA /* GripsArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripsArrayTests.swift; sourceTree = "<group>"; };
-		ABA9E7E62AC0AAF200DBF8DA /* TimerSetupDetailsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSetupDetailsTests.swift; sourceTree = "<group>"; };
 		ABD3BE402AF329EA00D13E6D /* WorkoutGripsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutGripsView.swift; sourceTree = "<group>"; };
 		ABD48EB92B329D8900B14A51 /* RepDurationsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepDurationsPicker.swift; sourceTree = "<group>"; };
 		ABD48EBB2B32A19800B14A51 /* SetsRepsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsRepsSection.swift; sourceTree = "<group>"; };
@@ -460,7 +456,6 @@
 			isa = PBXGroup;
 			children = (
 				ABA9E7D92AB6609000DBF8DA /* Theme.swift */,
-				ABA9E7BD2AAD737600DBF8DA /* TimerSetupDetails.swift */,
 				ABA9E7CE2AB1552700DBF8DA /* CountdownTimer.swift */,
 				ABA9E7DF2AB7E04B00DBF8DA /* GripsArray.swift */,
 				ABF19ACF2AC9F8CF007FD4F6 /* AVPlayer+Beep.swift */,
@@ -529,7 +524,6 @@
 			isa = PBXGroup;
 			children = (
 				ABA9E7E32ABFC05500DBF8DA /* GripsArrayTests.swift */,
-				ABA9E7E62AC0AAF200DBF8DA /* TimerSetupDetailsTests.swift */,
 				AB3FD8352AC28BA5009D6C71 /* CountdownTimerTests.swift */,
 				ABA68AF32AD4DF1500181690 /* TimerSoundTests.swift */,
 			);
@@ -748,7 +742,6 @@
 				ABF6A1B52AEAC75200822B7B /* ErrorMessages.swift in Sources */,
 				AB125DFA2AE752FB00357717 /* GripType+CoreDataClass.swift in Sources */,
 				AB7E61B62AC5150D0081D475 /* TimerUtilities.swift in Sources */,
-				ABA9E7BE2AAD737600DBF8DA /* TimerSetupDetails.swift in Sources */,
 				ABA9E7B82AAD62C200DBF8DA /* WorkoutsView.swift in Sources */,
 				AB7504A12B0AB788007FACAB /* CountdownTimerWorkoutView.swift in Sources */,
 				ABD48EBA2B329D8900B14A51 /* RepDurationsPicker.swift in Sources */,
@@ -813,7 +806,6 @@
 				AB6404632AD24D7D002A9778 /* TimerButtonsViewTests.swift in Sources */,
 				ABDC11DC2B1449DF00F18510 /* GripTypePropertiesTest.swift in Sources */,
 				ABA9E7E42ABFC05500DBF8DA /* GripsArrayTests.swift in Sources */,
-				ABA9E7E72AC0AAF200DBF8DA /* TimerSetupDetailsTests.swift in Sources */,
 				AB4E700C2B14459900878AD7 /* WorkoutPropertiesTests.swift in Sources */,
 				ABFA8D4E2AC8DAA300B1C5BF /* ProgressStepperTests.swift in Sources */,
 				AB9DE2382B1EE73100CBBFD5 /* WorkoutHistoryViewModelTests.swift in Sources */,

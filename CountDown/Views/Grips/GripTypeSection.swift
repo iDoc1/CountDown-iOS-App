@@ -54,7 +54,7 @@ struct GripTypeSection_Previews: PreviewProvider {
     static var previews: some View {
         List {
             GripTypeSection(
-                grip: .constant(GripViewModel(workout: workout, context: context)),
+                grip: .constant(GripViewModel()),
                 errorMessages: ErrorMessages(),
             isInputActive: FocusState<Bool>().projectedValue)
         }

@@ -9,40 +9,49 @@ import SwiftUI
 
 /// A pair of number pickers to choose the work and rest durations for a single rep
 struct RepDurationsPicker: View {
-    @Binding var workSeconds: Int
-    @Binding var restSeconds: Int
-    @Binding var hasCustomDurations: Bool
+    @Binding var grip: GripViewModel
     var isInputActive: FocusState<Bool>.Binding
     
     var body: some View {
         Group {
             NumberPicker(
-                number: $workSeconds,
+                number: $grip.workSeconds,
                 title: "Work (sec.)",
                 minVal: 1,
                 maxVal: 60,
                 isInputActive: isInputActive)
             NumberPicker(
-                number: $restSeconds,
+                number: $grip.restSeconds,
                 title: "Rest (sec.)",
                 minVal: 1,
                 maxVal: 60,
                 isInputActive: isInputActive)
         }
-        .onChange(of: hasCustomDurations) { newValue in
+        .onChange(of: grip.hasCustomDurations) { newValue in
             print("changed to custom")
         }
     }
 }
 
 struct RepDurationsPicker_Previews: PreviewProvider {
+    static let context = PersistenceController.preview.container.viewContext
+    static var workout: Workout = {
+        let workoutType = WorkoutType(context: context)
+        workoutType.name = "powerEndurance"
+        
+        let workout = Workout(context: context)
+        workout.name = "Repeaters"
+        workout.descriptionText = "RCTM Advanced Repeaters Protocol"
+        workout.createdDate = Date()
+        workout.workoutType = workoutType
+        return workout
+    }()
+    
     static var previews: some View {
         List {
             Section {
                 RepDurationsPicker(
-                    workSeconds: .constant(3),
-                    restSeconds: .constant(7),
-                    hasCustomDurations: .constant(true),
+                    grip: .constant(GripViewModel()),
                     isInputActive: FocusState<Bool>().projectedValue)
             }
         }

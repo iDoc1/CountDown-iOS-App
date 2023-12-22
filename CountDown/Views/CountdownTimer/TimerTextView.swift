@@ -56,14 +56,7 @@ struct TimerTextView: View {
 
 struct TimerTextView_Previews: PreviewProvider {
     static var previews: some View {
-        let timerDetails = TimerSetupDetails(
-            sets: 5,
-            reps: 6,
-            workSeconds: 7,
-            restSeconds: 3,
-            breakMinutes: 1,
-            breakSeconds: 47)
-        let gripsArray = GripsArray(timerDetails: timerDetails)
+        let gripsArray = GripsArray(grip: GripViewModel())
         let timer = CountdownTimer(gripsArray: gripsArray)
         
         TimerTextView(timer: timer)

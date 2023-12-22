@@ -9,7 +9,7 @@ import SwiftUI
 
 /// Allows the user to set timer values for a custom timer setup, then navigate to a page to start the timer
 struct TimerSetupView: View {
-    @State private var timerDetails = TimerSetupDetails()
+    @State private var grip = GripViewModel()
     @FocusState private var isInputActive: Bool
     @State var showPicker = false
     
@@ -17,26 +17,24 @@ struct TimerSetupView: View {
         NavigationStack {
             List {
                 SetsRepsSection(
-                    sets: $timerDetails.sets,
-                    reps: $timerDetails.reps,
-                    decrementSets: $timerDetails.decrementSets,
-                    hasCustomDurations: $timerDetails.hasCustomDurations,
+                    sets: $grip.setCount,
+                    reps: $grip.repCount,
+                    decrementSets: $grip.decrementSets,
+                    hasCustomDurations: $grip.hasCustomDurations,
                     isInputActive: $isInputActive)
                 
                 Section(header: Text("Durations")) {
                     RepDurationsPicker(
-                        workSeconds: $timerDetails.workSeconds,
-                        restSeconds: $timerDetails.restSeconds,
-                        hasCustomDurations: $timerDetails.hasCustomDurations,
+                        grip: $grip,
                         isInputActive: $isInputActive)
                     BreakDurationPicker(
-                        breakMinutes: $timerDetails.breakMinutes,
-                        breakSeconds: $timerDetails.breakSeconds,
+                        breakMinutes: $grip.breakMinutes,
+                        breakSeconds: $grip.breakSeconds,
                         showBreakPicker: $showPicker,
                         title: "Break")
                 }
                 NavigationLink {
-                    CountdownTimerView(gripsArray: GripsArray(timerDetails: timerDetails))
+//                    CountdownTimerView(gripsArray: GripsArray(timerDetails: timerDetails))
                 } label: {
                     Label("Start Workout", systemImage: "play.fill")
                         .font(.headline)

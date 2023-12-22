@@ -10,18 +10,21 @@ import CoreData
 
 /// A view to edit an existing grip
 struct GripEditView: View {
-    @State private var grip: GripViewModel
+    @Environment(\.managedObjectContext) var moc
+    @ObservedObject var grip: Grip
+    @State private var gripModel: GripViewModel
     @Binding var isShowingEditGripSheet: Bool
     @StateObject var errorMessages = ErrorMessages()
 
     init(context: NSManagedObjectContext, grip: Grip, isShowingEditGripSheet: Binding<Bool>) {
-        self.grip = GripViewModel(workout: grip.workout!, grip: grip, context: context)
+        self.grip = grip
+        self.gripModel = GripViewModel(grip: grip)
         _isShowingEditGripSheet = isShowingEditGripSheet
     }
 
     var body: some View {
         NavigationStack {
-            GripEditForm(grip: $grip, errorMessages: errorMessages)
+            GripEditForm(grip: $gripModel, errorMessages: errorMessages)
                 .navigationTitle("Edit Grip")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -32,8 +35,8 @@ struct GripEditView: View {
                     }
                     ToolbarItem(placement: .confirmationAction) {
                         Button("Done") {
-                            if gripIsValidated(grip: grip, errorMessages: errorMessages) {
-                                grip.save()
+                            if gripIsValidated(grip: gripModel, errorMessages: errorMessages) {
+                                gripModel.saveAsGrip(workout: grip.workout!, context: moc)
                                 isShowingEditGripSheet = false
                             }
                         }
