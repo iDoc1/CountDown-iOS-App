@@ -30,6 +30,8 @@ extension Grip {
     @NSManaged public var hasCustomDurations: Bool
     @NSManaged public var gripType: GripType?
     @NSManaged public var workout: Workout?
+    @NSManaged public var customWorkSeconds: [Int]?
+    @NSManaged public var customRestSeconds: [Int]?
     
     public var unwrappedBreakMinutes: Int {
         Int(breakMinutes)
@@ -81,6 +83,14 @@ extension Grip {
     
     public var unwrappedGripTypeName: String {
         gripType?.unwrappedName ?? "Unknown Grip Type"
+    }
+    
+    public var unwrappedCustomWork: [Int] {
+        customWorkSeconds ?? []
+    }
+    
+    public var unwrappedCustomRest: [Int] {
+        customRestSeconds ?? []
     }
     
     /// Duplicates this grip using the given context

@@ -46,7 +46,7 @@ struct SetsRepsSection: View {
                     Text("Custom Durations")
                     InfoButtonWithPopover(
                         text: "Enables different work and rest durations to be specified for each " +
-                        "rep. This is expecially useful for ladder workouts.")
+                        "rep. This is especially useful for ladder workouts.")
                 }
             }
         } header: {

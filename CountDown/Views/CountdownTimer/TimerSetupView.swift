@@ -27,6 +27,7 @@ struct TimerSetupView: View {
                     RepDurationsPicker(
                         workSeconds: $timerDetails.workSeconds,
                         restSeconds: $timerDetails.restSeconds,
+                        hasCustomDurations: $timerDetails.hasCustomDurations,
                         isInputActive: $isInputActive)
                     BreakDurationPicker(
                         breakMinutes: $timerDetails.breakMinutes,

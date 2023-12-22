@@ -11,9 +11,11 @@ import SwiftUI
 struct RepDurationsPicker: View {
     @Binding var workSeconds: Int
     @Binding var restSeconds: Int
+    @Binding var hasCustomDurations: Bool
     var isInputActive: FocusState<Bool>.Binding
     
     var body: some View {
+        Group {
             NumberPicker(
                 number: $workSeconds,
                 title: "Work (sec.)",
@@ -26,7 +28,10 @@ struct RepDurationsPicker: View {
                 minVal: 1,
                 maxVal: 60,
                 isInputActive: isInputActive)
-        
+        }
+        .onChange(of: hasCustomDurations) { newValue in
+            print("changed to custom")
+        }
     }
 }
 
@@ -37,6 +42,7 @@ struct RepDurationsPicker_Previews: PreviewProvider {
                 RepDurationsPicker(
                     workSeconds: .constant(3),
                     restSeconds: .constant(7),
+                    hasCustomDurations: .constant(true),
                     isInputActive: FocusState<Bool>().projectedValue)
             }
         }

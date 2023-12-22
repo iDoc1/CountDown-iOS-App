@@ -32,6 +32,7 @@ struct GripEditForm: View {
                 RepDurationsPicker(
                     workSeconds: $grip.workSeconds,
                     restSeconds: $grip.restSeconds,
+                    hasCustomDurations: $grip.hasCustomDurations,
                     isInputActive: $isInputActive)
                 BreakDurationPicker(
                     breakMinutes: $grip.breakMinutes,
