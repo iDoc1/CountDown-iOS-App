@@ -14,6 +14,7 @@ struct RepDurationsPicker: View {
     
     var body: some View {
         Group {
+            // Do not show custom rep pickers if rep count is above the max limit
             if grip.hasCustomDurations && grip.repCount <= maxNumberOfReps{
                 ForEach(0..<grip.repCount, id: \.self) { index in
                     Section {

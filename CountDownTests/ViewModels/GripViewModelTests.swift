@@ -7,6 +7,7 @@
 
 import XCTest
 import CoreData
+import SwiftUI
 @testable import CountDown
 
 final class GripViewModelTests: XCTestCase {
@@ -77,6 +78,16 @@ final class GripViewModelTests: XCTestCase {
         XCTAssertEqual(savedGrip?.unwrappedEdgeSize, nil)
         XCTAssertEqual(savedGrip?.unwrappedSequenceNum, 1)
         XCTAssertEqual(savedGrip?.unwrappedGripTypeName, "Full Crimp")
+        XCTAssertFalse(savedGrip!.unwrappedHasCustomDurations)
+        XCTAssertFalse(savedGrip!.unwrappedDecrementSets)
+        
+        for workSeconds in savedGrip!.unwrappedCustomWork {
+            XCTAssertEqual(workSeconds, 7)
+        }
+        
+        for restSeconds in savedGrip!.unwrappedCustomRest {
+            XCTAssertEqual(restSeconds, 3)
+        }
     }
     
     func testEdgeSizeIsCorrect() throws {
@@ -162,6 +173,8 @@ final class GripViewModelTests: XCTestCase {
         grip.gripType = gripType
         grip.workout = workout
         grip.sequenceNum = 3
+        grip.customWorkSeconds = [7, 7, 7, 7, 7]
+        grip.customRestSeconds = [3, 3, 3, 3, 3]
         try context.save()
         
         var fetchRequest = NSFetchRequest<Grip>(entityName: "Grip")
@@ -178,6 +191,10 @@ final class GripViewModelTests: XCTestCase {
         gripViewModel.lastBreakMinutes = 2
         gripViewModel.lastBreakSeconds = 35
         gripViewModel.edgeSize = 12
+        gripViewModel.decrementSets = true
+        gripViewModel.hasCustomDurations = true
+        gripViewModel.customWorkSeconds[3] = 9
+        gripViewModel.customRestSeconds[4] = 5
         gripViewModel.saveAsGrip(workout: workout, context: context)
         
         fetchRequest = NSFetchRequest<Grip>(entityName: "Grip")
@@ -194,5 +211,9 @@ final class GripViewModelTests: XCTestCase {
         XCTAssertEqual(savedGrip?.unwrappedEdgeSize, 12)
         XCTAssertEqual(savedGrip?.unwrappedSequenceNum, 3)
         XCTAssertEqual(savedGrip?.unwrappedGripTypeName, "Full Crimp")
+        XCTAssertTrue(savedGrip!.unwrappedDecrementSets)
+        XCTAssertTrue(savedGrip!.unwrappedHasCustomDurations)
+        XCTAssertEqual(savedGrip!.unwrappedCustomWork[3], 9)
+        XCTAssertEqual(savedGrip!.unwrappedCustomRest[4], 5)
     }
 }
