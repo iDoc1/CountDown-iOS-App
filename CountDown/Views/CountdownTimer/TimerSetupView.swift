@@ -23,16 +23,35 @@ struct TimerSetupView: View {
                 } header: {
                     Text("Sets & Reps")
                 }
-                Section(header: Text("Durations")) {
+                
+                if grip.hasCustomDurations {
                     RepDurationsPicker(
                         grip: $grip,
                         isInputActive: $isInputActive)
-                    BreakDurationPicker(
-                        breakMinutes: $grip.breakMinutes,
-                        breakSeconds: $grip.breakSeconds,
-                        showBreakPicker: $showPicker,
-                        title: "Break")
+                    Section {
+                        BreakDurationPicker(
+                            breakMinutes: $grip.breakMinutes,
+                            breakSeconds: $grip.breakSeconds,
+                            showBreakPicker: $showPicker,
+                            title: "Break")
+                    } header: {
+                        Text("Break Durations")
+                    }
+                } else {
+                    Section {
+                        RepDurationsPicker(
+                            grip: $grip,
+                            isInputActive: $isInputActive)
+                        BreakDurationPicker(
+                            breakMinutes: $grip.breakMinutes,
+                            breakSeconds: $grip.breakSeconds,
+                            showBreakPicker: $showPicker,
+                            title: "Break")
+                    } header: {
+                        Text("Durations")
+                    }
                 }
+                
                 NavigationLink {
                     CountdownTimerView(gripsArray: GripsArray(grip: grip))
                 } label: {
@@ -48,6 +67,12 @@ struct TimerSetupView: View {
                     Button("Done") {
                         isInputActive = false
                     }
+                }
+            }
+            .onChange(of: grip.repCount) { newValue in
+                // Do not show custom durations if user increases reps to an invalid quantity
+                if newValue > maxNumberOfReps {
+                    grip.hasCustomDurations = false
                 }
             }
         }

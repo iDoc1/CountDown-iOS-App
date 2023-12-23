@@ -14,21 +14,46 @@ struct RepDurationsPicker: View {
     
     var body: some View {
         Group {
-            NumberPicker(
-                number: $grip.workSeconds,
-                title: "Work (sec.)",
-                minVal: 1,
-                maxVal: 60,
-                isInputActive: isInputActive)
-            NumberPicker(
-                number: $grip.restSeconds,
-                title: "Rest (sec.)",
-                minVal: 1,
-                maxVal: 60,
-                isInputActive: isInputActive)
-        }
-        .onChange(of: grip.hasCustomDurations) { newValue in
-            print("changed to custom")
+            if grip.hasCustomDurations && grip.repCount <= maxNumberOfReps{
+                ForEach(0..<grip.repCount, id: \.self) { index in
+                    Section {
+                        NumberPicker(
+                            number: $grip.customWorkSeconds[index],
+                            title: "Work (sec.)",
+                            minVal: 1,
+                            maxVal: 60,
+                            isInputActive: isInputActive)
+                        /**
+                         Do not include a rest duration on the last rep because it will not be used. A break duration always occurs
+                         after the last work duration in a set, so a rest duration is not needed here.
+                         */
+                        if index < grip.repCount - 1 {
+                            NumberPicker(
+                                number: $grip.customRestSeconds[index],
+                                title: "Rest (sec.)",
+                                minVal: 1,
+                                maxVal: 60,
+                                isInputActive: isInputActive)
+                        }
+                    } header: {
+                        Text("Rep #\(index + 1) Durations")
+                    }
+                    
+                }
+            } else {
+                NumberPicker(
+                    number: $grip.workSeconds,
+                    title: "Work (sec.)",
+                    minVal: 1,
+                    maxVal: 60,
+                    isInputActive: isInputActive)
+                NumberPicker(
+                    number: $grip.restSeconds,
+                    title: "Rest (sec.)",
+                    minVal: 1,
+                    maxVal: 60,
+                    isInputActive: isInputActive)
+            }
         }
     }
 }

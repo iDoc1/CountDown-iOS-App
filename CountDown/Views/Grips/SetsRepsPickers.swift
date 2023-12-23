@@ -20,13 +20,13 @@ struct SetsRepsPickers: View {
             number: $grip.setCount,
             title: "Sets",
             minVal: 1,
-            maxVal: 20,
+            maxVal: maxNumberOfSets,
             isInputActive: isInputActive)
         NumberPicker(
             number: $grip.repCount,
             title: "Reps",
             minVal: 1,
-            maxVal: 20,
+            maxVal: maxNumberOfReps,
             isInputActive: isInputActive)
         Toggle(isOn: $grip.decrementSets) {
             HStack {
@@ -37,7 +37,7 @@ struct SetsRepsPickers: View {
                     "number of reps will have the pattern 5 -> 4 -> 5 -> 4.")
             }
         }
-        Toggle(isOn: $grip.hasCustomDurations) {
+        Toggle(isOn: $grip.hasCustomDurations.animation()) {
             HStack {
                 Text("Custom Durations")
                 InfoButtonWithPopover(

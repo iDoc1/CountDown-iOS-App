@@ -44,8 +44,8 @@ struct GripViewModel {
         
         /// Custom durations variables
         self.hasCustomDurations = false
-        self.customWorkSeconds = []
-        self.customRestSeconds = []
+        self.customWorkSeconds = [Int](repeating: workSeconds, count: maxNumberOfReps)
+        self.customRestSeconds = [Int](repeating: restSeconds, count: maxNumberOfReps)
     }
     
     /// Initialize from an existing grip
@@ -68,23 +68,6 @@ struct GripViewModel {
         self.hasCustomDurations = grip.unwrappedHasCustomDurations
         self.customWorkSeconds = grip.unwrappedCustomWork
         self.customRestSeconds = grip.unwrappedCustomRest
-    }
-    
-    
-    /// Takes the custom work and rest seconds arrays and initializes them with default values at and with array lengths equal to the
-    /// number of reps. For example, if there are 3 reps and a defaultWork of 7 is provided then the customWorkSeconds array will
-    /// look like: [7, 7, 7]
-    /// - Parameters:
-    ///   - defaultWork: Default work seconds to build array with
-    ///   - defaultRest: Default rest seconds to build array with
-    mutating func initializeCustomDurations(defaultWork: Int, defaultRest: Int) {
-        customWorkSeconds = []
-        customRestSeconds = []
-        
-        for _ in 0..<repCount {
-            customWorkSeconds.append(defaultWork)
-            customRestSeconds.append(defaultRest)
-        }
     }
     
     /// Saves this view model to Core Data as a new Grip entity

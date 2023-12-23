@@ -14,7 +14,7 @@ struct GripEditForm: View {
     @State private var showBreakPicker = false
     @State private var showLastBreakPicker = false
     @ObservedObject var errorMessages: ErrorMessages
-
+    
     var body: some View {
         Form {
             Section {
@@ -34,24 +34,37 @@ struct GripEditForm: View {
             } header: {
                 Text("Sets & Reps")
             }
-            Section {
-                RepDurationsPicker(
-                    grip: $grip,
-                    isInputActive: $isInputActive)
-                BreakDurationPicker(
-                    breakMinutes: $grip.breakMinutes,
-                    breakSeconds: $grip.breakSeconds,
-                    showBreakPicker: $showBreakPicker,
-                    title: "Break")
-                BreakDurationPicker(
-                    breakMinutes: $grip.lastBreakMinutes,
-                    breakSeconds: $grip.lastBreakSeconds,
-                    showBreakPicker: $showLastBreakPicker,
-                    title: "Last Break")
-            } header: {
-                Text("Durations")
-            } footer: {
-                Text("Last Break occurs between this grip and the next. It is ignored if this grip is last in the workout.")
+            
+            Group {
+                if grip.hasCustomDurations {
+                    RepDurationsPicker(
+                        grip: $grip,
+                        isInputActive: $isInputActive)
+                    Section {
+                        BreakDurationPickers(
+                            grip: $grip,
+                            showBreakPicker: $showBreakPicker,
+                            showLastBreakPicker: $showLastBreakPicker)
+                    } header: {
+                        Text("Break Durations")
+                    } footer: {
+                        Text("Last Break occurs between this grip and the next. It is ignored if this grip is last in the workout.")
+                    }
+                } else {
+                    Section {
+                        RepDurationsPicker(
+                            grip: $grip,
+                            isInputActive: $isInputActive)
+                        BreakDurationPickers(
+                            grip: $grip,
+                            showBreakPicker: $showBreakPicker,
+                            showLastBreakPicker: $showLastBreakPicker)
+                    } header: {
+                        Text("Durations")
+                    } footer: {
+                        Text("Last Break occurs between this grip and the next. It is ignored if this grip is last in the workout.")
+                    }
+                }
             } .onChange(of: showBreakPicker) { isShowing in
                 // Do not show last break picker if break picker is showing
                 if isShowing {
@@ -68,6 +81,8 @@ struct GripEditForm: View {
                     }
                 }
             }
+            
+            
         }
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
@@ -76,6 +91,25 @@ struct GripEditForm: View {
                     isInputActive = false
                 }
             }
+        }
+    }
+    
+    struct BreakDurationPickers: View {
+        @Binding var grip: GripViewModel
+        @Binding var showBreakPicker: Bool
+        @Binding var showLastBreakPicker: Bool
+        
+        var body: some View {
+            BreakDurationPicker(
+                breakMinutes: $grip.breakMinutes,
+                breakSeconds: $grip.breakSeconds,
+                showBreakPicker: $showBreakPicker,
+                title: "Break")
+            BreakDurationPicker(
+                breakMinutes: $grip.lastBreakMinutes,
+                breakSeconds: $grip.lastBreakSeconds,
+                showBreakPicker: $showLastBreakPicker,
+                title: "Last Break")
         }
     }
 }

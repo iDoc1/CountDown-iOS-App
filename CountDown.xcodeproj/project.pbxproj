@@ -103,6 +103,7 @@
 		ABE480D02B256B5900C5361C /* Starling in Frameworks */ = {isa = PBXBuildFile; productRef = ABE480CF2B256B5900C5361C /* Starling */; };
 		ABE480D32B25814D00C5361C /* strings_low.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480D12B25814D00C5361C /* strings_low.caf */; };
 		ABE480D42B25814D00C5361C /* strings_high.caf in Resources */ = {isa = PBXBuildFile; fileRef = ABE480D22B25814D00C5361C /* strings_high.caf */; };
+		ABE716A92B36A9A000BD6079 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE716A82B36A9A000BD6079 /* Constants.swift */; };
 		ABEB58C12AF48B25002C60F8 /* GripEditForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB58C02AF48B25002C60F8 /* GripEditForm.swift */; };
 		ABEB58C32AF48C5A002C60F8 /* GripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB58C22AF48C5A002C60F8 /* GripViewModel.swift */; };
 		ABEB58C52AF49AB5002C60F8 /* NewGripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEB58C42AF49AB5002C60F8 /* NewGripView.swift */; };
@@ -233,6 +234,7 @@
 		ABE480BF2B2566B600C5361C /* beep_high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = beep_high.caf; sourceTree = "<group>"; };
 		ABE480D12B25814D00C5361C /* strings_low.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = strings_low.caf; sourceTree = "<group>"; };
 		ABE480D22B25814D00C5361C /* strings_high.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = strings_high.caf; sourceTree = "<group>"; };
+		ABE716A82B36A9A000BD6079 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ABEB58C02AF48B25002C60F8 /* GripEditForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripEditForm.swift; sourceTree = "<group>"; };
 		ABEB58C22AF48C5A002C60F8 /* GripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripViewModel.swift; sourceTree = "<group>"; };
 		ABEB58C42AF49AB5002C60F8 /* NewGripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGripView.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				AB125DD02AE5DB4400357717 /* ColorUtilities.swift */,
 				AB125DFE2AE8B1FD00357717 /* TextUtilities.swift */,
 				ABA95D882B0194770096E0B2 /* FormUtilities.swift */,
+				ABE716A82B36A9A000BD6079 /* Constants.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -778,6 +781,7 @@
 				ABA9E7B32AAD414500DBF8DA /* CountDown.xcdatamodeld in Sources */,
 				ABD48EC02B32A5D400B14A51 /* GripTypePickers.swift in Sources */,
 				ABD48EBC2B32A19800B14A51 /* SetsRepsPickers.swift in Sources */,
+				ABE716A92B36A9A000BD6079 /* Constants.swift in Sources */,
 				ABA68B082AD78A1A00181690 /* TimerVibrator.swift in Sources */,
 				AB125DD12AE5DB4400357717 /* ColorUtilities.swift in Sources */,
 				ABF19AD02AC9F8CF007FD4F6 /* AVPlayer+Beep.swift in Sources */,
