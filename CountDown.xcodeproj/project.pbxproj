@@ -92,9 +92,9 @@
 		ABA9E7E42ABFC05500DBF8DA /* GripsArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7E32ABFC05500DBF8DA /* GripsArrayTests.swift */; };
 		ABD3BE412AF329EA00D13E6D /* WorkoutGripsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3BE402AF329EA00D13E6D /* WorkoutGripsView.swift */; };
 		ABD48EBA2B329D8900B14A51 /* RepDurationsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD48EB92B329D8900B14A51 /* RepDurationsPicker.swift */; };
-		ABD48EBC2B32A19800B14A51 /* SetsRepsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD48EBB2B32A19800B14A51 /* SetsRepsSection.swift */; };
+		ABD48EBC2B32A19800B14A51 /* SetsRepsPickers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD48EBB2B32A19800B14A51 /* SetsRepsPickers.swift */; };
 		ABD48EBE2B32A39300B14A51 /* BreakDurationPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD48EBD2B32A39300B14A51 /* BreakDurationPicker.swift */; };
-		ABD48EC02B32A5D400B14A51 /* GripTypeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD48EBF2B32A5D400B14A51 /* GripTypeSection.swift */; };
+		ABD48EC02B32A5D400B14A51 /* GripTypePickers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD48EBF2B32A5D400B14A51 /* GripTypePickers.swift */; };
 		ABDC11DC2B1449DF00F18510 /* GripTypePropertiesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDC11DB2B1449DF00F18510 /* GripTypePropertiesTest.swift */; };
 		ABDC11DE2B16F3E400F18510 /* WorkoutTypePropertiesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABDC11DD2B16F3E400F18510 /* WorkoutTypePropertiesTest.swift */; };
 		ABE480BD2B25024400C5361C /* HistoryGripPropertiesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE480BC2B25024400C5361C /* HistoryGripPropertiesTest.swift */; };
@@ -223,9 +223,9 @@
 		ABA9E7E32ABFC05500DBF8DA /* GripsArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripsArrayTests.swift; sourceTree = "<group>"; };
 		ABD3BE402AF329EA00D13E6D /* WorkoutGripsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutGripsView.swift; sourceTree = "<group>"; };
 		ABD48EB92B329D8900B14A51 /* RepDurationsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepDurationsPicker.swift; sourceTree = "<group>"; };
-		ABD48EBB2B32A19800B14A51 /* SetsRepsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsRepsSection.swift; sourceTree = "<group>"; };
+		ABD48EBB2B32A19800B14A51 /* SetsRepsPickers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsRepsPickers.swift; sourceTree = "<group>"; };
 		ABD48EBD2B32A39300B14A51 /* BreakDurationPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakDurationPicker.swift; sourceTree = "<group>"; };
-		ABD48EBF2B32A5D400B14A51 /* GripTypeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripTypeSection.swift; sourceTree = "<group>"; };
+		ABD48EBF2B32A5D400B14A51 /* GripTypePickers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripTypePickers.swift; sourceTree = "<group>"; };
 		ABDC11DB2B1449DF00F18510 /* GripTypePropertiesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripTypePropertiesTest.swift; sourceTree = "<group>"; };
 		ABDC11DD2B16F3E400F18510 /* WorkoutTypePropertiesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTypePropertiesTest.swift; sourceTree = "<group>"; };
 		ABE480BC2B25024400C5361C /* HistoryGripPropertiesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGripPropertiesTest.swift; sourceTree = "<group>"; };
@@ -353,9 +353,9 @@
 				ABEB58C42AF49AB5002C60F8 /* NewGripView.swift */,
 				ABEB58CA2AF71541002C60F8 /* NewGripTypeView.swift */,
 				ABD48EB92B329D8900B14A51 /* RepDurationsPicker.swift */,
-				ABD48EBB2B32A19800B14A51 /* SetsRepsSection.swift */,
+				ABD48EBB2B32A19800B14A51 /* SetsRepsPickers.swift */,
 				ABD48EBD2B32A39300B14A51 /* BreakDurationPicker.swift */,
-				ABD48EBF2B32A5D400B14A51 /* GripTypeSection.swift */,
+				ABD48EBF2B32A5D400B14A51 /* GripTypePickers.swift */,
 			);
 			path = Grips;
 			sourceTree = "<group>";
@@ -776,8 +776,8 @@
 				ABF6A1B32AEAC41F00822B7B /* ErrorText.swift in Sources */,
 				AB9DE2362B1EDBB400CBBFD5 /* HistoryGripCardView.swift in Sources */,
 				ABA9E7B32AAD414500DBF8DA /* CountDown.xcdatamodeld in Sources */,
-				ABD48EC02B32A5D400B14A51 /* GripTypeSection.swift in Sources */,
-				ABD48EBC2B32A19800B14A51 /* SetsRepsSection.swift in Sources */,
+				ABD48EC02B32A5D400B14A51 /* GripTypePickers.swift in Sources */,
+				ABD48EBC2B32A19800B14A51 /* SetsRepsPickers.swift in Sources */,
 				ABA68B082AD78A1A00181690 /* TimerVibrator.swift in Sources */,
 				AB125DD12AE5DB4400357717 /* ColorUtilities.swift in Sources */,
 				ABF19AD02AC9F8CF007FD4F6 /* AVPlayer+Beep.swift in Sources */,

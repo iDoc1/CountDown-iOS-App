@@ -16,13 +16,13 @@ struct TimerSetupView: View {
     var body: some View {
         NavigationStack {
             List {
-                SetsRepsSection(
-                    sets: $grip.setCount,
-                    reps: $grip.repCount,
-                    decrementSets: $grip.decrementSets,
-                    hasCustomDurations: $grip.hasCustomDurations,
-                    isInputActive: $isInputActive)
-                
+                Section {
+                    SetsRepsPickers(
+                        grip: $grip,
+                        isInputActive: $isInputActive)
+                } header: {
+                    Text("Sets & Reps")
+                }
                 Section(header: Text("Durations")) {
                     RepDurationsPicker(
                         grip: $grip,
@@ -34,7 +34,7 @@ struct TimerSetupView: View {
                         title: "Break")
                 }
                 NavigationLink {
-//                    CountdownTimerView(gripsArray: GripsArray(timerDetails: timerDetails))
+                    CountdownTimerView(gripsArray: GripsArray(grip: grip))
                 } label: {
                     Label("Start Workout", systemImage: "play.fill")
                         .font(.headline)

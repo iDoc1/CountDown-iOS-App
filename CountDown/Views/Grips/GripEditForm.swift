@@ -17,17 +17,23 @@ struct GripEditForm: View {
 
     var body: some View {
         Form {
-            GripTypeSection(
-                grip: $grip,
-                errorMessages: errorMessages,
-                isInputActive: $isInputActive)
-            SetsRepsSection(
-                sets: $grip.setCount,
-                reps: $grip.repCount,
-                decrementSets: $grip.decrementSets,
-                hasCustomDurations: $grip.hasCustomDurations,
-                isInputActive: $isInputActive)
-            
+            Section {
+                GripTypePickers(
+                    grip: $grip,
+                    errorMessages: errorMessages,
+                    isInputActive: $isInputActive)
+            } header: {
+                Text("Grip Type")
+            } footer: {
+                errorMessages.errorView
+            }
+            Section {
+                SetsRepsPickers(
+                    grip: $grip,
+                    isInputActive: $isInputActive)
+            } header: {
+                Text("Sets & Reps")
+            }
             Section {
                 RepDurationsPicker(
                     grip: $grip,
