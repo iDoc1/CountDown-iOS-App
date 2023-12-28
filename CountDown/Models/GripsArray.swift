@@ -48,6 +48,9 @@ struct GripsArray {
         var lastBreakMinutes: Int?
         var lastBreakSeconds: Int?
         var edgeSize: Int?
+        var hasCustomDurations: Bool
+        var customWorkSeconds: [Int]
+        var customRestSeconds: [Int]
         /// Optional break that occurs between grips that takes precedence over the standard break duration. There are some
         /// where a user may want the break duration between grips to be different that the break duration between sets. This property
         /// is used for that scenario.
@@ -89,7 +92,7 @@ struct GripsArray {
     }
     
     init(grips: [Grip]) {
-        buildArrayFromGripsArray(grips: grips)
+        buildArrayFromGrips(grips: grips)
     }
     
     /// Enables use of the [index] operator on this struct
@@ -117,7 +120,10 @@ struct GripsArray {
             restSeconds: 0,
             decrementSets: false,
             breakMinutes: 0,
-            breakSeconds: 0)
+            breakSeconds: 0,
+            hasCustomDurations: false,
+            customWorkSeconds: [],
+            customRestSeconds: [])
     }
     
     private var secondsElapsed = 0
@@ -131,7 +137,7 @@ struct GripsArray {
     
     /// Builds durations array for this struct using the given array of Grip objects
     /// - Parameter workout: The Core Data Workout object
-    private mutating func buildArrayFromGripsArray(grips: [Grip]) {
+    private mutating func buildArrayFromGrips(grips: [Grip]) {
         for index in 0..<grips.count {
             let currGrip = grips[index]
             
@@ -155,6 +161,9 @@ struct GripsArray {
             grip.lastBreakMinutes = prevGrip?.unwrappedLastBreakMinutes ?? 0
             grip.lastBreakSeconds = prevGrip?.unwrappedLastBreakSeconds ?? 0
             
+            grip.hasCustomDurations = currGrip.unwrappedHasCustomDurations
+            grip.customWorkSeconds = currGrip.unwrappedCustomWork
+            grip.customRestSeconds = currGrip.unwrappedCustomRest
             grip.edgeSize = currGrip.unwrappedEdgeSize
             grip.decrementSets = currGrip.unwrappedDecrementSets
 
@@ -194,7 +203,10 @@ struct GripsArray {
             breakSeconds: grip.breakSeconds,
             lastBreakMinutes: grip.lastBreakMinutes,
             lastBreakSeconds: grip.lastBreakSeconds,
-            edgeSize: grip.edgeSize))
+            edgeSize: grip.edgeSize,
+            hasCustomDurations: grip.hasCustomDurations,
+            customWorkSeconds: grip.customWorkSeconds,
+            customRestSeconds: grip.customRestSeconds))
         
         // Add a prepare duration only for the first grip
         if gripNum == 0 {
@@ -240,8 +252,17 @@ struct GripsArray {
         func addDuration(type: DurationType) {
             switch type {
             case .workType:
+                let workSeconds: Int
+                
+                // Use custom work seconds if custom durations is turned on
+                if grip.hasCustomDurations {
+                    workSeconds = grip.customWorkSeconds[currRep]
+                } else {
+                    workSeconds = grip.workSeconds
+                }
+                
                 let workDuration = DurationStatus(
-                    seconds: grip.workSeconds,
+                    seconds: workSeconds,
                     durationType: .workType,
                     currSet: currSet,
                     currRep: currRep,
@@ -249,8 +270,18 @@ struct GripsArray {
                 secondsElapsed += workDuration.seconds
                 grips[currGrip].durations.append(workDuration)
             case .restType:
+                let restSeconds: Int
+                
+                // Use custom rest seconds if custom durations is turned on
+                if grip.hasCustomDurations {
+                    // Subtract one because rep has already incremented after work duration
+                    restSeconds = grip.customRestSeconds[currRep - 1]
+                } else {
+                    restSeconds = grip.restSeconds
+                }
+                
                 let restDuration = DurationStatus(
-                    seconds: grip.restSeconds,
+                    seconds: restSeconds,
                     durationType: .restType,
                     currSet: currSet,
                     currRep: currRep,
