@@ -31,8 +31,8 @@ struct GripCardView: View {
                     }
                     Spacer()
                     VStack(alignment: .leading) {
-                        Text("Work: \(grip.unwrappedWorkSeconds)s")
-                        Text("Rest: \(grip.unwrappedRestSeconds)s")
+                        Text("Work: \(workSecondsString)")
+                        Text("Rest: \(restSecondsString)")
                     }
                     Spacer()
                     VStack(alignment: .leading) {
@@ -53,6 +53,22 @@ struct GripCardView: View {
         .sheet(isPresented: $isShowingEditGripSheet, content: {
             GripEditView(context: moc, grip: grip, isShowingEditGripSheet: $isShowingEditGripSheet)
         })
+    }
+    
+    /// Shows the work seconds or a message if grip has custom durations
+    private var workSecondsString: String {
+        if grip.hasCustomDurations {
+            return "Custom"
+        }
+        return "\(grip.unwrappedWorkSeconds)s"
+    }
+    
+    /// Shows the rest seconds or a message if grip has custom durations
+    private var restSecondsString: String {
+        if grip.hasCustomDurations {
+            return "Custom"
+        }
+        return "\(grip.unwrappedRestSeconds)s"
     }
 }
 
