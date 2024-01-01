@@ -86,11 +86,11 @@ extension Grip {
     }
     
     public var unwrappedCustomWork: [Int] {
-        customWorkSeconds ?? []
+        customWorkSeconds ?? [Int](repeating: 7, count: maxNumberOfReps)
     }
     
     public var unwrappedCustomRest: [Int] {
-        customRestSeconds ?? []
+        customRestSeconds ?? [Int](repeating: 3, count: maxNumberOfReps)
     }
     
     /// Duplicates this grip using the given context
@@ -107,6 +107,9 @@ extension Grip {
         newGrip.lastBreakMinutes = lastBreakMinutes
         newGrip.lastBreakSeconds = lastBreakSeconds
         newGrip.decrementSets = decrementSets
+        newGrip.hasCustomDurations = hasCustomDurations
+        newGrip.customWorkSeconds = customWorkSeconds
+        newGrip.customRestSeconds = customRestSeconds
         newGrip.edgeSize = edgeSize
         newGrip.gripType = gripType
         newGrip.sequenceNum = Int16(workout!.maxSeqNum + 1)
