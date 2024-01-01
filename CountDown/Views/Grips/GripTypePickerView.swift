@@ -50,13 +50,7 @@ struct GripTypePickerView: View {
                         Text("Deleting a grip type currently in use by a grip will cause the grip" +
                              " type to show up as 'Grip Type Deleted'")
                     }
-                    Section {
-                        NewGripTypeView()
-                    } footer: {
-                        Text("Add new grip types here. Some examples are 'Half Crimp'," +
-                             " 'Open Hand Crimp', or 'Three Finger Drag'.")
-                    }
-                    
+                    NewGripTypeView()
                 }
             }
         }

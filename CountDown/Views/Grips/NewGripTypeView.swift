@@ -13,32 +13,39 @@ struct NewGripTypeView: View {
     @State private var newGripTypeName = ""
     
     var body: some View {
-        HStack {
-            TextField("New Grip Type", text: $newGripTypeName.max(40))
-            Button(action: {
-                withAnimation {
-                    let newGripType = GripType(context: moc)
-                    newGripType.name = newGripTypeName
-                    
-                    do {
-                        try moc.save()
-                    } catch {
-                        print("Failed to save Grip Type: \(error)")
+        Section {
+            HStack {
+                TextField("New Grip Type", text: $newGripTypeName.max(40))
+                Button(action: {
+                    withAnimation {
+                        let newGripType = GripType(context: moc)
+                        newGripType.name = newGripTypeName
+                        
+                        do {
+                            try moc.save()
+                        } catch {
+                            print("Failed to save Grip Type: \(error)")
+                        }
+                        newGripTypeName = ""
                     }
-                    newGripTypeName = ""
+                }) {
+                    Image(systemName: "plus.circle.fill")
+                        .accessibilityLabel("Add Grip Type")
                 }
-            }) {
-                Image(systemName: "plus.circle.fill")
-                    .accessibilityLabel("Add Grip Type")
+                .disabled(newGripTypeName.isEmpty)
             }
-            .disabled(newGripTypeName.isEmpty)
+        } footer: {
+            Text("Add new grip types here. Some examples are 'Half Crimp'," +
+                 " 'Open Hand Crimp', or 'Three Finger Drag'.")
         }
     }
 }
 
 struct NewGripTypeView_Previews: PreviewProvider {
     static var previews: some View {
-        NewGripTypeView()
-            .previewLayout(.fixed(width: 400, height: 60))
+        List {
+            NewGripTypeView()
+                .previewLayout(.fixed(width: 400, height: 60))
+        }
     }
 }
