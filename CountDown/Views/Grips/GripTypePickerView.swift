@@ -52,6 +52,7 @@ struct GripTypePickerView: View {
                     }
                     NewGripTypeView()
                 }
+                .id(UUID())
             }
         }
         .navigationTitle("Grip Types")
@@ -60,25 +61,18 @@ struct GripTypePickerView: View {
     
     /// Deletes the grip types at the given index values
     private func deleteGripTypes(at offsets: IndexSet) {
-        /*
-         Add slight delay to prevent SwiftUI deletion bug. Bug not fixed as of 11/6/23.
-         Taken from following source:
-         https://stackoverflow.com/questions/60358948/swiftui-delete-row-in-list-with-context-menu-ui-glitch
-         */
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-            for index in offsets {
-                // Unselect the grip type prior to deleting if it is currently selected
-                if gripTypes[index] == selectedGripType {
-                    selectedGripType = nil
-                }
-                moc.delete(gripTypes[index])
+        for index in offsets {
+            // Unselect the grip type prior to deleting if it is currently selected
+            if gripTypes[index] == selectedGripType {
+                selectedGripType = nil
             }
-            
-            do {
-                try moc.save()
-            } catch {
-                print("Failed to save Grip Type: \(error)")
-            }
+            moc.delete(gripTypes[index])
+        }
+        
+        do {
+            try moc.save()
+        } catch {
+            print("Failed to save Grip Type: \(error)")
         }
     }
 }
