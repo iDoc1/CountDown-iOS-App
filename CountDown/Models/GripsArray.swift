@@ -56,14 +56,22 @@ struct GripsArray {
         /// is used for that scenario.
         var preGripBreak: DurationStatus?
         
-        /// String representation of the workSeconds
+        /// String representation of the workSeconds. Takes into account custom durations.
         var workTime: String {
-            timeToString(seconds: workSeconds)
+            if hasCustomDurations {
+                return customDurationsString(customSeconds: customWorkSeconds, range: totalReps)
+            }
+            
+            return timeToString(seconds: workSeconds)
         }
         
         /// String representation of the restSeconds
         var restTime: String {
-            timeToString(seconds: restSeconds)
+            if hasCustomDurations {
+                return customDurationsString(customSeconds: customRestSeconds, range: totalReps - 1)
+            }
+            
+            return timeToString(seconds: restSeconds)
         }
         
         /// String representation of the workSeconds

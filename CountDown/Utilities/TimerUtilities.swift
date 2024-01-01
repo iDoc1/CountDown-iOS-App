@@ -46,3 +46,29 @@ func secondsToLongString(seconds: Int) -> String {
         return "\(hours)hr \(minutes)min \(seconds)sec"
     }
 }
+
+/// Returns a string representation of the custom durations in the format "3,5,7s". If the reps exceeds 3 integers then a string in
+/// the format "3...7" is displayed instead of showing the first and last integers only.
+/// - Parameters:
+///   - customSeconds: The custom durations array
+///   - range: The number of integers within the customSeconds array to show in the string
+/// - Returns: A string representation of the custom durations to show
+func customDurationsString(customSeconds: [Int], range: Int) -> String {
+    if range <= 0 || customSeconds.count == 0 {
+        return "None"
+    }
+
+    let firstInt = String(customSeconds[0])
+    
+    if range <= 3 {
+        var result = firstInt
+        for index in 1..<range {
+            result += ",\(customSeconds[index])"
+        }
+        
+        return "\(result)s"
+    }
+    
+    let lastInt = customSeconds[range - 1]
+    return "\(firstInt)...\(lastInt)s"
+}

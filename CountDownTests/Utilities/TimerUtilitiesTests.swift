@@ -9,6 +9,7 @@ import XCTest
 @testable import CountDown
 
 final class TimerUtilitiesTests: XCTestCase {
+    let customDurations = [3, 6, 9, 12, 15]
     
     func testTimeToStringSingleDigitSeconds()  {
         let time = timeToString(seconds: 7)
@@ -104,5 +105,25 @@ final class TimerUtilitiesTests: XCTestCase {
     func testSecondsToStringAt3600Seconds() {
         let time = secondsToLongString(seconds: 3600)
         XCTAssertEqual(time, "1hr 0min 0sec")
+    }
+    
+    func testCustomDurationsEmpty() {
+        let custom = customDurationsString(customSeconds: [], range: 5)
+        XCTAssertEqual(custom, "None")
+    }
+    
+    func testCustomDurationsRange1() {
+        let custom = customDurationsString(customSeconds: customDurations, range: 1)
+        XCTAssertEqual(custom, "3s")
+    }
+    
+    func testCustomDurationsRange3() {
+        let custom = customDurationsString(customSeconds: customDurations, range: 3)
+        XCTAssertEqual(custom, "3,6,9s")
+    }
+    
+    func testCustomDurationsRange4() {
+        let custom = customDurationsString(customSeconds: customDurations, range: 4)
+        XCTAssertEqual(custom, "3...12s")
     }
 }
