@@ -53,6 +53,9 @@ final class WorkoutHistoryViewModelTests: XCTestCase {
         grip2.breakSeconds = 45
         grip2.lastBreakMinutes = 1
         grip2.lastBreakSeconds = 45
+        grip2.hasCustomDurations = true
+        grip2.customWorkSeconds = [7, 7, 7, 7, 7]
+        grip2.customRestSeconds = [3, 3, 3, 3, 3]
         grip2.edgeSize = 16
         grip2.sequenceNum = 2
         grip2.gripType = gripType2
@@ -86,6 +89,7 @@ final class WorkoutHistoryViewModelTests: XCTestCase {
         XCTAssertEqual(savedHistory?.gripArray[0].breakSeconds, 30)
         XCTAssertEqual(savedHistory?.gripArray[0].lastBreakMinutes, 1)
         XCTAssertEqual(savedHistory?.gripArray[0].lastBreakSeconds, 30)
+        XCTAssertFalse(savedHistory!.gripArray[0].hasCustomDurations)
         XCTAssertEqual(savedHistory?.gripArray[0].edgeSize, 18)
         XCTAssertEqual(savedHistory?.gripArray[0].sequenceNum, 1)
         XCTAssertEqual(savedHistory?.gripArray[0].gripTypeName, "Full Crimp")
@@ -98,6 +102,9 @@ final class WorkoutHistoryViewModelTests: XCTestCase {
         XCTAssertEqual(savedHistory?.gripArray[1].breakSeconds, 45)
         XCTAssertEqual(savedHistory?.gripArray[1].lastBreakMinutes, 1)
         XCTAssertEqual(savedHistory?.gripArray[1].lastBreakSeconds, 45)
+        XCTAssertTrue(savedHistory!.gripArray[1].hasCustomDurations)
+        XCTAssertEqual(savedHistory?.gripArray[1].customWorkSeconds, [7, 7, 7, 7, 7])
+        XCTAssertEqual(savedHistory?.gripArray[1].customRestSeconds, [3, 3, 3, 3, 3])
         XCTAssertEqual(savedHistory?.gripArray[1].edgeSize, 16)
         XCTAssertEqual(savedHistory?.gripArray[1].sequenceNum, 2)
         XCTAssertEqual(savedHistory?.gripArray[1].gripTypeName, "Half Crimp")

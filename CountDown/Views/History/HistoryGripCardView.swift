@@ -26,8 +26,8 @@ struct HistoryGripCardView: View {
                     }
                     Spacer()
                     VStack(alignment: .leading) {
-                        Text("Work: \(historyGrip.unwrappedWorkSeconds)s")
-                        Text("Rest: \(historyGrip.unwrappedRestSeconds)s")
+                        Text("Work: \(workSecondsString)")
+                        Text("Rest: \(restSecondsString)")
                     }
                     Spacer()
                     VStack(alignment: .leading) {
@@ -40,6 +40,26 @@ struct HistoryGripCardView: View {
                 .foregroundColor(Color(.systemGray))
             }
         }
+    }
+    
+    /// Shows the work seconds or a message if history grip has custom durations
+    private var workSecondsString: String {
+        if historyGrip.hasCustomDurations {
+            return customDurationsString(
+                customSeconds: historyGrip.unwrappedCustomWork,
+                range: historyGrip.unwrappedRepCount)
+        }
+        return "\(historyGrip.unwrappedWorkSeconds)s"
+    }
+    
+    /// Shows the rest seconds or a message if history grip has custom durations
+    private var restSecondsString: String {
+        if historyGrip.hasCustomDurations {
+            return customDurationsString(
+                customSeconds: historyGrip.unwrappedCustomRest,
+                range: historyGrip.unwrappedRepCount - 1)
+        }
+        return "\(historyGrip.unwrappedRestSeconds)s"
     }
 }
 

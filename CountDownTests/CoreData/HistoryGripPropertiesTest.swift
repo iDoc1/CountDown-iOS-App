@@ -50,6 +50,9 @@ final class HistoryGripPropertiesTest: XCTestCase {
         historyGrip.breakSeconds = 30
         historyGrip.lastBreakMinutes = 1
         historyGrip.lastBreakSeconds = 30
+        historyGrip.hasCustomDurations = true
+        historyGrip.customWorkSeconds = [3, 6, 9, 12]
+        historyGrip.customRestSeconds = [30, 35, 40, 45]
         historyGrip.edgeSize = 18
         historyGrip.sequenceNum = 2
         
@@ -61,6 +64,9 @@ final class HistoryGripPropertiesTest: XCTestCase {
         XCTAssertEqual(historyGrip.unwrappedBreakSeconds, 30)
         XCTAssertEqual(historyGrip.unwrappedLastBreakMinutes, 1)
         XCTAssertEqual(historyGrip.unwrappedLastBreakSeconds, 30)
+        XCTAssertEqual(historyGrip.unwrappedHasCustomDurations, true)
+        XCTAssertEqual(historyGrip.unwrappedCustomWork, [3, 6, 9, 12])
+        XCTAssertEqual(historyGrip.unwrappedCustomRest, [30, 35, 40, 45])
         XCTAssertEqual(historyGrip.unwrappedEdgeSize, 18)
         XCTAssertEqual(historyGrip.unwrappedSequenceNum, 2)
         XCTAssertEqual(historyGrip.unwrappedGripTypeName, "Full Crimp")
@@ -78,6 +84,11 @@ final class HistoryGripPropertiesTest: XCTestCase {
         XCTAssertEqual(historyGrip.unwrappedBreakSeconds, 0)
         XCTAssertEqual(historyGrip.unwrappedLastBreakMinutes, 0)
         XCTAssertEqual(historyGrip.unwrappedLastBreakSeconds, 0)
+        XCTAssertEqual(historyGrip.unwrappedHasCustomDurations, false)
+        XCTAssertEqual(historyGrip.unwrappedCustomWork.count, maxNumberOfReps)
+        XCTAssertEqual(historyGrip.unwrappedCustomWork.first, 7)
+        XCTAssertEqual(historyGrip.unwrappedCustomRest.count, maxNumberOfReps)
+        XCTAssertEqual(historyGrip.unwrappedCustomRest.first, 3)
         XCTAssertNil(historyGrip.unwrappedEdgeSize)
         XCTAssertEqual(historyGrip.unwrappedSequenceNum, 0)
         XCTAssertEqual(historyGrip.unwrappedGripTypeName, "Unknown Grip Type")

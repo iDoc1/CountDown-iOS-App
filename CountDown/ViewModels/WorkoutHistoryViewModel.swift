@@ -56,6 +56,10 @@ struct WorkoutHistoryViewModel {
                 historyGrip.breakSeconds = grip.breakSeconds
                 historyGrip.lastBreakMinutes = grip.lastBreakMinutes
                 historyGrip.lastBreakSeconds = grip.lastBreakSeconds
+                historyGrip.decrementSets = grip.decrementSets
+                historyGrip.hasCustomDurations = grip.hasCustomDurations
+                historyGrip.customWorkSeconds = grip.customWorkSeconds
+                historyGrip.customRestSeconds = grip.customRestSeconds
                 historyGrip.edgeSize = grip.edgeSize
                 historyGrip.sequenceNum = grip.sequenceNum
             }
