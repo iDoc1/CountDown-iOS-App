@@ -27,8 +27,11 @@ extension Grip {
     @NSManaged public var setCount: Int16
     @NSManaged public var workSeconds: Int16
     @NSManaged public var decrementSets: Bool
+    @NSManaged public var hasCustomDurations: Bool
     @NSManaged public var gripType: GripType?
     @NSManaged public var workout: Workout?
+    @NSManaged public var customWorkSeconds: [Int]?
+    @NSManaged public var customRestSeconds: [Int]?
     
     public var unwrappedBreakMinutes: Int {
         Int(breakMinutes)
@@ -69,6 +72,10 @@ extension Grip {
     public var unwrappedDecrementSets: Bool {
         decrementSets
     }
+    
+    public var unwrappedHasCustomDurations: Bool {
+        hasCustomDurations
+    }
 
     public var unwrappedWorkSeconds: Int {
         Int(workSeconds)
@@ -76,6 +83,14 @@ extension Grip {
     
     public var unwrappedGripTypeName: String {
         gripType?.unwrappedName ?? "Unknown Grip Type"
+    }
+    
+    public var unwrappedCustomWork: [Int] {
+        customWorkSeconds ?? [Int](repeating: 7, count: maxNumberOfReps)
+    }
+    
+    public var unwrappedCustomRest: [Int] {
+        customRestSeconds ?? [Int](repeating: 3, count: maxNumberOfReps)
     }
     
     /// Duplicates this grip using the given context
@@ -92,6 +107,9 @@ extension Grip {
         newGrip.lastBreakMinutes = lastBreakMinutes
         newGrip.lastBreakSeconds = lastBreakSeconds
         newGrip.decrementSets = decrementSets
+        newGrip.hasCustomDurations = hasCustomDurations
+        newGrip.customWorkSeconds = customWorkSeconds
+        newGrip.customRestSeconds = customRestSeconds
         newGrip.edgeSize = edgeSize
         newGrip.gripType = gripType
         newGrip.sequenceNum = Int16(workout!.maxSeqNum + 1)

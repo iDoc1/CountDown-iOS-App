@@ -14,92 +14,57 @@ struct GripEditForm: View {
     @State private var showBreakPicker = false
     @State private var showLastBreakPicker = false
     @ObservedObject var errorMessages: ErrorMessages
-
+    
     var body: some View {
         Form {
             Section {
-                NavigationLink(destination: GripTypePickerView(selectedGripType: $grip.gripType)) {
-                    HStack {
-                        Text("Grip Type")
-                        Spacer()
-                        Text(grip.gripType?.unwrappedName ?? "None")
-                            .foregroundColor(Color(.systemGray))
-                    }
-                }
-                .accessibilityIdentifier("gripTypesNavLink")
-                
-                HStack {
-                    Text("Edge Size (mm)")
-                    Spacer()
-                    NumberTextField(number: $grip.edgeSize, isInputActive: $isInputActive)
-                }
+                GripTypePickers(
+                    grip: $grip,
+                    errorMessages: errorMessages,
+                    isInputActive: $isInputActive)
             } header: {
                 Text("Grip Type")
             } footer: {
                 errorMessages.errorView
             }
-            
             Section {
-                NumberPicker(
-                    number: $grip.setCount,
-                    title: "Sets",
-                    minVal: 1,
-                    maxVal: 20,
+                SetsRepsPickers(
+                    grip: $grip,
                     isInputActive: $isInputActive)
-                NumberPicker(
-                    number: $grip.repCount,
-                    title: "Reps",
-                    minVal: 1,
-                    maxVal: 20,
-                    isInputActive: $isInputActive)
-                Toggle(isOn: $grip.decrementSets) {
-                    Text("Decrement Sets")
-                }
             } header: {
                 Text("Sets & Reps")
-            } footer: {
-                Text("Decrementing the sets will reduce the number of reps in even-numbered sets by one rep")
             }
             
-            Section {
-                NumberPicker(
-                    number: $grip.workSeconds,
-                    title: "Work (sec.)",
-                    minVal: 1,
-                    maxVal: 60,
-                    isInputActive: $isInputActive)
-                NumberPicker(
-                    number: $grip.restSeconds,
-                    title: "Rest (sec.)",
-                    minVal: 1,
-                    maxVal: 60,
-                    isInputActive: $isInputActive)
-                TimePickerButton(
-                    minute: $grip.breakMinutes,
-                    second: $grip.breakSeconds,
-                    showPicker: $showBreakPicker,
-                    title: "Break")
-                if showBreakPicker {
-                    TimePicker(
-                        minute: $grip.breakMinutes,
-                        second: $grip.breakSeconds,
-                        height: 125.0)
+            Group {
+                if grip.hasCustomDurations {
+                    RepDurationsPicker(
+                        grip: $grip,
+                        isInputActive: $isInputActive)
+                    Section {
+                        BreakDurationPickers(
+                            grip: $grip,
+                            showBreakPicker: $showBreakPicker,
+                            showLastBreakPicker: $showLastBreakPicker)
+                    } header: {
+                        Text("Break Durations")
+                    } footer: {
+                        Text("Last Break occurs between this grip and the next. It is ignored if this grip is last in the workout.")
+                    }
+                } else {
+                    Section {
+                        RepDurationsPicker(
+                            grip: $grip,
+                            isInputActive: $isInputActive)
+                        BreakDurationPickers(
+                            grip: $grip,
+                            showBreakPicker: $showBreakPicker,
+                            showLastBreakPicker: $showLastBreakPicker)
+                    } header: {
+                        Text("Durations")
+                    } footer: {
+                        Text("Last Break occurs between this grip and the next. It is ignored if this grip is last in the workout.")
+                    }
                 }
-                TimePickerButton(
-                    minute: $grip.lastBreakMinutes,
-                    second: $grip.lastBreakSeconds,
-                    showPicker: $showLastBreakPicker,
-                    title: "Last Break")
-                if showLastBreakPicker {
-                    TimePicker(
-                        minute: $grip.lastBreakMinutes,
-                        second: $grip.lastBreakSeconds,
-                        height: 125.0)
-                }
-            } header: {
-                Text("Durations")
-            } footer: {
-                Text("'Last Break' occurs between this grip and the next. It is ignored if this grip is last in the workout.")
             } .onChange(of: showBreakPicker) { isShowing in
                 // Do not show last break picker if break picker is showing
                 if isShowing {
@@ -116,6 +81,8 @@ struct GripEditForm: View {
                     }
                 }
             }
+            
+            
         }
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
@@ -126,26 +93,32 @@ struct GripEditForm: View {
             }
         }
     }
+    
+    struct BreakDurationPickers: View {
+        @Binding var grip: GripViewModel
+        @Binding var showBreakPicker: Bool
+        @Binding var showLastBreakPicker: Bool
+        
+        var body: some View {
+            BreakDurationPicker(
+                breakMinutes: $grip.breakMinutes,
+                breakSeconds: $grip.breakSeconds,
+                showBreakPicker: $showBreakPicker,
+                title: "Break")
+            BreakDurationPicker(
+                breakMinutes: $grip.lastBreakMinutes,
+                breakSeconds: $grip.lastBreakSeconds,
+                showBreakPicker: $showLastBreakPicker,
+                title: "Last Break")
+        }
+    }
 }
 
 struct GripEditForm_Previews: PreviewProvider {
-    static let context = PersistenceController.preview.container.viewContext
-    static var workout: Workout = {        
-        let workoutType = WorkoutType(context: context)
-        workoutType.name = "powerEndurance"
-        
-        let workout = Workout(context: context)
-        workout.name = "Repeaters"
-        workout.descriptionText = "RCTM Advanced Repeaters Protocol"
-        workout.createdDate = Date()
-        workout.workoutType = workoutType
-        return workout
-    }()
-
     static var previews: some View {
         NavigationStack {
             GripEditForm(
-                grip: .constant(GripViewModel(workout: workout, context: context)),
+                grip: .constant(GripViewModel()),
                 errorMessages: ErrorMessages())
         }
     }

@@ -74,7 +74,7 @@ struct WorkoutGripsView: View {
             }
         }
         .sheet(isPresented: $isShowingNewGripSheet) {
-            NewGripView(context: moc, workout: workout, isShowingNewGripSheet: $isShowingNewGripSheet)
+            NewGripView(workout: workout, isShowingNewGripSheet: $isShowingNewGripSheet)
         }
         .navigationTitle("Grips")
         .navigationBarTitleDisplayMode(.inline)
@@ -84,9 +84,8 @@ struct WorkoutGripsView: View {
     /// Deletes the grip at the given index
     /// - Parameter index: The index in the grips list to delete
     private func deleteGrip(at index: Int) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-            moc.delete(grips[index])
-        }
+        moc.delete(grips[index])
+
         do {
             try moc.save()
         } catch {

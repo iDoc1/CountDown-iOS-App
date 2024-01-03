@@ -11,6 +11,7 @@ import SwiftUI
 struct TimeTextRow: View {
     let title: String
     let time: String
+    var fontTypeOverride: Font? = nil
 
     var body: some View {
         HStack {
@@ -25,6 +26,12 @@ struct TimeTextRow: View {
     }
     
     private var fontType: Font? {
+        // Check if font type override was given and apply that if so
+        if fontTypeOverride != nil {
+            return fontTypeOverride
+        }
+        
+        // Otherwise, set font type based on length of time string
         if time.count > 5 {
             return .footnote
         }

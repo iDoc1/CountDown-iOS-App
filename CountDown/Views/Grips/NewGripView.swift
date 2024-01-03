@@ -10,16 +10,11 @@ import CoreData
 
 /// Provides a form and a toolbar to add a new grip to the workout
 struct NewGripView: View {
+    @Environment(\.managedObjectContext) var moc
     @ObservedObject var workout: Workout
-    @State private var newGrip: GripViewModel
+    @State private var newGrip = GripViewModel()
     @Binding var isShowingNewGripSheet: Bool
     @StateObject var errorMessages = ErrorMessages()
-
-    init(context: NSManagedObjectContext, workout: Workout, isShowingNewGripSheet: Binding<Bool>) {
-        _workout = ObservedObject(wrappedValue: workout)
-        _newGrip = State(wrappedValue: GripViewModel(workout: workout, context: context))
-        _isShowingNewGripSheet = isShowingNewGripSheet
-    }
     
     var body: some View {
         NavigationStack {
@@ -35,7 +30,7 @@ struct NewGripView: View {
                     ToolbarItem(placement: .confirmationAction) {
                         Button("Add") {
                             if gripIsValidated(grip: newGrip, errorMessages: errorMessages) {
-                                newGrip.save()
+                                newGrip.saveAsGrip(workout: workout, context: moc)
                                 isShowingNewGripSheet = false
                             }
                         }
@@ -61,6 +56,6 @@ struct NewGripView_Previews: PreviewProvider {
     }()
     
     static var previews: some View {
-        NewGripView(context: context, workout: workout, isShowingNewGripSheet: .constant(true))
+        NewGripView(workout: workout, isShowingNewGripSheet: .constant(true))
     }
 }

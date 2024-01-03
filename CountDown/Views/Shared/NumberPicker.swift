@@ -26,24 +26,28 @@ struct NumberPicker: View {
         HStack {
             Text(title)
             Spacer()
-            TextField("", value: $number, formatter: numberFormatter)
+            TextField("", value: $number.animation(), formatter: numberFormatter)
                 .keyboardType(.numberPad)
                 .multilineTextAlignment(.center)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(minWidth: 15, maxWidth: 60)
                 .focused(isInputActive)
-            Stepper(title, value: $number, in: minVal...maxVal)
+            Stepper(title, value: $number.animation(), in: minVal...maxVal)
                 .labelsHidden()
         }
         .onChange(of: number) { newValue in
+            var newNumber = 1
+            
             // Ensure that new value is within the min and max range
             if newValue < minVal {
-                number = minVal
+                newNumber = minVal
             } else if newValue > maxVal {
-                number = maxVal
+                newNumber = maxVal
             } else {
-                number = newValue
+                newNumber = newValue
             }
+            
+            number = newNumber
         }
     }
 }

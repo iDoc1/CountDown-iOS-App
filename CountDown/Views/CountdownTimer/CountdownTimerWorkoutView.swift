@@ -21,7 +21,7 @@ struct CountdownTimerWorkoutView: View {
     }
 
     var body: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 1) {
             TimerHeader(timer: countdownTimer, showGripProgress: true)
             TimerGripTextView(timer: countdownTimer)
             TimerView(timer: countdownTimer)
@@ -75,17 +75,48 @@ struct CountdownTimerWorkoutView_Previews: PreviewProvider {
         workout.createdDate = Date()
         workout.workoutType = workoutType
         
+        let gripType1 = GripType(context: context)
+        gripType1.name = "Half Crimp"
+        let gripType2 = GripType(context: context)
+        gripType2.name = "Three Finger Drag"
+        
+        let grip1 = Grip(context: context)
+        grip1.workout = workout
+        grip1.setCount = 3
+        grip1.repCount = 6
+        grip1.workSeconds = 7
+        grip1.restSeconds = 3
+        grip1.breakMinutes = 1
+        grip1.breakSeconds = 0
+        grip1.lastBreakMinutes = 1
+        grip1.lastBreakSeconds = 59
+        grip1.decrementSets = false
+        grip1.hasCustomDurations = false
+        grip1.edgeSize = 18
+        grip1.sequenceNum = 1
+        grip1.gripType = gripType1
+        
+        let grip2 = Grip(context: context)
+        grip2.workout = workout
+        grip2.setCount = 3
+        grip2.repCount = 6
+        grip2.workSeconds = 7
+        grip2.restSeconds = 3
+        grip2.breakMinutes = 1
+        grip2.breakSeconds = 0
+        grip2.lastBreakMinutes = 1
+        grip2.lastBreakSeconds = 59
+        grip2.decrementSets = false
+        grip2.hasCustomDurations = false
+        grip2.edgeSize = 20
+        grip2.sequenceNum = 2
+        grip2.gripType = gripType2
+        
         return workout
     }()
+
     static var previews: some View {
-        let timerDetails = TimerSetupDetails(
-            sets: 2,
-            reps: 3,
-            workSeconds: 7,
-            restSeconds: 3,
-            breakMinutes: 1,
-            breakSeconds: 45)
-        let gripsArray = GripsArray(timerDetails: timerDetails)
+        let gripsArray = GripsArray(grips: workout.gripArray)
         NavigationStack {
             CountdownTimerWorkoutView(gripsArray: gripsArray, workout: workout)
         }

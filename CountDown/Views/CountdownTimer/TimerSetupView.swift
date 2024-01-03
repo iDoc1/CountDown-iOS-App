@@ -9,7 +9,7 @@ import SwiftUI
 
 /// Allows the user to set timer values for a custom timer setup, then navigate to a page to start the timer
 struct TimerSetupView: View {
-    @State private var timerDetails = TimerSetupDetails()
+    @State private var grip = GripViewModel()
     @FocusState private var isInputActive: Bool
     @State var showPicker = false
     
@@ -17,54 +17,43 @@ struct TimerSetupView: View {
         NavigationStack {
             List {
                 Section {
-                    NumberPicker(
-                        number: $timerDetails.sets,
-                        title: "Sets",
-                        minVal: 1,
-                        maxVal: 20,
+                    SetsRepsPickers(
+                        grip: $grip,
                         isInputActive: $isInputActive)
-                    NumberPicker(
-                        number: $timerDetails.reps,
-                        title: "Reps",
-                        minVal: 1,
-                        maxVal: 20,
-                        isInputActive: $isInputActive)
-                    Toggle(isOn: $timerDetails.decrementSets) {
-                        Text("Decrement Sets")
-                    }
                 } header: {
                     Text("Sets & Reps")
-                } footer: {
-                    Text("Decrementing the sets will reduce the number of reps in even-numbered sets by one rep")
                 }
                 
-                Section(header: Text("Durations")) {
-                    NumberPicker(
-                        number: $timerDetails.workSeconds,
-                        title: "Work (sec.)",
-                        minVal: 1,
-                        maxVal: 60,
+                if grip.hasCustomDurations {
+                    RepDurationsPicker(
+                        grip: $grip,
                         isInputActive: $isInputActive)
-                    NumberPicker(
-                        number: $timerDetails.restSeconds,
-                        title: "Rest (sec.)",
-                        minVal: 1,
-                        maxVal: 60,
-                        isInputActive: $isInputActive)
-                    TimePickerButton(
-                        minute: $timerDetails.breakMinutes,
-                        second: $timerDetails.breakSeconds,
-                        showPicker: $showPicker,
-                        title: "Break")
-                    if showPicker {
-                        TimePicker(
-                            minute: $timerDetails.breakMinutes,
-                            second: $timerDetails.breakSeconds,
-                            height: 125.0)
+                    Section {
+                        BreakDurationPicker(
+                            breakMinutes: $grip.breakMinutes,
+                            breakSeconds: $grip.breakSeconds,
+                            showBreakPicker: $showPicker,
+                            title: "Break")
+                    } header: {
+                        Text("Break Durations")
+                    }
+                } else {
+                    Section {
+                        RepDurationsPicker(
+                            grip: $grip,
+                            isInputActive: $isInputActive)
+                        BreakDurationPicker(
+                            breakMinutes: $grip.breakMinutes,
+                            breakSeconds: $grip.breakSeconds,
+                            showBreakPicker: $showPicker,
+                            title: "Break")
+                    } header: {
+                        Text("Durations")
                     }
                 }
+                
                 NavigationLink {
-                    CountdownTimerView(gripsArray: GripsArray(timerDetails: timerDetails))
+                    CountdownTimerView(gripsArray: GripsArray(grip: grip))
                 } label: {
                     Label("Start Workout", systemImage: "play.fill")
                         .font(.headline)
@@ -78,6 +67,12 @@ struct TimerSetupView: View {
                     Button("Done") {
                         isInputActive = false
                     }
+                }
+            }
+            .onChange(of: grip.repCount) { newValue in
+                // Do not show custom durations if user increases reps to an invalid quantity
+                if newValue > maxNumberOfReps {
+                    grip.hasCustomDurations = false
                 }
             }
         }

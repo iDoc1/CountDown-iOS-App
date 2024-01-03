@@ -31,8 +31,8 @@ struct GripCardView: View {
                     }
                     Spacer()
                     VStack(alignment: .leading) {
-                        Text("Work: \(grip.unwrappedWorkSeconds)s")
-                        Text("Rest: \(grip.unwrappedRestSeconds)s")
+                        Text("Work: \(workSecondsString)")
+                        Text("Rest: \(restSecondsString)")
                     }
                     Spacer()
                     VStack(alignment: .leading) {
@@ -54,6 +54,26 @@ struct GripCardView: View {
             GripEditView(context: moc, grip: grip, isShowingEditGripSheet: $isShowingEditGripSheet)
         })
     }
+    
+    /// Shows the work seconds or a message if grip has custom durations
+    private var workSecondsString: String {
+        if grip.hasCustomDurations {
+            return customDurationsString(
+                customSeconds: grip.unwrappedCustomWork,
+                range: grip.unwrappedRepCount)
+        }
+        return "\(grip.unwrappedWorkSeconds)s"
+    }
+    
+    /// Shows the rest seconds or a message if grip has custom durations
+    private var restSecondsString: String {
+        if grip.hasCustomDurations {
+            return customDurationsString(
+                customSeconds: grip.unwrappedCustomRest,
+                range: grip.unwrappedRepCount - 1)
+        }
+        return "\(grip.unwrappedRestSeconds)s"
+    }
 }
 
 struct GripCardView_Previews: PreviewProvider {
@@ -70,8 +90,6 @@ struct GripCardView_Previews: PreviewProvider {
         
         let gripType1 = GripType(context: context)
         gripType1.name = "Half Crimp"
-        let gripType2 = GripType(context: context)
-        gripType2.name = "Three Finger Drag"
         
         let grip1 = Grip(context: context)
         grip1.workout = workout
@@ -83,6 +101,8 @@ struct GripCardView_Previews: PreviewProvider {
         grip1.breakSeconds = 0
         grip1.lastBreakMinutes = 59
         grip1.lastBreakSeconds = 59
+        grip1.decrementSets = false
+        grip1.hasCustomDurations = false
         grip1.edgeSize = 18
         grip1.sequenceNum = 1
         grip1.gripType = gripType1

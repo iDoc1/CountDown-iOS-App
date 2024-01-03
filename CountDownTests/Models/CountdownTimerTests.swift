@@ -10,17 +10,17 @@ import XCTest
 
 @MainActor
 final class CountdownTimerTests: XCTestCase {
-    let timerDetails = TimerSetupDetails(
-        sets: 2,
-        reps: 3,
-        workSeconds: 7,
-        restSeconds: 3,
-        breakMinutes: 1,
-        breakSeconds: 45)
+    var gripModel = GripViewModel()
     var timer: CountdownTimer!
     
     override func setUpWithError() throws {
-        let gripsArray = GripsArray(timerDetails: timerDetails)
+        gripModel.setCount = 2
+        gripModel.repCount = 3
+        gripModel.workSeconds = 7
+        gripModel.restSeconds = 3
+        gripModel.breakMinutes = 1
+        gripModel.breakSeconds = 45
+        let gripsArray = GripsArray(grip: gripModel)
         timer = CountdownTimer(gripsArray: gripsArray)
     }
     

@@ -3,8 +3,11 @@
     <entity name="Grip" representedClassName="Grip" syncable="YES">
         <attribute name="breakMinutes" attributeType="Integer 16" minValueString="0" maxValueString="59" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="breakSeconds" attributeType="Integer 16" minValueString="0" maxValueString="59" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="customRestSeconds" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformerName" customClassName="[Int]"/>
+        <attribute name="customWorkSeconds" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformerName" customClassName="[Int]"/>
         <attribute name="decrementSets" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="edgeSize" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="hasCustomDurations" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="lastBreakMinutes" attributeType="Integer 16" minValueString="0" maxValueString="59" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="lastBreakSeconds" attributeType="Integer 16" minValueString="0" maxValueString="59" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="repCount" attributeType="Integer 16" minValueString="1" maxValueString="20" defaultValueString="1" usesScalarValueType="YES"/>
