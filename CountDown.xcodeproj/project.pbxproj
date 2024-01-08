@@ -58,6 +58,7 @@
 		AB89A68B2B26562300BF1D80 /* glass_low.caf in Resources */ = {isa = PBXBuildFile; fileRef = AB89A6892B26562300BF1D80 /* glass_low.caf */; };
 		AB89A6932B265EF100BF1D80 /* WorkoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB89A6922B265EF100BF1D80 /* WorkoutTests.swift */; };
 		AB89A69C2B2668EA00BF1D80 /* GripsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB89A69B2B2668EA00BF1D80 /* GripsTest.swift */; };
+		AB8EB7212B4B9D3A00B5942E /* FormUtilitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8EB7202B4B9D3A00B5942E /* FormUtilitiesTests.swift */; };
 		AB9DE2322B1BD98700CBBFD5 /* WorkoutHistoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9DE2312B1BD98700CBBFD5 /* WorkoutHistoryDetailView.swift */; };
 		AB9DE2342B1BDD1C00CBBFD5 /* SectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9DE2332B1BDD1C00CBBFD5 /* SectionRow.swift */; };
 		AB9DE2362B1EDBB400CBBFD5 /* HistoryGripCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9DE2352B1EDBB400CBBFD5 /* HistoryGripCardView.swift */; };
@@ -190,6 +191,7 @@
 		AB89A6902B265EF100BF1D80 /* CountDownUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountDownUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB89A6922B265EF100BF1D80 /* WorkoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTests.swift; sourceTree = "<group>"; };
 		AB89A69B2B2668EA00BF1D80 /* GripsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripsTest.swift; sourceTree = "<group>"; };
+		AB8EB7202B4B9D3A00B5942E /* FormUtilitiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormUtilitiesTests.swift; sourceTree = "<group>"; };
 		AB9DE2312B1BD98700CBBFD5 /* WorkoutHistoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryDetailView.swift; sourceTree = "<group>"; };
 		AB9DE2332B1BDD1C00CBBFD5 /* SectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionRow.swift; sourceTree = "<group>"; };
 		AB9DE2352B1EDBB400CBBFD5 /* HistoryGripCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryGripCardView.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				AB7E61B82AC51DDD0081D475 /* TimerUtilitiesTests.swift */,
+				AB8EB7202B4B9D3A00B5942E /* FormUtilitiesTests.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -349,16 +352,16 @@
 		AB9DE22D2B1BD8B000CBBFD5 /* Grips */ = {
 			isa = PBXGroup;
 			children = (
+				ABD48EBD2B32A39300B14A51 /* BreakDurationPicker.swift */,
 				AB1BF8652AFDE74E004579FF /* GripEditView.swift */,
 				AB1581592AF9F4C900BCB088 /* GripCardView.swift */,
 				ABEB58C02AF48B25002C60F8 /* GripEditForm.swift */,
+				ABD48EBF2B32A5D400B14A51 /* GripTypePickers.swift */,
 				ABEB58C82AF700E4002C60F8 /* GripTypePickerView.swift */,
 				ABEB58C42AF49AB5002C60F8 /* NewGripView.swift */,
 				ABEB58CA2AF71541002C60F8 /* NewGripTypeView.swift */,
 				ABD48EB92B329D8900B14A51 /* RepDurationsPicker.swift */,
 				ABD48EBB2B32A19800B14A51 /* SetsRepsPickers.swift */,
-				ABD48EBD2B32A39300B14A51 /* BreakDurationPicker.swift */,
-				ABD48EBF2B32A5D400B14A51 /* GripTypePickers.swift */,
 			);
 			path = Grips;
 			sourceTree = "<group>";
@@ -803,6 +806,7 @@
 				ABF6A1B82AEACD7700822B7B /* ErrorMessagesTests.swift in Sources */,
 				AB9DE23A2B22E17C00CBBFD5 /* WorkoutHistoryPropertiesTest.swift in Sources */,
 				AB7E61B92AC51DDD0081D475 /* TimerUtilitiesTests.swift in Sources */,
+				AB8EB7212B4B9D3A00B5942E /* FormUtilitiesTests.swift in Sources */,
 				AB4E700A2B12771B00878AD7 /* GripPropertiesTests.swift in Sources */,
 				ABA68AF42AD4DF1500181690 /* TimerSoundTests.swift in Sources */,
 				AB3FD8362AC28BA5009D6C71 /* CountdownTimerTests.swift in Sources */,
