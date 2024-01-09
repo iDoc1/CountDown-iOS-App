@@ -44,7 +44,7 @@ struct SettingsView: View {
                 } header: {
                     Text("Timer Feedback")
                 } footer: {
-                    Text("Silent mode must be disabled for sound to function")
+                    Text("Silent mode must be disabled for sound to work")
                 }
                 
                 Section {

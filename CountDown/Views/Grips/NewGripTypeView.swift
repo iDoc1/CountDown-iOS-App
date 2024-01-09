@@ -40,7 +40,7 @@ struct NewGripTypeView: View {
                 }
             } footer: {
                 Text("Add a new grip type to the list. Some examples are 'Half Crimp' " +
-                     "or 'Three Finger Drag'.")
+                     "and 'Three Finger Drag'.")
             }
             
             // Only show suggestions if grip type form is populated and at least one suggestions exists
