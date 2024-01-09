@@ -18,45 +18,46 @@ struct GripTypePickerView: View {
     ]) private var gripTypes: FetchedResults<GripType>
     
     var body: some View {
-        Group {
-            if gripTypes.count == 0 {
-                List {
-                    NewGripTypeView()
-                }
-            } else {
-                List {
-                    Section {
-                        ForEach(0..<gripTypes.count, id: \.self) { index in
-                            HStack {
-                                Button(action: {
-                                    selectedGripType = gripTypes[index]
-                                }) {
-                                    HStack {
-                                        Text(gripTypes[index].unwrappedName)
-                                            .foregroundColor(colorScheme == .dark ? .white : .black)
-                                        Spacer()
-                                        
-                                        if selectedGripType == gripTypes[index] {
-                                            Image(systemName: "checkmark")
-                                                .foregroundColor(.blue)
-                                                .accessibilityIdentifier("selectedGripType")
+        ScrollViewReader { proxy in
+            Group {
+                if gripTypes.count == 0 {
+                    List {
+                        NewGripTypeView(proxy: proxy)
+                    }
+                } else {
+                    List {
+                        Section {
+                            ForEach(0..<gripTypes.count, id: \.self) { index in
+                                HStack {
+                                    Button(action: {
+                                        selectedGripType = gripTypes[index]
+                                    }) {
+                                        HStack {
+                                            Text(gripTypes[index].unwrappedName)
+                                                .foregroundColor(colorScheme == .dark ? .white : .black)
+                                            Spacer()
+                                            
+                                            if selectedGripType == gripTypes[index] {
+                                                Image(systemName: "checkmark")
+                                                    .foregroundColor(.blue)
+                                                    .accessibilityIdentifier("selectedGripType")
+                                            }
                                         }
                                     }
                                 }
                             }
+                            .onDelete(perform: deleteGripTypes)
+                        } footer: {
+                            Text("Tap grip type to select it. Swipe left to delete it.")
                         }
-                        .onDelete(perform: deleteGripTypes)
-                    } footer: {
-                        Text("Deleting a grip type currently in use by a grip will cause the grip" +
-                             " type to show up as 'Grip Type Deleted'")
+                        NewGripTypeView(proxy: proxy)
                     }
-                    NewGripTypeView()
+                    .id(UUID())
                 }
-                .id(UUID())
             }
-        }
-        .navigationTitle("Grip Types")
+            .navigationTitle("Grip Types")
         .navigationBarTitleDisplayMode(.inline)
+        }
     }
     
     /// Deletes the grip types at the given index values

@@ -54,3 +54,17 @@ func workoutIsValidated(workout: WorkoutViewModel, errorMessages: ErrorMessages)
     
     return isValidated
 }
+
+
+
+/// Returns the first 3 suggestions in the default list of grip types given a new grip type name. Used to offer grip types suggestions to the
+/// user so they do not need to populate everyything themselves.
+/// - Parameter newGripTypeName: The new grip type name
+/// - Returns: A list of suggeste grip type strings
+func getSuggestedGripTypes(newGripTypeName: String) -> [String] {
+    let newGripTypeName = newGripTypeName.trimmingCharacters(in: .whitespaces)
+    // Filter for first 3 default grip types that contain the new grip type text
+    return Array(defaultGripTypes.filter {
+        $0.lowercased().contains(newGripTypeName.lowercased())
+    }.prefix(3))
+}
