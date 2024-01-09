@@ -12,7 +12,8 @@ struct SoundPickerView: View {
     @Environment(\.colorScheme) private var colorScheme
     @Binding var selectedSound: TimerSound
     private let soundTypes = TimerSound.allCases.map { $0 }
-    private let players = TimerSound.allCases.map { TimerSoundPlayer(type: $0) }
+    // Must be static otherwise UI refresh will cause sound to be cutoff
+    private static let players = TimerSound.allCases.map { TimerSoundPlayer(type: $0) }
     
     var body: some View {
         List {
@@ -45,7 +46,7 @@ struct SoundPickerView: View {
     /// Plays the sound corresponding to the given index in the players array
     /// - Parameter index: The index at which to play the sound
     private func playSoundAtIndex(_ index: Int) {
-        players[index].playLowSound()
+        SoundPickerView.players[index].playLowSound()
     }
 }
 
