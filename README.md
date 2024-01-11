@@ -2,6 +2,10 @@
 
 ![icon](./screenshots/icon.png)  
 
+<a href="https://apps.apple.com/us/app/countdown-hangboard-timer/id6474488426">
+<img src="./screenshots/appstore-badge.png" width=150>
+</a>  
+
 ## About
 CountDown is a simple, user-friendly, and free iOS application that allows users
 to build and execute their own custom hangboard workouts. Users can build 
@@ -29,18 +33,20 @@ If you have problems, need help with the app, or have bugs to report please use 
 Issues tab above to submit a new issue.
 
 ## Screenshots
-![workouts](./screenshots/workouts.png)  
+<img src="./screenshots/workouts.png" width=400>  
   
-![timer](./screenshots/workout_timer.png)  
+<img src="./screenshots/workout_timer.png" width=400> 
   
-![workout_detail](./screenshots/workout_detail.png)  
+<img src="./screenshots/workout_detail.png" width=400> 
   
-![grips](./screenshots/workout_grips.png)  
+<img src="./screenshots/workout_grips.png" width=400> 
   
-![add_grip](./screenshots/add_grip.png)  
+<img src="./screenshots/add_grip.png" width=400> 
   
-![history](./screenshots/workout_history.png) 
+<img src="./screenshots/workout_history.png" width=400> 
   
-![ad_hoc_timer](./screenshots/ad_hoc_timer.png)  
+<img src="./screenshots/ad_hoc_timer.png" width=400> 
   
-![settings](./screenshots/settings.png)  
+<img src="./screenshots/settings.png" width=400> 
+  
+ 
