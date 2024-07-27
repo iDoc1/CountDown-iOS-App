@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFAudio
 
 @main
 struct CountDownApp: App {
@@ -22,6 +23,9 @@ struct CountDownApp: App {
         } else {
             persistenceController = PersistenceController.shared
         }
+        
+        // Allow music or sounds from other apps to play and "mix" with timer sounds
+        try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient, options: [])
     }
     
     var body: some Scene {
