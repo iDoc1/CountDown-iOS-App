@@ -10,6 +10,7 @@ import SwiftUI
 /// Displays details about a specific workout and provides links to start a workout or edit the workout's grips
 struct WorkoutDetailView: View {
     @Environment(\.managedObjectContext) var moc
+    @FocusState private var isInputActive: Bool
     @ObservedObject var workout: Workout
     @State private var isShowingEditWorkoutSheet = false
     @FetchRequest private var grips: FetchedResults<Grip>
@@ -56,6 +57,8 @@ struct WorkoutDetailView: View {
             } footer: {
                 Text("At least one grip must be added to start workout")
             }
+            
+            LeftRightSection(isInputActive: $isInputActive)
 
             Section(header: Text("Workout Details")) {
                 SectionRow(title: "Name", text: workout.unwrappedName)

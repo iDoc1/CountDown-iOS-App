@@ -39,6 +39,7 @@
 		AB2C7A5F2B33EFF5003D9929 /* Popovers in Frameworks */ = {isa = PBXBuildFile; productRef = AB2C7A5E2B33EFF5003D9929 /* Popovers */; };
 		AB2C7A612B33F84E003D9929 /* InfoButtonWithPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2C7A602B33F84E003D9929 /* InfoButtonWithPopover.swift */; };
 		AB3FD8362AC28BA5009D6C71 /* CountdownTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3FD8352AC28BA5009D6C71 /* CountdownTimerTests.swift */; };
+		AB42096E2D0E3AB900301114 /* LeftRightSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42096D2D0E3AB900301114 /* LeftRightSection.swift */; };
 		AB4E700A2B12771B00878AD7 /* GripPropertiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E70092B12771B00878AD7 /* GripPropertiesTests.swift */; };
 		AB4E700C2B14459900878AD7 /* WorkoutPropertiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4E700B2B14459900878AD7 /* WorkoutPropertiesTests.swift */; };
 		AB6404632AD24D7D002A9778 /* TimerButtonsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6404622AD24D7D002A9778 /* TimerButtonsViewTests.swift */; };
@@ -170,6 +171,7 @@
 		AB1BF8712B017AB1004579FF /* WorkoutViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModelTests.swift; sourceTree = "<group>"; };
 		AB2C7A602B33F84E003D9929 /* InfoButtonWithPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButtonWithPopover.swift; sourceTree = "<group>"; };
 		AB3FD8352AC28BA5009D6C71 /* CountdownTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerTests.swift; sourceTree = "<group>"; };
+		AB42096D2D0E3AB900301114 /* LeftRightSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftRightSection.swift; sourceTree = "<group>"; };
 		AB4E70092B12771B00878AD7 /* GripPropertiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripPropertiesTests.swift; sourceTree = "<group>"; };
 		AB4E700B2B14459900878AD7 /* WorkoutPropertiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPropertiesTests.swift; sourceTree = "<group>"; };
 		AB6404602AD24D32002A9778 /* CountDown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountDown.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -345,6 +347,7 @@
 				AB125DD62AE6142200357717 /* WorkoutEditForm.swift */,
 				AB1BF86F2B005E46004579FF /* WorkoutEditView.swift */,
 				ABD3BE402AF329EA00D13E6D /* WorkoutGripsView.swift */,
+				AB42096D2D0E3AB900301114 /* LeftRightSection.swift */,
 			);
 			path = Workouts;
 			sourceTree = "<group>";
@@ -770,6 +773,7 @@
 				ABA95D892B0194770096E0B2 /* FormUtilities.swift in Sources */,
 				ABA9E7CD2AAECB3900DBF8DA /* CountdownTimerView.swift in Sources */,
 				AB125DF52AE752FB00357717 /* Workout+CoreDataProperties.swift in Sources */,
+				AB42096E2D0E3AB900301114 /* LeftRightSection.swift in Sources */,
 				ABA9E7C62AAE9F8800DBF8DA /* TimePicker.swift in Sources */,
 				AB125DF92AE752FB00357717 /* WorkoutType+CoreDataProperties.swift in Sources */,
 				AB0F238B2B199BD200F8C3A6 /* WorkoutHistory+CoreDataClass.swift in Sources */,
