@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22G91" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23507" systemVersion="24C101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Grip" representedClassName="Grip" syncable="YES">
         <attribute name="breakMinutes" attributeType="Integer 16" minValueString="0" maxValueString="59" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="breakSeconds" attributeType="Integer 16" minValueString="0" maxValueString="59" defaultValueString="0" usesScalarValueType="YES"/>
@@ -50,7 +50,10 @@
         <attribute name="descriptionText" attributeType="String" minValueString="1" maxValueString="150"/>
         <attribute name="foreignID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="hangboardName" optional="YES" attributeType="String" maxValueString="50"/>
+        <attribute name="isLeftRightEnabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String" minValueString="1" maxValueString="40"/>
+        <attribute name="secondsBetweenHands" optional="YES" attributeType="Integer 16" minValueString="1" maxValueString="60" defaultValueString="10" usesScalarValueType="YES"/>
+        <attribute name="startHand" optional="YES" attributeType="String"/>
         <relationship name="grip" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Grip" inverseName="workout" inverseEntity="Grip"/>
         <relationship name="history" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="WorkoutHistory" inverseName="workout" inverseEntity="WorkoutHistory"/>
         <relationship name="workoutType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkoutType" inverseName="workout" inverseEntity="WorkoutType"/>

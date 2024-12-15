@@ -58,7 +58,10 @@ struct WorkoutDetailView: View {
                 Text("At least one grip must be added to start workout")
             }
             
-            LeftRightSection(isInputActive: $isInputActive)
+            LeftRightSection(
+                context: moc,
+                workout: workout,
+                isInputActive: $isInputActive)
 
             Section(header: Text("Workout Details")) {
                 SectionRow(title: "Name", text: workout.unwrappedName)

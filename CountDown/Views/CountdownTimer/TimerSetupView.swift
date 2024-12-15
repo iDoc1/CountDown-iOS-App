@@ -24,7 +24,7 @@ struct TimerSetupView: View {
                     Text("Sets & Reps")
                 }
                 
-                LeftRightSection(isInputActive: $isInputActive)
+                //LeftRightSection(isInputActive: $isInputActive)
                 
                 if grip.hasCustomDurations {
                     RepDurationsPicker(
