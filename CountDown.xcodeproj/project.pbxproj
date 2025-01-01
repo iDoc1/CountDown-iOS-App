@@ -92,6 +92,7 @@
 		ABA9E7DE2AB6828F00DBF8DA /* TimerTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7DD2AB6828F00DBF8DA /* TimerTextView.swift */; };
 		ABA9E7E02AB7E04B00DBF8DA /* GripsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7DF2AB7E04B00DBF8DA /* GripsArray.swift */; };
 		ABA9E7E42ABFC05500DBF8DA /* GripsArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA9E7E32ABFC05500DBF8DA /* GripsArrayTests.swift */; };
+		ABAA93322D0F97ED0050C1D2 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAA93312D0F97ED0050C1D2 /* Hand.swift */; };
 		ABD3BE412AF329EA00D13E6D /* WorkoutGripsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD3BE402AF329EA00D13E6D /* WorkoutGripsView.swift */; };
 		ABD48EBA2B329D8900B14A51 /* RepDurationsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD48EB92B329D8900B14A51 /* RepDurationsPicker.swift */; };
 		ABD48EBC2B32A19800B14A51 /* SetsRepsPickers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD48EBB2B32A19800B14A51 /* SetsRepsPickers.swift */; };
@@ -226,6 +227,7 @@
 		ABA9E7DD2AB6828F00DBF8DA /* TimerTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTextView.swift; sourceTree = "<group>"; };
 		ABA9E7DF2AB7E04B00DBF8DA /* GripsArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripsArray.swift; sourceTree = "<group>"; };
 		ABA9E7E32ABFC05500DBF8DA /* GripsArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripsArrayTests.swift; sourceTree = "<group>"; };
+		ABAA93312D0F97ED0050C1D2 /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
 		ABD3BE402AF329EA00D13E6D /* WorkoutGripsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutGripsView.swift; sourceTree = "<group>"; };
 		ABD48EB92B329D8900B14A51 /* RepDurationsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepDurationsPicker.swift; sourceTree = "<group>"; };
 		ABD48EBB2B32A19800B14A51 /* SetsRepsPickers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsRepsPickers.swift; sourceTree = "<group>"; };
@@ -470,6 +472,7 @@
 				ABF19ACF2AC9F8CF007FD4F6 /* AVPlayer+Beep.swift */,
 				ABF19AD12AC9FA09007FD4F6 /* TimerSoundPlayer.swift */,
 				ABA68AF12AD4DDB300181690 /* TimerSound.swift */,
+				ABAA93312D0F97ED0050C1D2 /* Hand.swift */,
 				ABA68B072AD78A1A00181690 /* TimerVibrator.swift */,
 				AB125DCE2AE5D49600357717 /* WorkoutType.swift */,
 			);
@@ -763,6 +766,7 @@
 				AB125DFB2AE752FB00357717 /* GripType+CoreDataProperties.swift in Sources */,
 				ABEB58CB2AF71541002C60F8 /* NewGripTypeView.swift in Sources */,
 				ABEB58C92AF700E4002C60F8 /* GripTypePickerView.swift in Sources */,
+				ABAA93322D0F97ED0050C1D2 /* Hand.swift in Sources */,
 				AB75049C2B0AA86E007FACAB /* TimerGripTextView.swift in Sources */,
 				AB125DD32AE5DD7000357717 /* WorkoutDetailView.swift in Sources */,
 				AB9DE2322B1BD98700CBBFD5 /* WorkoutHistoryDetailView.swift in Sources */,

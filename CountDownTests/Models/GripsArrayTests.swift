@@ -18,7 +18,8 @@ final class GripsArrayFromGripViewModelTests: XCTestCase {
             durationType: .workType,
             currSet: 1,
             currRep: 1,
-            startSeconds: 0)
+            startSeconds: 0,
+            hand: nil)
         XCTAssertEqual(durationStatus.description, "WORK for 7 sec")
     }
     
@@ -602,6 +603,8 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         workout.descriptionText = "RCTM Advanced Repeaters Protocol"
         workout.createdDate = Date()
         workout.workoutType = workoutType
+        workout.startHand = Hand.left.rawValue
+        workout.secondsBetweenHands = 10
 
     }
 
@@ -626,7 +629,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip1.lastBreakSeconds = 15
         grip1.gripType = gripType1
         
-        let gripsArray = GripsArray(grips: workout.gripArray)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
         
         XCTAssertEqual(gripsArray.count, 1)
         XCTAssertEqual(gripsArray.totalSeconds, 15)
@@ -643,6 +646,46 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertNil(gripsArray[0].durations[0].hand)
+    }
+    
+    /// Test for Grips = 1, Sets = 0, Reps = 0, left/right mode enabled
+    func testOneGripWithZeroSetsAndZeroRepsWithLeftHandStart() throws {
+        workout.isLeftRightEnabled = true
+        
+        // Create test grip1
+        let gripType1 = GripType(context: context)
+        gripType1.name = "Full Crimp"
+        let grip1 = Grip(context: context)
+        grip1.workout = workout
+        grip1.setCount = 0
+        grip1.repCount = 0
+        grip1.workSeconds = 7
+        grip1.restSeconds = 3
+        grip1.breakMinutes = 1
+        grip1.breakSeconds = 30
+        grip1.lastBreakMinutes = 2
+        grip1.lastBreakSeconds = 15
+        grip1.gripType = gripType1
+        
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+        
+        XCTAssertEqual(gripsArray.count, 1)
+        XCTAssertEqual(gripsArray.totalSeconds, 15)
+        
+        XCTAssertEqual(gripsArray[0].workSeconds, 7)
+        XCTAssertEqual(gripsArray[0].restSeconds, 3)
+        XCTAssertEqual(gripsArray[0].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[0].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 0)
+        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 0)
+        
+        XCTAssertEqual(gripsArray[0].durations.count, 1)
+        XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
+        XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].hand, .left)
     }
     
     /// Test for Grips = 1, Sets = 0, Reps = 1
@@ -662,7 +705,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip1.lastBreakSeconds = 15
         grip1.gripType = gripType1
         
-        let gripsArray = GripsArray(grips: workout.gripArray)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
 
         XCTAssertEqual(gripsArray.count, 1)
         XCTAssertEqual(gripsArray.totalSeconds, 15)
@@ -679,6 +722,46 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertNil(gripsArray[0].durations[0].hand)
+    }
+    
+    /// Test for Grips = 1, Sets = 0, Reps = 1, left/right mode enabled
+    func testOneGripWithZeroSetsAndOneRepWithLeftHandStart() throws {
+        workout.isLeftRightEnabled = true
+        
+        // Create test grip1
+        let gripType1 = GripType(context: context)
+        gripType1.name = "Full Crimp"
+        let grip1 = Grip(context: context)
+        grip1.workout = workout
+        grip1.setCount = 0
+        grip1.repCount = 1
+        grip1.workSeconds = 7
+        grip1.restSeconds = 3
+        grip1.breakMinutes = 1
+        grip1.breakSeconds = 30
+        grip1.lastBreakMinutes = 2
+        grip1.lastBreakSeconds = 15
+        grip1.gripType = gripType1
+        
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+
+        XCTAssertEqual(gripsArray.count, 1)
+        XCTAssertEqual(gripsArray.totalSeconds, 15)
+        
+        XCTAssertEqual(gripsArray[0].workSeconds, 7)
+        XCTAssertEqual(gripsArray[0].restSeconds, 3)
+        XCTAssertEqual(gripsArray[0].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[0].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 0)
+        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 0)
+        
+        XCTAssertEqual(gripsArray[0].durations.count, 1)
+        XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
+        XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].hand, .left)
     }
     
     /// Test for Grips = 1, Sets = 1, Reps = 0
@@ -698,7 +781,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip1.lastBreakSeconds = 15
         grip1.gripType = gripType1
         
-        let gripsArray = GripsArray(grips: workout.gripArray)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
 
         XCTAssertEqual(gripsArray.count, 1)
         XCTAssertEqual(gripsArray.totalSeconds, 15)
@@ -715,6 +798,46 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertNil(gripsArray[0].durations[0].hand)
+    }
+    
+    /// Test for Grips = 1, Sets = 1, Reps = 0, left/right mode enabled
+    func testOneGripWithOneSetsAndZeroRepsWithLeftHandStart() throws {
+        workout.isLeftRightEnabled = true
+        
+        // Create test grip1
+        let gripType1 = GripType(context: context)
+        gripType1.name = "Full Crimp"
+        let grip1 = Grip(context: context)
+        grip1.workout = workout
+        grip1.setCount = 1
+        grip1.repCount = 0
+        grip1.workSeconds = 7
+        grip1.restSeconds = 3
+        grip1.breakMinutes = 1
+        grip1.breakSeconds = 30
+        grip1.lastBreakMinutes = 2
+        grip1.lastBreakSeconds = 15
+        grip1.gripType = gripType1
+        
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+
+        XCTAssertEqual(gripsArray.count, 1)
+        XCTAssertEqual(gripsArray.totalSeconds, 15)
+        
+        XCTAssertEqual(gripsArray[0].workSeconds, 7)
+        XCTAssertEqual(gripsArray[0].restSeconds, 3)
+        XCTAssertEqual(gripsArray[0].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[0].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 0)
+        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 0)
+        
+        XCTAssertEqual(gripsArray[0].durations.count, 1)
+        XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
+        XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].hand, .left)
     }
     
     /// Test for Grips = 1, Sets = 1, Reps = 1
@@ -733,7 +856,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip1.lastBreakMinutes = 2
         grip1.lastBreakSeconds = 15
         grip1.gripType = gripType1
-        let gripsArray = GripsArray(grips: workout.gripArray)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
 
         XCTAssertEqual(gripsArray.count, 1)
         XCTAssertEqual(gripsArray.totalSeconds, 22)
@@ -750,11 +873,68 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertNil(gripsArray[0].durations[0].hand)
 
         XCTAssertEqual(gripsArray[0].durations[1].description, "WORK for 7 sec")
         XCTAssertEqual(gripsArray[0].durations[1].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[1].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[1].startSeconds, 15)
+    }
+    
+    /// Test for Grips = 1, Sets = 1, Reps = 1, left/right mode enabled
+    func testOneGripWithOneSetAndOneRepWithLeftHandStart() throws {
+        workout.isLeftRightEnabled = true
+        
+        // Create test grip1
+        let gripType1 = GripType(context: context)
+        gripType1.name = "Full Crimp"
+        let grip1 = Grip(context: context)
+        grip1.workout = workout
+        grip1.setCount = 1
+        grip1.repCount = 1
+        grip1.workSeconds = 7
+        grip1.restSeconds = 3
+        grip1.breakMinutes = 1
+        grip1.breakSeconds = 30
+        grip1.lastBreakMinutes = 2
+        grip1.lastBreakSeconds = 15
+        grip1.gripType = gripType1
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+
+        XCTAssertEqual(gripsArray.count, 1)
+        XCTAssertEqual(gripsArray.totalSeconds, 39)
+        
+        XCTAssertEqual(gripsArray[0].durations.count, 4)
+        XCTAssertEqual(gripsArray[0].workSeconds, 7)
+        XCTAssertEqual(gripsArray[0].restSeconds, 3)
+        XCTAssertEqual(gripsArray[0].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[0].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 0)
+        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 0)
+        
+        XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
+        XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].hand, .left)
+
+        XCTAssertEqual(gripsArray[0].durations[1].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[1].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[1].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[1].startSeconds, 15)
+        XCTAssertEqual(gripsArray[0].durations[1].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[2].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[2].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[2].startSeconds, 22)
+        XCTAssertEqual(gripsArray[0].durations[2].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[3].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[3].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[3].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[3].startSeconds, 32)
+        XCTAssertEqual(gripsArray[0].durations[3].hand, .right)
     }
     
     /// Test for Grips = 1, Sets = 1, Reps = 2
@@ -773,7 +953,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip1.lastBreakMinutes = 2
         grip1.lastBreakSeconds = 15
         grip1.gripType = gripType1
-        let gripsArray = GripsArray(grips: workout.gripArray)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
 
         XCTAssertEqual(gripsArray.count, 1)
         XCTAssertEqual(gripsArray.totalSeconds, 32)
@@ -790,6 +970,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertNil(gripsArray[0].durations[0].hand)
 
         XCTAssertEqual(gripsArray[0].durations[1].description, "WORK for 7 sec")
         XCTAssertEqual(gripsArray[0].durations[1].currSet, 0)
@@ -805,6 +986,167 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[3].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[3].currRep, 1)
         XCTAssertEqual(gripsArray[0].durations[3].startSeconds, 25)
+    }
+    
+    /// Test for Grips = 1, Sets = 1, Reps = 2, left/right mode enable
+    func testOneGripWithOneSetAndTwoRepsWithLeftHandStart() throws {
+        workout.isLeftRightEnabled = true
+
+        // Create test grip1
+        let gripType1 = GripType(context: context)
+        gripType1.name = "Full Crimp"
+        let grip1 = Grip(context: context)
+        grip1.workout = workout
+        grip1.setCount = 1
+        grip1.repCount = 2
+        grip1.workSeconds = 7
+        grip1.restSeconds = 3
+        grip1.breakMinutes = 1
+        grip1.breakSeconds = 30
+        grip1.lastBreakMinutes = 2
+        grip1.lastBreakSeconds = 15
+        grip1.gripType = gripType1
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+
+        XCTAssertEqual(gripsArray.count, 1)
+        XCTAssertEqual(gripsArray.totalSeconds, 66)
+        
+        XCTAssertEqual(gripsArray[0].durations.count, 8)
+        XCTAssertEqual(gripsArray[0].workSeconds, 7)
+        XCTAssertEqual(gripsArray[0].restSeconds, 3)
+        XCTAssertEqual(gripsArray[0].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[0].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 0)
+        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 0)
+        
+        XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
+        XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].hand, .left)
+
+        XCTAssertEqual(gripsArray[0].durations[1].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[1].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[1].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[1].startSeconds, 15)
+        XCTAssertEqual(gripsArray[0].durations[1].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[2].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[2].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[2].startSeconds, 22)
+        XCTAssertEqual(gripsArray[0].durations[2].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[3].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[3].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[3].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[3].startSeconds, 32)
+        XCTAssertEqual(gripsArray[0].durations[3].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[4].description, "REST for 3 sec")
+        XCTAssertEqual(gripsArray[0].durations[4].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[4].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[4].startSeconds, 39)
+        XCTAssertNil(gripsArray[0].durations[4].hand)
+        
+        XCTAssertEqual(gripsArray[0].durations[5].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[5].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[5].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[5].startSeconds, 42)
+        XCTAssertEqual(gripsArray[0].durations[5].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[6].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[6].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[6].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[6].startSeconds, 49)
+        XCTAssertEqual(gripsArray[0].durations[6].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[7].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[7].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[7].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[7].startSeconds, 59)
+        XCTAssertEqual(gripsArray[0].durations[7].hand, .right)
+    }
+    
+    /// Test for Grips = 1, Sets = 1, Reps = 2, left/right mode enable
+    func testOneGripWithOneSetAndTwoRepsWithRightHandStart() throws {
+        workout.isLeftRightEnabled = true
+        workout.startHand = Hand.right.rawValue
+
+        // Create test grip1
+        let gripType1 = GripType(context: context)
+        gripType1.name = "Full Crimp"
+        let grip1 = Grip(context: context)
+        grip1.workout = workout
+        grip1.setCount = 1
+        grip1.repCount = 2
+        grip1.workSeconds = 7
+        grip1.restSeconds = 3
+        grip1.breakMinutes = 1
+        grip1.breakSeconds = 30
+        grip1.lastBreakMinutes = 2
+        grip1.lastBreakSeconds = 15
+        grip1.gripType = gripType1
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+
+        XCTAssertEqual(gripsArray.count, 1)
+        XCTAssertEqual(gripsArray.totalSeconds, 66)
+        
+        XCTAssertEqual(gripsArray[0].durations.count, 8)
+        XCTAssertEqual(gripsArray[0].workSeconds, 7)
+        XCTAssertEqual(gripsArray[0].restSeconds, 3)
+        XCTAssertEqual(gripsArray[0].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[0].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 0)
+        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 0)
+        
+        XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
+        XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].hand, .right)
+
+        XCTAssertEqual(gripsArray[0].durations[1].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[1].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[1].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[1].startSeconds, 15)
+        XCTAssertEqual(gripsArray[0].durations[1].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[2].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[2].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[2].startSeconds, 22)
+        XCTAssertEqual(gripsArray[0].durations[2].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[3].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[3].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[3].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[3].startSeconds, 32)
+        XCTAssertEqual(gripsArray[0].durations[3].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[4].description, "REST for 3 sec")
+        XCTAssertEqual(gripsArray[0].durations[4].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[4].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[4].startSeconds, 39)
+        XCTAssertNil(gripsArray[0].durations[4].hand)
+        
+        XCTAssertEqual(gripsArray[0].durations[5].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[5].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[5].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[5].startSeconds, 42)
+        XCTAssertEqual(gripsArray[0].durations[5].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[6].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[6].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[6].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[6].startSeconds, 49)
+        XCTAssertEqual(gripsArray[0].durations[6].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[7].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[7].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[7].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[7].startSeconds, 59)
+        XCTAssertEqual(gripsArray[0].durations[7].hand, .left)
     }
     
     /// Test for Grips = 1, Sets = 2, Reps = 1
@@ -823,7 +1165,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip1.lastBreakMinutes = 2
         grip1.lastBreakSeconds = 15
         grip1.gripType = gripType1
-        let gripsArray = GripsArray(grips: workout.gripArray)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
 
         XCTAssertEqual(gripsArray.count, 1)
         XCTAssertEqual(gripsArray.totalSeconds, 119)
@@ -840,6 +1182,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertNil(gripsArray[0].durations[0].hand)
 
         XCTAssertEqual(gripsArray[0].durations[1].description, "WORK for 7 sec")
         XCTAssertEqual(gripsArray[0].durations[1].currSet, 0)
@@ -855,6 +1198,86 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[3].currSet, 1)
         XCTAssertEqual(gripsArray[0].durations[3].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[3].startSeconds, 112)
+    }
+    
+    /// Test for Grips = 1, Sets = 2, Reps = 1, left/right mode enabled
+    func testOneGripWithTwoSetsAndOneRepWithLeftHandStart() throws {
+        workout.isLeftRightEnabled = true
+
+        // Create test grip1
+        let gripType1 = GripType(context: context)
+        gripType1.name = "Full Crimp"
+        let grip1 = Grip(context: context)
+        grip1.workout = workout
+        grip1.setCount = 2
+        grip1.repCount = 1
+        grip1.workSeconds = 7
+        grip1.restSeconds = 3
+        grip1.breakMinutes = 1
+        grip1.breakSeconds = 30
+        grip1.lastBreakMinutes = 2
+        grip1.lastBreakSeconds = 15
+        grip1.gripType = gripType1
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+
+        XCTAssertEqual(gripsArray.count, 1)
+        XCTAssertEqual(gripsArray.totalSeconds, 153)
+        
+        XCTAssertEqual(gripsArray[0].durations.count, 8)
+        XCTAssertEqual(gripsArray[0].workSeconds, 7)
+        XCTAssertEqual(gripsArray[0].restSeconds, 3)
+        XCTAssertEqual(gripsArray[0].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[0].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 0)
+        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 0)
+        
+        XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
+        XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].hand, .left)
+
+        XCTAssertEqual(gripsArray[0].durations[1].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[1].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[1].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[1].startSeconds, 15)
+        XCTAssertEqual(gripsArray[0].durations[1].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[2].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[2].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[2].startSeconds, 22)
+        XCTAssertEqual(gripsArray[0].durations[2].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[3].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[3].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[3].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[3].startSeconds, 32)
+        XCTAssertEqual(gripsArray[0].durations[3].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[4].description, "BREAK for 90 sec")
+        XCTAssertEqual(gripsArray[0].durations[4].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[4].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[4].startSeconds, 39)
+        XCTAssertNil(gripsArray[0].durations[4].hand)
+        
+        XCTAssertEqual(gripsArray[0].durations[5].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[5].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[5].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[5].startSeconds, 129)
+        XCTAssertEqual(gripsArray[0].durations[5].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[6].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[6].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[6].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[6].startSeconds, 136)
+        XCTAssertEqual(gripsArray[0].durations[6].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[7].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[7].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[7].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[7].startSeconds, 146)
+        XCTAssertEqual(gripsArray[0].durations[7].hand, .right)
     }
     
     /// Test for Grips = 1, Sets = 2, Reps = 2
@@ -873,7 +1296,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip1.lastBreakMinutes = 2
         grip1.lastBreakSeconds = 15
         grip1.gripType = gripType1
-        let gripsArray = GripsArray(grips: workout.gripArray)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
 
         XCTAssertEqual(gripsArray.count, 1)
         XCTAssertEqual(gripsArray.totalSeconds, 139)
@@ -927,6 +1350,134 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[7].startSeconds, 132)
     }
     
+    /// Test for Grips = 1, Sets = 2, Reps = 2, left/right mode enabled
+    func testOneGripWithTwoSetsAndTwoRepsWithLeftHandStart() throws {
+        workout.isLeftRightEnabled = true
+        
+        // Create test grip1
+        let gripType1 = GripType(context: context)
+        gripType1.name = "Full Crimp"
+        let grip1 = Grip(context: context)
+        grip1.workout = workout
+        grip1.setCount = 2
+        grip1.repCount = 2
+        grip1.workSeconds = 7
+        grip1.restSeconds = 3
+        grip1.breakMinutes = 1
+        grip1.breakSeconds = 30
+        grip1.lastBreakMinutes = 2
+        grip1.lastBreakSeconds = 15
+        grip1.gripType = gripType1
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+
+        XCTAssertEqual(gripsArray.count, 1)
+        XCTAssertEqual(gripsArray.totalSeconds, 207)
+        
+        XCTAssertEqual(gripsArray[0].durations.count, 16)
+        XCTAssertEqual(gripsArray[0].workSeconds, 7)
+        XCTAssertEqual(gripsArray[0].restSeconds, 3)
+        XCTAssertEqual(gripsArray[0].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[0].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 0)
+        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 0)
+        
+        XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
+        XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].hand, .left)
+
+        XCTAssertEqual(gripsArray[0].durations[1].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[1].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[1].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[1].startSeconds, 15)
+        XCTAssertEqual(gripsArray[0].durations[1].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[2].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[2].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[2].startSeconds, 22)
+        XCTAssertEqual(gripsArray[0].durations[2].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[3].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[3].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[3].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[3].startSeconds, 32)
+        XCTAssertEqual(gripsArray[0].durations[3].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[4].description, "REST for 3 sec")
+        XCTAssertEqual(gripsArray[0].durations[4].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[4].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[4].startSeconds, 39)
+        XCTAssertNil(gripsArray[0].durations[4].hand)
+        
+        XCTAssertEqual(gripsArray[0].durations[5].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[5].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[5].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[5].startSeconds, 42)
+        XCTAssertEqual(gripsArray[0].durations[5].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[6].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[6].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[6].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[6].startSeconds, 49)
+        XCTAssertEqual(gripsArray[0].durations[6].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[7].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[7].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[7].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[7].startSeconds, 59)
+        XCTAssertEqual(gripsArray[0].durations[7].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[8].description, "BREAK for 90 sec")
+        XCTAssertEqual(gripsArray[0].durations[8].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[8].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[8].startSeconds, 66)
+        XCTAssertNil(gripsArray[0].durations[8].hand)
+        
+        XCTAssertEqual(gripsArray[0].durations[9].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[9].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[9].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[9].startSeconds, 156)
+        XCTAssertEqual(gripsArray[0].durations[9].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[10].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[10].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[10].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[10].startSeconds, 163)
+        XCTAssertEqual(gripsArray[0].durations[10].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[11].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[11].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[11].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[11].startSeconds, 173)
+        XCTAssertEqual(gripsArray[0].durations[11].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[12].description, "REST for 3 sec")
+        XCTAssertEqual(gripsArray[0].durations[12].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[12].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[12].startSeconds, 180)
+        XCTAssertNil(gripsArray[0].durations[12].hand)
+        
+        XCTAssertEqual(gripsArray[0].durations[13].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[13].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[13].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[13].startSeconds, 183)
+        XCTAssertEqual(gripsArray[0].durations[13].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[14].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[14].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[14].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[14].startSeconds, 190)
+        XCTAssertEqual(gripsArray[0].durations[14].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[15].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[15].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[15].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[15].startSeconds, 200)
+        XCTAssertEqual(gripsArray[0].durations[15].hand, .right)
+    }
+    
     /// Test for Grips = 1, Sets = 3, Reps = 2
     /// Tests that both normal break and last break are implemented correctly
     func testOneGripWithThreeSetsAndOneReps() throws {
@@ -945,7 +1496,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip1.lastBreakSeconds = 15
         grip1.gripType = gripType1
 
-        let gripsArray = GripsArray(grips: workout.gripArray)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
 
         XCTAssertEqual(gripsArray.count, 1)
         XCTAssertEqual(gripsArray.totalSeconds, 246)
@@ -1053,7 +1604,71 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip2.sequenceNum = 2
         grip2.gripType = gripType2
         
-        let gripsArray = GripsArray(grips: workout.gripArray)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+
+        XCTAssertEqual(gripsArray.count, 2)
+        XCTAssertEqual(gripsArray.totalSeconds, 15)
+        
+        XCTAssertEqual(gripsArray[0].workSeconds, 7)
+        XCTAssertEqual(gripsArray[0].restSeconds, 3)
+        XCTAssertEqual(gripsArray[0].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[0].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 0)
+        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 0)
+        
+        XCTAssertEqual(gripsArray[1].workSeconds, 7)
+        XCTAssertEqual(gripsArray[1].restSeconds, 3)
+        XCTAssertEqual(gripsArray[1].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 45)
+        
+        XCTAssertEqual(gripsArray[0].durations.count, 1)
+        XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
+        XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        
+        XCTAssertEqual(gripsArray[1].durations.count, 0)
+    }
+    
+    /// Test for Grips = 2, Sets = 0, Reps = 0, left/right mode enabled
+    func testTwoGripsWithZeroSetsAndZeroRepsWithLeftHandStart() throws {
+        workout.isLeftRightEnabled = true
+        
+        // Create test grip1
+        let gripType1 = GripType(context: context)
+        gripType1.name = "Full Crimp"
+        let grip1 = Grip(context: context)
+        grip1.workout = workout
+        grip1.setCount = 0
+        grip1.repCount = 0
+        grip1.workSeconds = 7
+        grip1.restSeconds = 3
+        grip1.breakMinutes = 1
+        grip1.breakSeconds = 30
+        grip1.lastBreakMinutes = 1
+        grip1.lastBreakSeconds = 45
+        grip1.sequenceNum = 1
+        grip1.gripType = gripType1
+        
+        // Create test grip2
+        let gripType2 = GripType(context: context)
+        gripType2.name = "Half Crimp"
+        let grip2 = Grip(context: context)
+        grip2.workout = workout
+        grip2.setCount = 0
+        grip2.repCount = 0
+        grip2.workSeconds = 7
+        grip2.restSeconds = 3
+        grip2.breakMinutes = 1
+        grip2.breakSeconds = 30
+        grip2.lastBreakMinutes = 2
+        grip2.lastBreakSeconds = 15
+        grip2.sequenceNum = 2
+        grip2.gripType = gripType2
+        
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
 
         XCTAssertEqual(gripsArray.count, 2)
         XCTAssertEqual(gripsArray.totalSeconds, 15)
@@ -1115,7 +1730,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip2.sequenceNum = 2
         grip2.gripType = gripType2
         
-        let gripsArray = GripsArray(grips: workout.gripArray)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
 
         XCTAssertEqual(gripsArray.count, 2)
         XCTAssertEqual(gripsArray.totalSeconds, 15)
@@ -1139,6 +1754,72 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertNil(gripsArray[0].durations[0].hand)
+        
+        XCTAssertEqual(gripsArray[1].durations.count, 0)
+    }
+    
+    /// Test for Grips = 2, Sets = 0, Reps = 1, left/right mode enabled
+    func testTwoGripsWithZeroSetsAndOneRepWithLeftHandStart() throws {
+        workout.isLeftRightEnabled = true
+        
+        // Create test grip1
+        let gripType1 = GripType(context: context)
+        gripType1.name = "Full Crimp"
+        let grip1 = Grip(context: context)
+        grip1.workout = workout
+        grip1.setCount = 0
+        grip1.repCount = 1
+        grip1.workSeconds = 7
+        grip1.restSeconds = 3
+        grip1.breakMinutes = 1
+        grip1.breakSeconds = 30
+        grip1.lastBreakMinutes = 1
+        grip1.lastBreakSeconds = 45
+        grip1.sequenceNum = 1
+        grip1.gripType = gripType1
+        
+        // Create test grip2
+        let gripType2 = GripType(context: context)
+        gripType2.name = "Half Crimp"
+        let grip2 = Grip(context: context)
+        grip2.workout = workout
+        grip2.setCount = 0
+        grip2.repCount = 1
+        grip2.workSeconds = 7
+        grip2.restSeconds = 3
+        grip2.breakMinutes = 1
+        grip2.breakSeconds = 30
+        grip2.lastBreakMinutes = 2
+        grip2.lastBreakSeconds = 15
+        grip2.sequenceNum = 2
+        grip2.gripType = gripType2
+        
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+
+        XCTAssertEqual(gripsArray.count, 2)
+        XCTAssertEqual(gripsArray.totalSeconds, 15)
+        
+        XCTAssertEqual(gripsArray[0].workSeconds, 7)
+        XCTAssertEqual(gripsArray[0].restSeconds, 3)
+        XCTAssertEqual(gripsArray[0].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[0].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 0)
+        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 0)
+        
+        XCTAssertEqual(gripsArray[1].workSeconds, 7)
+        XCTAssertEqual(gripsArray[1].restSeconds, 3)
+        XCTAssertEqual(gripsArray[1].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 45)
+        
+        XCTAssertEqual(gripsArray[0].durations.count, 1)
+        XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
+        XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].hand, .left)
         
         XCTAssertEqual(gripsArray[1].durations.count, 0)
     }
@@ -1177,7 +1858,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip2.sequenceNum = 2
         grip2.gripType = gripType2
         
-        let gripsArray = GripsArray(grips: workout.gripArray)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
 
         XCTAssertEqual(gripsArray.count, 2)
         XCTAssertEqual(gripsArray.totalSeconds, 120)
@@ -1207,6 +1888,76 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[1].durations[0].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[0].currRep, 0)
         XCTAssertEqual(gripsArray[1].durations[0].startSeconds, 15)
+    }
+    
+    /// Test for Grips = 2, Sets = 1, Reps = 0, left/right mode enabled
+    func testTwoGripsWithOneSetAndZeroRepsWithLeftHandStart() throws {
+        workout.isLeftRightEnabled = true
+        
+        // Create test grip1
+        let gripType1 = GripType(context: context)
+        gripType1.name = "Full Crimp"
+        let grip1 = Grip(context: context)
+        grip1.workout = workout
+        grip1.setCount = 1
+        grip1.repCount = 0
+        grip1.workSeconds = 7
+        grip1.restSeconds = 3
+        grip1.breakMinutes = 1
+        grip1.breakSeconds = 30
+        grip1.lastBreakMinutes = 1
+        grip1.lastBreakSeconds = 45
+        grip1.sequenceNum = 1
+        grip1.gripType = gripType1
+        
+        // Create test grip2
+        let gripType2 = GripType(context: context)
+        gripType2.name = "Half Crimp"
+        let grip2 = Grip(context: context)
+        grip2.workout = workout
+        grip2.setCount = 1
+        grip2.repCount = 0
+        grip2.workSeconds = 7
+        grip2.restSeconds = 3
+        grip2.breakMinutes = 1
+        grip2.breakSeconds = 30
+        grip2.lastBreakMinutes = 2
+        grip2.lastBreakSeconds = 15
+        grip2.sequenceNum = 2
+        grip2.gripType = gripType2
+        
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+
+        XCTAssertEqual(gripsArray.count, 2)
+        XCTAssertEqual(gripsArray.totalSeconds, 120)
+        
+        XCTAssertEqual(gripsArray[0].workSeconds, 7)
+        XCTAssertEqual(gripsArray[0].restSeconds, 3)
+        XCTAssertEqual(gripsArray[0].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[0].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 0)
+        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 0)
+        
+        XCTAssertEqual(gripsArray[1].workSeconds, 7)
+        XCTAssertEqual(gripsArray[1].restSeconds, 3)
+        XCTAssertEqual(gripsArray[1].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 45)
+        
+        XCTAssertEqual(gripsArray[0].durations.count, 1)
+        XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
+        XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].hand, .left)
+        
+        XCTAssertEqual(gripsArray[1].durations.count, 1)
+        XCTAssertEqual(gripsArray[1].durations[0].description, "BREAK for 105 sec")
+        XCTAssertEqual(gripsArray[1].durations[0].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[0].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[0].startSeconds, 15)
+        XCTAssertNil(gripsArray[1].durations[0].hand)
     }
     
     /// Test for Grips = 2, Sets = 1, Reps = 1
@@ -1243,7 +1994,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip2.sequenceNum = 2
         grip2.gripType = gripType2
         
-        let gripsArray = GripsArray(grips: workout.gripArray)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
 
         XCTAssertEqual(gripsArray.count, 2)
         XCTAssertEqual(gripsArray.totalSeconds, 134)
@@ -1267,6 +2018,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertNil(gripsArray[0].durations[0].hand)
         
         XCTAssertEqual(gripsArray[0].durations[1].description, "WORK for 7 sec")
         XCTAssertEqual(gripsArray[0].durations[1].currSet, 0)
@@ -1283,6 +2035,110 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[1].durations[1].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[1].currRep, 0)
         XCTAssertEqual(gripsArray[1].durations[1].startSeconds, 127)
+    }
+    
+    /// Test for Grips = 2, Sets = 1, Reps = 1, left/right mode enabled
+    func testTwoGripsWithOneSetAndOneRepWithLeftHandStart() throws {
+        workout.isLeftRightEnabled = true
+        
+        // Create test grip1
+        let gripType1 = GripType(context: context)
+        gripType1.name = "Full Crimp"
+        let grip1 = Grip(context: context)
+        grip1.workout = workout
+        grip1.setCount = 1
+        grip1.repCount = 1
+        grip1.workSeconds = 7
+        grip1.restSeconds = 3
+        grip1.breakMinutes = 1
+        grip1.breakSeconds = 30
+        grip1.lastBreakMinutes = 1
+        grip1.lastBreakSeconds = 45
+        grip1.sequenceNum = 1
+        grip1.gripType = gripType1
+        
+        // Create test grip2
+        let gripType2 = GripType(context: context)
+        gripType2.name = "Half Crimp"
+        let grip2 = Grip(context: context)
+        grip2.workout = workout
+        grip2.setCount = 1
+        grip2.repCount = 1
+        grip2.workSeconds = 7
+        grip2.restSeconds = 3
+        grip2.breakMinutes = 1
+        grip2.breakSeconds = 30
+        grip2.lastBreakMinutes = 2
+        grip2.lastBreakSeconds = 15
+        grip2.sequenceNum = 2
+        grip2.gripType = gripType2
+        
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+
+        XCTAssertEqual(gripsArray.count, 2)
+        XCTAssertEqual(gripsArray.totalSeconds, 168)
+        
+        XCTAssertEqual(gripsArray[0].workSeconds, 7)
+        XCTAssertEqual(gripsArray[0].restSeconds, 3)
+        XCTAssertEqual(gripsArray[0].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[0].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 0)
+        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 0)
+        
+        XCTAssertEqual(gripsArray[1].workSeconds, 7)
+        XCTAssertEqual(gripsArray[1].restSeconds, 3)
+        XCTAssertEqual(gripsArray[1].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 45)
+        
+        XCTAssertEqual(gripsArray[0].durations.count, 4)
+        XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
+        XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[1].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[1].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[1].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[1].startSeconds, 15)
+        XCTAssertEqual(gripsArray[0].durations[1].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[2].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[2].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[2].startSeconds, 22)
+        XCTAssertEqual(gripsArray[0].durations[2].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[3].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[3].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[3].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[3].startSeconds, 32)
+        XCTAssertEqual(gripsArray[0].durations[3].hand, .right)
+        
+        XCTAssertEqual(gripsArray[1].durations.count, 4)
+        XCTAssertEqual(gripsArray[1].durations[0].description, "BREAK for 105 sec")
+        XCTAssertEqual(gripsArray[1].durations[0].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[0].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[0].startSeconds, 39)
+        
+        XCTAssertEqual(gripsArray[1].durations[1].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[1].durations[1].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[1].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[1].startSeconds, 144)
+        
+        XCTAssertEqual(gripsArray[1].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[1].durations[2].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[2].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[2].startSeconds, 151)
+        XCTAssertEqual(gripsArray[1].durations[2].hand, .right)
+        
+        XCTAssertEqual(gripsArray[1].durations[3].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[1].durations[3].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[3].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[3].startSeconds, 161)
+        XCTAssertEqual(gripsArray[1].durations[3].hand, .right)
     }
     
     /// Test for Grips = 2, Sets = 1, Reps = 2
@@ -1319,7 +2175,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip2.sequenceNum = 2
         grip2.gripType = gripType2
         
-        let gripsArray = GripsArray(grips: workout.gripArray)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
 
         XCTAssertEqual(gripsArray.count, 2)
         XCTAssertEqual(gripsArray.totalSeconds, 154)
@@ -1381,6 +2237,160 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[1].durations[3].startSeconds, 147)
     }
     
+    /// Test for Grips = 2, Sets = 1, Reps = 2, left/right mode enabled
+    func testTwoGripsWithOneSetAndTwoRepsWithLeftHandStart() throws {
+        workout.isLeftRightEnabled = true
+        
+        // Create test grip1
+        let gripType1 = GripType(context: context)
+        gripType1.name = "Full Crimp"
+        let grip1 = Grip(context: context)
+        grip1.workout = workout
+        grip1.setCount = 1
+        grip1.repCount = 2
+        grip1.workSeconds = 7
+        grip1.restSeconds = 3
+        grip1.breakMinutes = 1
+        grip1.breakSeconds = 30
+        grip1.lastBreakMinutes = 1
+        grip1.lastBreakSeconds = 45
+        grip1.sequenceNum = 1
+        grip1.gripType = gripType1
+        
+        // Create test grip2
+        let gripType2 = GripType(context: context)
+        gripType2.name = "Half Crimp"
+        let grip2 = Grip(context: context)
+        grip2.workout = workout
+        grip2.setCount = 1
+        grip2.repCount = 2
+        grip2.workSeconds = 7
+        grip2.restSeconds = 3
+        grip2.breakMinutes = 1
+        grip2.breakSeconds = 30
+        grip2.lastBreakMinutes = 2
+        grip2.lastBreakSeconds = 15
+        grip2.sequenceNum = 2
+        grip2.gripType = gripType2
+        
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+
+        XCTAssertEqual(gripsArray.count, 2)
+        XCTAssertEqual(gripsArray.totalSeconds, 222)
+        
+        XCTAssertEqual(gripsArray[0].workSeconds, 7)
+        XCTAssertEqual(gripsArray[0].restSeconds, 3)
+        XCTAssertEqual(gripsArray[0].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[0].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 0)
+        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 0)
+        
+        XCTAssertEqual(gripsArray[1].workSeconds, 7)
+        XCTAssertEqual(gripsArray[1].restSeconds, 3)
+        XCTAssertEqual(gripsArray[1].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 45)
+        
+        XCTAssertEqual(gripsArray[0].durations.count, 8)
+        XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
+        XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[1].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[1].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[1].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[1].startSeconds, 15)
+        XCTAssertEqual(gripsArray[0].durations[1].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[2].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[2].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[2].startSeconds, 22)
+        XCTAssertEqual(gripsArray[0].durations[2].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[3].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[3].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[3].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[3].startSeconds, 32)
+        XCTAssertEqual(gripsArray[0].durations[3].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[4].description, "REST for 3 sec")
+        XCTAssertEqual(gripsArray[0].durations[4].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[4].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[4].startSeconds, 39)
+        XCTAssertNil(gripsArray[0].durations[4].hand)
+        
+        XCTAssertEqual(gripsArray[0].durations[5].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[5].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[5].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[5].startSeconds, 42)
+        XCTAssertEqual(gripsArray[0].durations[5].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[6].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[6].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[6].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[6].startSeconds, 49)
+        XCTAssertEqual(gripsArray[0].durations[6].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[7].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[7].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[7].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[7].startSeconds, 59)
+        XCTAssertEqual(gripsArray[0].durations[7].hand, .right)
+        
+        XCTAssertEqual(gripsArray[1].durations.count, 8)
+        XCTAssertEqual(gripsArray[1].durations[0].description, "BREAK for 105 sec")
+        XCTAssertEqual(gripsArray[1].durations[0].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[0].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[0].startSeconds, 66)
+        XCTAssertNil(gripsArray[1].durations[0].hand)
+        
+        XCTAssertEqual(gripsArray[1].durations[1].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[1].durations[1].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[1].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[1].startSeconds, 171)
+        XCTAssertEqual(gripsArray[1].durations[1].hand, .left)
+        
+        XCTAssertEqual(gripsArray[1].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[1].durations[2].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[2].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[2].startSeconds, 178)
+        XCTAssertEqual(gripsArray[1].durations[2].hand, .right)
+        
+        XCTAssertEqual(gripsArray[1].durations[3].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[1].durations[3].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[3].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[3].startSeconds, 188)
+        XCTAssertEqual(gripsArray[1].durations[3].hand, .right)
+        
+        XCTAssertEqual(gripsArray[1].durations[4].description, "REST for 3 sec")
+        XCTAssertEqual(gripsArray[1].durations[4].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[4].currRep, 1)
+        XCTAssertEqual(gripsArray[1].durations[4].startSeconds, 195)
+        XCTAssertNil(gripsArray[1].durations[4].hand)
+        
+        XCTAssertEqual(gripsArray[1].durations[5].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[1].durations[5].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[5].currRep, 1)
+        XCTAssertEqual(gripsArray[1].durations[5].startSeconds, 198)
+        XCTAssertEqual(gripsArray[1].durations[5].hand, .left)
+        
+        XCTAssertEqual(gripsArray[1].durations[6].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[1].durations[6].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[6].currRep, 1)
+        XCTAssertEqual(gripsArray[1].durations[6].startSeconds, 205)
+        XCTAssertEqual(gripsArray[1].durations[6].hand, .right)
+        
+        XCTAssertEqual(gripsArray[1].durations[7].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[1].durations[7].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[7].currRep, 1)
+        XCTAssertEqual(gripsArray[1].durations[7].startSeconds, 215)
+        XCTAssertEqual(gripsArray[1].durations[7].hand, .right)
+    }
+    
     /// Test for Grips = 2, Sets = 2, Reps = 1
     func testTwoGripsWithTwoSetsAndOneRep() throws {
         // Create test grip1
@@ -1415,7 +2425,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip2.sequenceNum = 2
         grip2.gripType = gripType2
         
-        let gripsArray = GripsArray(grips: workout.gripArray)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
 
         XCTAssertEqual(gripsArray.count, 2)
         XCTAssertEqual(gripsArray.totalSeconds, 328)
@@ -1477,6 +2487,160 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[1].durations[3].startSeconds, 321)
     }
     
+    /// Test for Grips = 2, Sets = 2, Reps = 1, left/right mode enabled
+    func testTwoGripsWithTwoSetsAndOneRepWithLeftHandStart() throws {
+        workout.isLeftRightEnabled = true
+        
+        // Create test grip1
+        let gripType1 = GripType(context: context)
+        gripType1.name = "Full Crimp"
+        let grip1 = Grip(context: context)
+        grip1.workout = workout
+        grip1.setCount = 2
+        grip1.repCount = 1
+        grip1.workSeconds = 7
+        grip1.restSeconds = 3
+        grip1.breakMinutes = 1
+        grip1.breakSeconds = 30
+        grip1.lastBreakMinutes = 1
+        grip1.lastBreakSeconds = 45
+        grip1.sequenceNum = 1
+        grip1.gripType = gripType1
+        
+        // Create test grip2
+        let gripType2 = GripType(context: context)
+        gripType2.name = "Half Crimp"
+        let grip2 = Grip(context: context)
+        grip2.workout = workout
+        grip2.setCount = 2
+        grip2.repCount = 1
+        grip2.workSeconds = 7
+        grip2.restSeconds = 3
+        grip2.breakMinutes = 1
+        grip2.breakSeconds = 30
+        grip2.lastBreakMinutes = 2
+        grip2.lastBreakSeconds = 15
+        grip2.sequenceNum = 2
+        grip2.gripType = gripType2
+        
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+
+        XCTAssertEqual(gripsArray.count, 2)
+        XCTAssertEqual(gripsArray.totalSeconds, 396)
+        
+        XCTAssertEqual(gripsArray[0].workSeconds, 7)
+        XCTAssertEqual(gripsArray[0].restSeconds, 3)
+        XCTAssertEqual(gripsArray[0].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[0].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 0)
+        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 0)
+        
+        XCTAssertEqual(gripsArray[1].workSeconds, 7)
+        XCTAssertEqual(gripsArray[1].restSeconds, 3)
+        XCTAssertEqual(gripsArray[1].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 45)
+        
+        XCTAssertEqual(gripsArray[0].durations.count, 8)
+        XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
+        XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[1].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[1].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[1].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[1].startSeconds, 15)
+        XCTAssertEqual(gripsArray[0].durations[1].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[2].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[2].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[2].startSeconds, 22)
+        XCTAssertEqual(gripsArray[0].durations[2].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[3].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[3].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[3].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[3].startSeconds, 32)
+        XCTAssertEqual(gripsArray[0].durations[3].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[4].description, "BREAK for 90 sec")
+        XCTAssertEqual(gripsArray[0].durations[4].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[4].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[4].startSeconds, 39)
+        XCTAssertNil(gripsArray[0].durations[4].hand)
+        
+        XCTAssertEqual(gripsArray[0].durations[5].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[5].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[5].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[5].startSeconds, 129)
+        XCTAssertEqual(gripsArray[0].durations[5].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[6].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[6].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[6].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[6].startSeconds, 136)
+        XCTAssertEqual(gripsArray[0].durations[6].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[7].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[7].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[7].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[7].startSeconds, 146)
+        XCTAssertEqual(gripsArray[0].durations[7].hand, .right)
+
+        XCTAssertEqual(gripsArray[1].durations.count, 8)
+        XCTAssertEqual(gripsArray[1].durations[0].description, "BREAK for 105 sec")
+        XCTAssertEqual(gripsArray[1].durations[0].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[0].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[0].startSeconds, 153)
+        XCTAssertNil(gripsArray[1].durations[0].hand)
+        
+        XCTAssertEqual(gripsArray[1].durations[1].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[1].durations[1].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[1].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[1].startSeconds, 258)
+        XCTAssertEqual(gripsArray[1].durations[1].hand, .left)
+        
+        XCTAssertEqual(gripsArray[1].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[1].durations[2].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[2].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[2].startSeconds, 265)
+        XCTAssertEqual(gripsArray[1].durations[2].hand, .right)
+        
+        XCTAssertEqual(gripsArray[1].durations[3].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[1].durations[3].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[3].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[3].startSeconds, 275)
+        XCTAssertEqual(gripsArray[1].durations[3].hand, .right)
+        
+        XCTAssertEqual(gripsArray[1].durations[4].description, "BREAK for 90 sec")
+        XCTAssertEqual(gripsArray[1].durations[4].currSet, 1)
+        XCTAssertEqual(gripsArray[1].durations[4].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[4].startSeconds, 282)
+        XCTAssertNil(gripsArray[1].durations[4].hand)
+        
+        XCTAssertEqual(gripsArray[1].durations[5].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[1].durations[5].currSet, 1)
+        XCTAssertEqual(gripsArray[1].durations[5].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[5].startSeconds, 372)
+        XCTAssertEqual(gripsArray[1].durations[5].hand, .left)
+        
+        XCTAssertEqual(gripsArray[1].durations[6].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[1].durations[6].currSet, 1)
+        XCTAssertEqual(gripsArray[1].durations[6].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[6].startSeconds, 379)
+        XCTAssertEqual(gripsArray[1].durations[6].hand, .right)
+        
+        XCTAssertEqual(gripsArray[1].durations[7].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[1].durations[7].currSet, 1)
+        XCTAssertEqual(gripsArray[1].durations[7].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[7].startSeconds, 389)
+        XCTAssertEqual(gripsArray[1].durations[7].hand, .right)
+    }
+    
     /// Test for Grips = 2, Sets = 2 Reps = 2
     func testTwoGripsWithTwoSetsAndTwoReps() throws {
         // Create test grip1
@@ -1511,7 +2675,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip2.sequenceNum = 2
         grip2.gripType = gripType2
         
-        let gripsArray = GripsArray(grips: workout.gripArray)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
 
         XCTAssertEqual(gripsArray.count, 2)
         XCTAssertEqual(gripsArray.totalSeconds, 368)
@@ -1613,6 +2777,255 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[1].durations[7].startSeconds, 361)
     }
     
+    /// Test for Grips = 2, Sets = 2 Reps = 2, left/right mode enabled
+    func testTwoGripsWithTwoSetsAndTwoRepsWithLeftHandStart() throws {
+        workout.isLeftRightEnabled = true
+        
+        // Create test grip1
+        let gripType1 = GripType(context: context)
+        gripType1.name = "Full Crimp"
+        let grip1 = Grip(context: context)
+        grip1.workout = workout
+        grip1.setCount = 2
+        grip1.repCount = 2
+        grip1.workSeconds = 7
+        grip1.restSeconds = 3
+        grip1.breakMinutes = 1
+        grip1.breakSeconds = 30
+        grip1.lastBreakMinutes = 1
+        grip1.lastBreakSeconds = 45
+        grip1.sequenceNum = 1
+        grip1.gripType = gripType1
+        
+        // Create test grip2
+        let gripType2 = GripType(context: context)
+        gripType2.name = "Half Crimp"
+        let grip2 = Grip(context: context)
+        grip2.workout = workout
+        grip2.setCount = 2
+        grip2.repCount = 2
+        grip2.workSeconds = 7
+        grip2.restSeconds = 3
+        grip2.breakMinutes = 1
+        grip2.breakSeconds = 30
+        grip2.lastBreakMinutes = 2
+        grip2.lastBreakSeconds = 15
+        grip2.sequenceNum = 2
+        grip2.gripType = gripType2
+        
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+
+        XCTAssertEqual(gripsArray.count, 2)
+        XCTAssertEqual(gripsArray.totalSeconds, 504)
+        
+        XCTAssertEqual(gripsArray[0].workSeconds, 7)
+        XCTAssertEqual(gripsArray[0].restSeconds, 3)
+        XCTAssertEqual(gripsArray[0].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[0].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[0].lastBreakMinutes, 0)
+        XCTAssertEqual(gripsArray[0].lastBreakSeconds, 0)
+        
+        XCTAssertEqual(gripsArray[1].workSeconds, 7)
+        XCTAssertEqual(gripsArray[1].restSeconds, 3)
+        XCTAssertEqual(gripsArray[1].breakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].breakSeconds, 30)
+        XCTAssertEqual(gripsArray[1].lastBreakMinutes, 1)
+        XCTAssertEqual(gripsArray[1].lastBreakSeconds, 45)
+        
+        XCTAssertEqual(gripsArray[0].durations.count, 16)
+        XCTAssertEqual(gripsArray[0].durations[0].description, "PREPARE for 15 sec")
+        XCTAssertEqual(gripsArray[0].durations[0].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].startSeconds, 0)
+        XCTAssertEqual(gripsArray[0].durations[0].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[1].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[1].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[1].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[1].startSeconds, 15)
+        XCTAssertEqual(gripsArray[0].durations[1].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[2].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[2].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[2].startSeconds, 22)
+        XCTAssertEqual(gripsArray[0].durations[2].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[3].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[3].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[3].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[3].startSeconds, 32)
+        XCTAssertEqual(gripsArray[0].durations[3].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[4].description, "REST for 3 sec")
+        XCTAssertEqual(gripsArray[0].durations[4].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[4].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[4].startSeconds, 39)
+        XCTAssertNil(gripsArray[0].durations[4].hand)
+        
+        XCTAssertEqual(gripsArray[0].durations[5].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[5].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[5].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[5].startSeconds, 42)
+        XCTAssertEqual(gripsArray[0].durations[5].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[6].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[6].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[6].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[6].startSeconds, 49)
+        XCTAssertEqual(gripsArray[0].durations[6].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[7].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[7].currSet, 0)
+        XCTAssertEqual(gripsArray[0].durations[7].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[7].startSeconds, 59)
+        XCTAssertEqual(gripsArray[0].durations[7].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[8].description, "BREAK for 90 sec")
+        XCTAssertEqual(gripsArray[0].durations[8].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[8].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[8].startSeconds, 66)
+        XCTAssertNil(gripsArray[0].durations[8].hand)
+        
+        XCTAssertEqual(gripsArray[0].durations[9].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[9].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[9].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[9].startSeconds, 156)
+        XCTAssertEqual(gripsArray[0].durations[9].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[10].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[10].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[10].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[10].startSeconds, 163)
+        XCTAssertEqual(gripsArray[0].durations[10].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[11].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[11].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[11].currRep, 0)
+        XCTAssertEqual(gripsArray[0].durations[11].startSeconds, 173)
+        XCTAssertEqual(gripsArray[0].durations[11].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[12].description, "REST for 3 sec")
+        XCTAssertEqual(gripsArray[0].durations[12].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[12].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[12].startSeconds, 180)
+        XCTAssertNil(gripsArray[0].durations[12].hand)
+        
+        XCTAssertEqual(gripsArray[0].durations[13].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[13].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[13].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[13].startSeconds, 183)
+        XCTAssertEqual(gripsArray[0].durations[13].hand, .left)
+        
+        XCTAssertEqual(gripsArray[0].durations[14].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[14].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[14].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[14].startSeconds, 190)
+        XCTAssertEqual(gripsArray[0].durations[14].hand, .right)
+        
+        XCTAssertEqual(gripsArray[0].durations[15].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[0].durations[15].currSet, 1)
+        XCTAssertEqual(gripsArray[0].durations[15].currRep, 1)
+        XCTAssertEqual(gripsArray[0].durations[15].startSeconds, 200)
+        XCTAssertEqual(gripsArray[0].durations[15].hand, .right)
+        
+        XCTAssertEqual(gripsArray[1].durations.count, 16)
+        XCTAssertEqual(gripsArray[1].durations[0].description, "BREAK for 105 sec")
+        XCTAssertEqual(gripsArray[1].durations[0].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[0].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[0].startSeconds, 207)
+        
+        XCTAssertEqual(gripsArray[1].durations[1].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[1].durations[1].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[1].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[1].startSeconds, 312)
+        XCTAssertEqual(gripsArray[1].durations[1].hand, .left)
+        
+        XCTAssertEqual(gripsArray[1].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[1].durations[2].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[2].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[2].startSeconds, 319)
+        XCTAssertEqual(gripsArray[1].durations[2].hand, .right)
+        
+        XCTAssertEqual(gripsArray[1].durations[3].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[1].durations[3].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[3].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[3].startSeconds, 329)
+        XCTAssertEqual(gripsArray[1].durations[3].hand, .right)
+        
+        XCTAssertEqual(gripsArray[1].durations[4].description, "REST for 3 sec")
+        XCTAssertEqual(gripsArray[1].durations[4].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[4].currRep, 1)
+        XCTAssertEqual(gripsArray[1].durations[4].startSeconds, 336)
+        XCTAssertNil(gripsArray[1].durations[4].hand)
+        
+        XCTAssertEqual(gripsArray[1].durations[5].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[1].durations[5].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[5].currRep, 1)
+        XCTAssertEqual(gripsArray[1].durations[5].startSeconds, 339)
+        XCTAssertEqual(gripsArray[1].durations[5].hand, .left)
+        
+        XCTAssertEqual(gripsArray[1].durations[6].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[1].durations[6].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[6].currRep, 1)
+        XCTAssertEqual(gripsArray[1].durations[6].startSeconds, 346)
+        XCTAssertEqual(gripsArray[1].durations[6].hand, .right)
+        
+        XCTAssertEqual(gripsArray[1].durations[7].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[1].durations[7].currSet, 0)
+        XCTAssertEqual(gripsArray[1].durations[7].currRep, 1)
+        XCTAssertEqual(gripsArray[1].durations[7].startSeconds, 356)
+        XCTAssertEqual(gripsArray[1].durations[7].hand, .right)
+        
+        XCTAssertEqual(gripsArray[1].durations[8].description, "BREAK for 90 sec")
+        XCTAssertEqual(gripsArray[1].durations[8].currSet, 1)
+        XCTAssertEqual(gripsArray[1].durations[8].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[8].startSeconds, 363)
+        XCTAssertNil(gripsArray[1].durations[8].hand)
+        
+        XCTAssertEqual(gripsArray[1].durations[9].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[1].durations[9].currSet, 1)
+        XCTAssertEqual(gripsArray[1].durations[9].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[9].startSeconds, 453)
+        XCTAssertEqual(gripsArray[1].durations[9].hand, .left)
+        
+        XCTAssertEqual(gripsArray[1].durations[10].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[1].durations[10].currSet, 1)
+        XCTAssertEqual(gripsArray[1].durations[10].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[10].startSeconds, 460)
+        XCTAssertEqual(gripsArray[1].durations[10].hand, .right)
+        
+        XCTAssertEqual(gripsArray[1].durations[11].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[1].durations[11].currSet, 1)
+        XCTAssertEqual(gripsArray[1].durations[11].currRep, 0)
+        XCTAssertEqual(gripsArray[1].durations[11].startSeconds, 470)
+        XCTAssertEqual(gripsArray[1].durations[11].hand, .right)
+        
+        XCTAssertEqual(gripsArray[1].durations[12].description, "REST for 3 sec")
+        XCTAssertEqual(gripsArray[1].durations[12].currSet, 1)
+        XCTAssertEqual(gripsArray[1].durations[12].currRep, 1)
+        XCTAssertEqual(gripsArray[1].durations[12].startSeconds, 477)
+        XCTAssertNil(gripsArray[1].durations[12].hand)
+        
+        XCTAssertEqual(gripsArray[1].durations[13].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[1].durations[13].currSet, 1)
+        XCTAssertEqual(gripsArray[1].durations[13].currRep, 1)
+        XCTAssertEqual(gripsArray[1].durations[13].startSeconds, 480)
+        XCTAssertEqual(gripsArray[1].durations[13].hand, .left)
+        
+        XCTAssertEqual(gripsArray[1].durations[14].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[1].durations[14].currSet, 1)
+        XCTAssertEqual(gripsArray[1].durations[14].currRep, 1)
+        XCTAssertEqual(gripsArray[1].durations[14].startSeconds, 487)
+        XCTAssertEqual(gripsArray[1].durations[14].hand, .right)
+        
+        XCTAssertEqual(gripsArray[1].durations[15].description, "WORK for 7 sec")
+        XCTAssertEqual(gripsArray[1].durations[15].currSet, 1)
+        XCTAssertEqual(gripsArray[1].durations[15].currRep, 1)
+        XCTAssertEqual(gripsArray[1].durations[15].startSeconds, 497)
+        XCTAssertEqual(gripsArray[1].durations[15].hand, .right)
+    }
+    
     /// Test for Grips = 2, Sets = 2 Reps = 2, Custom durations true for 2nd grip only
     func testTwoGripsWithTwoSetsAndTwoRepsCustomDurations() throws {
         // Create test grip1
@@ -1650,7 +3063,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         grip2.sequenceNum = 2
         grip2.gripType = gripType2
         
-        let gripsArray = GripsArray(grips: workout.gripArray)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
 
         XCTAssertEqual(gripsArray.count, 2)
         XCTAssertEqual(gripsArray.totalSeconds, 412)

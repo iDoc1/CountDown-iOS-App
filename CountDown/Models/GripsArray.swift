@@ -11,6 +11,9 @@ import SwiftUI
 /// Contains a collection of grips, each containing a collection of elements representing the sets and reps within a grip.
 struct GripsArray {
     var grips: [WorkoutGrip] = []
+    var isLeftRightEnabled: Bool
+    var startHand: String?
+    var secondsBetweenHands: Int?
     
     /// The types of durations a timer can have. Each case corresponds to a string that may be displayed in the countdown timer
     enum DurationType: String {
@@ -51,6 +54,8 @@ struct GripsArray {
         var hasCustomDurations: Bool
         var customWorkSeconds: [Int]
         var customRestSeconds: [Int]
+        /// Optional string to specify if this grip is left or right hand
+        var gripHand: String?
         /// Optional break that occurs between grips that takes precedence over the standard break duration. There are some
         /// where a user may want the break duration between grips to be different that the break duration between sets. This property
         /// is used for that scenario.
@@ -88,6 +93,7 @@ struct GripsArray {
         let currRep: Int
         /// The time at which this duration starts within the scope of the entire workout
         let startSeconds: Int
+        let hand: Hand?
         
         /// Returns a string representation of this struct. Example: "WORK for 3 sec".
         var description: String {
@@ -96,10 +102,14 @@ struct GripsArray {
     }
     
     init(grip: GripViewModel) {
+        self.isLeftRightEnabled = false
         buildArrayFromGripViewModel(grip: grip)
     }
-    
-    init(grips: [Grip]) {
+
+    init(grips: [Grip], workout: Workout) {
+        self.isLeftRightEnabled = workout.unwrappedIsLeftRightEnabled
+        self.startHand = workout.unwrappedStartHand
+        self.secondsBetweenHands = workout.unwrappedSecondsBetweenHands
         buildArrayFromGrips(grips: grips)
     }
     
@@ -229,7 +239,7 @@ struct GripsArray {
         while currSet < grip.setCount {
 
             if currRep < grip.repCount {
-                addDuration(type: .workType)
+                addWorkDuration()
                 currRep += 1
             }
             
@@ -242,7 +252,7 @@ struct GripsArray {
                 
             while currRep < maxReps {
                 addDuration(type: .restType)
-                addDuration(type: .workType)
+                addWorkDuration()
                 currRep += 1
             }
             
@@ -255,9 +265,28 @@ struct GripsArray {
             }
         }
         
+        /// Checks if left/right mode is enabled, then adds the appropriate durations
+        func addWorkDuration() {
+            /*
+             If left/right mode is enabled, then add a work duration for each hand with a
+             rest duration in between
+             */
+            if self.isLeftRightEnabled {
+                addDuration(type: .workType, hand: Hand(rawValue: self.startHand!))
+                addDuration(type: .restType,
+                            hand: Hand(rawValue: self.startHand!)?.opposite,
+                            secondsOverride: self.secondsBetweenHands)
+                addDuration(type: .workType, hand: Hand(rawValue: self.startHand!)?.opposite)
+                
+            // Otherwise, just add a single work duration
+            } else {
+                addDuration(type: .workType)
+            }
+        }
+        
         /// Appends the DurationStatus with the specified DurationType to the grips array using the current state of currGrip, currSet,
         /// and currRep
-        func addDuration(type: DurationType) {
+        func addDuration(type: DurationType, hand: Hand? = nil, secondsOverride: Int? = nil) {
             switch type {
             case .workType:
                 let workSeconds: Int
@@ -274,14 +303,19 @@ struct GripsArray {
                     durationType: .workType,
                     currSet: currSet,
                     currRep: currRep,
-                    startSeconds: secondsElapsed)
+                    startSeconds: secondsElapsed,
+                    hand: hand)
                 secondsElapsed += workDuration.seconds
                 grips[currGrip].durations.append(workDuration)
             case .restType:
                 let restSeconds: Int
                 
+                // Use override seconds if they are given (used only for left/right mode)
+                if secondsOverride != nil {
+                    restSeconds = secondsOverride!
+
                 // Use custom rest seconds if custom durations is turned on
-                if grip.hasCustomDurations {
+                } else if grip.hasCustomDurations {
                     // Subtract one because rep has already incremented after work duration
                     restSeconds = grip.customRestSeconds[currRep - 1]
                 } else {
@@ -293,7 +327,8 @@ struct GripsArray {
                     durationType: .restType,
                     currSet: currSet,
                     currRep: currRep,
-                    startSeconds: secondsElapsed)
+                    startSeconds: secondsElapsed,
+                    hand: hand)
                 secondsElapsed += restDuration.seconds
                 grips[currGrip].durations.append(restDuration)
             case .breakType:
@@ -316,16 +351,25 @@ struct GripsArray {
                     durationType: .breakType,
                     currSet: currSet,
                     currRep: currRep,
-                    startSeconds: secondsElapsed)
+                    startSeconds: secondsElapsed,
+                    hand: hand)
                 secondsElapsed += breakSeconds
                 grips[currGrip].durations.append(breakDuration)
             case .prepareType:
+                var startHand: Hand? = nil
+                
+                // If a start hand exists, then set the Prepare duration hand to the start hand
+                if self.isLeftRightEnabled && self.startHand != nil {
+                    startHand = Hand(rawValue: self.startHand!)
+                }
+                
                 let prepareDuration = DurationStatus(
                     seconds: 15,
                     durationType: .prepareType,
                     currSet: currSet,
                     currRep: currRep,
-                    startSeconds: secondsElapsed)
+                    startSeconds: secondsElapsed,
+                    hand: startHand)
                 secondsElapsed += 15
                 grips[currGrip].durations.append(prepareDuration)
             }

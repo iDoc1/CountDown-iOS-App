@@ -1,4 +1,5 @@
 {
+  "originHash" : "cde6c37d3cd392350ad8f0d3158d4f0afbacfec35f433a5baf193ba30531fc1d",
   "pins" : [
     {
       "identity" : "exceptioncatcher",
@@ -32,10 +33,10 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nalexn/ViewInspector",
       "state" : {
-        "revision" : "07c090d73e0169c342a4ed46e9010be2781eca1e",
-        "version" : "0.9.8"
+        "revision" : "788e7879d38a839c4e348ab0762dcc0364e646a2",
+        "version" : "0.10.1"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

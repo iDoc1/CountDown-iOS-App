@@ -109,7 +109,7 @@ struct TimerHeader_Previews: PreviewProvider {
     }()
 
     static var previews: some View {
-        let timer = CountdownTimer(gripsArray: GripsArray(grips: workout.gripArray))
+        let timer = CountdownTimer(gripsArray: GripsArray(grips: workout.gripArray, workout: workout))
 
         TimerHeader(timer: timer, showGripProgress: true)
     }

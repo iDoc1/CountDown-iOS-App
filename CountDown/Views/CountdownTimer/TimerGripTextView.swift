@@ -95,6 +95,6 @@ struct TimerGripTextView_Previews: PreviewProvider {
     }()
     
     static var previews: some View {
-        TimerGripTextView(timer: CountdownTimer(gripsArray: GripsArray(grips: workout.gripArray)))
+        TimerGripTextView(timer: CountdownTimer(gripsArray: GripsArray(grips: workout.gripArray, workout: workout)))
     }
 }

@@ -257,7 +257,7 @@ final class CountdownTimerFromWorkoutTests: XCTestCase {
         grip2.sequenceNum = 1
         grip2.gripType = gripType2
         
-        let gripsArray = GripsArray(grips: workout.gripArray)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
         
         timer = CountdownTimer(gripsArray: gripsArray)
     }

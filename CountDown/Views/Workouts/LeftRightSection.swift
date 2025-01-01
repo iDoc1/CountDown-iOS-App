@@ -28,8 +28,8 @@ struct LeftRightSection: View {
                 HStack(spacing: 20) {
                     Text("Start hand")
                     Picker("Start hand", selection: $workout.startHand) {
-                        Text("Left").tag("Left")
-                        Text("Right").tag("Right")
+                        Text(Hand.left.rawValue).tag(Hand.left.rawValue)
+                        Text(Hand.right.rawValue).tag(Hand.right.rawValue)
                     }
                     .pickerStyle(.segmented)
                 }

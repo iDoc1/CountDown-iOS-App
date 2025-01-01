@@ -116,7 +116,7 @@ struct CountdownTimerWorkoutView_Previews: PreviewProvider {
     }()
 
     static var previews: some View {
-        let gripsArray = GripsArray(grips: workout.gripArray)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
         NavigationStack {
             CountdownTimerWorkoutView(gripsArray: gripsArray, workout: workout)
         }
