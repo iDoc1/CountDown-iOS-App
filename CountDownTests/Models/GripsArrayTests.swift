@@ -924,7 +924,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[1].startSeconds, 15)
         XCTAssertEqual(gripsArray[0].durations[1].hand, .left)
         
-        XCTAssertEqual(gripsArray[0].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[2].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[0].durations[2].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[2].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[2].startSeconds, 22)
@@ -1031,7 +1031,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[1].startSeconds, 15)
         XCTAssertEqual(gripsArray[0].durations[1].hand, .left)
         
-        XCTAssertEqual(gripsArray[0].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[2].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[0].durations[2].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[2].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[2].startSeconds, 22)
@@ -1055,7 +1055,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[5].startSeconds, 42)
         XCTAssertEqual(gripsArray[0].durations[5].hand, .left)
         
-        XCTAssertEqual(gripsArray[0].durations[6].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[6].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[0].durations[6].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[6].currRep, 1)
         XCTAssertEqual(gripsArray[0].durations[6].startSeconds, 49)
@@ -1112,7 +1112,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[1].startSeconds, 15)
         XCTAssertEqual(gripsArray[0].durations[1].hand, .right)
         
-        XCTAssertEqual(gripsArray[0].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[2].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[0].durations[2].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[2].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[2].startSeconds, 22)
@@ -1136,7 +1136,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[5].startSeconds, 42)
         XCTAssertEqual(gripsArray[0].durations[5].hand, .right)
         
-        XCTAssertEqual(gripsArray[0].durations[6].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[6].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[0].durations[6].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[6].currRep, 1)
         XCTAssertEqual(gripsArray[0].durations[6].startSeconds, 49)
@@ -1243,7 +1243,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[1].startSeconds, 15)
         XCTAssertEqual(gripsArray[0].durations[1].hand, .left)
         
-        XCTAssertEqual(gripsArray[0].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[2].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[0].durations[2].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[2].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[2].startSeconds, 22)
@@ -1267,7 +1267,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[5].startSeconds, 129)
         XCTAssertEqual(gripsArray[0].durations[5].hand, .left)
         
-        XCTAssertEqual(gripsArray[0].durations[6].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[6].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[0].durations[6].currSet, 1)
         XCTAssertEqual(gripsArray[0].durations[6].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[6].startSeconds, 136)
@@ -1393,7 +1393,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[1].startSeconds, 15)
         XCTAssertEqual(gripsArray[0].durations[1].hand, .left)
         
-        XCTAssertEqual(gripsArray[0].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[2].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[0].durations[2].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[2].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[2].startSeconds, 22)
@@ -1417,7 +1417,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[5].startSeconds, 42)
         XCTAssertEqual(gripsArray[0].durations[5].hand, .left)
         
-        XCTAssertEqual(gripsArray[0].durations[6].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[6].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[0].durations[6].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[6].currRep, 1)
         XCTAssertEqual(gripsArray[0].durations[6].startSeconds, 49)
@@ -1441,7 +1441,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[9].startSeconds, 156)
         XCTAssertEqual(gripsArray[0].durations[9].hand, .left)
         
-        XCTAssertEqual(gripsArray[0].durations[10].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[10].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[0].durations[10].currSet, 1)
         XCTAssertEqual(gripsArray[0].durations[10].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[10].startSeconds, 163)
@@ -1465,7 +1465,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[13].startSeconds, 183)
         XCTAssertEqual(gripsArray[0].durations[13].hand, .left)
         
-        XCTAssertEqual(gripsArray[0].durations[14].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[14].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[0].durations[14].currSet, 1)
         XCTAssertEqual(gripsArray[0].durations[14].currRep, 1)
         XCTAssertEqual(gripsArray[0].durations[14].startSeconds, 190)
@@ -2105,7 +2105,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[1].startSeconds, 15)
         XCTAssertEqual(gripsArray[0].durations[1].hand, .left)
         
-        XCTAssertEqual(gripsArray[0].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[2].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[0].durations[2].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[2].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[2].startSeconds, 22)
@@ -2128,7 +2128,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[1].durations[1].currRep, 0)
         XCTAssertEqual(gripsArray[1].durations[1].startSeconds, 144)
         
-        XCTAssertEqual(gripsArray[1].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[1].durations[2].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[1].durations[2].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[2].currRep, 0)
         XCTAssertEqual(gripsArray[1].durations[2].startSeconds, 151)
@@ -2305,7 +2305,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[1].startSeconds, 15)
         XCTAssertEqual(gripsArray[0].durations[1].hand, .left)
         
-        XCTAssertEqual(gripsArray[0].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[2].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[0].durations[2].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[2].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[2].startSeconds, 22)
@@ -2329,7 +2329,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[5].startSeconds, 42)
         XCTAssertEqual(gripsArray[0].durations[5].hand, .left)
         
-        XCTAssertEqual(gripsArray[0].durations[6].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[6].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[0].durations[6].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[6].currRep, 1)
         XCTAssertEqual(gripsArray[0].durations[6].startSeconds, 49)
@@ -2354,7 +2354,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[1].durations[1].startSeconds, 171)
         XCTAssertEqual(gripsArray[1].durations[1].hand, .left)
         
-        XCTAssertEqual(gripsArray[1].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[1].durations[2].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[1].durations[2].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[2].currRep, 0)
         XCTAssertEqual(gripsArray[1].durations[2].startSeconds, 178)
@@ -2378,7 +2378,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[1].durations[5].startSeconds, 198)
         XCTAssertEqual(gripsArray[1].durations[5].hand, .left)
         
-        XCTAssertEqual(gripsArray[1].durations[6].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[1].durations[6].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[1].durations[6].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[6].currRep, 1)
         XCTAssertEqual(gripsArray[1].durations[6].startSeconds, 205)
@@ -2555,7 +2555,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[1].startSeconds, 15)
         XCTAssertEqual(gripsArray[0].durations[1].hand, .left)
         
-        XCTAssertEqual(gripsArray[0].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[2].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[0].durations[2].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[2].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[2].startSeconds, 22)
@@ -2579,7 +2579,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[5].startSeconds, 129)
         XCTAssertEqual(gripsArray[0].durations[5].hand, .left)
         
-        XCTAssertEqual(gripsArray[0].durations[6].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[6].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[0].durations[6].currSet, 1)
         XCTAssertEqual(gripsArray[0].durations[6].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[6].startSeconds, 136)
@@ -2604,7 +2604,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[1].durations[1].startSeconds, 258)
         XCTAssertEqual(gripsArray[1].durations[1].hand, .left)
         
-        XCTAssertEqual(gripsArray[1].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[1].durations[2].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[1].durations[2].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[2].currRep, 0)
         XCTAssertEqual(gripsArray[1].durations[2].startSeconds, 265)
@@ -2628,7 +2628,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[1].durations[5].startSeconds, 372)
         XCTAssertEqual(gripsArray[1].durations[5].hand, .left)
         
-        XCTAssertEqual(gripsArray[1].durations[6].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[1].durations[6].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[1].durations[6].currSet, 1)
         XCTAssertEqual(gripsArray[1].durations[6].currRep, 0)
         XCTAssertEqual(gripsArray[1].durations[6].startSeconds, 379)
@@ -2845,7 +2845,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[1].startSeconds, 15)
         XCTAssertEqual(gripsArray[0].durations[1].hand, .left)
         
-        XCTAssertEqual(gripsArray[0].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[2].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[0].durations[2].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[2].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[2].startSeconds, 22)
@@ -2869,7 +2869,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[5].startSeconds, 42)
         XCTAssertEqual(gripsArray[0].durations[5].hand, .left)
         
-        XCTAssertEqual(gripsArray[0].durations[6].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[6].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[0].durations[6].currSet, 0)
         XCTAssertEqual(gripsArray[0].durations[6].currRep, 1)
         XCTAssertEqual(gripsArray[0].durations[6].startSeconds, 49)
@@ -2893,7 +2893,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[9].startSeconds, 156)
         XCTAssertEqual(gripsArray[0].durations[9].hand, .left)
         
-        XCTAssertEqual(gripsArray[0].durations[10].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[10].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[0].durations[10].currSet, 1)
         XCTAssertEqual(gripsArray[0].durations[10].currRep, 0)
         XCTAssertEqual(gripsArray[0].durations[10].startSeconds, 163)
@@ -2917,7 +2917,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[0].durations[13].startSeconds, 183)
         XCTAssertEqual(gripsArray[0].durations[13].hand, .left)
         
-        XCTAssertEqual(gripsArray[0].durations[14].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[0].durations[14].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[0].durations[14].currSet, 1)
         XCTAssertEqual(gripsArray[0].durations[14].currRep, 1)
         XCTAssertEqual(gripsArray[0].durations[14].startSeconds, 190)
@@ -2941,7 +2941,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[1].durations[1].startSeconds, 312)
         XCTAssertEqual(gripsArray[1].durations[1].hand, .left)
         
-        XCTAssertEqual(gripsArray[1].durations[2].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[1].durations[2].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[1].durations[2].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[2].currRep, 0)
         XCTAssertEqual(gripsArray[1].durations[2].startSeconds, 319)
@@ -2965,7 +2965,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[1].durations[5].startSeconds, 339)
         XCTAssertEqual(gripsArray[1].durations[5].hand, .left)
         
-        XCTAssertEqual(gripsArray[1].durations[6].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[1].durations[6].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[1].durations[6].currSet, 0)
         XCTAssertEqual(gripsArray[1].durations[6].currRep, 1)
         XCTAssertEqual(gripsArray[1].durations[6].startSeconds, 346)
@@ -2989,7 +2989,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[1].durations[9].startSeconds, 453)
         XCTAssertEqual(gripsArray[1].durations[9].hand, .left)
         
-        XCTAssertEqual(gripsArray[1].durations[10].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[1].durations[10].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[1].durations[10].currSet, 1)
         XCTAssertEqual(gripsArray[1].durations[10].currRep, 0)
         XCTAssertEqual(gripsArray[1].durations[10].startSeconds, 460)
@@ -3013,7 +3013,7 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
         XCTAssertEqual(gripsArray[1].durations[13].startSeconds, 480)
         XCTAssertEqual(gripsArray[1].durations[13].hand, .left)
         
-        XCTAssertEqual(gripsArray[1].durations[14].description, "REST for 10 sec")
+        XCTAssertEqual(gripsArray[1].durations[14].description, "SWITCH for 10 sec")
         XCTAssertEqual(gripsArray[1].durations[14].currSet, 1)
         XCTAssertEqual(gripsArray[1].durations[14].currRep, 1)
         XCTAssertEqual(gripsArray[1].durations[14].startSeconds, 487)

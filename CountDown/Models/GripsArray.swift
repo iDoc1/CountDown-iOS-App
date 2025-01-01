@@ -19,6 +19,7 @@ struct GripsArray {
     enum DurationType: String {
         case workType = "WORK"
         case restType = "REST"
+        case switchType = "SWITCH"
         case breakType = "BREAK"
         case prepareType = "PREPARE"
         
@@ -27,7 +28,7 @@ struct GripsArray {
             switch self {
             case .workType:
                 return Theme.lightGreen.mainColor
-            case .restType:
+            case .restType, .switchType:
                 return Theme.mediumYellow.mainColor
             case .breakType:
                 return Theme.brightRed.mainColor
@@ -269,11 +270,11 @@ struct GripsArray {
         func addWorkDuration() {
             /*
              If left/right mode is enabled, then add a work duration for each hand with a
-             rest duration in between
+             switch duration in between
              */
             if self.isLeftRightEnabled {
                 addDuration(type: .workType, hand: Hand(rawValue: self.startHand!))
-                addDuration(type: .restType,
+                addDuration(type: .switchType,
                             hand: Hand(rawValue: self.startHand!)?.opposite,
                             secondsOverride: self.secondsBetweenHands)
                 addDuration(type: .workType, hand: Hand(rawValue: self.startHand!)?.opposite)
@@ -307,7 +308,7 @@ struct GripsArray {
                     hand: hand)
                 secondsElapsed += workDuration.seconds
                 grips[currGrip].durations.append(workDuration)
-            case .restType:
+            case .restType, .switchType:
                 let restSeconds: Int
                 
                 // Use override seconds if they are given (used only for left/right mode)
@@ -324,7 +325,7 @@ struct GripsArray {
                 
                 let restDuration = DurationStatus(
                     seconds: restSeconds,
-                    durationType: .restType,
+                    durationType: type == .restType ? .restType : .switchType,
                     currSet: currSet,
                     currRep: currRep,
                     startSeconds: secondsElapsed,
