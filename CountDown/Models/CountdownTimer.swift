@@ -99,6 +99,11 @@ final class CountdownTimer: ObservableObject {
         guard durationIndex < currGrip.durations.count else { return "COMPLETE" }
         return currGrip.durations[durationIndex].durationType.rawValue
     }
+    /// The current hand, if one is specified, otherwise nil
+    var hand: Hand? {
+        guard durationIndex < currGrip.durations.count else { return nil }
+        return currGrip.durations[durationIndex].hand
+    }
     /// The current WorkoutGrip
     var currGrip: GripsArray.WorkoutGrip {
         guard gripIndex < gripsArray.count else {

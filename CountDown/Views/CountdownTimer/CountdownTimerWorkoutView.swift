@@ -28,6 +28,9 @@ struct CountdownTimerWorkoutView: View {
                 .overlay {
                     TimerTextView(timer: countdownTimer)
                 }
+                .overlay(alignment: .top) {
+                    TimerHandView(timer: countdownTimer)
+                }
             TimerButtonsView(timer: countdownTimer)
                 .frame(height: 100.0)
         }
@@ -74,6 +77,8 @@ struct CountdownTimerWorkoutView_Previews: PreviewProvider {
         workout.descriptionText = "RCTM Advanced Repeaters Protocol"
         workout.createdDate = Date()
         workout.workoutType = workoutType
+        workout.isLeftRightEnabled = true
+        workout.startHand = Hand.left.rawValue
         
         let gripType1 = GripType(context: context)
         gripType1.name = "Half Crimp"

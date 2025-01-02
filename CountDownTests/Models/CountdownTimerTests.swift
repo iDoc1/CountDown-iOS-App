@@ -431,3 +431,122 @@ final class CountdownTimerFromWorkoutTests: XCTestCase {
         XCTAssertEqual(timer.timerState, .notStarted)
     }
 }
+
+
+/// This test case tests scenarios specific to a CountdownTimer created from a workout that has left/right mode enabled
+@MainActor
+final class CountdownTimerFromWorkoutWithLeftRightModeTests: XCTestCase {
+    var timer: CountdownTimer!
+    
+    override func setUpWithError() throws {
+        let context = PersistenceController(inMemory: true).container.viewContext
+        
+        // Create test workout
+        let workoutType = WorkoutType(context: context)
+        workoutType.name = "powerEndurance"
+        let workout = Workout(context: context)
+        workout.name = "Repeaters"
+        workout.descriptionText = "RCTM Advanced Repeaters Protocol"
+        workout.createdDate = Date()
+        workout.workoutType = workoutType
+        workout.isLeftRightEnabled = true
+        workout.startHand = Hand.right.rawValue
+        
+        // Create test grip1
+        let gripType1 = GripType(context: context)
+        gripType1.name = "Full Crimp"
+        let grip1 = Grip(context: context)
+        grip1.workout = workout
+        grip1.setCount = 2
+        grip1.repCount = 2
+        grip1.workSeconds = 7
+        grip1.restSeconds = 3
+        grip1.breakMinutes = 1
+        grip1.breakSeconds = 30
+        grip1.lastBreakMinutes = 2
+        grip1.lastBreakSeconds = 15
+        grip1.sequenceNum = 0
+        grip1.gripType = gripType1
+        
+        // Create test grip2
+        let gripType2 = GripType(context: context)
+        gripType2.name = "Half Crimp"
+        let grip2 = Grip(context: context)
+        grip2.workout = workout
+        grip2.setCount = 2
+        grip2.repCount = 2
+        grip2.workSeconds = 7
+        grip2.restSeconds = 3
+        grip2.breakMinutes = 1
+        grip2.breakSeconds = 30
+        grip2.lastBreakMinutes = 2
+        grip2.lastBreakSeconds = 15
+        grip2.sequenceNum = 1
+        grip2.gripType = gripType2
+        
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+        
+        timer = CountdownTimer(gripsArray: gripsArray)
+    }
+    
+    override func tearDownWithError() throws {
+        timer.timerState = .notStarted
+    }
+    
+    func testCountdownTimerInitialState()  {
+        XCTAssertEqual(timer.secondsLeft, 15)
+        XCTAssertEqual(timer.progress, 1.0)
+        XCTAssertEqual(timer.gripIndex, 0)
+        XCTAssertEqual(timer.durationIndex, 0)
+        XCTAssertEqual(timer.timerString, "0:15")
+        XCTAssertEqual(timer.totalTime, "8:54")
+        XCTAssertEqual(timer.timeLeft, "8:54")
+        XCTAssertEqual(timer.currGrip.name, "Full Crimp")
+        XCTAssertEqual(timer.nextGrip?.name, "Half Crimp")
+        XCTAssertEqual(timer.timerColor, Theme.lightBlue.mainColor)
+        XCTAssertEqual(timer.durationType, GripsArray.DurationType.prepareType.rawValue)
+        XCTAssertEqual(timer.timerState, .notStarted)
+        XCTAssertEqual(timer.hand, .right)
+    }
+    
+    func testTimerResetsToInitialState()  {
+        timer.timerState = .started
+        timer.skip()
+        let expectation = expectation(description: "Let timer run for 1.5 seconds")
+        _ = XCTWaiter.wait(for: [expectation], timeout: 1.5)
+        timer.timerState = .notStarted
+        
+        XCTAssertEqual(timer.secondsLeft, 15)
+        XCTAssertEqual(timer.progress, 1.0)
+        XCTAssertEqual(timer.gripIndex, 0)
+        XCTAssertEqual(timer.durationIndex, 0)
+        XCTAssertEqual(timer.timerString, "0:15")
+        XCTAssertEqual(timer.totalTime, "8:54")
+        XCTAssertEqual(timer.timeLeft, "8:54")
+        XCTAssertEqual(timer.currGrip.name, "Full Crimp")
+        XCTAssertEqual(timer.nextGrip?.name, "Half Crimp")
+        XCTAssertEqual(timer.timerColor, Theme.lightBlue.mainColor)
+        XCTAssertEqual(timer.durationType, GripsArray.DurationType.prepareType.rawValue)
+        XCTAssertEqual(timer.timerState, .notStarted)
+        XCTAssertEqual(timer.hand, .right)
+    }
+    
+    func testTimerSkipsToSwitchDuration()  {
+        timer.timerState = .started
+        timer.skip()
+        timer.skip()
+        let expectation = expectation(description: "Let timer run for 1.5 seconds")
+        _ = XCTWaiter.wait(for: [expectation], timeout: 1.5)
+        
+        XCTAssertEqual(timer.gripIndex, 0)
+        XCTAssertEqual(timer.durationIndex, 2)
+        XCTAssertEqual(timer.secondsLeft, 9)
+        XCTAssertEqual(timer.timerString, "0:09")
+        XCTAssertEqual(timer.timeLeft, "8:31")
+        XCTAssertEqual(timer.currGrip.name, "Full Crimp")
+        XCTAssertEqual(timer.nextGrip?.name, "Half Crimp")
+        XCTAssertEqual(timer.timerState, .started)
+        XCTAssertEqual(timer.durationType, GripsArray.DurationType.switchType.rawValue)
+        XCTAssertEqual(timer.hand, .left)
+    }
+}
