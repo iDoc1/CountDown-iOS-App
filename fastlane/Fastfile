@@ -21,7 +21,7 @@ platform :ios do
   desc "Run tests for CountDown"
   lane :tests do
     run_tests(project: "CountDown.xcodeproj",
-              devices: ["iPhone 14 Pro"])
+              devices: ["iPhone 15 Pro"])
   end
 
   desc "Build and upload to TestFlight"
