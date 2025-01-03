@@ -18,17 +18,16 @@ final class ProgressStepperTest: XCTestCase {
             currIndex: 3,
             color: Theme.lightBlue.mainColor,
             isDecremented: false)
-        let title = try view.inspect().hStack().text(0).string()
 
         // Ensure the correct title and indices are displayed
-        XCTAssertEqual(title, "Sets")
-        XCTAssertNoThrow(try view.inspect().hStack().find(text: "1"))
-        XCTAssertNoThrow(try view.inspect().hStack().find(text: "2"))
-        XCTAssertNoThrow(try view.inspect().hStack().find(text: "3"))
-        XCTAssertNoThrow(try view.inspect().hStack().find(text: "4"))
-        XCTAssertNoThrow(try view.inspect().hStack().find(text: "5"))
-        XCTAssertNoThrow(try view.inspect().hStack().find(text: "6"))
-        XCTAssertNoThrow(try view.inspect().hStack().find(text: "7"))
+        XCTAssertNoThrow(try view.inspect().find(text: "Sets"))
+        XCTAssertNoThrow(try view.inspect().find(text: "1"))
+        XCTAssertNoThrow(try view.inspect().find(text: "2"))
+        XCTAssertNoThrow(try view.inspect().find(text: "3"))
+        XCTAssertNoThrow(try view.inspect().find(text: "4"))
+        XCTAssertNoThrow(try view.inspect().find(text: "5"))
+        XCTAssertNoThrow(try view.inspect().find(text: "6"))
+        XCTAssertNoThrow(try view.inspect().find(text: "7"))
         XCTAssertThrowsError(try view.inspect().hStack().find(text: "0"))
         XCTAssertThrowsError(try view.inspect().hStack().find(text: "8"))
     }
@@ -41,7 +40,7 @@ final class ProgressStepperTest: XCTestCase {
             color: Theme.lightBlue.mainColor,
             isDecremented: false)
         
-        XCTAssertNoThrow(try view.inspect().hStack().find(text: "12"))
+        XCTAssertNoThrow(try view.inspect().find(text: "12"))
     }
     
     func testStepperShowsDoesNotShowBox13() throws {
@@ -63,6 +62,6 @@ final class ProgressStepperTest: XCTestCase {
             color: Theme.lightBlue.mainColor,
             isDecremented: true)
         
-        XCTAssertNoThrow(try view.inspect().hStack().find(text: "-"))
+        XCTAssertNoThrow(try view.inspect().find(text: "-"))
     }
 }
