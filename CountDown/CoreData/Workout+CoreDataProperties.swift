@@ -15,7 +15,10 @@ extension Workout {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Workout> {
         return NSFetchRequest<Workout>(entityName: "Workout")
     }
-
+    
+    @NSManaged public var secondsBetweenHands: Int16
+    @NSManaged public var startHand: String?
+    @NSManaged public var isLeftRightEnabled: Bool
     @NSManaged public var createdDate: Date?
     @NSManaged public var descriptionText: String?
     @NSManaged public var foreignID: UUID?
@@ -24,6 +27,18 @@ extension Workout {
     @NSManaged public var grip: NSSet?
     @NSManaged public var history: NSSet?
     @NSManaged public var workoutType: WorkoutType?
+    
+    public var unwrappedSecondsBetweenHands: Int {
+        Int(secondsBetweenHands)
+    }
+    
+    public var unwrappedStartHand: String {
+        startHand ?? "Left"
+    }
+    
+    public var unwrappedIsLeftRightEnabled: Bool {
+        isLeftRightEnabled
+    }
     
     public var unwrappedCreatedDate: Date? {
         createdDate ?? nil

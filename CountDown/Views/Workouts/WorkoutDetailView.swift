@@ -10,12 +10,13 @@ import SwiftUI
 /// Displays details about a specific workout and provides links to start a workout or edit the workout's grips
 struct WorkoutDetailView: View {
     @Environment(\.managedObjectContext) var moc
+    @FocusState private var isInputActive: Bool
     @ObservedObject var workout: Workout
     @State private var isShowingEditWorkoutSheet = false
     @FetchRequest private var grips: FetchedResults<Grip>
 
     var gripsArray: GripsArray {
-        GripsArray(grips: Array(grips))
+        GripsArray(grips: Array(grips), workout: workout)
     }
 
     init(workout: Workout) {
@@ -56,6 +57,11 @@ struct WorkoutDetailView: View {
             } footer: {
                 Text("At least one grip must be added to start workout")
             }
+            
+            LeftRightSection(
+                context: moc,
+                workout: workout,
+                isInputActive: $isInputActive)
 
             Section(header: Text("Workout Details")) {
                 SectionRow(title: "Name", text: workout.unwrappedName)
@@ -130,6 +136,10 @@ struct WorkoutDetailView_Previews: PreviewProvider {
         workout.descriptionText = "RCTM Advanced Repeaters Protocol"
         workout.createdDate = Date()
         workout.workoutType = workoutType
+        workout.isLeftRightEnabled = false
+        workout.startHand = Hand.left.rawValue
+        workout.secondsBetweenHands = 10
+        
         
         let gripType = GripType(context: context)
         gripType.name = "Half Crimp"

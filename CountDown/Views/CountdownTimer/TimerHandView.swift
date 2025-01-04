@@ -1,51 +1,45 @@
 //
-//  TimerGripTextView.swift
+//  TimerHandView.swift
 //  CountDown
 //
-//  Created by Ian Docherty on 11/19/23.
+//  Created by Ian Docherty on 1/1/25.
 //
 
 import SwiftUI
 
-/// Dispalys the text of the current grip and next grip in the workout
-struct TimerGripTextView: View {
+/// Displays a left or right hand on the horitizontal axis if the timer hand is not nil
+struct TimerHandView: View {
     @ObservedObject var timer: CountdownTimer
-    
+
     var body: some View {
-        VStack {
-            Text(getGripName(grip: timer.currGrip))
-                .font(.title)
-            if timer.nextGrip != nil {
-                Text("Next: \(getGripName(grip: timer.nextGrip))")
-                    .font(.subheadline)
-                    .foregroundColor(Color(.systemGray))
+        if timer.hand != nil && timer.hand == .left {
+            HStack {
+                VStack(alignment: .leading) {
+                    Image(systemName: "hand.raised")
+                        .resizable()
+                        .frame(width: 40.0, height: 53.0)
+                    Text("Left")
+                }
+                .padding(.leading, 10)
             }
+            .frame(maxWidth: .infinity, alignment: .topLeading)
+        } else if timer.hand != nil && timer.hand == .right {
+            HStack {
+                VStack(alignment: .trailing) {
+                    Image(systemName: "hand.raised")
+                        .resizable()
+                        .frame(width: 40.0, height: 53.0)
+                        .scaleEffect(x: -1, y: 1)
+                    Text("Right")
+                }
+                .padding(.trailing, 10)
+            }
+            .frame(maxWidth: .infinity, alignment: .topTrailing)
         }
-    }
-    
-    /// Returns a String describing the given grip name and the edge size of that grip. If the given grip is nil, then returns and empty
-    /// String
-    /// - Parameter grip: A WorkoutGrip
-    /// - Returns: A String describing the grip name
-    private func getGripName(grip: GripsArray.WorkoutGrip?) -> String {
-        if grip == nil || grip!.name == nil {
-            return ""
-        }
-        return "\(grip!.name!) \(getEdgeSize(grip: grip!))"
-    }
-    
-    /// Returns a String of the edge size of the given grip in the format "- 18mm". If the given grip is nil, then returns an empty String.
-    /// - Parameter grip: A WorktouGrip
-    /// - Returns: An edge size String with mm unit appended
-    private func getEdgeSize(grip: GripsArray.WorkoutGrip) -> String {
-        if grip.edgeSize != nil {
-            return "- \(grip.edgeSize!)mm"
-        }
-        return ""
     }
 }
 
-struct TimerGripTextView_Previews: PreviewProvider {
+struct TimerHandView_Previews: PreviewProvider {
     static let persistence = PersistenceController.preview
     static var workout: Workout = {
         let context = persistence.container.viewContext
@@ -58,6 +52,8 @@ struct TimerGripTextView_Previews: PreviewProvider {
         workout.descriptionText = "RCTM Advanced Repeaters Protocol"
         workout.createdDate = Date()
         workout.workoutType = workoutType
+        workout.isLeftRightEnabled = true
+        workout.startHand = Hand.left.rawValue
         
         let gripType1 = GripType(context: context)
         gripType1.name = "Half Crimp"
@@ -88,13 +84,16 @@ struct TimerGripTextView_Previews: PreviewProvider {
         grip2.breakSeconds = 45
         grip2.lastBreakMinutes = 59
         grip2.lastBreakSeconds = 59
+        grip2.edgeSize = 20
         grip2.sequenceNum = 3
         grip2.gripType = gripType2
         
         return workout
     }()
-    
+
     static var previews: some View {
-        TimerGripTextView(timer: CountdownTimer(gripsArray: GripsArray(grips: workout.gripArray, workout: workout)))
+        let timer = CountdownTimer(gripsArray: GripsArray(grips: workout.gripArray, workout: workout))
+
+        TimerHandView(timer: timer)
     }
 }
