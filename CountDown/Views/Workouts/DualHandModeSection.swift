@@ -9,7 +9,7 @@ import SwiftUI
 import CoreData
 
 
-struct LeftRightSection: View {
+struct DualHandModeSection: View {
     @State private var workout: WorkoutViewModel
     var isInputActive: FocusState<Bool>.Binding
     
@@ -21,7 +21,7 @@ struct LeftRightSection: View {
     var body: some View {
         Section {
             Toggle(isOn: $workout.isLeftRightEnabled.animation()) {
-                Text("Left/Right Mode")
+                Text("Dual Hand Mode")
             }
             
             if workout.isLeftRightEnabled {
@@ -90,7 +90,7 @@ struct LeftRightSection_Previews: PreviewProvider {
     
     static var previews: some View {
         List {
-            LeftRightSection(
+            DualHandModeSection(
                 context: persistence.container.viewContext,
                 workout: workout,
                 isInputActive: FocusState<Bool>().projectedValue)

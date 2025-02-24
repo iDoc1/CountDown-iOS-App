@@ -58,7 +58,7 @@ struct WorkoutDetailView: View {
                 Text("At least one grip must be added to start workout")
             }
             
-            LeftRightSection(
+            DualHandModeSection(
                 context: moc,
                 workout: workout,
                 isInputActive: $isInputActive)
