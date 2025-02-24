@@ -32,12 +32,8 @@ struct WorkoutCardView: View {
     
     private var numberOfDaysAgo: String {
         if workout.lastUsedDate != nil {
-            let numOfDays = dateDiffInDays(from: workout.lastUsedDate!)
-            switch numOfDays {
-            case 0: return "Today"
-            case 1: return "1 day ago"
-            default: return "\(numOfDays) days ago"
-            }            
+            let dateDiffInDays = dateDiffInDays(from: workout.lastUsedDate!)
+            return dateDiffString(daysAgo: dateDiffInDays)
         }
         
         return "Not used"
