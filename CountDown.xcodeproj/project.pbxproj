@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB05D09D2D6BFAC7002F911C /* DateUtilitiesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB05D09C2D6BFAC7002F911C /* DateUtilitiesTest.swift */; };
 		AB0F23762B184F6800F8C3A6 /* WorkoutHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0F23752B184F6800F8C3A6 /* WorkoutHistoryViewModel.swift */; };
 		AB0F23782B1995D400F8C3A6 /* WorkoutHistoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0F23772B1995D400F8C3A6 /* WorkoutHistoryListView.swift */; };
 		AB0F238B2B199BD200F8C3A6 /* WorkoutHistory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0F23892B199BD200F8C3A6 /* WorkoutHistory+CoreDataClass.swift */; };
@@ -141,6 +142,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB05D09C2D6BFAC7002F911C /* DateUtilitiesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtilitiesTest.swift; sourceTree = "<group>"; };
 		AB0F23752B184F6800F8C3A6 /* WorkoutHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryViewModel.swift; sourceTree = "<group>"; };
 		AB0F23772B1995D400F8C3A6 /* WorkoutHistoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryListView.swift; sourceTree = "<group>"; };
 		AB0F23892B199BD200F8C3A6 /* WorkoutHistory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutHistory+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				AB7E61B82AC51DDD0081D475 /* TimerUtilitiesTests.swift */,
+				AB05D09C2D6BFAC7002F911C /* DateUtilitiesTest.swift */,
 				AB8EB7202B4B9D3A00B5942E /* FormUtilitiesTests.swift */,
 			);
 			path = Utilities;
@@ -817,6 +820,7 @@
 				AB1BF8722B017AB1004579FF /* WorkoutViewModelTests.swift in Sources */,
 				ABF6A1B82AEACD7700822B7B /* ErrorMessagesTests.swift in Sources */,
 				AB9DE23A2B22E17C00CBBFD5 /* WorkoutHistoryPropertiesTest.swift in Sources */,
+				AB05D09D2D6BFAC7002F911C /* DateUtilitiesTest.swift in Sources */,
 				AB7E61B92AC51DDD0081D475 /* TimerUtilitiesTests.swift in Sources */,
 				AB8EB7212B4B9D3A00B5942E /* FormUtilitiesTests.swift in Sources */,
 				AB4E700A2B12771B00878AD7 /* GripPropertiesTests.swift in Sources */,
@@ -1025,7 +1029,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.project.CountDown;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1061,7 +1065,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.1;
+				MARKETING_VERSION = 1.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.project.CountDown;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -53,3 +53,16 @@ extension Date {
 func dateDiffInDays(from date: Date) -> Int {
     return abs(date.daysFromToday)
 }
+
+/// Returns a string representing the number of days ago in days, months, or years
+func dateDiffString(daysAgo: Int) -> String {    
+    switch daysAgo {
+    case 0: return "Today"
+    case 1: return "1 day ago"
+    case 1..<30: return "\(daysAgo) days ago"
+    case 30..<60: return "1 month ago"
+    case 60..<365: return "\(daysAgo / 30) months ago"
+    case 365: return "1 year ago"
+    default: return "1+ years ago"
+    }
+}
