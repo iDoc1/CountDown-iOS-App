@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// A series of buttons to start, stop, pause, reset and skip the countdown timer based on the current timer state
+/// A series of buttons to start, stop, pause, reset, go back and skip the countdown timer based on the current timer state
 struct TimerButtonsView: View {
     @ObservedObject var timer: CountdownTimer
 
@@ -34,7 +34,7 @@ struct TimerButtonsView: View {
                     systemImage: "pause.fill",
                     color: Theme.mediumYellow.mainColor)
                 .padding(.horizontal)
-                ResetAndSkipButtons
+                ResetBackAndSkipButtons
             }
             
         case .paused:
@@ -45,28 +45,38 @@ struct TimerButtonsView: View {
                     systemImage: "play.fill",
                     color: Theme.lightGreen.mainColor)
                 .padding(.horizontal)
-                ResetAndSkipButtons
+                ResetBackAndSkipButtons
             }
         }
     }
     
-    /// Buttons to rest timer or skip to next element displayed in a single row
-    var ResetAndSkipButtons: some View {
+    /// Buttons to reset the timer, go back to the previous element, or skip to the next element displayed in a single row
+    var ResetBackAndSkipButtons: some View {
         HStack {
             TimerButton(
                 action: { timer.timerState = .notStarted },
                 title: "Reset",
                 systemImage: "arrow.counterclockwise",
                 color: Theme.brightRed.mainColor)
-            .padding()
-            
+            .padding(.vertical)
+
+            TimerButton(
+                action: { timer.back() },
+                title: "Back",
+                systemImage: "chevron.backward.2",
+                color: Theme.lightBlue.mainColor,
+                iconOnLeading: true)
+            .disabled(!timer.canGoBack)
+            .padding(.vertical)
+
             TimerButton(
                 action: { timer.skip() },
                 title: "Skip",
                 systemImage: "chevron.forward.2",
                 color: Theme.lightBlue.mainColor)
-            .padding()
+            .padding(.vertical)
         }
+        .padding(.horizontal)
     }
 }
 

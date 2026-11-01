@@ -54,11 +54,27 @@ final class TimerButtonsViewTests: XCTestCase {
         XCTAssertNoThrow(try view.inspect().find(button: "Start"))
     }
     
+    func testBackButtonDisabledAtStart() throws {
+        timer.timerState = .started
+        let view = TimerButtonsView(timer: timer)
+        XCTAssertTrue(try view.inspect().find(button: "Back").isDisabled())
+    }
+
+    func testBackButtonGoesBack() throws {
+        timer.timerState = .started
+        timer.skip()
+        let view = TimerButtonsView(timer: timer)
+        XCTAssertFalse(try view.inspect().find(button: "Back").isDisabled())
+        try view.inspect().find(button: "Back").tap()
+        XCTAssertEqual(timer.durationIndex, 0)
+    }
+
     func testButtonLayoutChangesWhenTimerStarted() throws {
         timer.timerState = .started
         let view = TimerButtonsView(timer: timer)
         XCTAssertNoThrow(try view.inspect().find(button: "Pause"))
         XCTAssertNoThrow(try view.inspect().find(button: "Reset"))
+        XCTAssertNoThrow(try view.inspect().find(button: "Back"))
         XCTAssertNoThrow(try view.inspect().find(button: "Skip"))
         XCTAssertThrowsError(try view.inspect().find(button: "Start"))
     }

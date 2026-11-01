@@ -13,12 +13,21 @@ struct TimerButton: View {
     let title: String
     let systemImage: String
     let color: Color
+    /// When true the icon is shown to the left of the title instead of the right
+    var iconOnLeading = false
 
     var body: some View {
         Button(action: action) {
-            Label(title, systemImage: systemImage)
-                .frame(maxWidth: .infinity)
-                .labelStyle(.trailingIcon)
+            Group {
+                if iconOnLeading {
+                    Label(title, systemImage: systemImage)
+                        .labelStyle(.titleAndIcon)
+                } else {
+                    Label(title, systemImage: systemImage)
+                        .labelStyle(.trailingIcon)
+                }
+            }
+            .frame(maxWidth: .infinity)
         }
         .buttonStyle(.borderedProminent)
         .tint(color)

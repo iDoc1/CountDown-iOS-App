@@ -90,6 +90,44 @@ final class CountdownTimerTests: XCTestCase {
         XCTAssertEqual(timer.durationType, GripsArray.DurationType.prepareType.rawValue)
     }
     
+    func testTimerBackDisabledAtStart()  {
+        timer.timerState = .started
+        XCTAssertFalse(timer.canGoBack)
+        timer.back()
+        
+        XCTAssertEqual(timer.gripIndex, 0)
+        XCTAssertEqual(timer.durationIndex, 0)
+        XCTAssertEqual(timer.durationType, GripsArray.DurationType.prepareType.rawValue)
+    }
+    
+    func testTimerBackReturnsToPreviousDuration()  {
+        timer.timerState = .started
+        timer.skip()
+        timer.skip()
+        XCTAssertTrue(timer.canGoBack)
+        timer.back()
+        
+        XCTAssertEqual(timer.gripIndex, 0)
+        XCTAssertEqual(timer.durationIndex, 1)
+        XCTAssertEqual(timer.secondsLeft, 7)
+        XCTAssertEqual(timer.progress, 1.0)
+        XCTAssertEqual(timer.timerState, .started)
+        XCTAssertEqual(timer.durationType, GripsArray.DurationType.workType.rawValue)
+    }
+    
+    func testTimerBackWhilePaused()  {
+        timer.timerState = .started
+        timer.skip()
+        timer.skip()
+        timer.timerState = .paused
+        timer.back()
+        timer.timerState = .resumed
+        
+        XCTAssertEqual(timer.durationIndex, 1)
+        XCTAssertEqual(timer.secondsLeft, 7)
+        XCTAssertEqual(timer.durationType, GripsArray.DurationType.workType.rawValue)
+    }
+    
     func testTimerResetsToInitialState()  {
         timer.timerState = .started
         timer.skip()
@@ -356,6 +394,22 @@ final class CountdownTimerFromWorkoutTests: XCTestCase {
         XCTAssertEqual(timer.durationType, GripsArray.DurationType.breakType.rawValue)
     }
     
+    func testTimerBackCrossesToPreviousGrip()  {
+        timer.timerState = .started
+        for _ in 0..<8 {
+            timer.skip()
+        }
+        XCTAssertEqual(timer.gripIndex, 1)
+        XCTAssertEqual(timer.durationIndex, 0)
+        XCTAssertTrue(timer.canGoBack)
+        timer.back()
+
+        XCTAssertEqual(timer.gripIndex, 0)
+        XCTAssertEqual(timer.durationIndex, timer.currGrip.durations.count - 1)
+        XCTAssertEqual(timer.secondsLeft, timer.currGrip.durations[timer.durationIndex].seconds)
+        XCTAssertEqual(timer.timerState, .started)
+    }
+
     func testTimerSkipsToLastBreakDurationOnSecondGrip()  {
         timer.timerState = .started
         for _ in 0..<8 {

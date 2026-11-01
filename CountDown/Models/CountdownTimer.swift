@@ -199,6 +199,18 @@ final class CountdownTimer: ObservableObject {
         goToNextDuration()
     }
 
+    /// Whether a previous duration exists to go back to
+    var canGoBack: Bool {
+        gripIndex < gripsArray.count && (gripIndex > 0 || durationIndex > 0)
+    }
+
+    /// Goes back to the start of the previous duration and/or grip
+    func back() {
+        guard canGoBack, durationIndex < currGrip.durations.count else { return }
+        progress = 1.0
+        goToPreviousDuration()
+    }
+
     /// Updates variables related to the timer state
     nonisolated private func updateTimer() {
         Task { @MainActor in
@@ -243,6 +255,17 @@ final class CountdownTimer: ObservableObject {
         }
     }
     
+    /// Moves the timer to the previous grip and/or duration
+    private func goToPreviousDuration() {
+        if durationIndex > 0 {
+            durationIndex -= 1
+        } else {
+            gripIndex -= 1
+            durationIndex = gripsArray[gripIndex].durations.count - 1
+        }
+        resetSeconds()
+    }
+
     /// Resets all CountdownTimer properties to initial state
     private func resetTimer() {
         gripIndex = 0
