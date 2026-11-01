@@ -5,6 +5,7 @@
 //  Created by Ian Docherty on 9/12/23.
 //
 
+import Combine
 import Foundation
 import SwiftUI
 
@@ -52,7 +53,14 @@ final class CountdownTimer: ObservableObject {
     @Published var secondsLeft: Int
     /// The percent completion of the current timer. A value of 1.0 means the countdown has not started. A value of zero means the
     /// countdown has completed.
-    @Published var progress: Double = 1.0
+    /// This is intentionally not @Published: it changes ~30 times per second and only the progress ring needs it. Publishing it
+    /// through objectWillChange would re-evaluate every view that observes this timer on every tick.
+    var progress: Double {
+        get { progressPublisher.value }
+        set { progressPublisher.send(newValue) }
+    }
+    /// Emits the progress value on every change. The progress ring subscribes to this directly.
+    let progressPublisher = CurrentValueSubject<Double, Never>(1.0)
     /// The index of the current grip in the DurationArray
     @Published var gripIndex: Int = 0
     /// The index of the current DurationStatus in the current grip
@@ -65,11 +73,7 @@ final class CountdownTimer: ObservableObject {
     /// The number of seconds the timer starts at
     var startSeconds: Int
     /// A string representation of the total length of the workout in the form "mm:ss"
-    var totalTime: String {
-        let totalMinutes = gripsArray.totalSeconds / 60
-        let totalSeconds = gripsArray.totalSeconds % 60
-        return timeToString(minutes: totalMinutes, seconds: totalSeconds)
-    }
+    let totalTime: String
     /// The total number of seconds in the workout
     var totalSeconds: Int {
         gripsArray.totalSeconds
@@ -91,18 +95,23 @@ final class CountdownTimer: ObservableObject {
     var timeInterval: TimeInterval { 1.0 / 30.0 }
     /// The color associated with the current duration
     var timerColor: Color {
-        guard durationIndex < currGrip.durations.count else { return Theme.lightBlue.mainColor }
-        return currGrip.durations[durationIndex].durationType.timerColor
+        guard let duration = currDuration else { return Theme.lightBlue.mainColor }
+        return duration.durationType.timerColor
     }
     /// The type of duration that ihe timer is counting down. Example: "WORK".
     var durationType: String {
-        guard durationIndex < currGrip.durations.count else { return "COMPLETE" }
-        return currGrip.durations[durationIndex].durationType.rawValue
+        guard let duration = currDuration else { return "COMPLETE" }
+        return duration.durationType.rawValue
     }
     /// The current hand, if one is specified, otherwise nil
     var hand: Hand? {
-        guard durationIndex < currGrip.durations.count else { return nil }
-        return currGrip.durations[durationIndex].hand
+        currDuration?.hand
+    }
+    /// The current DurationStatus, or nil if the workout is complete
+    private var currDuration: GripsArray.DurationStatus? {
+        let durations = currGrip.durations
+        guard durationIndex < durations.count else { return nil }
+        return durations[durationIndex]
     }
     /// The current WorkoutGrip
     var currGrip: GripsArray.WorkoutGrip {
@@ -151,12 +160,14 @@ final class CountdownTimer: ObservableObject {
     /// The elapsed seconds for the entire workout so far
     private var totalSecondsElapsed: Int {
         // Return the total seconds in the workout if the workout has reached the end
-        guard durationIndex < currGrip.durations.count else { return gripsArray.totalSeconds }
-        return currGrip.durations[durationIndex].startSeconds + (startSeconds - secondsLeft)
+        guard let duration = currDuration else { return gripsArray.totalSeconds }
+        return duration.startSeconds + (startSeconds - secondsLeft)
     }
     
     init(gripsArray: GripsArray) {
         self.gripsArray = gripsArray
+        // The grips array never changes, so the total time string only needs to be computed once
+        self.totalTime = timeToString(minutes: gripsArray.totalSeconds / 60, seconds: gripsArray.totalSeconds % 60)
         // Set start seconds to the length of the first duration in the array
         self.startSeconds = self.gripsArray[0].durations[0].seconds
         self.secondsLeft = self.startSeconds
@@ -187,8 +198,10 @@ final class CountdownTimer: ObservableObject {
     
     /// Creates and starts a scheduled Timer
     private func setUpAndStartTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true) { [weak self] timer in
-            self?.updateTimer()
+        // Timer fires on the main run loop, so we can synchronously assume main actor isolation
+        // instead of allocating a Task on every tick.
+        timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true) { [weak self] _ in
+            MainActor.assumeIsolated { self?.updateTimer() }
         }
         timer.tolerance = 0.01
     }
@@ -212,24 +225,22 @@ final class CountdownTimer: ObservableObject {
     }
 
     /// Updates variables related to the timer state
-    nonisolated private func updateTimer() {
-        Task { @MainActor in
-            let secondsElapsed = -startDate.timeIntervalSinceNow
-            let newSecondsLeft = startSeconds - Int(secondsElapsed)
-            
-            // Only update secondsLeft if it has changed since the last timer update
-            if newSecondsLeft != secondsLeft {
-                // Play sound/vibration if those objects exist
-                timerVibrator?.vibrateAt(newSecondsLeft: newSecondsLeft)
-                soundPlayer?.playSoundAt(newSecondsLeft: newSecondsLeft)
-                secondsLeft = newSecondsLeft
-            }
+    private func updateTimer() {
+        let secondsElapsed = -startDate.timeIntervalSinceNow
+        let newSecondsLeft = startSeconds - Int(secondsElapsed)
 
-            progress = (Double(startSeconds) - secondsElapsed) / Double(startSeconds)
-            
-            if secondsLeft <= 0 {
-                goToNextDuration()
-            }
+        // Only update secondsLeft if it has changed since the last timer update
+        if newSecondsLeft != secondsLeft {
+            // Play sound/vibration if those objects exist
+            timerVibrator?.vibrateAt(newSecondsLeft: newSecondsLeft)
+            soundPlayer?.playSoundAt(newSecondsLeft: newSecondsLeft)
+            secondsLeft = newSecondsLeft
+        }
+
+        progress = (Double(startSeconds) - secondsElapsed) / Double(startSeconds)
+
+        if secondsLeft <= 0 {
+            goToNextDuration()
         }
     }
     
