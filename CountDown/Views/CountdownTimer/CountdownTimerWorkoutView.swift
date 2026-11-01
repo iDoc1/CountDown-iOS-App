@@ -15,8 +15,15 @@ struct CountdownTimerWorkoutView: View {
     @StateObject private var countdownTimer: CountdownTimer
     @ObservedObject var workout: Workout
     
-    init(gripsArray: GripsArray, workout: Workout) {
-        _countdownTimer = StateObject(wrappedValue: CountdownTimer(gripsArray: gripsArray))
+    init(workout: Workout) {
+        /*
+         The grips array is built inside the StateObject's autoclosure, which SwiftUI only evaluates when
+         the view is actually presented. Building it from the live workout here (rather than accepting a
+         GripsArray from the parent) ensures edits made to grips after the parent last rendered, such as a
+         changed rep count, are reflected in the timer.
+         */
+        _countdownTimer = StateObject(wrappedValue: CountdownTimer(
+            gripsArray: GripsArray(grips: workout.gripArray, workout: workout)))
         self.workout = workout
     }
 
@@ -121,9 +128,8 @@ struct CountdownTimerWorkoutView_Previews: PreviewProvider {
     }()
 
     static var previews: some View {
-        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
         NavigationStack {
-            CountdownTimerWorkoutView(gripsArray: gripsArray, workout: workout)
+            CountdownTimerWorkoutView(workout: workout)
         }
     }
 }
