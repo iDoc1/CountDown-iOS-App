@@ -550,3 +550,76 @@ final class CountdownTimerFromWorkoutWithLeftRightModeTests: XCTestCase {
         XCTAssertEqual(timer.hand, .left)
     }
 }
+
+/// Tests a CountdownTimer created from a workout whose Dual Hand Mode switches hands per set
+@MainActor
+final class CountdownTimerFromWorkoutWithSetSwitchModeTests: XCTestCase {
+    var timer: CountdownTimer!
+    
+    override func setUpWithError() throws {
+        let context = PersistenceController(inMemory: true).container.viewContext
+        
+        let workoutType = WorkoutType(context: context)
+        workoutType.name = "powerEndurance"
+        let workout = Workout(context: context)
+        workout.name = "Repeaters"
+        workout.descriptionText = "RCTM Advanced Repeaters Protocol"
+        workout.createdDate = Date()
+        workout.workoutType = workoutType
+        workout.isLeftRightEnabled = true
+        workout.handSwitchMode = HandSwitchMode.set.rawValue
+        workout.startHand = Hand.right.rawValue
+        workout.secondsBetweenHands = 10
+        
+        let gripType = GripType(context: context)
+        gripType.name = "Full Crimp"
+        let grip = Grip(context: context)
+        grip.workout = workout
+        grip.setCount = 2
+        grip.repCount = 2
+        grip.workSeconds = 7
+        grip.restSeconds = 3
+        grip.breakMinutes = 1
+        grip.breakSeconds = 30
+        grip.lastBreakMinutes = 2
+        grip.lastBreakSeconds = 15
+        grip.sequenceNum = 0
+        grip.gripType = gripType
+        
+        timer = CountdownTimer(gripsArray: GripsArray(grips: workout.gripArray, workout: workout))
+    }
+    
+    override func tearDownWithError() throws {
+        timer.timerState = .notStarted
+    }
+    
+    func testCountdownTimerInitialState() {
+        XCTAssertEqual(timer.secondsLeft, 15)
+        XCTAssertEqual(timer.durationIndex, 0)
+        XCTAssertEqual(timer.totalTime, "3:13")
+        XCTAssertEqual(timer.durationType, GripsArray.DurationType.prepareType.rawValue)
+        XCTAssertEqual(timer.hand, .right)
+    }
+    
+    func testSwitchOccursOnlyAfterAllRepsOfFirstHand() {
+        timer.timerState = .started
+        
+        // PREPARE -> WORK -> REST -> WORK: all on the start hand
+        for expectedIndex in 1...3 {
+            timer.skip()
+            XCTAssertEqual(timer.durationIndex, expectedIndex)
+            XCTAssertEqual(timer.hand, .right)
+        }
+        
+        // Next duration is the switch to the opposite hand
+        timer.skip()
+        XCTAssertEqual(timer.durationIndex, 4)
+        XCTAssertEqual(timer.durationType, GripsArray.DurationType.switchType.rawValue)
+        XCTAssertEqual(timer.hand, .left)
+        
+        // Remaining reps of the set are on the opposite hand
+        timer.skip()
+        XCTAssertEqual(timer.durationType, GripsArray.DurationType.workType.rawValue)
+        XCTAssertEqual(timer.hand, .left)
+    }
+}

@@ -3166,3 +3166,203 @@ final class GripsArrayFromWorkoutTests: XCTestCase {
     }
 
 }
+
+/// Test case for GripsArray created from a Workout with Dual Hand Mode switching hands per set
+final class GripsArrayHandSwitchPerSetTests: XCTestCase {
+    var context: NSManagedObjectContext!
+    var workout: Workout!
+
+    override func setUpWithError() throws {
+        context = PersistenceController(inMemory: true).container.viewContext
+        
+        let workoutType = WorkoutType(context: context)
+        workoutType.name = "powerEndurance"
+        workout = Workout(context: context)
+        workout.name = "Repeaters"
+        workout.descriptionText = "RCTM Advanced Repeaters Protocol"
+        workout.createdDate = Date()
+        workout.workoutType = workoutType
+        workout.isLeftRightEnabled = true
+        workout.handSwitchMode = HandSwitchMode.set.rawValue
+        workout.startHand = Hand.left.rawValue
+        workout.secondsBetweenHands = 10
+    }
+
+    override func tearDownWithError() throws {
+        context = nil
+    }
+    
+    @discardableResult
+    private func addGrip(
+        sets: Int, reps: Int, sequenceNum: Int = 0, decrement: Bool = false,
+        customWork: [Int]? = nil, customRest: [Int]? = nil
+    ) -> Grip {
+        let gripType = GripType(context: context)
+        gripType.name = "Full Crimp"
+        let grip = Grip(context: context)
+        grip.workout = workout
+        grip.setCount = Int16(sets)
+        grip.repCount = Int16(reps)
+        grip.workSeconds = 7
+        grip.restSeconds = 3
+        grip.breakMinutes = 1
+        grip.breakSeconds = 30
+        grip.lastBreakMinutes = 2
+        grip.lastBreakSeconds = 15
+        grip.decrementSets = decrement
+        grip.sequenceNum = Int16(sequenceNum)
+        grip.gripType = gripType
+        if let customWork, let customRest {
+            grip.hasCustomDurations = true
+            grip.customWorkSeconds = customWork
+            grip.customRestSeconds = customRest
+        }
+        return grip
+    }
+    
+    /// Compact description of each duration: "TYPE seconds hand set rep @start"
+    private func summary(_ gripsArray: GripsArray, grip: Int = 0) -> [String] {
+        gripsArray[grip].durations.map {
+            "\($0.durationType.rawValue) \($0.seconds) \($0.hand?.rawValue ?? "-") s\($0.currSet) r\($0.currRep) @\($0.startSeconds)"
+        }
+    }
+    
+    func testOneSetAndOneRep() throws {
+        addGrip(sets: 1, reps: 1)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+        
+        XCTAssertEqual(gripsArray.handSwitchMode, .set)
+        XCTAssertEqual(gripsArray.totalSeconds, 39)
+        XCTAssertEqual(summary(gripsArray), [
+            "PREPARE 15 Left s0 r0 @0",
+            "WORK 7 Left s0 r0 @15",
+            "SWITCH 10 Right s0 r0 @22",
+            "WORK 7 Right s0 r0 @32"
+        ])
+    }
+    
+    func testOneSetAndTwoRepsDoesAllRepsBeforeSwitching() throws {
+        addGrip(sets: 1, reps: 2)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+        
+        XCTAssertEqual(gripsArray.totalSeconds, 59)
+        XCTAssertEqual(summary(gripsArray), [
+            "PREPARE 15 Left s0 r0 @0",
+            "WORK 7 Left s0 r0 @15",
+            "REST 3 Left s0 r1 @22",
+            "WORK 7 Left s0 r1 @25",
+            "SWITCH 10 Right s0 r1 @32",
+            "WORK 7 Right s0 r0 @42",
+            "REST 3 Right s0 r1 @49",
+            "WORK 7 Right s0 r1 @52"
+        ])
+    }
+    
+    func testTwoSetsAndTwoRepsWithRightHandStart() throws {
+        workout.startHand = Hand.right.rawValue
+        addGrip(sets: 2, reps: 2)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+        let durations = gripsArray[0].durations
+        
+        XCTAssertEqual(gripsArray.totalSeconds, 193)
+        XCTAssertEqual(durations.count, 16)
+        XCTAssertEqual(durations[0].hand, .right)
+        XCTAssertEqual(durations[1].hand, .right)
+        XCTAssertEqual(durations[4].description, "SWITCH for 10 sec")
+        XCTAssertEqual(durations[4].hand, .left)
+        
+        // Break between sets has no hand and set 2 starts with the start hand again
+        XCTAssertEqual(durations[8].description, "BREAK for 90 sec")
+        XCTAssertNil(durations[8].hand)
+        XCTAssertEqual(durations[8].currSet, 1)
+        XCTAssertEqual(durations[9].description, "WORK for 7 sec")
+        XCTAssertEqual(durations[9].hand, .right)
+        XCTAssertEqual(durations[9].currSet, 1)
+        XCTAssertEqual(durations[9].currRep, 0)
+        XCTAssertEqual(durations[9].startSeconds, 149)
+        
+        // The workout ends on the opposite hand with no trailing break
+        XCTAssertEqual(durations[15].description, "WORK for 7 sec")
+        XCTAssertEqual(durations[15].hand, .left)
+        XCTAssertEqual(durations[15].startSeconds, 186)
+    }
+    
+    func testDecrementSetsUsesSameRepsForBothHands() throws {
+        addGrip(sets: 2, reps: 3, decrement: true)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+        let durations = gripsArray[0].durations
+        
+        XCTAssertEqual(gripsArray.totalSeconds, 213)
+        XCTAssertEqual(durations.count, 20)
+        
+        let setTwoWork = durations.filter { $0.currSet == 1 && $0.durationType == .workType }
+        XCTAssertEqual(setTwoWork.filter { $0.hand == .left }.count, 2)
+        XCTAssertEqual(setTwoWork.filter { $0.hand == .right }.count, 2)
+        let setOneWork = durations.filter { $0.currSet == 0 && $0.durationType == .workType }
+        XCTAssertEqual(setOneWork.filter { $0.hand == .left }.count, 3)
+        XCTAssertEqual(setOneWork.filter { $0.hand == .right }.count, 3)
+    }
+    
+    func testCustomDurationsRestartForSecondHand() throws {
+        addGrip(sets: 1, reps: 2, customWork: [3, 6], customRest: [30, 45])
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+        
+        XCTAssertEqual(gripsArray.totalSeconds, 103)
+        XCTAssertEqual(summary(gripsArray), [
+            "PREPARE 15 Left s0 r0 @0",
+            "WORK 3 Left s0 r0 @15",
+            "REST 30 Left s0 r1 @18",
+            "WORK 6 Left s0 r1 @48",
+            "SWITCH 10 Right s0 r1 @54",
+            "WORK 3 Right s0 r0 @64",
+            "REST 30 Right s0 r1 @67",
+            "WORK 6 Right s0 r1 @97"
+        ])
+    }
+    
+    func testTwoGripsStartEachGripWithStartHand() throws {
+        addGrip(sets: 1, reps: 1, sequenceNum: 0)
+        addGrip(sets: 1, reps: 1, sequenceNum: 1)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+        
+        XCTAssertEqual(gripsArray.count, 2)
+        XCTAssertEqual(summary(gripsArray, grip: 1), [
+            "BREAK 135 - s0 r0 @39",
+            "WORK 7 Left s0 r0 @174",
+            "SWITCH 10 Right s0 r0 @181",
+            "WORK 7 Right s0 r0 @191"
+        ])
+        XCTAssertEqual(gripsArray.totalSeconds, 198)
+    }
+    
+    func testZeroRepsDoesNotAddSwitch() throws {
+        addGrip(sets: 1, reps: 0)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+        
+        XCTAssertEqual(summary(gripsArray), ["PREPARE 15 Left s0 r0 @0"])
+        XCTAssertFalse(gripsArray[0].durations.contains { $0.durationType == .switchType })
+    }
+    
+    func testExplicitRepModeMatchesDefault() throws {
+        addGrip(sets: 2, reps: 2)
+        workout.handSwitchMode = HandSwitchMode.rep.rawValue
+        let explicitRep = GripsArray(grips: workout.gripArray, workout: workout)
+        workout.handSwitchMode = nil
+        let defaultMode = GripsArray(grips: workout.gripArray, workout: workout)
+        
+        XCTAssertEqual(explicitRep.handSwitchMode, .rep)
+        XCTAssertEqual(defaultMode.handSwitchMode, .rep)
+        XCTAssertEqual(summary(explicitRep), summary(defaultMode))
+        // Rep mode puts a switch inside every rep (2 sets x 2 reps)
+        XCTAssertEqual(explicitRep[0].durations.filter { $0.durationType == .switchType }.count, 4)
+    }
+    
+    func testHandSwitchModeIgnoredWhenDualHandModeDisabled() throws {
+        workout.isLeftRightEnabled = false
+        addGrip(sets: 1, reps: 2)
+        let gripsArray = GripsArray(grips: workout.gripArray, workout: workout)
+        
+        XCTAssertFalse(gripsArray[0].durations.contains { $0.durationType == .switchType })
+        XCTAssertTrue(gripsArray[0].durations.allSatisfy { $0.hand == nil })
+    }
+}

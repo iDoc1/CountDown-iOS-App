@@ -50,6 +50,14 @@ final class WorkoutPropertiesTests: XCTestCase {
         XCTAssertEqual(workout.unwrappedWorkoutTypeName, "Unknown Type")
     }
     
+    func testUnwrappedHandSwitchMode() throws {
+        let workout = Workout(context: context)
+        XCTAssertEqual(workout.unwrappedHandSwitchMode, "Rep")
+        
+        workout.handSwitchMode = HandSwitchMode.set.rawValue
+        XCTAssertEqual(workout.unwrappedHandSwitchMode, "Set")
+    }
+    
     func testWorkoutSavesWithoutHangboardName() throws {
         let now = Date()
         let workoutType = WorkoutType(context: context)

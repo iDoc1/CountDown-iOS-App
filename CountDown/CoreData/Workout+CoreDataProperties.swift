@@ -19,6 +19,7 @@ extension Workout {
     @NSManaged public var secondsBetweenHands: Int16
     @NSManaged public var startHand: String?
     @NSManaged public var isLeftRightEnabled: Bool
+    @NSManaged public var handSwitchMode: String?
     @NSManaged public var createdDate: Date?
     @NSManaged public var descriptionText: String?
     @NSManaged public var foreignID: UUID?
@@ -34,6 +35,10 @@ extension Workout {
     
     public var unwrappedStartHand: String {
         startHand ?? "Left"
+    }
+    
+    public var unwrappedHandSwitchMode: String {
+        handSwitchMode ?? HandSwitchMode.rep.rawValue
     }
     
     public var unwrappedIsLeftRightEnabled: Bool {

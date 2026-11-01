@@ -22,3 +22,11 @@ enum Hand: String, CaseIterable {
         }
     }
 }
+
+/**
+ Specifies when hands are switched in Dual Hand Mode: after every rep or after every set
+ */
+enum HandSwitchMode: String, CaseIterable {
+    case rep = "Rep"
+    case set = "Set"
+}

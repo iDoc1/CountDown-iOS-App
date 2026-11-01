@@ -18,6 +18,7 @@ struct WorkoutViewModel: Equatable {
     var isLeftRightEnabled: Bool
     var startHand: String
     var secondsBetweenHands: Int
+    var handSwitchMode: String
     let context: NSManagedObjectContext
     
     /// Initialize without an existing workout
@@ -29,6 +30,7 @@ struct WorkoutViewModel: Equatable {
         self.isLeftRightEnabled = false
         self.startHand = "Left"
         self.secondsBetweenHands = 10
+        self.handSwitchMode = HandSwitchMode.rep.rawValue
         self.workoutType = WorkoutTypeAsString.strength
     }
     
@@ -42,6 +44,7 @@ struct WorkoutViewModel: Equatable {
         self.isLeftRightEnabled = workout.unwrappedIsLeftRightEnabled
         self.startHand = workout.unwrappedStartHand
         self.secondsBetweenHands = workout.unwrappedSecondsBetweenHands
+        self.handSwitchMode = workout.unwrappedHandSwitchMode
         self.workoutType = WorkoutTypeAsString(rawValue: workout.workoutType!.name ?? "") ?? .other
     }
     
@@ -57,6 +60,7 @@ struct WorkoutViewModel: Equatable {
         workout!.workoutType?.name = workoutType.rawValue
         workout!.isLeftRightEnabled = isLeftRightEnabled
         workout!.startHand = startHand
+        workout!.handSwitchMode = handSwitchMode
         workout!.secondsBetweenHands = Int16(secondsBetweenHands)
         
         // Validate that secondsBetweenHands is within the valid 1 to 60 range

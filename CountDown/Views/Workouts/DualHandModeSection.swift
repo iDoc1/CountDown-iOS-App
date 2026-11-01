@@ -42,11 +42,20 @@ struct DualHandModeSection: View {
                         maxVal: 60,
                         isInputActive: isInputActive)
                 }
+                
+                HStack(spacing: 20) {
+                    Text("Switch hands every")
+                    Picker("Switch hands every", selection: $workout.handSwitchMode) {
+                        Text(HandSwitchMode.set.rawValue).tag(HandSwitchMode.set.rawValue)
+                        Text(HandSwitchMode.rep.rawValue).tag(HandSwitchMode.rep.rawValue)
+                    }
+                    .pickerStyle(.segmented)
+                }
             }
         } header: {
             Text("Grip Mode")
         } footer: {
-            Text("Enables separate left/right hand per rep")
+            Text("Enables separate left/right hand per \(workout.handSwitchMode.lowercased())")
         }
         .onChange(of: workout) { newValue in            
             // Save the workout any the left/right mode values are changed
