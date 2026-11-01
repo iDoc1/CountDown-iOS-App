@@ -23,6 +23,9 @@ struct CountdownTimerView: View {
                 .overlay {
                     TimerTextView(timer: countdownTimer)
                 }
+                .overlay(alignment: .top) {
+                    TimerHandView(timer: countdownTimer)
+                }
             TimerButtonsView(timer: countdownTimer)
                 .frame(height: 100.0)
         }

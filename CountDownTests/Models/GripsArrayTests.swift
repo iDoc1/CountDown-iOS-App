@@ -3366,3 +3366,97 @@ final class GripsArrayHandSwitchPerSetTests: XCTestCase {
         XCTAssertTrue(gripsArray[0].durations.allSatisfy { $0.hand == nil })
     }
 }
+
+/// Test case for GripsArray created from a GripViewModel (Timer Setup screen) with Dual Hand Mode settings
+final class GripsArrayFromGripViewModelDualHandTests: XCTestCase {
+    private func makeGrip(reps: Int = 2) -> GripViewModel {
+        var grip = GripViewModel()
+        grip.setCount = 1
+        grip.repCount = reps
+        return grip
+    }
+    
+    private func settings(
+        enabled: Bool = true, startHand: Hand = .left, mode: HandSwitchMode
+    ) -> DualHandSettings {
+        DualHandSettings(
+            isLeftRightEnabled: enabled,
+            startHand: startHand.rawValue,
+            secondsBetweenHands: 10,
+            handSwitchMode: mode.rawValue)
+    }
+    
+    /// Compact description of each duration: "TYPE seconds hand set rep @start"
+    private func summary(_ gripsArray: GripsArray) -> [String] {
+        gripsArray[0].durations.map {
+            "\($0.durationType.rawValue) \($0.seconds) \($0.hand?.rawValue ?? "-") s\($0.currSet) r\($0.currRep) @\($0.startSeconds)"
+        }
+    }
+    
+    func testDefaultHasNoDualHandMode() throws {
+        let gripsArray = GripsArray(grip: makeGrip())
+        
+        XCTAssertFalse(gripsArray.isLeftRightEnabled)
+        XCTAssertEqual(gripsArray.handSwitchMode, .rep)
+        XCTAssertTrue(gripsArray[0].durations.allSatisfy { $0.hand == nil })
+        XCTAssertFalse(gripsArray[0].durations.contains { $0.durationType == .switchType })
+    }
+    
+    func testRepSwitchMode() throws {
+        let gripsArray = GripsArray(grip: makeGrip(), dualHand: settings(mode: .rep))
+        
+        XCTAssertEqual(gripsArray.totalSeconds, 66)
+        XCTAssertEqual(summary(gripsArray), [
+            "PREPARE 15 Left s0 r0 @0",
+            "WORK 7 Left s0 r0 @15",
+            "SWITCH 10 Right s0 r0 @22",
+            "WORK 7 Right s0 r0 @32",
+            "REST 3 - s0 r1 @39",
+            "WORK 7 Left s0 r1 @42",
+            "SWITCH 10 Right s0 r1 @49",
+            "WORK 7 Right s0 r1 @59"
+        ])
+    }
+    
+    func testSetSwitchMode() throws {
+        let gripsArray = GripsArray(grip: makeGrip(), dualHand: settings(mode: .set))
+        
+        XCTAssertEqual(gripsArray.totalSeconds, 59)
+        XCTAssertEqual(summary(gripsArray), [
+            "PREPARE 15 Left s0 r0 @0",
+            "WORK 7 Left s0 r0 @15",
+            "REST 3 Left s0 r1 @22",
+            "WORK 7 Left s0 r1 @25",
+            "SWITCH 10 Right s0 r1 @32",
+            "WORK 7 Right s0 r0 @42",
+            "REST 3 Right s0 r1 @49",
+            "WORK 7 Right s0 r1 @52"
+        ])
+    }
+    
+    func testRightStartHand() throws {
+        let gripsArray = GripsArray(grip: makeGrip(reps: 1), dualHand: settings(startHand: .right, mode: .set))
+        let durations = gripsArray[0].durations
+        
+        XCTAssertEqual(durations[0].description, "PREPARE for 15 sec")
+        XCTAssertEqual(durations[0].hand, .right)
+        XCTAssertEqual(durations[1].hand, .right)
+        XCTAssertEqual(durations[2].description, "SWITCH for 10 sec")
+        XCTAssertEqual(durations[2].hand, .left)
+        XCTAssertEqual(durations[3].hand, .left)
+    }
+    
+    func testDisabledSettingsIgnoreSwitchMode() throws {
+        let gripsArray = GripsArray(grip: makeGrip(), dualHand: settings(enabled: false, mode: .set))
+        
+        XCTAssertFalse(gripsArray[0].durations.contains { $0.durationType == .switchType })
+        XCTAssertTrue(gripsArray[0].durations.allSatisfy { $0.hand == nil })
+    }
+    
+    func testUnknownSwitchModeFallsBackToRep() throws {
+        var dualHand = settings(mode: .rep)
+        dualHand.handSwitchMode = "Bogus"
+        
+        XCTAssertEqual(GripsArray(grip: makeGrip(), dualHand: dualHand).handSwitchMode, .rep)
+    }
+}

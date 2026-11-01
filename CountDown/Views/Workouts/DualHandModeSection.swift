@@ -9,25 +9,25 @@ import SwiftUI
 import CoreData
 
 
+/// Shared Dual Hand Mode settings section. Works with any source of state through bindings, so it can be used by both the
+/// workout detail screen and the Timer Setup screen.
 struct DualHandModeSection: View {
-    @State private var workout: WorkoutViewModel
+    @Binding var isLeftRightEnabled: Bool
+    @Binding var startHand: String
+    @Binding var secondsBetweenHands: Int
+    @Binding var handSwitchMode: String
     var isInputActive: FocusState<Bool>.Binding
-    
-    init(context: NSManagedObjectContext, workout: Workout, isInputActive: FocusState<Bool>.Binding) {
-        _workout = State(wrappedValue: WorkoutViewModel(workout: workout, context: context))
-        self.isInputActive = isInputActive
-    }
     
     var body: some View {
         Section {
-            Toggle(isOn: $workout.isLeftRightEnabled.animation()) {
+            Toggle(isOn: $isLeftRightEnabled.animation()) {
                 Text("Dual Hand Mode")
             }
             
-            if workout.isLeftRightEnabled {
+            if isLeftRightEnabled {
                 HStack(spacing: 20) {
                     Text("Start hand")
-                    Picker("Start hand", selection: $workout.startHand) {
+                    Picker("Start hand", selection: $startHand) {
                         Text(Hand.left.rawValue).tag(Hand.left.rawValue)
                         Text(Hand.right.rawValue).tag(Hand.right.rawValue)
                     }
@@ -36,7 +36,7 @@ struct DualHandModeSection: View {
                 
                 HStack {
                     NumberPicker(
-                        number: $workout.secondsBetweenHands,
+                        number: $secondsBetweenHands,
                         title: "Rest between hands (sec.)",
                         minVal: 1,
                         maxVal: 60,
@@ -45,7 +45,7 @@ struct DualHandModeSection: View {
                 
                 HStack(spacing: 20) {
                     Text("Switch hands every")
-                    Picker("Switch hands every", selection: $workout.handSwitchMode) {
+                    Picker("Switch hands every", selection: $handSwitchMode) {
                         Text(HandSwitchMode.set.rawValue).tag(HandSwitchMode.set.rawValue)
                         Text(HandSwitchMode.rep.rawValue).tag(HandSwitchMode.rep.rawValue)
                     }
@@ -55,9 +55,29 @@ struct DualHandModeSection: View {
         } header: {
             Text("Grip Mode")
         } footer: {
-            Text("Enables separate left/right hand per \(workout.handSwitchMode.lowercased())")
+            Text("Enables separate left/right hand per \(handSwitchMode.lowercased())")
         }
-        .onChange(of: workout) { newValue in            
+    }
+}
+
+/// Dual Hand Mode section for a saved workout. Saves the workout whenever a setting changes.
+struct WorkoutDualHandModeSection: View {
+    @State private var workout: WorkoutViewModel
+    var isInputActive: FocusState<Bool>.Binding
+    
+    init(context: NSManagedObjectContext, workout: Workout, isInputActive: FocusState<Bool>.Binding) {
+        _workout = State(wrappedValue: WorkoutViewModel(workout: workout, context: context))
+        self.isInputActive = isInputActive
+    }
+    
+    var body: some View {
+        DualHandModeSection(
+            isLeftRightEnabled: $workout.isLeftRightEnabled,
+            startHand: $workout.startHand,
+            secondsBetweenHands: $workout.secondsBetweenHands,
+            handSwitchMode: $workout.handSwitchMode,
+            isInputActive: isInputActive)
+        .onChange(of: workout) { newValue in
             // Save the workout any the left/right mode values are changed
             workout.save()
         }
@@ -99,7 +119,7 @@ struct LeftRightSection_Previews: PreviewProvider {
     
     static var previews: some View {
         List {
-            DualHandModeSection(
+            WorkoutDualHandModeSection(
                 context: persistence.container.viewContext,
                 workout: workout,
                 isInputActive: FocusState<Bool>().projectedValue)

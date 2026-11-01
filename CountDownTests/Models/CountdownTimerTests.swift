@@ -623,3 +623,49 @@ final class CountdownTimerFromWorkoutWithSetSwitchModeTests: XCTestCase {
         XCTAssertEqual(timer.hand, .left)
     }
 }
+
+/// Tests a CountdownTimer created from the Timer Setup screen with Dual Hand Mode switching hands per set
+@MainActor
+final class CountdownTimerFromGripViewModelDualHandTests: XCTestCase {
+    var timer: CountdownTimer!
+    
+    override func setUpWithError() throws {
+        var grip = GripViewModel()
+        grip.setCount = 1
+        grip.repCount = 2
+        let dualHand = DualHandSettings(
+            isLeftRightEnabled: true,
+            startHand: Hand.left.rawValue,
+            secondsBetweenHands: 10,
+            handSwitchMode: HandSwitchMode.set.rawValue)
+        timer = CountdownTimer(gripsArray: GripsArray(grip: grip, dualHand: dualHand))
+    }
+    
+    override func tearDownWithError() throws {
+        timer.timerState = .notStarted
+    }
+    
+    func testInitialHandIsStartHand() {
+        XCTAssertEqual(timer.durationType, GripsArray.DurationType.prepareType.rawValue)
+        XCTAssertEqual(timer.hand, .left)
+    }
+    
+    func testSwitchOccursAfterAllRepsOfFirstHand() {
+        timer.timerState = .started
+        
+        // PREPARE -> WORK -> REST -> WORK on the start hand
+        for expectedIndex in 1...3 {
+            timer.skip()
+            XCTAssertEqual(timer.durationIndex, expectedIndex)
+            XCTAssertEqual(timer.hand, .left)
+        }
+        
+        timer.skip()
+        XCTAssertEqual(timer.durationType, GripsArray.DurationType.switchType.rawValue)
+        XCTAssertEqual(timer.hand, .right)
+        
+        timer.skip()
+        XCTAssertEqual(timer.durationType, GripsArray.DurationType.workType.rawValue)
+        XCTAssertEqual(timer.hand, .right)
+    }
+}

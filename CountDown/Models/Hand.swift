@@ -24,6 +24,16 @@ enum Hand: String, CaseIterable {
 }
 
 /**
+ Dual Hand Mode settings for timers that are not backed by a saved workout, such as the Timer Setup screen
+ */
+struct DualHandSettings: Equatable {
+    var isLeftRightEnabled = false
+    var startHand = Hand.left.rawValue
+    var secondsBetweenHands = 10
+    var handSwitchMode = HandSwitchMode.rep.rawValue
+}
+
+/**
  Specifies when hands are switched in Dual Hand Mode: after every rep or after every set
  */
 enum HandSwitchMode: String, CaseIterable {

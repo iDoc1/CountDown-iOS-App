@@ -104,8 +104,11 @@ struct GripsArray {
         }
     }
     
-    init(grip: GripViewModel) {
-        self.isLeftRightEnabled = false
+    init(grip: GripViewModel, dualHand: DualHandSettings = DualHandSettings()) {
+        self.isLeftRightEnabled = dualHand.isLeftRightEnabled
+        self.startHand = dualHand.startHand
+        self.secondsBetweenHands = dualHand.secondsBetweenHands
+        self.handSwitchMode = HandSwitchMode(rawValue: dualHand.handSwitchMode) ?? .rep
         buildArrayFromGripViewModel(grip: grip)
     }
 
