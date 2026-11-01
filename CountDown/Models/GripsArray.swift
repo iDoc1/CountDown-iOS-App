@@ -15,7 +15,7 @@ struct GripsArray {
     var startHand: String?
     var secondsBetweenHands: Int?
     /// Whether hands switch after every rep or after every set (only used when left/right mode is enabled)
-    var handSwitchMode: HandSwitchMode = .rep
+    var handSwitchMode: HandSwitchMode = .set
     
     /// The types of durations a timer can have. Each case corresponds to a string that may be displayed in the countdown timer
     enum DurationType: String {
@@ -108,7 +108,7 @@ struct GripsArray {
         self.isLeftRightEnabled = dualHand.isLeftRightEnabled
         self.startHand = dualHand.startHand
         self.secondsBetweenHands = dualHand.secondsBetweenHands
-        self.handSwitchMode = HandSwitchMode(rawValue: dualHand.handSwitchMode) ?? .rep
+        self.handSwitchMode = HandSwitchMode(rawValue: dualHand.handSwitchMode) ?? .set
         buildArrayFromGripViewModel(grip: grip)
     }
 
@@ -116,7 +116,7 @@ struct GripsArray {
         self.isLeftRightEnabled = workout.unwrappedIsLeftRightEnabled
         self.startHand = workout.unwrappedStartHand
         self.secondsBetweenHands = workout.unwrappedSecondsBetweenHands
-        self.handSwitchMode = HandSwitchMode(rawValue: workout.unwrappedHandSwitchMode) ?? .rep
+        self.handSwitchMode = HandSwitchMode(rawValue: workout.unwrappedHandSwitchMode) ?? .set
         buildArrayFromGrips(grips: grips)
     }
     

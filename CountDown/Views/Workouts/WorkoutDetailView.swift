@@ -136,7 +136,7 @@ struct WorkoutDetailView_Previews: PreviewProvider {
         workout.isLeftRightEnabled = false
         workout.startHand = Hand.left.rawValue
         workout.secondsBetweenHands = 10
-        workout.handSwitchMode = HandSwitchMode.rep.rawValue
+        workout.handSwitchMode = HandSwitchMode.set.rawValue
         
         
         let gripType = GripType(context: context)

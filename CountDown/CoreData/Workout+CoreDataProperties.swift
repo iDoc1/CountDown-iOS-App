@@ -38,7 +38,7 @@ extension Workout {
     }
     
     public var unwrappedHandSwitchMode: String {
-        handSwitchMode ?? HandSwitchMode.rep.rawValue
+        handSwitchMode ?? HandSwitchMode.set.rawValue
     }
     
     public var unwrappedIsLeftRightEnabled: Bool {

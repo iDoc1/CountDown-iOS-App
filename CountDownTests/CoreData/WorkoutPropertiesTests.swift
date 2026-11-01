@@ -52,7 +52,7 @@ final class WorkoutPropertiesTests: XCTestCase {
     
     func testUnwrappedHandSwitchMode() throws {
         let workout = Workout(context: context)
-        XCTAssertEqual(workout.unwrappedHandSwitchMode, "Rep")
+        XCTAssertEqual(workout.unwrappedHandSwitchMode, "Set")
         
         workout.handSwitchMode = HandSwitchMode.set.rawValue
         XCTAssertEqual(workout.unwrappedHandSwitchMode, "Set")

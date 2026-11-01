@@ -30,7 +30,7 @@ struct WorkoutViewModel: Equatable {
         self.isLeftRightEnabled = false
         self.startHand = "Left"
         self.secondsBetweenHands = 10
-        self.handSwitchMode = HandSwitchMode.rep.rawValue
+        self.handSwitchMode = HandSwitchMode.set.rawValue
         self.workoutType = WorkoutTypeAsString.strength
     }
     

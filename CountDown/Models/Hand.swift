@@ -30,7 +30,7 @@ struct DualHandSettings: Equatable {
     var isLeftRightEnabled = false
     var startHand = Hand.left.rawValue
     var secondsBetweenHands = 10
-    var handSwitchMode = HandSwitchMode.rep.rawValue
+    var handSwitchMode = HandSwitchMode.set.rawValue
 }
 
 /**
