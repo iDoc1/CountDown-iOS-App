@@ -10,6 +10,7 @@ import SwiftUI
 /// Allows the user to set timer values for a custom timer setup, then navigate to a page to start the timer
 struct TimerSetupView: View {
     @State private var grip = GripViewModel()
+    @State private var dualHand = DualHandSettings()
     @FocusState private var isInputActive: Bool
     @State var showPicker = false
     
@@ -24,7 +25,12 @@ struct TimerSetupView: View {
                     Text("Sets & Reps")
                 }
                 
-                //LeftRightSection(isInputActive: $isInputActive)
+                DualHandModeSection(
+                    isLeftRightEnabled: $dualHand.isLeftRightEnabled,
+                    startHand: $dualHand.startHand,
+                    secondsBetweenHands: $dualHand.secondsBetweenHands,
+                    handSwitchMode: $dualHand.handSwitchMode,
+                    isInputActive: $isInputActive)
                 
                 if grip.hasCustomDurations {
                     RepDurationsPicker(
@@ -55,7 +61,7 @@ struct TimerSetupView: View {
                 }
                 
                 NavigationLink {
-                    CountdownTimerView(gripsArray: GripsArray(grip: grip))
+                    CountdownTimerView(gripsArray: GripsArray(grip: grip, dualHand: dualHand))
                 } label: {
                     Label("Start Workout", systemImage: "play.fill")
                         .font(.headline)

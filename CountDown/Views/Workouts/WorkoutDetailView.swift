@@ -28,10 +28,7 @@ struct WorkoutDetailView: View {
     
     var body: some View {
         List {
-            NavigationLink(destination: CountdownTimerWorkoutView(
-                gripsArray: gripsArray,
-                workout: workout)
-            ) {
+            NavigationLink(destination: CountdownTimerWorkoutView(workout: workout)) {
                 Label("Start Workout", systemImage: "play.fill")
                     .font(.headline)
                     .foregroundColor(.blue)
@@ -58,7 +55,7 @@ struct WorkoutDetailView: View {
                 Text("At least one grip must be added to start workout")
             }
             
-            DualHandModeSection(
+            WorkoutDualHandModeSection(
                 context: moc,
                 workout: workout,
                 isInputActive: $isInputActive)
@@ -139,6 +136,7 @@ struct WorkoutDetailView_Previews: PreviewProvider {
         workout.isLeftRightEnabled = false
         workout.startHand = Hand.left.rawValue
         workout.secondsBetweenHands = 10
+        workout.handSwitchMode = HandSwitchMode.set.rawValue
         
         
         let gripType = GripType(context: context)

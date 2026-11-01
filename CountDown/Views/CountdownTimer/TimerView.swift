@@ -24,7 +24,7 @@ struct TimerView: View {
                     style: StrokeStyle(lineWidth: 20.0, lineCap: .round))
         }
         .padding(25)
-        .onReceive(timer.$progress) { newValue in
+        .onReceive(timer.progressPublisher) { newValue in
             /*
              Only have non-zero animation duration if new progress less than current. This prevents
              the timer progress animation from moving backwards (clockwise) between duration changes.

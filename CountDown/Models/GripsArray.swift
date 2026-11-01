@@ -14,6 +14,8 @@ struct GripsArray {
     var isLeftRightEnabled: Bool
     var startHand: String?
     var secondsBetweenHands: Int?
+    /// Whether hands switch after every rep or after every set (only used when left/right mode is enabled)
+    var handSwitchMode: HandSwitchMode = .set
     
     /// The types of durations a timer can have. Each case corresponds to a string that may be displayed in the countdown timer
     enum DurationType: String {
@@ -102,8 +104,11 @@ struct GripsArray {
         }
     }
     
-    init(grip: GripViewModel) {
-        self.isLeftRightEnabled = false
+    init(grip: GripViewModel, dualHand: DualHandSettings = DualHandSettings()) {
+        self.isLeftRightEnabled = dualHand.isLeftRightEnabled
+        self.startHand = dualHand.startHand
+        self.secondsBetweenHands = dualHand.secondsBetweenHands
+        self.handSwitchMode = HandSwitchMode(rawValue: dualHand.handSwitchMode) ?? .set
         buildArrayFromGripViewModel(grip: grip)
     }
 
@@ -111,6 +116,7 @@ struct GripsArray {
         self.isLeftRightEnabled = workout.unwrappedIsLeftRightEnabled
         self.startHand = workout.unwrappedStartHand
         self.secondsBetweenHands = workout.unwrappedSecondsBetweenHands
+        self.handSwitchMode = HandSwitchMode(rawValue: workout.unwrappedHandSwitchMode) ?? .set
         buildArrayFromGrips(grips: grips)
     }
     
@@ -237,24 +243,27 @@ struct GripsArray {
         }
 
         // Add sets and reps to the current grip
+        let isSetSwitch = self.isLeftRightEnabled && self.handSwitchMode == .set
+        let firstHand = Hand(rawValue: self.startHand ?? Hand.left.rawValue) ?? .left
+        
         while currSet < grip.setCount {
-
-            if currRep < grip.repCount {
-                addWorkDuration()
-                currRep += 1
-            }
-            
-            var maxReps = grip.repCount
-            
-            // Decrease reps by one if current set is odd and decrement sets is true
-            if currSet % 2 == 1 && grip.decrementSets {
-                maxReps -= 1
-            }
+            if isSetSwitch {
+                // Complete the set with the start hand, switch, then repeat the set with the opposite hand
+                currRep = 0
+                addReps(hand: firstHand)
                 
-            while currRep < maxReps {
-                addDuration(type: .restType)
-                addWorkDuration()
-                currRep += 1
+                // Skip the switch if the set contains no reps
+                if grip.repCount > 0 {
+                    // Tag the switch with the last rep of this hand, as switches in rep mode are
+                    currRep = max(currRep - 1, 0)
+                    addDuration(type: .switchType,
+                                hand: firstHand.opposite,
+                                secondsOverride: self.secondsBetweenHands)
+                    currRep = 0
+                    addReps(hand: firstHand.opposite)
+                }
+            } else {
+                addReps(hand: nil)
             }
             
             currSet += 1
@@ -266,22 +275,43 @@ struct GripsArray {
             }
         }
         
+        /// Adds all the reps for the current set. Hand is only used when switching hands per set.
+        func addReps(hand: Hand?) {
+            if currRep < grip.repCount {
+                addWorkDuration(hand: hand)
+                currRep += 1
+            }
+            
+            var maxReps = grip.repCount
+            
+            // Decrease reps by one if current set is odd and decrement sets is true
+            if currSet % 2 == 1 && grip.decrementSets {
+                maxReps -= 1
+            }
+                
+            while currRep < maxReps {
+                addDuration(type: .restType, hand: hand)
+                addWorkDuration(hand: hand)
+                currRep += 1
+            }
+        }
+        
         /// Checks if left/right mode is enabled, then adds the appropriate durations
-        func addWorkDuration() {
-            /*
-             If left/right mode is enabled, then add a work duration for each hand with a
-             switch duration in between
-             */
-            if self.isLeftRightEnabled {
+        func addWorkDuration(hand: Hand?) {
+            if self.isLeftRightEnabled && self.handSwitchMode == .rep {
+                /*
+                 If switching hands per rep, then add a work duration for each hand with a
+                 switch duration in between
+                 */
                 addDuration(type: .workType, hand: Hand(rawValue: self.startHand!))
                 addDuration(type: .switchType,
                             hand: Hand(rawValue: self.startHand!)?.opposite,
                             secondsOverride: self.secondsBetweenHands)
                 addDuration(type: .workType, hand: Hand(rawValue: self.startHand!)?.opposite)
                 
-            // Otherwise, just add a single work duration
+            // Switching hands per set: a single work duration for the given hand
             } else {
-                addDuration(type: .workType)
+                addDuration(type: .workType, hand: hand)
             }
         }
         

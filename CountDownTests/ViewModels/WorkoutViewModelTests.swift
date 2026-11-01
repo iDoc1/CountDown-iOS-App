@@ -38,6 +38,37 @@ final class WorkoutViewModelTests: XCTestCase {
         XCTAssertEqual(savedWorkout?.createdDate!.get(.day), Date().get(.day))
     }
     
+    func testNewWorkoutDefaultsToSetHandSwitchMode() throws {
+        var workout = WorkoutViewModel(context: context)
+        XCTAssertEqual(workout.handSwitchMode, HandSwitchMode.set.rawValue)
+        
+        workout.name = "Repeaters"
+        workout.description = "RCTM Advanced Protocol"
+        workout.save()
+        
+        let savedWorkout = try context.fetch(NSFetchRequest<Workout>(entityName: "Workout")).first
+        XCTAssertEqual(savedWorkout?.handSwitchMode, "Set")
+    }
+    
+    func testHandSwitchModeSavedAndLoaded() throws {
+        var workout = WorkoutViewModel(context: context)
+        workout.name = "Repeaters"
+        workout.description = "RCTM Advanced Protocol"
+        workout.isLeftRightEnabled = true
+        workout.handSwitchMode = HandSwitchMode.set.rawValue
+        workout.save()
+        
+        let savedWorkout = try XCTUnwrap(context.fetch(NSFetchRequest<Workout>(entityName: "Workout")).first)
+        XCTAssertEqual(savedWorkout.handSwitchMode, "Set")
+        
+        var reloaded = WorkoutViewModel(workout: savedWorkout, context: context)
+        XCTAssertEqual(reloaded.handSwitchMode, "Set")
+        
+        reloaded.handSwitchMode = HandSwitchMode.rep.rawValue
+        reloaded.save()
+        XCTAssertEqual(savedWorkout.handSwitchMode, "Rep")
+    }
+    
     func testWorkoutEditedCorrectly() throws {
         // Create workout
         let workoutType = WorkoutType(context: context)
